@@ -20,7 +20,7 @@ module.exports = {
       'if [ $? -ne 0 ]; then',
       '  echo',
       '  echo "husky"',
-      '  echo "  (to bypass ' + name + ' hook add -n or --no-verify)"',
+      '  echo "  To bypass ' + name + ' hook add -n or --no-verify"',
       '  echo',
       'fi'
     ].join('\n')
