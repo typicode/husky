@@ -15,7 +15,7 @@ module.exports = {
     var filename = dir + '/' + name
     var data = [
       '# husky',
-      'PATH=$PATH:/usr/local/bin:/usr/local/sbin',
+      'PATH=' + process.env.PATH,
       cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
