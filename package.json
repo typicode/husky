@@ -1,0 +1,34 @@
+{
+  "name": "husky",
+  "version": "0.4.0",
+  "description": "Prevents bad commit or push (git hooks, pre-commit, pre-push and all that stuff...)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test",
+    "install": "./bin/install.js",
+    "uninstall": "./bin/uninstall.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/typicode/husky.git"
+  },
+  "keywords": [
+    "git",
+    "hook",
+    "hooks",
+    "pre-commit",
+    "precommit",
+    "pre-push",
+    "prepush",
+    "test"
+  ],
+  "author": "Typicode <typicode@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/typicode/husky/issues"
+  },
+  "homepage": "https://github.com/typicode/husky",
+  "devDependencies": {
+    "rm-r": "^1.0.2"
+  }
+}
