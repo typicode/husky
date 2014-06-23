@@ -13,5 +13,5 @@ if (fs.existsSync(dir)) {
   husky.create(dir, 'pre-push', 'npm run prepush')
   console.log('  done\n')
 } else {
-  console.log('  can\'t find .git/hooks/')
+  console.log('  can\'t find .git/hooks/\n')
 }
