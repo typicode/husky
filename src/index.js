@@ -14,14 +14,17 @@ module.exports = {
   create: function(dir, name, cmd) {
     var filename = dir + '/' + name
     var data = [
+      '#!/bin/sh',
+      '',
       '# husky',
-      'PATH=' + process.env.PATH,
+      'PATH="' + process.env.PATH + '"',
       cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
       '  echo "husky"',
       '  echo "  To bypass ' + name + ' hook add -n or --no-verify"',
       '  echo',
+      '  exit 1',
       'fi'
     ].join('\n')
 
