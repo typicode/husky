@@ -17,7 +17,6 @@ module.exports = {
       '#!/bin/sh',
       '',
       '# husky',
-      'PATH="' + process.env.PATH + '"',
       cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
