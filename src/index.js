@@ -3,7 +3,7 @@ var fs = require('fs')
 module.exports = {
   isHusky: function(filename) {
     var data = fs.readFileSync(filename, 'utf-8')
-    return data.indexOf('# husky') === 0
+    return data.indexOf('# husky') !== -1
   },
 
   write: function(filename, data) {
@@ -15,7 +15,6 @@ module.exports = {
     var filename = dir + '/' + name
     var data = [
       '#!/bin/sh',
-      '',
       '# husky',
       'PATH="' + process.env.PATH + '"',
       cmd,
