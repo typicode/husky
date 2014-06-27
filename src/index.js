@@ -22,6 +22,7 @@ module.exports = {
       '  echo "husky"',
       '  echo "  To bypass ' + name + ' hook add -n or --no-verify"',
       '  echo',
+      '  exit 1',
       'fi'
     ].join('\n')
 
