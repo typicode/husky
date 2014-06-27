@@ -20,8 +20,7 @@ module.exports = {
       cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
-      '  echo "husky"',
-      '  echo "  To bypass ' + name + ' hook add -n or --no-verify"',
+      '  echo "husky - ' + name + ' hook failed (add -n to bypass)"',
       '  echo',
       '  exit 1',
       'fi'
