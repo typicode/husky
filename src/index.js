@@ -16,6 +16,7 @@ module.exports = {
     var data = [
       '#!/bin/sh',
       '# husky',
+      // Needed on OS X when nvm is used and committing from Sublime
       'PATH="' + process.env.PATH + '"',
       cmd,
       'if [ $? -ne 0 ]; then',
