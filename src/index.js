@@ -13,19 +13,24 @@ module.exports = {
 
   create: function(dir, name, cmd) {
     var filename = dir + '/' + name
-    var data = [
-      '#!/bin/sh',
-      '# husky',
-      // Needed on OS X when nvm is used and committing from Sublime
-      'PATH="' + process.env.PATH + '"',
-      cmd,
-      'if [ $? -ne 0 ]; then',
-      '  echo',
-      '  echo "husky - ' + name + ' hook failed (add -n to bypass)"',
-      '  echo',
-      '  exit 1',
-      'fi'
-    ].join('\n')
+    var data = 
+        '#!/bin/sh\n'
+      + '# husky\n'
+  
+    // Needed on OS X when nvm is used and committing from Sublime Text
+    if (process.platform === 'darwin') {
+      data += 'PATH="' + process.env.PATH + '"\n' 
+    }
+
+    data +=
+        cmd + '\n'
+      + 'if [ $? -ne 0 ]; then\n'
+      + '  echo\n'
+      + '  echo "husky - ' + name + ' hook failed (add -n to bypass)"\n'
+      + '  echo\n'
+      + '  exit 1\n'
+      + 'fi\n'
+
 
     if (!fs.existsSync(filename)) {
       this.write(filename, data)
