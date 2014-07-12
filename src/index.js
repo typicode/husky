@@ -28,7 +28,7 @@ module.exports = {
         '#!/bin/sh\n'
       + '# husky\n'
   
-    // Needed on OS X when nvm is used and committing from Sublime Text
+    // Needed on OS X / Linux when nvm is used and committing from Sublime Text
     if (process.platform !== 'win32') {
       data += 'PATH="' + process.env.PATH + '"\n' 
     }
