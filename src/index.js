@@ -1,9 +1,20 @@
-var fs = require('fs')
+var fs   = require('fs')
+var exec = require('child_process').exec
 
 module.exports = {
   isHusky: function(filename) {
     var data = fs.readFileSync(filename, 'utf-8')
     return data.indexOf('# husky') !== -1
+  },
+
+  hooksDir: function(callback) {
+    exec('git rev-parse --show-toplevel', function(error, stdout, stderr) {
+      if (error) {
+        callback(stderr, null)
+      } else {
+        callback(null, stdout.trim() + '/.git/hooks')
+      }
+    })
   },
 
   write: function(filename, data) {
@@ -18,7 +29,7 @@ module.exports = {
       + '# husky\n'
   
     // Needed on OS X when nvm is used and committing from Sublime Text
-    if (process.platform === 'darwin') {
+    if (process.platform !== 'win32') {
       data += 'PATH="' + process.env.PATH + '"\n' 
     }
 

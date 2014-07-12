@@ -29,6 +29,6 @@
   },
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
-    "rm-r": "^1.0.2"
+    "rimraf": "^2.2.8"
   }
 }
