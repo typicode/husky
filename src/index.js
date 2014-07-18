@@ -8,11 +8,11 @@ module.exports = {
   },
 
   hooksDir: function(callback) {
-    exec('git rev-parse --show-toplevel', function(error, stdout, stderr) {
+    exec('git rev-parse --git-dir', function(error, stdout, stderr) {
       if (error) {
         callback(stderr, null)
       } else {
-        callback(null, stdout.trim() + '/.git/hooks')
+        callback(null, stdout.trim() + '/hooks')
       }
     })
   },
@@ -24,13 +24,13 @@ module.exports = {
 
   create: function(dir, name, cmd) {
     var filename = dir + '/' + name
-    var data = 
+    var data =
         '#!/bin/sh\n'
       + '# husky\n'
-  
+
     // Needed on OS X / Linux when nvm is used and committing from Sublime Text
     if (process.platform !== 'win32') {
-      data += 'PATH="' + process.env.PATH + '"\n' 
+      data += 'PATH="' + process.env.PATH + '"\n'
     }
 
     data +=
