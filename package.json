@@ -1,7 +1,7 @@
 {
   "name": "husky",
   "version": "0.5.3",
-  "description": "Prevents bad commit or push (git hooks, pre-commit, pre-push and all that stuff...)",
+  "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush and all that stuff...)",
   "main": "index.js",
   "scripts": {
     "test": "node test",
