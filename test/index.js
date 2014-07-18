@@ -8,7 +8,7 @@ var husky  = require('../src/')
 
 husky.hooksDir(function(err, dir) {
   assert.equal(err, null)
-  assert.equal(dir, path.resolve(__dirname + '/../.git/hooks'))
+  assert.equal(dir, '.git/hooks')
 })
 
 // Create tmp dir
