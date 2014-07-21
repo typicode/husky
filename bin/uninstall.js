@@ -8,6 +8,7 @@ husky.hooksDir(function(err, dir) {
   if (!err) {
     husky.remove(dir, 'pre-commit')
     husky.remove(dir, 'pre-push')
+    husky.remove(dir, 'post-merge')
 
     console.log('  done\n')
   }

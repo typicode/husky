@@ -11,6 +11,8 @@ husky.hooksDir(function(err, dir) {
   } else {
     husky.create(dir, 'pre-commit', 'npm run precommit --silent')
     husky.create(dir, 'pre-push', 'npm run prepush --silent')
+    husky.create(dir, 'post-merge', 'npm run postmerge --silent')
+    
     console.log('  done\n')
   }
 })

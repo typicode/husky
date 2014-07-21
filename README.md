@@ -22,6 +22,8 @@ $ npm install husky --save-dev
 git commit -m "Keep calm and commit"
 ```
 
-_Both npm scripts are optional, existing hooks aren't replaced and adding `-n` to your git commands lets you bypass hooks._
+_Both npm scripts are optional, existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks._
 
-_To uninstall husky, simply run `npm rm husky --save-dev`._
+_To uninstall husky, simply run `npm rm husky --save-dev`_.
+
+_Other supported hook: `post-merge`_

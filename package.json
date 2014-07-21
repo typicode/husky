@@ -1,7 +1,7 @@
 {
   "name": "husky",
   "version": "0.5.4",
-  "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush and all that stuff...)",
+  "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "main": "index.js",
   "scripts": {
     "test": "node test",
@@ -20,6 +20,8 @@
     "precommit",
     "pre-push",
     "prepush",
+    "post-merge",
+    "postmerge",
     "test"
   ],
   "author": "Typicode <typicode@gmail.com>",
