@@ -42,7 +42,10 @@ module.exports = {
       + '  exit 1\n'
       + 'fi\n'
 
+    // Create hooks directory if needed
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir)
 
+    // Create hook file
     if (!fs.existsSync(filename)) {
       this.write(filename, data)
     } else {

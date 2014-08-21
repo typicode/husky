@@ -6,16 +6,17 @@ var husky  = require('../src/')
 
 // Some very basic tests...
 
+// should return git hooks path
 husky.hooksDir(function(err, dir) {
   assert.equal(err, null)
   assert.equal(dir, '.git/hooks')
 })
 
-// Create tmp dir
-var dir = __dirname + '/../tmp'
+// Reset tmp dir
+rm.sync('../tmp')
+fs.mkdirSync('../tmp')
 
-rm.sync(dir)
-fs.mkdirSync(dir)
+var dir = '../tmp/hooks'
 
 // husky should be able to create a hook and update it
 assert.doesNotThrow(function() {
