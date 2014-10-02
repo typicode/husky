@@ -25,7 +25,7 @@ module.exports = {
   create: function(dir, name, cmd) {
     var filename = dir + '/' + name
     var data =
-        '#!/bin/sh\n'
+        '#!/bin/bash\n'
       + '# husky\n'
 
     // Needed on OS X / Linux when nvm is used and committing from Sublime Text
