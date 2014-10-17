@@ -37,14 +37,14 @@ module.exports = {
       'dirs=$(find . -name package.json -not -path "**/node_modules/*" -exec dirname \'{}\' \\;)\n'
       + 'for dir in $dirs; do\n'
       + '  pushd "$dir"'
-      + '  ' + cmd + '\n'
+      + '  ' + cmd + ' > /dev/null\n'
       + '  if [ $? -ne 0 ]; then\n'
       + '    echo\n'
       + '    echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"\n'
       + '    echo\n'
       + '    exit 1\n'
       + '  fi\n'
-      + '  popd\n'
+      + '  popd > /dev/null\n'
       + 'done'
 
     // Create hooks directory if needed
