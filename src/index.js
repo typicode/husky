@@ -31,6 +31,9 @@ module.exports = {
     // Needed on OS X / Linux when nvm is used and committing from Sublime Text
     if (process.platform !== 'win32') {
       data += 'PATH="' + process.env.PATH + '"\n'
+           +  'if [ -f "$HOME/.nvm/nvm.sh" ]; then\n'
+           +  '  . $HOME/.nvm/nvm.sh\n'
+           +  'fi\n'
     }
 
     data +=
