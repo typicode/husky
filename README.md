@@ -27,4 +27,4 @@ _All scripts are optional, existing hooks aren't replaced and adding `--no-verif
 
 _To uninstall husky, simply run `npm rm husky --save-dev`_.
 
-Missing a hook? Feel free to create an issue.
+Missing a Git hook? Feel free to create an [issue](https://github.com/typicode/husky/issues).
