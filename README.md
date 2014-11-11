@@ -14,7 +14,7 @@ $ npm install husky --save-dev
   "scripts": {
     "precommit": "npm test",
     "prepush": "npm test",
-    "postmerge" "npm install"
+    "postmerge": "npm install"
   }
 }
 ```
