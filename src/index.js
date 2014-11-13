@@ -25,7 +25,7 @@ module.exports = {
   create: function(dir, name, cmd) {
     var filename = dir + '/' + name
     var data =
-        '#!/bin/sh\n'
+        '#!/bin/bash\n'
       + '# husky\n'
 
     // Needed on OS X / Linux when nvm is used and committing from Sublime Text
@@ -34,13 +34,18 @@ module.exports = {
     }
 
     data +=
-        cmd + '\n'
-      + 'if [ $? -ne 0 ]; then\n'
-      + '  echo\n'
-      + '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"\n'
-      + '  echo\n'
-      + '  exit 1\n'
-      + 'fi\n'
+      'dirs=$(find . -name package.json -not -path "**/node_modules/*" -exec dirname \'{}\' \\;)\n'
+      + 'for dir in $dirs; do\n'
+      + '  pushd "$dir"'
+      + '  ' + cmd + ' > /dev/null\n'
+      + '  if [ $? -ne 0 ]; then\n'
+      + '    echo\n'
+      + '    echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"\n'
+      + '    echo\n'
+      + '    exit 1\n'
+      + '  fi\n'
+      + '  popd > /dev/null\n'
+      + 'done'
 
     // Create hooks directory if needed
     if (!fs.existsSync(dir)) fs.mkdirSync(dir)
