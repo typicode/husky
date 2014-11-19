@@ -35,7 +35,7 @@ module.exports = {
 
     data +=
         'npm run | grep -q \'  ' + name + '\'\n' // temporary fix for issue #16
-      + 'if [ $? -ne 0]; then\n'
+      + 'if [ $? -ne 0 ]; then\n'
       + '  exit 0\n' // package.scripts[name] can't be found exit
       + 'fi\n'
       + cmd + '\n'
