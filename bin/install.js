@@ -9,10 +9,10 @@ husky.hooksDir(function(err, dir) {
   if (err) {
     console.error('  ' + err)
   } else {
-    husky.create(dir, 'pre-commit', 'npm run precommit --silent')
-    husky.create(dir, 'pre-push', 'npm run prepush --silent')
-    husky.create(dir, 'post-merge', 'npm run postmerge --silent')
-    
+    husky.create(dir, 'pre-commit', 'precommit')
+    husky.create(dir, 'pre-push', 'prepush')
+    husky.create(dir, 'post-merge', 'postmerge')
+
     console.log('  done\n')
   }
 })
