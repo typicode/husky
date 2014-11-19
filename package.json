@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "main": "index.js",
   "scripts": {
