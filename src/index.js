@@ -34,7 +34,11 @@ module.exports = {
     }
 
     data +=
-        cmd + '\n'
+        'npm run | grep -q \'  ' + name + '\'\n' // temporary fix for issue #16
+      + 'if [ $? -ne 0]; then\n'
+      + '  exit 0\n' // package.scripts[name] can't be found exit
+      + 'fi\n'
+      + cmd + '\n'
       + 'if [ $? -ne 0 ]; then\n'
       + '  echo\n'
       + '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"\n'
