@@ -38,7 +38,6 @@ module.exports = {
       + 'if [ $? -ne 0 ]; then\n'
       + '  exit 0\n' // package.scripts[name] can't be found exit
       + 'fi\n'
-      + '\n'
       + 'npm run ' + cmd + ' --silent\n'
       + 'if [ $? -ne 0 ]; then\n'
       + '  echo\n'
