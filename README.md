@@ -1,4 +1,4 @@
-# husky [![Build Status](https://travis-ci.org/typicode/husky.svg?branch=master)](https://travis-ci.org/typicode/husky) [![](http://img.shields.io/npm/dm/husky.svg)](https://www.npmjs.org/package/husky)
+# husky [![Build Status](https://travis-ci.org/typicode/husky.svg?branch=master)](https://travis-ci.org/typicode/husky) [![](http://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky)
 
 > husky prevents bad commit or push using Git hooks.
 
