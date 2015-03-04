@@ -36,9 +36,13 @@ module.exports = {
     
     // Assuming that this file is in node_modules/husky/src
     var packageDir = path.join(__dirname, '..', '..', '..')
+
+    // dir being .git/hooks
+    var projectDir = path.join(dir, '..', '..')
     
-    // Find relative path from .git/hooks to package.json
-    var relativePath = path.relative(dir, packageDir)
+    // In order to support projects with package.json in a different directory
+    // than .git, find relative path from project directory to package.json
+    var relativePath = path.relative(projectDir, packageDir)
 
     data +=
         'cd ' + relativePath + '\n'
