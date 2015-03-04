@@ -42,10 +42,10 @@ module.exports = {
     
     // In order to support projects with package.json in a different directory
     // than .git, find relative path from project directory to package.json
-    var relativePath = path.relative(projectDir, packageDir)
+    var relativePath = path.join('.', path.relative(projectDir, packageDir))
 
     data +=
-        'cd ' + relativePath + '\n'
+        'cd .' + relativePath + '\n'
       + 'npm run --json | grep -q \'"' + cmd + '":\'\n' // fix for issue #16
       + 'if [ $? -ne 0 ]; then\n'
       + '  exit 0\n' // package.scripts[name] can't be found exit
