@@ -33,8 +33,15 @@ module.exports = {
       data += 'PATH="' + process.env.PATH + '"\n'
     }
 
+    // Get the path of the projects .git
+    var projectPath = dir.replace('.git/hooks', '')
+    
+    // Need to find relative path from projects .git -> package.json
+    var relativePath = process.env.PWD.replace(projectPath,'').split('/node_modules')[0]
+
     data +=
-        'npm run --json | grep -q \'"' + cmd + '":\'\n' // fix for issue #16
+        'cd ./' + relativePath + '\n'
+      + 'npm run --json | grep -q \'"' + cmd + '":\'\n' // fix for issue #16
       + 'if [ $? -ne 0 ]; then\n'
       + '  exit 0\n' // package.scripts[name] can't be found exit
       + 'fi\n'
