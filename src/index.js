@@ -45,7 +45,7 @@ module.exports = {
     var relativePath = path.join('.', path.relative(projectDir, packageDir))
 
     data +=
-        'cd .' + relativePath + '\n'
+        'cd ' + relativePath + '\n'
       + 'npm run --json | grep -q \'"' + cmd + '":\'\n' // fix for issue #16
       + 'if [ $? -ne 0 ]; then\n'
       + '  exit 0\n' // package.scripts[name] can't be found exit
