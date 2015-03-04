@@ -1,4 +1,5 @@
-var fs   = require('fs')
+var fs = require('fs')
+var path = require('path')
 var exec = require('child_process').exec
 
 module.exports = {
@@ -32,15 +33,15 @@ module.exports = {
     if (process.platform !== 'win32') {
       data += 'PATH="' + process.env.PATH + '"\n'
     }
-
-    // Get the path of the projects .git
-    var projectPath = dir.replace('.git/hooks', '')
     
-    // Need to find relative path from projects .git -> package.json
-    var relativePath = process.env.PWD.replace(projectPath,'').split('/node_modules')[0]
+    // Assuming that this file is in node_modules/husky/src
+    var packageDir = path.join(__dirname, '..', '..', '..')
+    
+    // Find relative path from .git/hooks to package.json
+    var relativePath = path.relative(dir, packageDir)
 
     data +=
-        'cd ./' + relativePath + '\n'
+        'cd ' + relativePath + '\n'
       + 'npm run --json | grep -q \'"' + cmd + '":\'\n' // fix for issue #16
       + 'if [ $? -ne 0 ]; then\n'
       + '  exit 0\n' // package.scripts[name] can't be found exit
