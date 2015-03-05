@@ -23,8 +23,8 @@ $ npm install husky --save-dev
 git commit -m "Keep calm and commit"
 ```
 
-_All scripts are optional, existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks._
+All scripts are optional, existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks.
 
-_To uninstall husky, simply run `npm rm husky --save-dev`_.
+To uninstall husky, simply run `npm rm husky --save-dev`.
 
 Missing a Git hook? Feel free to create an [issue](https://github.com/typicode/husky/issues).
