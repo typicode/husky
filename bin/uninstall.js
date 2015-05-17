@@ -7,6 +7,7 @@ console.log('  uninstalling')
 husky.hooksDir(function(err, dir) {
   if (!err) {
     husky.remove(dir, 'pre-commit')
+    husky.remove(dir, 'post-commit')
     husky.remove(dir, 'pre-push')
     husky.remove(dir, 'post-merge')
 

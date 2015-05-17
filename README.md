@@ -13,8 +13,7 @@ $ npm install husky --save-dev
 {
   "scripts": {
     "precommit": "npm test",
-    "prepush": "npm test",
-    "postmerge": "npm install"
+    "prepush": "npm test"
   }
 }
 ```
@@ -27,4 +26,4 @@ All scripts are optional, existing hooks aren't replaced and adding `--no-verify
 
 To uninstall husky, simply run `npm rm husky --save-dev`.
 
-Missing a Git hook? Feel free to create an [issue](https://github.com/typicode/husky/issues).
+Other hooks available are `postcommit` and `postmerge`. Missing a Git hook? Feel free to create an [issue](https://github.com/typicode/husky/issues).

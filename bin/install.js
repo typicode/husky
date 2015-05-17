@@ -10,6 +10,7 @@ husky.hooksDir(function(err, dir) {
     console.error('  ' + err)
   } else {
     husky.create(dir, 'pre-commit', 'precommit')
+    husky.create(dir, 'post-commit', 'postcommit')
     husky.create(dir, 'pre-push', 'prepush')
     husky.create(dir, 'post-merge', 'postmerge')
 

@@ -18,6 +18,8 @@
     "hooks",
     "pre-commit",
     "precommit",
+    "post-commit",
+    "postcommit",
     "pre-push",
     "prepush",
     "post-merge",
