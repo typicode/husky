@@ -14,6 +14,7 @@ husky.hooksDir(function(err, dir) {
     husky.create(dir, 'post-merge', 'postmerge')
     husky.create(dir, 'post-rewrite', 'postrewrite')
     husky.create(dir, 'pre-rebase', 'prerebase')
+    husky.create(dir, 'post-checkout', 'postcheckout')
 
     console.log('  done\n')
   }
