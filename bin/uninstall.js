@@ -11,6 +11,7 @@ husky.hooksDir(function(err, dir) {
     husky.remove(dir, 'post-merge')
     husky.remove(dir, 'post-rewrite')
     husky.remove(dir, 'pre-rebase')
+    husky.remove(dir, 'post-checkout')
 
     console.log('  done\n')
   }
