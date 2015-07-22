@@ -4,6 +4,7 @@
 
 :dog: woof!
 
+
 ```bash
 $ npm install husky --save-dev
 ```
@@ -26,4 +27,4 @@ All scripts are optional, existing hooks aren't replaced and adding `--no-verify
 
 To uninstall husky, simply run `npm rm husky --save-dev`.
 
-Missing a Git hook? Feel free to create an [issue](https://github.com/typicode/husky/issues).
+Supported hooks are listed [here](hooks) (simply remove `-` when adding them to your `package.json`)
