@@ -27,4 +27,4 @@ All scripts are optional, existing hooks aren't replaced and adding `--no-verify
 
 To uninstall husky, simply run `npm rm husky --save-dev`.
 
-Supported hooks are listed [here](hooks) (simply remove `-` when adding them to your `package.json`)
+Supported hooks are listed [here](https://github.com/typicode/husky/blob/master/hooks.json) (simply remove `-` when adding them to your `package.json`)
