@@ -14,7 +14,8 @@ npm install husky --save-dev
 {
   "scripts": {
     "precommit": "npm test",
-    "prepush": "npm test"
+    "prepush": "npm test",
+    "...": "..."
   }
 }
 ```
@@ -23,8 +24,6 @@ npm install husky --save-dev
 git commit -m "Keep calm and commit"
 ```
 
-All scripts are optional, existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks.
+Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use any hook listed [here](https://github.com/typicode/husky/blob/master/hooks.json).
 
 To uninstall husky, simply run `npm rm husky --save-dev`
-
-[Supported hooks](https://github.com/typicode/husky/blob/master/hooks.json)
