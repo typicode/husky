@@ -33,23 +33,28 @@ module.exports = {
     if (process.platform !== 'win32') {
       data += 'PATH="' + process.env.PATH + '"\n'
     }
-    
+
     // Assuming that this file is in node_modules/husky/src
     var packageDir = path.join(__dirname, '..', '..', '..')
 
     // dir being .git/hooks
     var projectDir = path.join(dir, '..', '..')
-    
+
     // In order to support projects with package.json in a different directory
     // than .git, find relative path from project directory to package.json
     var relativePath = path.join('.', path.relative(projectDir, packageDir))
 
     data +=
         'cd ' + relativePath + '\n'
-      + 'npm run --json | grep -q \'"' + cmd + '":\'\n' // fix for issue #16
+        // Fix for issue #16 #24
+        // Test if package.scripts[name] is defined
+      + 'cat package.json | grep -q \'"' + cmd + '"\s*:\'\n'
+
       + 'if [ $? -ne 0 ]; then\n'
-      + '  exit 0\n' // package.scripts[name] can't be found exit
+        // package.scripts[name] can't be found exit
+      + '  exit 0\n'
       + 'fi\n'
+
       + 'npm run ' + cmd + ' --silent\n'
       + 'if [ $? -ne 0 ]; then\n'
       + '  echo\n'
