@@ -25,10 +25,6 @@ git commit -m "Keep calm and commit"
 
 All scripts are optional, existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks.
 
-To uninstall husky, simply run
-
-```
-npm rm husky --save-dev
-```
+To uninstall husky, simply run `npm rm husky --save-dev`
 
 [Supported hooks](https://github.com/typicode/husky/blob/master/hooks.json)
