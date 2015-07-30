@@ -47,14 +47,10 @@ module.exports = {
     data +=
         'cd ' + relativePath + '\n'
         // Fix for issue #16 #24
-        // Test if package.scripts[name] is defined
-      + 'cat package.json | grep -q \'"' + cmd + '"\s*:\'\n'
-
-      + 'if [ $? -ne 0 ]; then\n'
-        // package.scripts[name] can't be found exit
-      + '  exit 0\n'
-      + 'fi\n'
-
+        // Test if script is defined in package.json
+      + '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'\n'
+        // package.json or script can't be found exit
+      + '[ $? -ne 0 ] && exit 0\n'
       + 'npm run ' + cmd + ' --silent\n'
       + 'if [ $? -ne 0 ]; then\n'
       + '  echo\n'
