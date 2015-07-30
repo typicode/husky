@@ -31,4 +31,4 @@ To uninstall husky, simply run
 npm rm husky --save-dev
 ```
 
-[Supported hooks](https://github.com/typicode/husky/blob/master/hooks.json) (remember to remove `-` when adding them to your `package.json`)
+[Supported hooks](https://github.com/typicode/husky/blob/master/hooks.json)
