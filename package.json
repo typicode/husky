@@ -34,5 +34,8 @@
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
     "rimraf": "^2.2.8"
+  },
+  "dependencies": {
+    "normalize-path": "^1.0.0"
   }
 }

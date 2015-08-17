@@ -1,6 +1,7 @@
 var fs = require('fs')
 var path = require('path')
 var exec = require('child_process').exec
+var normalize = require('normalize-path')
 
 module.exports = {
   isHusky: function(filename) {
@@ -44,8 +45,11 @@ module.exports = {
     // than .git, find relative path from project directory to package.json
     var relativePath = path.join('.', path.relative(projectDir, packageDir))
 
+    // On Windows normalize path (i.e. convert \ to /)
+    var normalizedPath = normalize(relativePath)
+
     data +=
-        'cd ' + relativePath + '\n'
+        'cd ' + normalizedPath + '\n'
         // Fix for issue #16 #24
         // Test if script is defined in package.json
       + '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'\n'
