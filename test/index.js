@@ -2,7 +2,6 @@ var assert = require('assert')
 var fs = require('fs')
 var path = require('path')
 var rmrf = require('rimraf')
-var mkdirp = require('mkdirp')
 var husky = require('../src/')
 
 // Some very basic tests...
@@ -15,15 +14,16 @@ husky.hooksDir(function (err, dir) {
 
 // Reset tmp dir
 rmrf.sync(path.join(__dirname, '../tmp'))
-mkdirp.sync(path.join(__dirname, '../tmp'))
+fs.mkdirSync(path.join(__dirname, '../tmp'))
 
-var dir = '../tmp/hooks'
+var dir = path.join(__dirname, '../tmp/hooks')
 
-// husky should be able to create a hook and update it
+// husky should be able to create hooks directory and hook script
 assert.doesNotThrow(function () {
   husky.create(dir, 'pre-commit', 'foo')
 })
 
+// husky should be able to update hook script
 assert.doesNotThrow(function () {
   husky.create(dir, 'pre-commit', 'bar')
 })
