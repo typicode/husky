@@ -1,14 +1,14 @@
 var assert = require('assert')
-var fs     = require('fs')
-var path   = require('path')
-var rmrf   = require('rimraf')
+var fs = require('fs')
+var path = require('path')
+var rmrf = require('rimraf')
 var mkdirp = require('mkdirp')
-var husky  = require('../src/')
+var husky = require('../src/')
 
 // Some very basic tests...
 
 // should return git hooks path
-husky.hooksDir(function(err, dir) {
+husky.hooksDir(function (err, dir) {
   assert.equal(err, null)
   assert.equal(dir, '.git/hooks')
 })
@@ -20,11 +20,11 @@ mkdirp.sync(path.join(__dirname, '../tmp'))
 var dir = '../tmp/hooks'
 
 // husky should be able to create a hook and update it
-assert.doesNotThrow(function() {
+assert.doesNotThrow(function () {
   husky.create(dir, 'pre-commit', 'foo')
 })
 
-assert.doesNotThrow(function() {
+assert.doesNotThrow(function () {
   husky.create(dir, 'pre-commit', 'bar')
 })
 

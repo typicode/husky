@@ -4,13 +4,13 @@ var exec = require('child_process').exec
 var normalize = require('normalize-path')
 
 module.exports = {
-  isHusky: function(filename) {
+  isHusky: function (filename) {
     var data = fs.readFileSync(filename, 'utf-8')
     return data.indexOf('# husky') !== -1
   },
 
-  hooksDir: function(callback) {
-    exec('git rev-parse --git-dir', function(error, stdout, stderr) {
+  hooksDir: function (callback) {
+    exec('git rev-parse --git-dir', function (error, stdout, stderr) {
       if (error) {
         callback(stderr, null)
       } else {
@@ -19,12 +19,12 @@ module.exports = {
     })
   },
 
-  write: function(filename, data) {
+  write: function (filename, data) {
     fs.writeFileSync(filename, data)
     fs.chmodSync(filename, 0755)
   },
 
-  create: function(dir, name, cmd) {
+  create: function (dir, name, cmd) {
     var filename = dir + '/' + name
     var arr = [
       '#!/bin/sh',
@@ -82,7 +82,7 @@ module.exports = {
     }
   },
 
-  remove: function(dir, name) {
+  remove: function (dir, name) {
     var filename = dir + '/' + name
 
     if (fs.existsSync(filename) && this.isHusky(filename)) {
