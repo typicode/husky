@@ -26,13 +26,14 @@ module.exports = {
 
   create: function(dir, name, cmd) {
     var filename = dir + '/' + name
-    var data =
-        '#!/bin/sh\n'
-      + '# husky\n'
+    var arr = [
+      '#!/bin/sh',
+      '# husky'
+    ]
 
     // Needed on OS X / Linux when nvm is used and committing from Sublime Text
     if (process.platform !== 'win32') {
-      data += 'PATH="' + process.env.PATH + '"\n'
+      arr.push('PATH="' + process.env.PATH + '"')
     }
 
     // Assuming that this file is in node_modules/husky/src
@@ -48,25 +49,28 @@ module.exports = {
     // On Windows normalize path (i.e. convert \ to /)
     var normalizedPath = normalize(relativePath)
 
-    data +=
-        'cd ' + normalizedPath + '\n'
-        // Fix for issue #16 #24
-        // Test if script is defined in package.json
-      + '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'\n'
-        // package.json or script can't be found exit
-      + '[ $? -ne 0 ] && exit 0\n'
-      + 'npm run ' + cmd + ' --silent -- "$@"\n'
-      + 'if [ $? -ne 0 ]; then\n'
-      + '  echo\n'
-      + '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"\n'
-      + '  echo\n'
-      + '  exit 1\n'
-      + 'fi\n'
+    arr.concat([
+      'cd ' + normalizedPath,
+      // Fix for issue #16 #24
+      // Test if script is defined in package.json
+      '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'',
+      // package.json or script can't be found exit
+      '[ $? -ne 0 ] && exit 0',
+      'npm run ' + cmd + ' --silent -- "$@"',
+      'if [ $? -ne 0 ]; then',
+      '  echo',
+      '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"',
+      '  echo',
+      '  exit 1',
+      'fi'
+    ])
+
 
     // Create hooks directory if needed
     if (!fs.existsSync(dir)) fs.mkdirSync(dir)
 
     // Create hook file
+    var data = arr.join('\n')
     if (!fs.existsSync(filename)) {
       this.write(filename, data)
     } else {
