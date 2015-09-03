@@ -13,8 +13,8 @@ husky.hooksDir(function(err, dir) {
 })
 
 // Reset tmp dir
-rm.sync('../tmp')
-fs.mkdirSync('../tmp')
+rm.sync(path.join(__dirname, '../tmp'))
+fs.mkdirSync(path.join(__dirname, '../tmp'))
 
 var dir = '../tmp/hooks'
 

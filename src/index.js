@@ -49,7 +49,8 @@ module.exports = {
     // On Windows normalize path (i.e. convert \ to /)
     var normalizedPath = normalize(relativePath)
 
-    arr.concat([
+    // Hook script
+    arr = arr.concat([
       'cd ' + normalizedPath,
       // Fix for issue #16 #24
       // Test if script is defined in package.json
@@ -64,7 +65,6 @@ module.exports = {
       '  exit 1',
       'fi'
     ])
-
 
     // Create hooks directory if needed
     if (!fs.existsSync(dir)) fs.mkdirSync(dir)
