@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
+    "mkdirp": "^0.5.1",
     "rimraf": "^2.2.8"
   },
   "dependencies": {

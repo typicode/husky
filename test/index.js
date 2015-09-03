@@ -1,7 +1,8 @@
 var assert = require('assert')
 var fs     = require('fs')
 var path   = require('path')
-var rm     = require('rimraf')
+var rmrf   = require('rimraf')
+var mkdirp = require('mkdirp')
 var husky  = require('../src/')
 
 // Some very basic tests...
@@ -13,8 +14,8 @@ husky.hooksDir(function(err, dir) {
 })
 
 // Reset tmp dir
-rm.sync(path.join(__dirname, '../tmp'))
-fs.mkdirSync(path.join(__dirname, '../tmp'))
+rmrf.sync(path.join(__dirname, '../tmp'))
+mkdirp.sync(path.join(__dirname, '../tmp'))
 
 var dir = '../tmp/hooks'
 
