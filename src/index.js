@@ -55,7 +55,7 @@ module.exports = {
       + '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'\n'
         // package.json or script can't be found exit
       + '[ $? -ne 0 ] && exit 0\n'
-      + 'npm run ' + cmd + ( cmd === 'commitmsg' ? ' $1' : '') + ' --silent\n'
+      + 'npm run ' + cmd + ' --silent -- "$@"\n'
       + 'if [ $? -ne 0 ]; then\n'
       + '  echo\n'
       + '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"\n'
