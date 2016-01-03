@@ -2,9 +2,10 @@
 var fs    = require('fs')
 var husky = require('../src/')
 var hooks = require('../hooks.json')
+var chalk  = require('chalk')
 
-console.log('\033[36m%s\033[0m', 'husky')
-console.log('  setting up hooks in .git/hooks/')
+chalk.cyan('husky');
+chalk.cyan('  setting up hooks in .git/hooks/')
 
 husky.hooksDir(function(err, dir) {
   if (err) {

@@ -2,8 +2,8 @@
 var husky = require('../src/')
 var hooks = require('../hooks.json')
 
-console.log('\033[36m%s\033[0m', 'husky')
-console.log('  uninstalling')
+chalk.cyan('husky')
+chalk.cyan('  uninstalling')
 
 husky.hooksDir(function(err, dir) {
   if (!err) {
