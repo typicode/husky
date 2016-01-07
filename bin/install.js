@@ -1,7 +1,7 @@
 // Run when package is installed
 var fs    = require('fs')
 var husky = require('../src/')
-var hooks = require('../hooks.json')
+var hooks = require('../src/hooks.json')
 
 console.log('\033[36m%s\033[0m', 'husky')
 console.log('  setting up hooks in .git/hooks/')

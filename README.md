@@ -25,26 +25,7 @@ npm install husky --save-dev
 git commit -m "Keep calm and commit"
 ```
 
-Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks.
-
-You can use any Git hook:
-
-| Git hook | npm script |
-| -------- | ---------- |
-| applypatch-msg | applypatchmsg |
-| commit-msg | commitmsg |
-| post-applypatch | postapplypatch |
-| post-checkout | postcheckout |
-| post-commit | postcommit |
-| post-merge | postmerge |
-| post-receiv | postreceiv |
-| pre-applypatch | preapplypatch |
-| pre-commit | precommit |
-| pre-push | prepush |
-| pre-rebase | prerebase |
-| pre-receive | prereceive |
-| prepare-commit-msg | preparecommitmsg |
-| update | update |
+Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use [any Git hook](HOOKS.md).
 
 To uninstall husky and Git hooks, simply run:
 
