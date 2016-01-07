@@ -1,6 +1,6 @@
 # Hooks
 
-Husky supports all git hooks (https://git-scm.com/docs/githooks).
+Husky supports all git hooks (https://git-scm.com/docs/githooks). Simply add the corresponding `npm script` to your `package.json`.
 
 | Git hook | npm script |
 | -------- | ---------- |
