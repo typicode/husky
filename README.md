@@ -29,9 +29,7 @@ Existing hooks aren't replaced and adding `--no-verify` to your git commands let
 
 ## Debug
 
-If you need to debug hooks, use `npm run <script-name>`.
-
-For example:
+If you need to debug hooks, use `npm run <script-name>`. For example:
 
 ```bash
 npm run precommit
