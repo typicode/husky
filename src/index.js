@@ -31,11 +31,6 @@ module.exports = {
       '# husky'
     ]
 
-    // Needed on OS X / Linux when nvm is used and committing from Sublime Text
-    if (process.platform !== 'win32') {
-      arr.push('PATH="' + process.env.PATH + '"')
-    }
-
     // Assuming that this file is in node_modules/husky/src
     var packageDir = path.join(__dirname, '..', '..', '..')
 
@@ -49,14 +44,23 @@ module.exports = {
     // On Windows normalize path (i.e. convert \ to /)
     var normalizedPath = normalize(relativePath)
 
+    // Can't find npm message
+    var npmNotFound = 'Can\'t find npm in PATH. Skipping ' + cmd + ' script.'
+
     // Hook script
     arr = arr.concat([
       'cd ' + normalizedPath,
+
       // Fix for issue #16 #24
       // Test if script is defined in package.json
       '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'',
       // package.json or script can't be found exit
       '[ $? -ne 0 ] && exit 0',
+
+      // Test if npm is in PATH
+      'command -v npm >/dev/null 2>&1 || { echo >&2 "' + npmNotFound + '"; exit 0; }',
+
+      // Run script
       'npm run ' + cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
