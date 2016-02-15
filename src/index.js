@@ -62,16 +62,15 @@ module.exports = {
 
       // If nvm is installed, try to load it
       // This will load default version
-      arr = arr.concat(arr, [
+      arr = arr.concat([
         '[ -s "' + home + '/.nvm/nvm.sh" ] && . "' + home + '/.nvm/nvm.sh"',
       ])
-
     }
 
     // Can't find npm message
     var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script.'
 
-    arr = arr.concat(arr, [
+    arr = arr.concat([
       // Test if npm is in PATH
       'command -v npm >/dev/null 2>&1 || { echo >&2 "' + npmNotFound + '"; exit 0; }',
 
@@ -82,7 +81,8 @@ module.exports = {
       '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"',
       '  echo',
       '  exit 1',
-      'fi'
+      'fi',
+      ''
     ])
 
     // Create hooks directory if needed
