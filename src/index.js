@@ -44,9 +44,6 @@ module.exports = {
     // On Windows normalize path (i.e. convert \ to /)
     var normalizedPath = normalize(relativePath)
 
-    // Can't find npm message
-    var npmNotFound = 'Can\'t find npm in PATH. Skipping ' + cmd + ' script.'
-
     // Hook script
     arr = arr.concat([
       'cd ' + normalizedPath,
@@ -56,7 +53,25 @@ module.exports = {
       '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'',
       // package.json or script can't be found exit
       '[ $? -ne 0 ] && exit 0',
+    ])
 
+    // On OS X and Linux, try to use nvm if it's installed
+    if (process.platform !== 'win32') {
+      // ~ is unavaible, so $HOME is used
+      var home = process.env.HOME
+
+      // If nvm is installed, try to load it
+      // This will load default version
+      arr = arr.concat(arr, [
+        '[ -s "' + home + '/.nvm/nvm.sh" ] && . "' + home + '/.nvm/nvm.sh"',
+      ])
+
+    }
+
+    // Can't find npm message
+    var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script.'
+
+    arr = arr.concat(arr, [
       // Test if npm is in PATH
       'command -v npm >/dev/null 2>&1 || { echo >&2 "' + npmNotFound + '"; exit 0; }',
 
@@ -81,7 +96,7 @@ module.exports = {
       if (this.isHusky(filename)) {
         this.write(filename, data)
       } else {
-        console.log('  skipping .git/hooks/' + name + ' (existing user hook)')
+        console.log('skipping .git/hooks/' + name + ' (existing user hook)')
       }
     }
   },

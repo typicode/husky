@@ -4,7 +4,7 @@ var husky = require('../src/')
 var hooks = require('../src/hooks.json')
 
 console.log('\033[4;36m%s\033[0m', 'husky')
-console.log('setting up hooks in .git/hooks/')
+console.log('setting up hooks in .git/hooks')
 
 husky.hooksDir(function(err, dir) {
   if (err) {
