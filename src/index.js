@@ -63,12 +63,13 @@ module.exports = {
       // If nvm is installed, try to load it
       // This will load default version
       arr = arr.concat([
-        '[ -s "' + home + '/.nvm/nvm.sh" ] && . "' + home + '/.nvm/nvm.sh"',
+        'export NVM_DIR="' + home + '/.nvm"',
+        '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
       ])
     }
 
     // Can't find npm message
-    var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script.'
+    var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
 
     arr = arr.concat([
       // Test if npm is in PATH
