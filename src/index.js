@@ -61,10 +61,10 @@ module.exports = {
       var home = process.env.HOME
 
       // If nvm is installed, try to load it
-      // This will load default version
+      // This will load default Node version or version specified by .nvmrc
       arr = arr.concat([
         'export NVM_DIR="' + home + '/.nvm"',
-        '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
+        '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && [ -f .nvmrc ] && nvm use',
       ])
     }
 
