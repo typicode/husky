@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test",
-    "install": "node ./bin/install.js",
-    "uninstall": "node ./bin/uninstall.js"
+    "install": "bin/install.js",
+    "uninstall": "bin/uninstall.js"
   },
   "repository": {
     "type": "git",
