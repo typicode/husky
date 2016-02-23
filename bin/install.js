@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Run when package is installed
 var fs    = require('fs')
 var husky = require('../src/')
