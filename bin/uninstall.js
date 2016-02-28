@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Run when package is uninstalled
 var husky = require('../src/')
 var hooks = require('../src/hooks.json')
