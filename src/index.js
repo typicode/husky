@@ -60,11 +60,26 @@ module.exports = {
       // ~ is unavaible, so $HOME is used
       var home = process.env.HOME
 
-      // If nvm is installed, try to load it
       // This will load default Node version or version specified by .nvmrc
       arr = arr.concat([
-        'export NVM_DIR="' + home + '/.nvm"',
-        '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && [ -f .nvmrc ] && nvm use',
+        'export NVM_DIR="' + home + '/.nvm"'
+      ])
+
+      if (process.platform === 'darwin') {
+        // If nvm was installed using homebrew,
+        // nvm script will be found in /usr/local/opt/nvm
+        arr = arr.concat([
+          'BREW_NVM_DIR="/usr/local/opt/nvm"',
+          '[ -s "$BREW_NVM_DIR/nvm.sh" ] && . "$BREW_NVM_DIR/nvm.sh"'
+        ])
+      }
+
+      arr = arr.concat([
+        // If nvm was installed using install script,
+        // nvm script will be found in $NVM_DIR
+        '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"',
+        // Test if nvm is in PATH and load version specified by .nvmrc
+        'command -v nvm >/dev/null 2>&1 && [ -f .nvmrc ] && nvm use'
       ])
     }
 
