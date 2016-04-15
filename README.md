@@ -4,6 +4,8 @@
 
 Husky can prevent bad commit, push and more :dog: woof!
 
+Used by [jQuery](https://github.com/jquery/jquery), [JSON Server](https://github.com/typicode/json-server), [Hotel](https://github.com/typicode/hotel) and many other awesome projects.
+
 ## Usage
 
 ```
