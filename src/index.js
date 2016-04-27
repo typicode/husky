@@ -46,6 +46,7 @@ module.exports = {
 
     // Hook script
     arr = arr.concat([
+      'export PATH=' + process.env.PATH + ':$PATH',
       'cd ' + normalizedPath,
 
       // Fix for issue #16 #24
