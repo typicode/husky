@@ -4,6 +4,14 @@
 
 Husky can prevent bad commit, push and more :dog: woof!
 
+Used by:
+
+* [jQuery](https://github.com/jquery/jquery)
+* [Kibana](https://github.com/elastic/kibana)
+* [JSON Server](https://github.com/typicode/json-server)
+* [Hotel](https://github.com/typicode/hotel)
+* and many other awesome projects!
+
 ## Usage
 
 ```
@@ -28,14 +36,6 @@ git commit -m "Keep calm and commit"
 Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use [any Git hook](HOOKS.md).
 
 ## Extras
-
-### Used by
-
-* [jQuery](https://github.com/jquery/jquery)
-* [Kibana](https://github.com/elastic/kibana)
-* [JSON Server](https://github.com/typicode/json-server)
-* [Hotel](https://github.com/typicode/hotel)
-* and many other awesome projects!
 
 ### Debug
 
