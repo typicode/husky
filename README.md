@@ -4,14 +4,6 @@
 
 Husky can prevent bad commit, push and more :dog: woof!
 
-## Used by
-
-* [jQuery](https://github.com/jquery/jquery)
-* [Kibana](https://github.com/elastic/kibana)
-* [JSON Server](https://github.com/typicode/json-server)
-* [Hotel](https://github.com/typicode/hotel)
-* and many other awesome projects!
-
 ## Usage
 
 ```
@@ -35,7 +27,17 @@ git commit -m "Keep calm and commit"
 
 Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use [any Git hook](HOOKS.md).
 
-## Debug
+## Extras
+
+### Used by
+
+* [jQuery](https://github.com/jquery/jquery)
+* [Kibana](https://github.com/elastic/kibana)
+* [JSON Server](https://github.com/typicode/json-server)
+* [Hotel](https://github.com/typicode/hotel)
+* and many other awesome projects!
+
+### Debug
 
 If you need to debug hooks, use `npm run <script-name>`. For example:
 
@@ -43,7 +45,15 @@ If you need to debug hooks, use `npm run <script-name>`. For example:
 npm run precommit
 ```
 
-## Uninstall
+### GUI applications
+
+Git hooks will be executed even in GUI applications, if you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/).
+
+### NVM support
+
+On OS X and Linux, husky will try to use the `default` installed version or read project's `.nvmrc`.
+
+### Uninstall
 
 To uninstall husky and Git hooks, simply run:
 
