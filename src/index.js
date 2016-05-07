@@ -91,7 +91,7 @@ module.exports = {
       'command -v npm >/dev/null 2>&1 || { echo >&2 "' + npmNotFound + '"; exit 0; }',
 
       // Run script
-      'npm run ' + cmd,
+      'npm run -s ' + cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
       '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"',
