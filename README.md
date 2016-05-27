@@ -4,13 +4,7 @@
 
 Husky can prevent bad commit, push and more :dog: woof!
 
-Used by:
-
-* [jQuery](https://github.com/jquery/jquery)
-* [Kibana](https://github.com/elastic/kibana)
-* [JSON Server](https://github.com/typicode/json-server)
-* [Hotel](https://github.com/typicode/hotel)
-* ...
+_Used by [jQuery](https://github.com/jquery/jquery), [Kibana](https://github.com/elastic/kibana), [JSON Server](https://github.com/typicode/json-server), [Hotel](https://github.com/typicode/hotel) and many other awesome projects._
 
 ## Usage
 
@@ -35,23 +29,25 @@ git commit -m "Keep calm and commit"
 
 Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use [any Git hook](HOOKS.md).
 
-## Debug
+## Tips
 
-If you need to debug hooks, use `npm run <script-name>`. For example:
+#### Debug
+
+If you need to debug hooks, use `npm run <script-name>`, for example:
 
 ```bash
 npm run precommit
 ```
 
-## GUI applications
+#### GUI applications
 
-Git hooks will be executed even in GUI applications, if you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/).
+If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), git hooks will be executed even in GUI applications.
 
-## NVM support
+#### NVM
 
-On OS X and Linux, husky will try to use the `default` installed version or read project's `.nvmrc`.
+If you're using [nvm](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc` file.
 
-## Uninstall
+#### Uninstall
 
 To uninstall husky and Git hooks, simply run:
 
