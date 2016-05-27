@@ -31,7 +31,7 @@ Existing hooks aren't replaced and adding `--no-verify` to your git commands let
 
 ## Tips
 
-#### Debug
+### Debug
 
 If you need to debug hooks, use `npm run <script-name>`, for example:
 
@@ -39,15 +39,15 @@ If you need to debug hooks, use `npm run <script-name>`, for example:
 npm run precommit
 ```
 
-#### GUI applications
+### GUI applications
 
 If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), git hooks will be executed even in GUI applications.
 
-#### NVM
+### NVM
 
 If you're using [nvm](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc` file.
 
-#### Uninstall
+### Uninstall
 
 To uninstall husky and Git hooks, simply run:
 
