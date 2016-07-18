@@ -91,7 +91,7 @@ module.exports = {
       'command -v npm >/dev/null 2>&1 || { echo >&2 "' + npmNotFound + '"; exit 0; }',
 
       // Run script
-      'export GIT_PARAMS=$*',
+      'export GIT_PARAMS="$*"',
       'npm run ' + cmd,
       'if [ $? -ne 0 ]; then',
       '  echo',
