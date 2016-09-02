@@ -12,5 +12,9 @@
   "pre-push",
   "pre-receive",
   "update",
-  "post-receive"
+  "post-receive",
+  "post-update",
+  "push-to-checkout",
+  "pre-auto-gc",
+  "post-rewrite"
 ]
