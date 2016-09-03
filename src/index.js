@@ -2,6 +2,7 @@ var fs = require('fs')
 var path = require('path')
 var exec = require('child_process').exec
 var normalize = require('normalize-path')
+var which = require('which')
 
 module.exports = {
   isHusky: function (filename) {
@@ -71,6 +72,17 @@ module.exports = {
         arr = arr.concat([
           'BREW_NVM_DIR="/usr/local/opt/nvm"',
           '[ -s "$BREW_NVM_DIR/nvm.sh" ] && . "$BREW_NVM_DIR/nvm.sh"'
+        ])
+
+        // When the hook is triggered from a mac GUI app,
+        // system PATH may not include the path to npm.
+        // Make sure npm executable can be located.
+        var npmDir = path.dirname(which.sync('npm'))
+        arr = arr.concat([
+        'NPM_DIR="' + npmDir + '"',
+        'if [ ":$PATH:" != *":$NPM_DIR:"* ]; then',
+        '  export PATH=$PATH:$NPM_DIR',
+        'fi'
         ])
       }
 
