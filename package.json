@@ -36,6 +36,7 @@
     "rimraf": "^2.2.8"
   },
   "dependencies": {
+    "is-ci": "^1.0.9",
     "normalize-path": "^1.0.0"
   }
 }
