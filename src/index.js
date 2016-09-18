@@ -72,6 +72,15 @@ module.exports = {
           'BREW_NVM_DIR="/usr/local/opt/nvm"',
           '[ -s "$BREW_NVM_DIR/nvm.sh" ] && . "$BREW_NVM_DIR/nvm.sh"'
         ])
+
+        // Add
+        // Brew standard installation path /use/local/bin
+        // Node standard installation path /usr/local
+        // for GUI apps
+        // https://github.com/typicode/husky/issues/49
+        arr = arr.concat([
+          'export PATH=$PATH:/usr/local/bin:/usr/local'
+        ])
       }
 
       arr = arr.concat([
