@@ -2,6 +2,7 @@ var fs = require('fs')
 var path = require('path')
 var exec = require('child_process').exec
 var normalize = require('normalize-path')
+var which = require('which')
 
 module.exports = {
   isHusky: function (filename) {
@@ -14,7 +15,18 @@ module.exports = {
       if (error) {
         callback(stderr, null)
       } else {
-        callback(null, stdout.trim() + '/hooks')
+        var hooksPath = stdout.trim() + '/hooks'
+        if (process.platform === 'win32' && which.sync('cygpath')) {
+          exec('cygpath -w ' + hooksPath, function (cygError, cygStdout, cygStdErr) {
+            if (cygError) {
+              callback(cygStdEr, null)
+            } else {
+              callback(null, cygStdout.trim())
+            }
+          })
+        } else {
+          callback(null, hooksPath)
+        }
       }
     })
   },
