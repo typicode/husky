@@ -90,6 +90,14 @@ module.exports = {
         // Test if nvm is in PATH and load version specified by .nvmrc
         'command -v nvm >/dev/null 2>&1 && [ -f .nvmrc ] && nvm use'
       ])
+    } else {
+      // Add
+      // Node standard installation path /c/Program Files/nodejs
+      // for GUI apps
+      // https://github.com/typicode/husky/issues/49
+      arr = arr.concat([
+        'export PATH="$PATH:/c/Program Files/nodejs"'
+      ])
     }
 
     // Can't find npm message
