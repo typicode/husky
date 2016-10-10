@@ -47,6 +47,10 @@ If you've installed Node using the [standard installer](https://nodejs.org/en/),
 
 If you're using [nvm](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc` file.
 
+### Git params
+
+Git params can be found in `GIT_PARAMS` environment variable.
+
 ### Uninstall
 
 To uninstall husky and Git hooks, simply run:
