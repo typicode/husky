@@ -1,8 +1,11 @@
 // Run when package is installed
-var fs    = require('fs')
-var isCI  = require('is-ci')
-var husky = require('../src/')
-var hooks = require('../src/hooks.json')
+var fs       = require('fs')
+var isCI     = require('is-ci')
+var findRoot = require('find-root')
+var husky    = require('../src/')
+var hooks    = require('../src/hooks.json')
+
+var package  = findRoot('package.json')
 
 if (isCI) {
   console.log('\033[4;36m%s\033[0m', 'husky')
@@ -17,9 +20,13 @@ husky.hooksDir(function(err, dir) {
   if (err) {
     console.error('  ' + err)
   } else {
+    var config = package && package.config && package.config.husky
+      ? package.config.husky
+      : {};
+
     hooks.forEach(function (hook) {
       script = hook.replace(/-/g, '')
-      husky.create(dir, hook, script)
+      husky.create(dir, hook, script, config)
     })
     console.log('done\n')
   }

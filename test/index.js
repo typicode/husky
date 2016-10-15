@@ -20,12 +20,12 @@ var dir = path.join(__dirname, '../tmp/hooks')
 
 // husky should be able to create hooks directory and hook script
 assert.doesNotThrow(function () {
-  husky.create(dir, 'pre-commit', 'foo')
+  husky.create(dir, 'pre-commit', 'foo', {})
 })
 
 // husky should be able to update hook script
 assert.doesNotThrow(function () {
-  husky.create(dir, 'pre-commit', 'bar')
+  husky.create(dir, 'pre-commit', 'bar', {})
 })
 
 assert(fs.readFileSync(dir + '/pre-commit', 'utf-8').indexOf('bar') !== -1)
@@ -37,7 +37,7 @@ assert(!fs.existsSync(dir + '/pre-commit'))
 // husky shouldn't be able to modify a user hook
 fs.writeFileSync(dir + '/user-pre-commit', '')
 
-husky.create(dir, 'user-pre-commit', 'foo')
+husky.create(dir, 'user-pre-commit', 'foo', {})
 husky.remove(dir, 'user-pre-commit')
 
 assert.equal(fs.readFileSync(dir + '/user-pre-commit', 'utf-8'), '')

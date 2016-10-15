@@ -24,7 +24,7 @@ module.exports = {
     fs.chmodSync(filename, 0755)
   },
 
-  create: function (dir, name, cmd) {
+  create: function (dir, name, cmd, config) {
     var filename = dir + '/' + name
     var arr = [
       '#!/bin/sh',
@@ -103,13 +103,17 @@ module.exports = {
     // Can't find npm message
     var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
 
+    var silent = !!config.silent
+      ? '--silent'
+      : '';
+
     arr = arr.concat([
       // Test if npm is in PATH
       'command -v npm >/dev/null 2>&1 || { echo >&2 "' + npmNotFound + '"; exit 0; }',
 
       // Run script
       'export GIT_PARAMS="$*"',
-      'npm run ' + cmd,
+      'npm run ' + cmd + ' ' + silent,
       'if [ $? -ne 0 ]; then',
       '  echo',
       '  echo "husky - ' + name + ' hook failed (add --no-verify to bypass)"',
