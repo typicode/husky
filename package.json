@@ -36,7 +36,6 @@
     "rimraf": "^2.2.8"
   },
   "dependencies": {
-    "find-root": "^1.0.0",
     "is-ci": "^1.0.9",
     "normalize-path": "^1.0.0"
   }
