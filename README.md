@@ -8,9 +8,10 @@ _Used by [jQuery](https://github.com/jquery/jquery), [Hyper](https://github.com/
 
 ## Usage
 
-```
+```sh
 npm install husky --save-dev
 ```
+
 
 ```javascript
 // package.json
@@ -39,7 +40,7 @@ If you need to debug hooks, use `npm run <script-name>`, for example:
 npm run precommit
 ```
 
-### GUI applications
+### GUI apps
 
 If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), git hooks will be executed even in GUI applications.
 
@@ -57,6 +58,12 @@ To uninstall husky and Git hooks, simply run:
 
 ```bash
 npm uninstall husky --save-dev
+```
+
+### Yarn usage
+
+```sh
+yarn add husky --dev
 ```
 
 ## License
