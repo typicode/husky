@@ -72,4 +72,4 @@ npm uninstall husky --save-dev
 
 ## License
 
-MIT - [typicode :cactus:](https://github.com/typicode)
+MIT - [Typicode :cactus:](https://github.com/typicode)
