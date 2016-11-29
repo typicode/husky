@@ -15,7 +15,7 @@ var subProjectDir = '/project/some/path/node_modules/husky/src'
 var subModuleDir = '/project/subproject'
 
 layout[gitDir] = {
-  'modules/subproject'
+  'modules/subproject': {}
 }
 layout[projectDir] = {}
 layout[subProjectDir] = {}
