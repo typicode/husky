@@ -30,29 +30,39 @@ git commit -m "Keep calm and commit"
 
 Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use [any Git hook](HOOKS.md).  Optionally include the environment variable `$GIT_PARAMS` in your scripts to access any command-line parameters provided by git.
 
-## Tips
+## Tricks
 
-### Debug
+<details>
+<summary>Debug hooks easily</summary>
 
 If you need to debug hooks, use `npm run <script-name>`, for example:
 
 ```bash
 npm run precommit
 ```
+</details>
 
-### GUI apps
+<details>
+<summary>Git GUI clients support</summary>
 
 If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), git hooks will be executed even in GUI applications.
 
-### NVM
+In the case of [`nvm`](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc`.
+</details>
 
-If you're using [nvm](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc` file.
-
-### Git params
+<details>
+<summary>Accessing Git params</summary>
 
 Git params can be found in `GIT_PARAMS` environment variable.
+</details>
 
-### Uninstall
+<details>
+<summary>Cygwin support</summary>
+
+Yes :)
+</details>
+
+## Uninstall
 
 To uninstall husky and Git hooks, simply run:
 
@@ -60,12 +70,6 @@ To uninstall husky and Git hooks, simply run:
 npm uninstall husky --save-dev
 ```
 
-### Yarn usage
-
-```sh
-yarn add husky --dev
-```
-
 ## License
 
-MIT - [typicode](https://github.com/typicode)
+MIT - [typicode :cactus:](https://github.com/typicode)
