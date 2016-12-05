@@ -8,13 +8,13 @@ _Used by [jQuery](https://github.com/jquery/jquery), [Hyper](https://github.com/
 
 ## Installation
 
-Install package as dew dependency
+Install package as dev dependency
 
 ```sh
 npm install husky --save-dev
 ```
 
-Setting up hooks in .git/hooks
+Install hooks in .git/hooks
 
 ```sh
 node ./node_modules/husky/bin/install.js
