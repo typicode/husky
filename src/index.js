@@ -22,7 +22,14 @@ function findHooksDir (dirname) {
   var stats = fs.lstatSync(gitDir)
 
   if (stats.isFile()) {
-    gitDir = fs.readFileSync(gitDir, 'utf-8')
+    // Expect following format
+    // git: pathToGit
+    gitDir = fs
+      .readFileSync(gitDir, 'utf-8')
+      .split(':')[1]
+      .trim()
+
+    return path.join(dir, gitDir, 'hooks')
   }
 
   return path.join(gitDir, 'hooks')
@@ -149,10 +156,10 @@ function createHook (fromDir, hooksDir, hookName, cmd) {
   }
 }
 
-function remove (dir, name) {
+function removeHook (dir, name) {
   var filename = dir + '/' + name
 
-  if (fs.existsSync(filename) && this.isHusky(filename)) {
+  if (fs.existsSync(filename) && isHusky(filename)) {
     fs.unlinkSync(dir + '/' + name)
   }
 }
@@ -164,21 +171,19 @@ function installFrom (fromDir) {
       npmScriptName = hookName.replace(/-/g, '')
       createHook(fromDir, hooksDir, hookName, npmScriptName)
     })
-    console.log('done\n')
+    console.log('done ' + hooksDir + '\n')
   } catch (e) {
     console.error(e)
   }
 }
 
-function uninstallFrom (dir) {
+function uninstallFrom (fromDir) {
   try {
-    var hooksDir = husky.hooksDir()
-    if (!err) {
-      hooks.forEach(function (hook) {
-        husky.remove(hooksDir, hook)
-      })
-      console.log('done\n')
-    }
+    var hooksDir = findHooksDir(fromDir)
+    hooks.forEach(function (hookName) {
+      removeHook(hooksDir, hookName)
+    })
+    console.log('done\n')
   } catch (e) {
     console.error(e)
   }
