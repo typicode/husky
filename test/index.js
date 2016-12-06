@@ -1,43 +1,95 @@
-// var assert = require('assert')
-// var fs = require('fs')
-// var path = require('path')
-// var rmrf = require('rimraf')
-// var husky = require('../src/')
+var fs = require('fs')
+var path = require('path')
+var expect = require('expect')
+var mock = require('mock-fs')
+var husky = require('../src')
 
-// // Some very basic tests...
+function readHook(hookPath) {
+  return fs.readFileSync(path.join(gitDir, hookPath), 'utf-8')
+}
 
-// // should return git hooks path
-// husky.hooksDir(function (err, dir) {
-//   assert.equal(err, null)
-//   assert.equal(dir, '.git/hooks')
-// })
+function exists(hookPath) {
+  return fs.existsSync(path.join(gitDir, hookPath))
+}
 
-// // Reset tmp dir
-// rmrf.sync(path.join(__dirname, '../tmp'))
-// fs.mkdirSync(path.join(__dirname, '../tmp'))
+var layout = {}
+var gitDir = '/project/.git'
+var projectDir = '/project/node_modules/husky/src'
+var subProjectDir = '/project/some/path/node_modules/husky/src'
+var subModuleDir = '/project/subproject/node_modules/husky/src'
 
-// var dir = path.join(__dirname, '../tmp/hooks')
+layout[gitDir] = {}
+layout[path.join(gitDir, 'modules/subproject/hooks')] = {}
+layout[projectDir] = {}
+layout[subProjectDir] = {}
+layout[path.join(subModuleDir, '../../..')] = {
+  '.git': 'git: ../.git/modules/subproject'
+}
 
-// // husky should be able to create hooks directory and hook script
-// assert.doesNotThrow(function () {
-//   husky.create(dir, 'pre-commit', 'foo')
-// })
+describe('husky', function () {
+  beforeEach(function () {
+    mock(layout)
+  })
 
-// // husky should be able to update hook script
-// assert.doesNotThrow(function () {
-//   husky.create(dir, 'pre-commit', 'bar')
-// })
+  afterEach(function() {
+    mock.restore()
+  })
 
-// assert(fs.readFileSync(dir + '/pre-commit', 'utf-8').indexOf('bar') !== -1)
+  describe('install', function () {
+    it('should support basic layout', function () {
+      husky.installFrom(projectDir)
+      var hook = readHook('hooks/pre-commit')
 
-// // husky should be able to remove a hook it has created
-// husky.remove(dir, 'pre-commit')
-// assert(!fs.existsSync(dir + '/pre-commit'))
+      expect(hook).toInclude('# husky')
+      expect(hook).toInclude('cd ../..')
+      expect(hook).toInclude('npm run precommit')
+    })
 
-// // husky shouldn't be able to modify a user hook
-// fs.writeFileSync(dir + '/user-pre-commit', '')
+    it('should support project installed in sub directory', function () {
+      husky.installFrom(subProjectDir)
+      var hook = readHook('hooks/pre-commit')
 
-// husky.create(dir, 'user-pre-commit', 'foo')
-// husky.remove(dir, 'user-pre-commit')
+      expect(hook).toInclude('cd ../../some/path')
+    })
 
-// assert.equal(fs.readFileSync(dir + '/user-pre-commit', 'utf-8'), '')
+    it('should support git submodule', function () {
+      husky.installFrom(subModuleDir)
+      var hook = readHook('modules/subproject/hooks/pre-commit')
+
+      expect(hook).toInclude('cd ../../../../subproject')
+    })
+
+    it('should not overwrite user hooks', function () {
+      // Create a pre-push hook
+      var hooksDir = path.join(gitDir, 'hooks')
+      fs.mkdirSync(hooksDir)
+      fs.writeFileSync(path.join(hooksDir, 'pre-push'), 'foo')
+
+      // Verify that it's not overwritten
+      husky.installFrom(projectDir)
+      var hook = readHook('hooks/pre-push')
+      expect(hook).toBe('foo')
+    })
+  })
+
+  describe('uninstall', function () {
+    it('should support basic layout', function () {
+      husky.uninstallFrom(projectDir)
+      expect(exists('hooks/pre-push')).toBeFalsy()
+    })
+
+    it('should support project installed in sub directory', function () {
+      husky.uninstallFrom(subProjectDir)
+      expect(exists('hooks/pre-push')).toBeFalsy()
+    })
+
+    it('should not remove user hooks', function () {
+      var hooksDir = path.join(gitDir, 'hooks')
+      fs.mkdirSync(hooksDir)
+      fs.writeFileSync(path.join(hooksDir, 'pre-push'), 'foo')
+
+      husky.uninstallFrom(projectDir)
+      expect(exists('hooks/pre-push')).toBeTruthy()
+    })
+  })
+})
