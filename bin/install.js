@@ -1,5 +1,6 @@
 // Run when package is installed
 var fs = require('fs')
+var path = require('path')
 var isCI = require('is-ci')
 var husky = require('../src/')
 var hooks = require('../src/hooks.json')
