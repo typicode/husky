@@ -14,15 +14,17 @@ function exists(hookPath) {
 
 var layout = {}
 var gitDir = '/project/.git'
-var projectDir = '/project/node_modules/husky/src'
-var subProjectDir = '/project/some/path/node_modules/husky/src'
-var subModuleDir = '/project/subproject/node_modules/husky/src'
+
+// Set different paths where husky can be installed
+var projectDir = '/project/node_modules/husky'
+var subProjectDir = '/project/some/path/node_modules/husky'
+var subModuleDir = '/project/subproject/node_modules/husky'
 
 layout[gitDir] = {}
 layout[path.join(gitDir, 'modules/subproject/hooks')] = {}
 layout[projectDir] = {}
 layout[subProjectDir] = {}
-layout[path.join(subModuleDir, '../../..')] = {
+layout[path.join(subModuleDir, '../..')] = {
   '.git': 'git: ../.git/modules/subproject'
 }
 

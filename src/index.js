@@ -123,11 +123,11 @@ function getHookScript (hookName, relativePath, cmd) {
   return arr.join('\n')
 }
 
-function createHook (fromDir, hooksDir, hookName, cmd) {
+function createHook (huskyDir, hooksDir, hookName, cmd) {
   var filename = path.join(hooksDir, hookName)
 
-  // Assuming that this file is in node_modules/husky/src
-  var packageDir = path.join(fromDir, '..', '..', '..')
+  // Assuming that this file is in node_modules/husky
+  var packageDir = path.join(huskyDir, '..', '..')
 
   // Get project directory based on hooks directory
   // For example for /some/project/.git/hooks should be /some/project
@@ -161,12 +161,12 @@ function removeHook (dir, name) {
   }
 }
 
-function installFrom (fromDir) {
+function installFrom (huskyDir) {
   try {
-    var hooksDir = findHooksDir(fromDir)
+    var hooksDir = findHooksDir(huskyDir)
     hooks.forEach(function (hookName) {
       npmScriptName = hookName.replace(/-/g, '')
-      createHook(fromDir, hooksDir, hookName, npmScriptName)
+      createHook(huskyDir, hooksDir, hookName, npmScriptName)
     })
     console.log('done ' + hooksDir + '\n')
   } catch (e) {
@@ -174,9 +174,9 @@ function installFrom (fromDir) {
   }
 }
 
-function uninstallFrom (fromDir) {
+function uninstallFrom (huskyDir) {
   try {
-    var hooksDir = findHooksDir(fromDir)
+    var hooksDir = findHooksDir(huskyDir)
     hooks.forEach(function (hookName) {
       removeHook(hooksDir, hookName)
     })

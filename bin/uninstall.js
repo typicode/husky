@@ -6,4 +6,5 @@ var hooks = require('../src/hooks.json')
 console.log('\033[4;36m%s\033[0m', 'husky')
 console.log('uninstalling')
 
-husky.uninstallFrom(path.join(__dirname, '..'))
+var huskyDir = path.join(__dirname, '..')
+husky.uninstallFrom(huskyDir)
