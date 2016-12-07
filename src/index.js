@@ -60,11 +60,6 @@ function getHookScript (hookName, relativePath, cmd) {
     // ~ is unavaible, so $HOME is used
     var home = process.env.HOME
 
-    // This will load default Node version or version specified by .nvmrc
-    arr = arr.concat([
-      'export NVM_DIR="' + home + '/.nvm"'
-    ])
-
     if (process.platform === 'darwin') {
       // If nvm was installed using homebrew,
       // nvm script will be found in /usr/local/opt/nvm
@@ -84,12 +79,14 @@ function getHookScript (hookName, relativePath, cmd) {
     }
 
     arr = arr.concat([
-      // If nvm was installed using install script,
-      // nvm script will be found in $NVM_DIR
-      '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"',
       // Test if npm is not already in path
       'if ! [ command -v npm >/dev/null 2>&1 ];',
       'then',
+      // If npm isn't in path, try to load it using nvm
+      // If nvm was installed using install script, nvm script will be found in $NVM_DIR
+      '  export NVM_DIR="' + home + '/.nvm"',
+      // This will load default Node version or version specified by .nvmrc
+      '  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"',
       // Test if nvm is in PATH and load version specified by .nvmrc
       '  command -v nvm >/dev/null 2>&1 && [ -f .nvmrc ] && nvm use',
       'fi'
