@@ -12,7 +12,7 @@ if (isCI) {
 }
 
 console.log('\033[4;36m%s\033[0m', 'husky')
-console.log('setting up hooks in .git/hooks')
+console.log('setting up hooks')
 
 var huskyDir = path.join(__dirname, '..')
 husky.installFrom(huskyDir)

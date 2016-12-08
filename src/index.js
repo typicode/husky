@@ -148,7 +148,7 @@ function createHook (huskyDir, hooksDir, hookName, cmd) {
     if (isHusky(filename)) {
       write(filename, hookScript)
     } else {
-      console.log('skipping .git/hooks/' + hookName + ' (existing user hook)')
+      console.log('skipping ' + hookName + ' hook (existing user hook)')
     }
   }
 }
@@ -168,7 +168,7 @@ function installFrom (huskyDir) {
       npmScriptName = hookName.replace(/-/g, '')
       createHook(huskyDir, hooksDir, hookName, npmScriptName)
     })
-    console.log('done ' + hooksDir + '\n')
+    console.log('done\n')
   } catch (e) {
     console.error(e)
   }
