@@ -135,7 +135,7 @@ function createHook (huskyDir, hooksDir, hookName, cmd) {
 
   // In order to support projects with package.json in a different directory
   // than .git, find relative path from project directory to package.json
-  var relativePath = path.relative(hooksDir, packageDir)
+  var relativePath = path.join('.', path.relative(projectDir, packageDir))
 
   var hookScript = getHookScript(hookName, relativePath, cmd)
 

@@ -43,7 +43,7 @@ describe('husky', function () {
       var hook = readHook('hooks/pre-commit')
 
       expect(hook).toInclude('# husky')
-      expect(hook).toInclude('cd ../..')
+      expect(hook).toInclude('cd .')
       expect(hook).toInclude('npm run precommit')
     })
 
@@ -51,14 +51,14 @@ describe('husky', function () {
       husky.installFrom(subProjectDir)
       var hook = readHook('hooks/pre-commit')
 
-      expect(hook).toInclude('cd ../../some/path')
+      expect(hook).toInclude('cd some/path')
     })
 
     it('should support git submodule', function () {
       husky.installFrom(subModuleDir)
       var hook = readHook('modules/subproject/hooks/pre-commit')
 
-      expect(hook).toInclude('cd ../../../../subproject')
+      expect(hook).toInclude('cd subproject')
     })
 
     it('should not overwrite user hooks', function () {
