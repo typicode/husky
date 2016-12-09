@@ -129,9 +129,9 @@ function createHook (huskyDir, hooksDir, hookName, cmd) {
   // Assuming that this file is in node_modules/husky
   var packageDir = path.join(huskyDir, '..', '..')
 
-  // Get project directory based on hooks directory
-  // For example for /some/project/.git/hooks should be /some/project
-  var projectDir = findParentDir.sync(hooksDir, '.git')
+  // Get project directory
+  // When used in submodule, the project dir is the first .git that is found
+  var projectDir = findParentDir.sync(huskyDir, '.git')
 
   // In order to support projects with package.json in a different directory
   // than .git, find relative path from project directory to package.json

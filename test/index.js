@@ -4,6 +4,8 @@ var expect = require('expect')
 var mock = require('mock-fs')
 var husky = require('../src')
 
+var gitDir = '/project/.git'
+
 function readHook(hookPath) {
   return fs.readFileSync(path.join(gitDir, hookPath), 'utf-8')
 }
@@ -12,86 +14,90 @@ function exists(hookPath) {
   return fs.existsSync(path.join(gitDir, hookPath))
 }
 
-var layout = {}
-var gitDir = '/project/.git'
-
-// Set different paths where husky can be installed
-var projectDir = '/project/node_modules/husky'
-var subProjectDir = '/project/some/path/node_modules/husky'
-var subModuleDir = '/project/subproject/node_modules/husky'
-
-layout[gitDir] = {}
-layout[path.join(gitDir, 'modules/subproject/hooks')] = {}
-layout[projectDir] = {}
-layout[subProjectDir] = {}
-layout[path.join(subModuleDir, '../..')] = {
-  '.git': 'git: ../.git/modules/subproject'
-}
-
 describe('husky', function () {
   beforeEach(function () {
-    mock(layout)
+    mock({
+      '/project/.git/hooks': {}
+    })
   })
 
   afterEach(function() {
     mock.restore()
   })
 
-  describe('install', function () {
-    it('should support basic layout', function () {
-      husky.installFrom(projectDir)
-      var hook = readHook('hooks/pre-commit')
-
-      expect(hook).toInclude('# husky')
-      expect(hook).toInclude('cd .')
-      expect(hook).toInclude('npm run precommit')
+  it('should support basic layout', function () {
+    mock({
+      '/project/node_modules/husky': {}
     })
+    
+    husky.installFrom('/project/node_modules/husky')
+    var hook = readHook('hooks/pre-commit')
 
-    it('should support project installed in sub directory', function () {
-      husky.installFrom(subProjectDir)
-      var hook = readHook('hooks/pre-commit')
+    expect(hook).toInclude('# husky')
+    expect(hook).toInclude('cd .')
+    expect(hook).toInclude('npm run precommit')
 
-      expect(hook).toInclude('cd some/path')
-    })
-
-    it('should support git submodule', function () {
-      husky.installFrom(subModuleDir)
-      var hook = readHook('modules/subproject/hooks/pre-commit')
-
-      expect(hook).toInclude('cd subproject')
-    })
-
-    it('should not overwrite user hooks', function () {
-      // Create a pre-push hook
-      var hooksDir = path.join(gitDir, 'hooks')
-      fs.mkdirSync(hooksDir)
-      fs.writeFileSync(path.join(hooksDir, 'pre-push'), 'foo')
-
-      // Verify that it's not overwritten
-      husky.installFrom(projectDir)
-      var hook = readHook('hooks/pre-push')
-      expect(hook).toBe('foo')
-    })
+    husky.uninstallFrom('/project/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
-  describe('uninstall', function () {
-    it('should support basic layout', function () {
-      husky.uninstallFrom(projectDir)
-      expect(exists('hooks/pre-push')).toBeFalsy()
+  it('should support project installed in sub directory', function () {
+    mock({
+      '/project/A/B/node_modules/husky': {}
     })
 
-    it('should support project installed in sub directory', function () {
-      husky.uninstallFrom(subProjectDir)
-      expect(exists('hooks/pre-push')).toBeFalsy()
+    husky.installFrom('/project/A/B/node_modules/husky')
+    var hook = readHook('hooks/pre-commit')
+
+    expect(hook).toInclude('cd A/B')
+
+    husky.uninstallFrom('/project/A/B/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+  it('should support git submodule', function () {
+    mock({
+      '/project/A/B/node_modules/husky': {},
+      '/project/A/B/.git': 'git: ../../.git/modules/A/B'
     })
 
-    it('should not remove user hooks', function () {
-      var hooksDir = path.join(gitDir, 'hooks')
-      fs.mkdirSync(hooksDir)
-      fs.writeFileSync(path.join(hooksDir, 'pre-push'), 'foo')
+    husky.installFrom('/project/A/B/node_modules/husky')
+    var hook = readHook('modules/A/B/hooks/pre-commit')
 
-      husky.uninstallFrom(projectDir)
-      expect(exists('hooks/pre-push')).toBeTruthy()
+    expect(hook).toInclude('cd .')
+
+    husky.uninstallFrom('/project/A/B/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+  it('should support git submodule and sub directory', function () {
+    mock({
+      '/project/A/B/app/node_modules/husky': {},
+      '/project/A/B/.git': 'git: ../../.git/modules/A/B'
     })
+
+    husky.installFrom('/project/A/B/app/node_modules/husky')
+    var hook = readHook('modules/A/B/hooks/pre-commit')
+
+    expect(hook).toInclude('cd app')
+
+    husky.uninstallFrom('/project/A/B/app/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+
+  it('should not modify user hooks', function () {
+    mock({
+      '/project/node_modules/husky': {},
+      '/project/.git/hooks/pre-push': 'foo'
+    })
+
+    // Verify that it's not overwritten
+    husky.installFrom('/project/node_modules/husky')
+    var hook = readHook('hooks/pre-push')
+    expect(hook).toBe('foo')
+
+    husky.uninstallFrom('/project/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeTruthy()
   })
 })
