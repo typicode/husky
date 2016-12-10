@@ -18,21 +18,24 @@ function isHusky (filename) {
 
 function findHooksDir (dirname) {
   var dir = findParentDir.sync(dirname, '.git')
-  var gitDir = path.join(dir, '.git')
-  var stats = fs.lstatSync(gitDir)
 
-  if (stats.isFile()) {
-    // Expect following format
-    // git: pathToGit
-    gitDir = fs
-      .readFileSync(gitDir, 'utf-8')
-      .split(':')[1]
-      .trim()
+  if (dir) {
+    var gitDir = path.join(dir, '.git')
+    var stats = fs.lstatSync(gitDir)
 
-    return path.join(dir, gitDir, 'hooks')
+    if (stats.isFile()) {
+      // Expect following format
+      // git: pathToGit
+      gitDir = fs
+        .readFileSync(gitDir, 'utf-8')
+        .split(':')[1]
+        .trim()
+
+      return path.join(dir, gitDir, 'hooks')
+    }
+
+    return path.join(gitDir, 'hooks')
   }
-
-  return path.join(gitDir, 'hooks')
 }
 
 function getHookScript (hookName, relativePath, cmd) {
@@ -164,11 +167,16 @@ function removeHook (dir, name) {
 function installFrom (huskyDir) {
   try {
     var hooksDir = findHooksDir(huskyDir)
-    hooks.forEach(function (hookName) {
-      npmScriptName = hookName.replace(/-/g, '')
-      createHook(huskyDir, hooksDir, hookName, npmScriptName)
-    })
-    console.log('done\n')
+
+    if (hooksDir) {
+      hooks.forEach(function (hookName) {
+        npmScriptName = hookName.replace(/-/g, '')
+        createHook(huskyDir, hooksDir, hookName, npmScriptName)
+      })
+      console.log('done\n')
+    } else {
+      console.log('Can\'t find .git directory, skipping Git hooks installation')
+    }
   } catch (e) {
     console.error(e)
   }
@@ -177,6 +185,7 @@ function installFrom (huskyDir) {
 function uninstallFrom (huskyDir) {
   try {
     var hooksDir = findHooksDir(huskyDir)
+
     hooks.forEach(function (hookName) {
       removeHook(hooksDir, hookName)
     })
