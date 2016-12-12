@@ -28,7 +28,10 @@ module.exports = {
     var filename = dir + '/' + name
     var arr = [
       '#!/bin/sh',
-      '# husky'
+      '# husky',
+      // See http://stackoverflow.com/questions/12881975/git-pre-commit-hook-failing-in-github-for-mac-works-on-command-line
+      // for more details
+      'PATH=$PATH:/usr/local/bin:/usr/local/sbin'
     ]
 
     // Assuming that this file is in node_modules/husky/src
