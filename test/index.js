@@ -3,13 +3,14 @@ var fs = require('fs')
 var path = require('path')
 var rmrf = require('rimraf')
 var husky = require('../src/')
+var normalize = require('normalize-path')
 
 // Some very basic tests...
 
 // should return git hooks path
 husky.hooksDir(function (err, dir) {
   assert.equal(err, null)
-  assert.equal(dir, '.git/hooks')
+  assert.equal(normalize(dir), '.git/hooks')
 })
 
 // Reset tmp dir
