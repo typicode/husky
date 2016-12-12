@@ -6,12 +6,21 @@ Husky can prevent bad commit, push and more :dog: _woof!_
 
 _Used by [jQuery](https://github.com/jquery/jquery), [Hyper](https://github.com/zeit/hyper), [Paper.js](https://github.com/paperjs/paper.js), [Kibana](https://github.com/elastic/kibana), [JSON Server](https://github.com/typicode/json-server), [Hotel](https://github.com/typicode/hotel), ... and many other awesome projects._
 
-## Usage
+## Installation
+
+Install package as dev dependency
 
 ```sh
 npm install husky --save-dev
 ```
 
+Install hooks in .git/hooks
+
+```sh
+node ./node_modules/husky/bin/install.js
+```
+
+## Usage
 
 ```javascript
 // package.json
