@@ -30,7 +30,12 @@ module.exports = {
       '#!/bin/sh',
       '# husky'
     ]
-
+    
+    // Needed on OS X / Linux when nvm is used and committing from GUI-Tools
+    // like Sublime Text, SourceTree, ...
+    if (process.platform !== 'win32') {
+      arr.push('PATH="' + process.env.PATH + '"')
+    }
     // Assuming that this file is in node_modules/husky/src
     var packageDir = path.join(__dirname, '..', '..', '..')
 
