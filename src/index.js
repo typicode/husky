@@ -34,19 +34,16 @@ module.exports = {
     // Assuming that this file is in node_modules/husky/src
     var packageDir = path.join(__dirname, '..', '..', '..')
 
-    // dir being .git/hooks
-    var projectDir = path.join(dir, '..', '..')
-
     // In order to support projects with package.json in a different directory
-    // than .git, find relative path from project directory to package.json
-    var relativePath = path.join('.', path.relative(projectDir, packageDir))
+    // than .git, find relative path from hook directory to package.json
+    var relativePath = path.join('.', path.relative(dir, packageDir))
 
     // On Windows normalize path (i.e. convert \ to /)
-    var normalizedPath = normalize(relativePath)
+    var normalizedPath = normalize('/'+relativePath)
 
     // Hook script
     arr = arr.concat([
-      'cd ' + normalizedPath,
+      'cd $(dirname "$0")' + normalizedPath,
 
       // Fix for issue #16 #24
       // Test if script is defined in package.json
