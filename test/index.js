@@ -1,43 +1,114 @@
-var assert = require('assert')
 var fs = require('fs')
 var path = require('path')
-var rmrf = require('rimraf')
-var husky = require('../src/')
+var expect = require('expect')
+var mock = require('mock-fs')
+var husky = require('../src')
 
-// Some very basic tests...
+var gitDir = '/.git'
 
-// should return git hooks path
-husky.hooksDir(function (err, dir) {
-  assert.equal(err, null)
-  assert.equal(dir, '.git/hooks')
+function readHook(hookPath) {
+  return fs.readFileSync(path.join(gitDir, hookPath), 'utf-8')
+}
+
+function exists(hookPath) {
+  return fs.existsSync(path.join(gitDir, hookPath))
+}
+
+describe('husky', function () {
+  afterEach(function() {
+    mock.restore()
+  })
+
+  it('should support basic layout', function () {
+    mock({
+      '/.git/hooks': {},
+      '/node_modules/husky': {}
+    })
+    
+    husky.installFrom('/node_modules/husky')
+    var hook = readHook('hooks/pre-commit')
+
+    expect(hook).toInclude('# husky')
+    expect(hook).toInclude('cd .')
+    expect(hook).toInclude('npm run precommit')
+
+    husky.uninstallFrom('/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+  it('should support project installed in sub directory', function () {
+    mock({
+      '/.git/hooks': {},
+      '/A/B/node_modules/husky': {}
+    })
+
+    husky.installFrom('/A/B/node_modules/husky')
+    var hook = readHook('hooks/pre-commit')
+
+    expect(hook).toInclude('cd A/B')
+
+    husky.uninstallFrom('/A/B/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+  it('should support git submodule', function () {
+    mock({
+      '/.git/modules/A/B': {},
+      '/A/B/.git': 'git: ../../.git/modules/A/B',
+      '/A/B/node_modules/husky': {}
+    })
+
+    husky.installFrom('/A/B/node_modules/husky')
+    var hook = readHook('modules/A/B/hooks/pre-commit')
+
+    expect(hook).toInclude('cd .')
+
+    husky.uninstallFrom('/A/B/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+  it('should support git submodule and sub directory', function () {
+    mock({
+      '/.git/modules/A/B': {},
+      '/A/B/.git': 'git: ../../.git/modules/A/B',
+      '/A/B/C/node_modules/husky': {}
+    })
+
+    husky.installFrom('/A/B/C/node_modules/husky')
+    var hook = readHook('modules/A/B/hooks/pre-commit')
+
+    expect(hook).toInclude('cd C')
+
+    husky.uninstallFrom('/A/B/app/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
+
+  it('should not modify user hooks', function () {
+    mock({
+      '/.git/hooks': {},
+      '/.git/hooks/pre-push': 'foo',
+      '/node_modules/husky': {}
+    })
+
+    // Verify that it's not overwritten
+    husky.installFrom('/node_modules/husky')
+    var hook = readHook('hooks/pre-push')
+    expect(hook).toBe('foo')
+
+    husky.uninstallFrom('/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeTruthy()
+  })
+
+  it('should not crash if there\'s no .git directory', function () {
+    mock({
+      '/node_modules/husky': {}
+    })
+
+    expect(() => husky.installFrom('/node_modules/husky'))
+      .toNotThrow()
+
+    expect(() => husky.uninstallFrom('/node_modules/husky'))
+      .toNotThrow()
+  })
 })
-
-// Reset tmp dir
-rmrf.sync(path.join(__dirname, '../tmp'))
-fs.mkdirSync(path.join(__dirname, '../tmp'))
-
-var dir = path.join(__dirname, '../tmp/hooks')
-
-// husky should be able to create hooks directory and hook script
-assert.doesNotThrow(function () {
-  husky.create(dir, 'pre-commit', 'foo')
-})
-
-// husky should be able to update hook script
-assert.doesNotThrow(function () {
-  husky.create(dir, 'pre-commit', 'bar')
-})
-
-assert(fs.readFileSync(dir + '/pre-commit', 'utf-8').indexOf('bar') !== -1)
-
-// husky should be able to remove a hook it has created
-husky.remove(dir, 'pre-commit')
-assert(!fs.existsSync(dir + '/pre-commit'))
-
-// husky shouldn't be able to modify a user hook
-fs.writeFileSync(dir + '/user-pre-commit', '')
-
-husky.create(dir, 'user-pre-commit', 'foo')
-husky.remove(dir, 'user-pre-commit')
-
-assert.equal(fs.readFileSync(dir + '/user-pre-commit', 'utf-8'), '')

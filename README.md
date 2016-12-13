@@ -4,9 +4,7 @@
 
 Husky can prevent bad commit, push and more :dog: _woof!_
 
-_Used by [jQuery](https://github.com/jquery/jquery), [Hyper](https://github.com/zeit/hyper), [Paper.js](https://github.com/paperjs/paper.js), [Kibana](https://github.com/elastic/kibana), [JSON Server](https://github.com/typicode/json-server), [Hotel](https://github.com/typicode/hotel), ... and many other awesome projects._
-
-## Usage
+## Install
 
 ```sh
 npm install husky --save-dev
@@ -14,7 +12,7 @@ npm install husky --save-dev
 
 
 ```javascript
-// package.json
+// Edit package.json
 {
   "scripts": {
     "precommit": "npm test",
@@ -28,11 +26,31 @@ npm install husky --save-dev
 git commit -m "Keep calm and commit"
 ```
 
-Existing hooks aren't replaced and adding `--no-verify` to your git commands lets you bypass hooks. You can also use [any Git hook](HOOKS.md).  Optionally include the environment variable `$GIT_PARAMS` in your scripts to access any command-line parameters provided by git.
+_Existing hooks aren't replaced and you can use [any Git hook](HOOKS.md)._
 
-## Tips
+## Used by
 
-### Debug
+* [jQuery](https://github.com/jquery/jquery)
+* [Next.js](https://github.com/zeit/next.js)
+* [Hyper](https://github.com/zeit/hyper)
+* [Paper.js](https://github.com/paperjs/paper.js)
+* [Kibana](https://github.com/elastic/kibana)
+* [JSON Server](https://github.com/typicode/json-server)
+* [Hotel](https://github.com/typicode/hotel)
+* ... and more than 2000+ [other awesome projects](https://libraries.io/npm/husky/dependent-repositories).
+
+## Uninstall
+
+```bash
+npm uninstall husky --save-dev
+yarn remove husky --dev
+```
+
+## Tricks and FAQ
+
+<details>
+
+### Debug hooks easily
 
 If you need to debug hooks, use `npm run <script-name>`, for example:
 
@@ -40,32 +58,26 @@ If you need to debug hooks, use `npm run <script-name>`, for example:
 npm run precommit
 ```
 
-### GUI apps
+### Git GUI clients support
 
 If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), git hooks will be executed even in GUI applications.
 
-### NVM
+In the case of [`nvm`](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc`.
 
-If you're using [nvm](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc` file.
-
-### Git params
+### Accessing Git params
 
 Git params can be found in `GIT_PARAMS` environment variable.
 
-### Uninstall
+### Cygwin support
 
-To uninstall husky and Git hooks, simply run:
+Yes :)
 
-```bash
-npm uninstall husky --save-dev
-```
+### Yarn
 
-### Yarn usage
+For Yarn, you currently need to pass `--force` to be sure that hooks are going to be installed (`yarn add husky --dev --force`). You can also manually install hooks using `node node_modules/husky/bin/install`.
 
-```sh
-yarn add husky --dev
-```
+</details>
 
 ## License
 
-MIT - [typicode](https://github.com/typicode)
+MIT - [Typicode :cactus:](https://github.com/typicode)

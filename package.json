@@ -1,10 +1,10 @@
 {
   "name": "husky",
-  "version": "0.11.9",
+  "version": "0.12.0-2",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "main": "index.js",
   "scripts": {
-    "test": "node test",
+    "test": "mocha",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },
@@ -33,9 +33,13 @@
   },
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
+    "mock-fs": "^3.12.1",
     "rimraf": "^2.2.8"
   },
   "dependencies": {
+    "find-parent-dir": "^0.3.0",
     "is-ci": "^1.0.9",
     "normalize-path": "^1.0.0"
   }
