@@ -10,7 +10,6 @@ Husky can prevent bad commit, push and more :dog: _woof!_
 npm install husky --save-dev
 ```
 
-
 ```javascript
 // Edit package.json
 {
