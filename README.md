@@ -7,7 +7,7 @@ Husky can prevent bad commit, push and more :dog: _woof!_
 ## Install
 
 ```sh
-npm install husky --save-dev
+npm install husky@beta --save-dev
 ```
 
 ```javascript
@@ -73,7 +73,7 @@ Yes :)
 
 ### Yarn
 
-For Yarn, you currently need to pass `--force` to be sure that hooks are going to be installed (`yarn add husky --dev --force`). You can also manually install hooks using `node node_modules/husky/bin/install`.
+For Yarn, you currently need to pass `--force` to be sure that hooks are going to be installed (`yarn add husky@beta --dev --force`). You can also manually install hooks using `node node_modules/husky/bin/install`.
 
 </details>
 
