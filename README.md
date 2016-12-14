@@ -7,7 +7,7 @@ Husky can prevent bad commit, push and more :dog: _woof!_
 ## Install
 
 ```sh
-npm install husky@beta --save-dev
+npm install husky --save-dev
 ```
 
 ```javascript
@@ -42,16 +42,15 @@ _Existing hooks aren't replaced and you can use [any Git hook](HOOKS.md)._
 
 ```bash
 npm uninstall husky --save-dev
-yarn remove husky --dev
 ```
 
-## Tricks and FAQ
+## Tricks
 
 <details>
 
 ### Debug hooks easily
 
-If you need to debug hooks, use `npm run <script-name>`, for example:
+If you need to debug hooks, simply use `npm run <script-name>`. For example:
 
 ```bash
 npm run precommit
@@ -67,13 +66,17 @@ In the case of [`nvm`](https://github.com/creationix/nvm), husky will try to use
 
 Git params can be found in `GIT_PARAMS` environment variable.
 
+### Git submodule support
+
+Yes
+
 ### Cygwin support
 
-Yes :)
+Yes
 
 ### Yarn
 
-For Yarn, you currently need to pass `--force` to be sure that hooks are going to be installed (`yarn add husky@beta --dev --force`). You can also manually install hooks using `node node_modules/husky/bin/install`.
+For Yarn, you currently need to pass `--force` to be sure that hooks are going to be installed (`yarn add husky --dev --force`). You can also manually install hooks using `node node_modules/husky/bin/install`.
 
 </details>
 
