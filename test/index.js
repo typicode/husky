@@ -105,10 +105,10 @@ describe('husky', function () {
       '/node_modules/husky': {}
     })
 
-    expect(() => husky.installFrom('/node_modules/husky'))
+    expect(function () { husky.installFrom('/node_modules/husky') })
       .toNotThrow()
 
-    expect(() => husky.uninstallFrom('/node_modules/husky'))
+    expect(function () { husky.uninstallFrom('/node_modules/husky') })
       .toNotThrow()
   })
 })
