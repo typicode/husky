@@ -113,7 +113,7 @@ function getHookScript (hookName, relativePath, cmd) {
 
     // Run script
     'export GIT_PARAMS="$*"',
-    'npm run ' + cmd + '-s',
+    'npm run ' + cmd + ' -s',
     'if [ $? -ne 0 ]; then',
     '  echo',
     '  echo "husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
