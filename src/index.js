@@ -4,7 +4,7 @@ var exec = require('child_process').exec
 var normalize = require('normalize-path')
 var findParentDir = require('find-parent-dir')
 var hooks = require('./hooks.json')
-
+var pkg = require('../package.json')
 
 function write (filename, data) {
   fs.writeFileSync(filename, data)
@@ -45,17 +45,18 @@ function getHookScript (hookName, relativePath, cmd) {
   // Hook script
   var arr = [
     '#!/bin/sh',
-    '# husky'
+    '# husky ' + pkg.version,
+    ''
   ]
 
   arr = arr.concat([
     'cd ' + normalizedPath,
-
     // Fix for issue #16 #24
     // Test if script is defined in package.json
     '[ -f package.json ] && cat package.json | grep -q \'"' + cmd + '"\\s*:\'',
     // package.json or script can't be found exit
     '[ $? -ne 0 ] && exit 0',
+    ''
   ])
 
   // On OS X and Linux, try to use nvm if it's installed
@@ -64,13 +65,6 @@ function getHookScript (hookName, relativePath, cmd) {
     var home = process.env.HOME
 
     if (process.platform === 'darwin') {
-      // If nvm was installed using homebrew,
-      // nvm script will be found in /usr/local/opt/nvm
-      arr = arr.concat([
-        'BREW_NVM_DIR="/usr/local/opt/nvm"',
-        '[ -s "$BREW_NVM_DIR/nvm.sh" ] && . "$BREW_NVM_DIR/nvm.sh"'
-      ])
-
       // Add
       // Brew standard installation path /use/local/bin
       // Node standard installation path /usr/local
@@ -81,18 +75,31 @@ function getHookScript (hookName, relativePath, cmd) {
       ])
     }
 
+    if (process.platform === 'darwin') {
+      arr = arr.concat([
+        'if ! [ command -v npm >/dev/null 2>&1 ];',
+        'then',
+        '  BREW_NVM_DIR="/usr/local/opt/nvm"',
+        '  [ -s "$BREW_NVM_DIR/nvm.sh" ] && . "$BREW_NVM_DIR/nvm.sh"',
+        '  command -v nvm >/dev/null 2>&1 && [ -f .nvmrc ] && nvm use',
+        'fi',
+        ''
+      ])
+    }
+
     arr = arr.concat([
       // Test if npm is not already in path
+      // If npm isn't in path, try to load it using nvm
       'if ! [ command -v npm >/dev/null 2>&1 ];',
       'then',
-      // If npm isn't in path, try to load it using nvm
       // If nvm was installed using install script, nvm script will be found in $NVM_DIR
       '  export NVM_DIR="' + home + '/.nvm"',
       // This will load default Node version or version specified by .nvmrc
       '  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"',
       // Test if nvm is in PATH and load version specified by .nvmrc
       '  command -v nvm >/dev/null 2>&1 && [ -f .nvmrc ] && nvm use',
-      'fi'
+      'fi',
+      ''
     ])
   } else {
     // Add
