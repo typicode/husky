@@ -64,7 +64,7 @@ function getHookScript (hookName, relativePath, cmd) {
     // ~ is unavaible, so $HOME is used
     var home = process.env.HOME
 
-    if (process.platform === 'darwin') {
+    if (process.platform === 'darwin' || process.platform === 'linux') {
       // Add
       // Brew standard installation path /use/local/bin
       // Node standard installation path /usr/local
