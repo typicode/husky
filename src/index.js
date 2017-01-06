@@ -58,13 +58,13 @@ function getHookScript (hookName, relativePath, cmd) {
     '[ $? -ne 0 ] && exit 0',
     ''
   ])
-
+  
   // On OS X and Linux, try to use nvm if it's installed
   if (process.platform !== 'win32') {
     // ~ is unavaible, so $HOME is used
     var home = process.env.HOME
 
-    if (process.platform === 'darwin') {
+    if (process.platform === 'darwin' || process.platform === 'linux') {
       // Add
       // Brew standard installation path /use/local/bin
       // Node standard installation path /usr/local
@@ -112,7 +112,7 @@ function getHookScript (hookName, relativePath, cmd) {
   }
 
   // Can't find npm message
-  var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
+  var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json . process.platform: ' + process.platform
 
   arr = arr.concat([
     // Test if npm is in PATH
