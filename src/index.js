@@ -58,8 +58,6 @@ function getHookScript (hookName, relativePath, cmd) {
     '[ $? -ne 0 ] && exit 0',
     ''
   ])
-
-  echo "process.platform: " + process.platform;
   
   // On OS X and Linux, try to use nvm if it's installed
   if (process.platform !== 'win32') {
@@ -114,7 +112,7 @@ function getHookScript (hookName, relativePath, cmd) {
   }
 
   // Can't find npm message
-  var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
+  var npmNotFound = 'husky - can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json . process.platform: ' + process.platform
 
   arr = arr.concat([
     // Test if npm is in PATH
