@@ -59,6 +59,8 @@ function getHookScript (hookName, relativePath, cmd) {
     ''
   ])
 
+  echo "process.platform: " + process.platform;
+  
   // On OS X and Linux, try to use nvm if it's installed
   if (process.platform !== 'win32') {
     // ~ is unavaible, so $HOME is used
