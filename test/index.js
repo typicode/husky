@@ -99,6 +99,16 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeTruthy()
   })
 
+  it('should not install from /node_modules/A/node_modules', function () {
+    mock({
+      '/.git/hooks': {},
+      '/node_modules/A/node_modules/husky': {}
+    })
+
+    husky.installFrom('/node_modules/A/node_modules/husky')
+    expect(exists('hooks/pre-push')).toBeFalsy()
+  })
+
   it('should not crash if there\'s no .git directory', function () {
     mock({
       '/node_modules/husky': {}

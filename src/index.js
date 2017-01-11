@@ -180,6 +180,14 @@ function removeHook (dir, name) {
 
 function installFrom (huskyDir) {
   try {
+    var isInSubNodeModule = (huskyDir.match(/node_modules/g) || []).length > 1
+    if (isInSubNodeModule) {
+      return console.log(
+        'Trying to install from sub \'node_module\' directory,',
+        'skipping Git hooks installation'
+      )
+    }
+
     var hooksDir = findHooksDir(huskyDir)
 
     if (hooksDir) {
