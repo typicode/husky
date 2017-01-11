@@ -4,7 +4,8 @@
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha && standard",
+    "precommit": "npm test",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },
@@ -36,11 +37,17 @@
     "expect": "^1.20.2",
     "mocha": "^3.2.0",
     "mock-fs": "^3.12.1",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.2.8",
+    "standard": "^8.6.0"
   },
   "dependencies": {
     "find-parent-dir": "^0.3.0",
     "is-ci": "^1.0.9",
     "normalize-path": "^1.0.0"
+  },
+  "standard": {
+    "env": {
+      "mocha": true
+    }
   }
 }

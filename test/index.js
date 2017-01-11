@@ -6,16 +6,16 @@ var husky = require('../src')
 
 var gitDir = '/.git'
 
-function readHook(hookPath) {
+function readHook (hookPath) {
   return fs.readFileSync(path.join(gitDir, hookPath), 'utf-8')
 }
 
-function exists(hookPath) {
+function exists (hookPath) {
   return fs.existsSync(path.join(gitDir, hookPath))
 }
 
 describe('husky', function () {
-  afterEach(function() {
+  afterEach(function () {
     mock.restore()
   })
 
@@ -24,11 +24,11 @@ describe('husky', function () {
       '/.git/hooks': {},
       '/node_modules/husky': {}
     })
-    
+
     husky.installFrom('/node_modules/husky')
     var hook = readHook('hooks/pre-commit')
 
-    expect(hook).toInclude('# husky')
+    expect(hook).toInclude('#husky')
     expect(hook).toInclude('cd .')
     expect(hook).toInclude('npm run precommit')
 
@@ -82,7 +82,6 @@ describe('husky', function () {
     husky.uninstallFrom('/A/B/app/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
-
 
   it('should not modify user hooks', function () {
     mock({
