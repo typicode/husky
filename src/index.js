@@ -59,7 +59,7 @@ function getHookScript (hookName, relativePath, cmd) {
     '',
 
     'has_hook_script () {',
-    '  [ -f package.json ] && cat package.json | grep -q \'"$1"\\s*:\'',
+    '  [ -f package.json ] && cat package.json | grep -q "\\"$1\\"\\s*:"',
     '}',
     ''
   ]
@@ -91,13 +91,13 @@ function getHookScript (hookName, relativePath, cmd) {
 
     if (process.platform === 'darwin') {
       arr = arr.concat([
-        'exists npm || load_nvm BREW_NVM_DIR /usr/local/opt/nvm',
+        'command_exists npm || load_nvm BREW_NVM_DIR /usr/local/opt/nvm',
         ''
       ])
     }
 
     arr = arr.concat([
-      'exists npm || load_nvm NVM_DIR ' + home + '/.nvm',
+      'command_exists npm || load_nvm NVM_DIR ' + home + '/.nvm',
       ''
     ])
   } else {
@@ -115,7 +115,7 @@ function getHookScript (hookName, relativePath, cmd) {
 
   arr = arr.concat([
     // Test if npm is in PATH
-    'exists npm || {',
+    'command_exists npm || {',
     '  echo >&2 "' + npmNotFound + '"',
     '  exit 0',
     '}',
@@ -123,7 +123,7 @@ function getHookScript (hookName, relativePath, cmd) {
 
     // Run script
     'echo',
-    'echo "husky > npm run -s ' + cmd,
+    'echo "husky > npm run -s ' + cmd + '"',
     'echo',
     '',
 
@@ -131,7 +131,7 @@ function getHookScript (hookName, relativePath, cmd) {
     'npm run -s ' + cmd + ' || {',
     '  echo',
     '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
-    '  echo "> husky - To debug, use \'npm run precommit\'',
+    '  echo "> husky - To debug, use \'npm run precommit\'"',
     '  exit 1',
     '}',
     ''
