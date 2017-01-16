@@ -111,7 +111,7 @@ function getHookScript (hookName, relativePath, cmd) {
   }
 
   // Can't find npm message
-  var npmNotFound = 'husky > can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
+  var npmNotFound = '> husky - Can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
 
   arr = arr.concat([
     // Test if npm is in PATH
@@ -130,8 +130,8 @@ function getHookScript (hookName, relativePath, cmd) {
     'export GIT_PARAMS="$*"',
     'npm run -s ' + cmd + ' || {',
     '  echo',
-    '  echo "husky > ' + hookName + ' hook failed (add --no-verify to bypass)"',
-    '  echo "husky > To debug, use \'npm run precommit\'',
+    '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
+    '  echo "> husky - To debug, use \'npm run precommit\'',
     '  exit 1',
     '}',
     ''
