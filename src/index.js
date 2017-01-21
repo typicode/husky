@@ -58,8 +58,9 @@ function getHookScript (hookName, relativePath, cmd) {
     '}',
     '',
 
+    // https://github.com/typicode/husky/issues/76
     'has_hook_script () {',
-    '  [ -f package.json ] && cat package.json | grep -q "\\"$1\\"\\s*:"',
+    '  [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"',
     '}',
     ''
   ]
