@@ -1,10 +1,8 @@
 # CHANGELOG
 
-## 0.13.0 (beta)
+## 0.13.0
 
-To install it, use `npm install husky@beta --save-dev`
-
-* Make `husky` a little less verbose
+* Make `husky` a little less verbose by default
 * Fix issue with `OS X + brew` where `nvm` was loaded even when `npm` was already present
 
 ## 0.12.0 (stable)
