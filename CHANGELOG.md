@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.13.1
+
+* Makes it easier for projects to transition from [ghooks](https://github.com/gtramontina/ghooks) by detecting ghooks installed scripts and automatically migrating them
+
 ## 0.13.0
 
 * Makes `husky` a little less verbose by default
