@@ -11,7 +11,7 @@
 * Fixes issue with Git `v1.9` on Windows
 * Prevents Git hooks being installed when husky is in a sub `node_modules` directory (i.e. `./node_modules/A/node_modules/husky`)
 
-## 0.12.0 (stable)
+## 0.12.0
 
 * Adds Git submodule support
 * Adds Cygwin support
