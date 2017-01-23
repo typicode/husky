@@ -66,6 +66,16 @@ In the case of [`nvm`](https://github.com/creationix/nvm), husky will try to use
 
 Git params can be found in `GIT_PARAMS` environment variable.
 
+### Setting a different log level
+
+By default, husky will run scripts using `--silent` to make the output more readable. If you want to override this, simply pass a different log level to your scripts: 
+
+```json
+"precommit": "npm run some-script -q"
+```
+
+_`-q/--quiet` is equivalent to `--loglevel warn` which is npm default log level._
+
 ### Git submodule support
 
 Yes
