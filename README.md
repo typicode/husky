@@ -27,6 +27,8 @@ git commit -m "Keep calm and commit"
 
 _Existing hooks aren't replaced and you can use [any Git hook](HOOKS.md)._
 
+_If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev && npm install husky --save-dev` and edit `package.json`. Husky will automatically migrate `ghooks` hooks._
+
 ## Used by
 
 * [jQuery](https://github.com/jquery/jquery)
