@@ -2,7 +2,7 @@
   "name": "husky",
   "version": "0.13.1",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "mocha && standard",
     "precommit": "npm test",
