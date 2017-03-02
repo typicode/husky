@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha && standard",
     "precommit": "npm test",
+    "prepublish": "pkg-ok",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },
@@ -37,6 +38,7 @@
     "expect": "^1.20.2",
     "mocha": "^3.2.0",
     "mock-fs": "^3.12.1",
+    "pkg-ok": "^1.0.1",
     "rimraf": "^2.2.8",
     "standard": "^8.6.0"
   },
