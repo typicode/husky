@@ -58,8 +58,8 @@ function getHookScript (hookName, relativePath, cmd) {
 
     'load_nvm () {',
     '  export $1=$2',
-    '  [ -s "$1/nvm.sh" ] && . $1/nvm.sh',
-    '  exists nvm && [ -f .nvmrc ] && nvm use',
+    '  [ -s "$2/nvm.sh" ] && . $2/nvm.sh',
+    '  command_exists nvm && [ -f .nvmrc ] && nvm use',
     '}',
     '',
 
