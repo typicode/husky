@@ -137,7 +137,7 @@ function getHookScript (hookName, relativePath, cmd) {
     'npm run -s ' + cmd + ' || {',
     '  echo',
     '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
-    '  echo "> husky - to debug, use \'npm run precommit\'"',
+    '  echo "> husky - to debug, use \'npm run ' + hookName + '\'"',
     '  exit 1',
     '}',
     ''
