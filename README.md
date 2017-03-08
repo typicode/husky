@@ -92,10 +92,10 @@ For Yarn, you currently need to pass `--force` to be sure that hooks are going t
 
 </details>
 
+## See also
+
+* [pkg-ok](https://github.com/typicode/pkg-ok) - prevents publishing modules with bad paths
+
 ## License
 
 MIT - [Typicode :cactus:](https://github.com/typicode)
-
-## See also
-
-[pkg-ok](https://github.com/typicode/pkg-ok) - prevents publishing modules with bad paths
