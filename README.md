@@ -38,7 +38,7 @@ _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev 
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and more than 2000+ [other awesome projects](https://libraries.io/npm/husky/dependent-repositories).
+* ... and more than 2600+ [other awesome projects](https://libraries.io/npm/husky/dependent-repositories).
 
 ## Uninstall
 
@@ -95,3 +95,7 @@ For Yarn, you currently need to pass `--force` to be sure that hooks are going t
 ## License
 
 MIT - [Typicode :cactus:](https://github.com/typicode)
+
+## See also
+
+[pkg-ok](https://github.com/typicode/pkg-ok) - prevents publishing modules with bad paths
