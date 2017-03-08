@@ -119,6 +119,7 @@ function getHookScript (hookName, relativePath, cmd) {
   // Can't find npm message
   var npmNotFound = '> husky - Can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
 
+  var scriptName = hookName.replace(/-/g, '')
   arr = arr.concat([
     // Test if npm is in PATH
     'command_exists npm || {',
@@ -137,7 +138,7 @@ function getHookScript (hookName, relativePath, cmd) {
     'npm run -s ' + cmd + ' || {',
     '  echo',
     '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
-    '  echo "> husky - to debug, use \'npm run ' + hookName + '\'"',
+    '  echo "> husky - to debug, use \'npm run ' + scriptName + '\'"',
     '  exit 1',
     '}',
     ''
