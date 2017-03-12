@@ -86,7 +86,7 @@ function getHookScript (hookName, relativePath, cmd) {
 
     if (process.platform === 'darwin') {
       // Add
-      // Brew standard installation path /use/local/bin
+      // Brew standard installation path /usr/local/bin
       // Node standard installation path /usr/local
       // for GUI apps
       // https://github.com/typicode/husky/issues/49
@@ -97,13 +97,13 @@ function getHookScript (hookName, relativePath, cmd) {
 
     if (process.platform === 'darwin') {
       arr = arr.concat([
-        'command_exists npm || load_nvm BREW_NVM_DIR /usr/local/opt/nvm',
+        'load_nvm BREW_NVM_DIR /usr/local/opt/nvm',
         ''
       ])
     }
 
     arr = arr.concat([
-      'command_exists npm || load_nvm NVM_DIR ' + home + '/.nvm',
+      'load_nvm NVM_DIR ' + home + '/.nvm',
       ''
     ])
   } else {
