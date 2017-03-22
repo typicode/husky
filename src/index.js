@@ -97,12 +97,14 @@ function getHookScript (hookName, relativePath, cmd) {
 
     if (process.platform === 'darwin') {
       arr = arr.concat([
+        // Load nvm with BREW_NVM_DIR set to /usr/local/opt/nvm
         'load_nvm BREW_NVM_DIR /usr/local/opt/nvm',
         ''
       ])
     }
 
     arr = arr.concat([
+      // Load nvm with NVM_DIR set to $HOME/.nvm
       'load_nvm NVM_DIR ' + home + '/.nvm',
       ''
     ])
