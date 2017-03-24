@@ -60,9 +60,13 @@ npm run precommit
 
 ### Git GUI clients support
 
-If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), git hooks will be executed even in GUI applications.
+If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), Git hooks will be executed in GUI applications.
 
-In the case of [`nvm`](https://github.com/creationix/nvm), husky will try to use the `default` installed version or use the project `.nvmrc`.
+### Working with multiple version of Node
+
+If [`nvm`](https://github.com/creationix/nvm) is installed, husky will try to use the `default`/`current` installed Node version or use the project `.nvmrc`.
+
+__Tip__ to use the system-installed version of node, `nvm` provides a [`system`](https://github.com/creationix/nvm#system-version-of-node) alias
 
 ### Accessing Git params
 
