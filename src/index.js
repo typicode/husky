@@ -35,7 +35,7 @@ function findHooksDir (dirname) {
         .split(':')[1]
         .trim()
 
-      return path.join(dir, gitDir, 'hooks')
+      return path.resolve(dir, gitDir, 'hooks')
     }
 
     return path.join(gitDir, 'hooks')

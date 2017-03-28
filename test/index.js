@@ -83,6 +83,22 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
+  it('should support git worktrees', function () {
+    mock({
+      '/.git/worktrees/B': {},
+      '/A/B/.git': 'git: /.git/worktrees/B',
+      '/A/B/node_modules/husky': {}
+    })
+
+    husky.installFrom('/A/B/node_modules/husky')
+    var hook = readHook('worktrees/B/hooks/pre-commit')
+
+    expect(hook).toInclude('cd .')
+
+    husky.uninstallFrom('/A/B/node_modules/husky')
+    expect(exists('hooks/pre-commit')).toBeFalsy()
+  })
+
   it('should not modify user hooks', function () {
     mock({
       '/.git/hooks': {},
