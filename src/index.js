@@ -5,6 +5,11 @@ var findParentDir = require('find-parent-dir')
 var hooks = require('./hooks.json')
 var pkg = require('../package.json')
 
+var SKIP = 'SKIP'
+var UPDATE = 'UPDATE'
+var MIGRATE = 'MIGRATE'
+var CREATE = 'CREATE'
+
 function write (filename, data) {
   fs.writeFileSync(filename, data)
   fs.chmodSync(filename, parseInt('0755', 8))
@@ -169,19 +174,21 @@ function createHook (huskyDir, hooksDir, hookName, cmd) {
   if (!fs.existsSync(hooksDir)) fs.mkdirSync(hooksDir)
 
   if (!fs.existsSync(filename)) {
-    return write(filename, hookScript)
+    write(filename, hookScript)
+    return CREATE
   }
 
   if (isGhooks(filename)) {
-    console.log('migrating ghooks ' + hookName + ' script')
-    return write(filename, hookScript)
+    write(filename, hookScript)
+    return MIGRATE
   }
 
   if (isHusky(filename)) {
-    return write(filename, hookScript)
+    write(filename, hookScript)
+    return UPDATE
   }
 
-  console.log('skipping ' + hookName + ' hook (existing user hook)')
+  return SKIP
 }
 
 function removeHook (dir, name) {
@@ -205,10 +212,30 @@ function installFrom (huskyDir) {
     var hooksDir = findHooksDir(huskyDir)
 
     if (hooksDir) {
-      hooks.forEach(function (hookName) {
-        var npmScriptName = hookName.replace(/-/g, '')
-        createHook(huskyDir, hooksDir, hookName, npmScriptName)
-      })
+      hooks
+        .map(function (hookName) {
+          var npmScriptName = hookName.replace(/-/g, '')
+          return {
+            hookName: hookName,
+            action: createHook(huskyDir, hooksDir, hookName, npmScriptName)
+          }
+        })
+        .forEach(function (item) {
+          switch (item.action) {
+            case MIGRATE:
+              console.log('migrating ghooks ' + item.hookName + ' script')
+              break
+            case UPDATE:
+              break
+            case SKIP:
+              console.log('skipping ' + item.hookName + ' hook (existing user hook)')
+              break
+            case CREATE:
+              break
+            default:
+              console.error('Unknown action')
+          }
+        })
       console.log('done\n')
     } else {
       console.log('Can\'t find .git directory, skipping Git hooks installation')
