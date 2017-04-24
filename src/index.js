@@ -138,6 +138,7 @@ function getHookScript (hookName, relativePath, cmd) {
     // Run script
     'echo',
     'echo "> husky - npm run -s ' + cmd + '"',
+    'echo "> husky - node `node -v`"',
     'echo',
     '',
 
