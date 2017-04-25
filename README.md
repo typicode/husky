@@ -38,7 +38,7 @@ _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev 
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and more than 2600+ [other awesome projects](https://libraries.io/npm/husky/dependent-repositories).
+* ... and almost 4000 [other awesome projects](https://libraries.io/npm/husky/dependent-repositories).
 
 ## Uninstall
 
