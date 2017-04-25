@@ -48,7 +48,7 @@ function findHooksDir (dirname) {
 }
 
 function getHookScript (hookName, relativePath, cmd) {
-    // On Windows normalize path (i.e. convert \ to /)
+  // On Windows normalize path (i.e. convert \ to /)
   var normalizedPath = normalize(relativePath)
 
   // Hook script
