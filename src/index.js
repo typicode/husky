@@ -128,7 +128,7 @@ function getHookScript (hookName, relativePath, cmd) {
   }
 
   // Can't find package manager message
-  var pmNotFound = '> husky - Can\'t find ' + packageManager + ' in PATH. Skipping ' + cmd + ' script in package.json'
+  var pmNotFound = '> husky - Can\'t find yarn or npm in PATH. Skipping ' + cmd + ' script in package.json'
 
   var scriptName = hookName.replace(/-/g, '')
   arr = arr.concat([
