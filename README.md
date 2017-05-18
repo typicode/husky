@@ -90,9 +90,9 @@ Yes
 
 Yes
 
-### Yarn
+### Yarn support
 
-For Yarn, you currently need to pass `--force` to be sure that hooks are going to be installed (`yarn add husky --dev --force`). You can also manually install hooks using `node node_modules/husky/bin/install`.
+Please use `yarn` `v0.24+`
 
 </details>
 
