@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.13.4
+
+* Add Node version to husky output
+
 ## 0.13.3
 
 * Revert `Fixes issue with OS X + brew where nvm was loaded even when npm was already present` that was introduced in `v0.13.0` as it was preventing Husky to load `nvm` in some cases [#106](https://github.com/typicode/husky/issues/106)
