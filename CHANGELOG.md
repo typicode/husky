@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Add Git worktree support
+* Drop Node 0.12 support
+
 ## 0.13.4
 
 * Add Node version to husky output
