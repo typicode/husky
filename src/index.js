@@ -97,7 +97,7 @@ function getHookScript(hookName, relativePath, cmd) {
         script +
         `
         # Load nvm with BREW_NVM_DIR set to /usr/local/opt/nvm
-        'load_nvm BREW_NVM_DIR /usr/local/opt/nvm',
+        load_nvm BREW_NVM_DIR /usr/local/opt/nvm
       `
     }
 
@@ -123,7 +123,7 @@ function getHookScript(hookName, relativePath, cmd) {
     # Test if npm is in PATH
     command_exists npm || {,
       echo >&2 "${npmNotFound}",
-      exit 0,
+      exit 0
     }
 
     # Run script
@@ -137,7 +137,7 @@ function getHookScript(hookName, relativePath, cmd) {
       echo
       echo "> husky - ${hookName} hook failed (add --no-verify to bypass)"
       echo "> husky - to debug, use \'npm run ${scriptName}\'"
-      exit 1',
+      exit 1
     }
   `
 
