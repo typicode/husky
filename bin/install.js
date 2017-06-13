@@ -11,7 +11,7 @@ if (isCI) {
   process.exit(0)
 }
 
-console.log('setting up hooks')
+console.log('setting up Git hooks')
 
 const huskyDir = path.join(__dirname, '..')
 husky.installFrom(huskyDir)
