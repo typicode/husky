@@ -4,6 +4,7 @@
 
 * Add Git worktree support
 * Drop Node 0.12 support
+* Don't reload nvm if it's already in PATH
 
 ## 0.13.4
 
