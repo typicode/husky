@@ -1,32 +1,32 @@
-var fs = require('fs')
-var path = require('path')
-var expect = require('expect')
-var mock = require('mock-fs')
-var husky = require('../src')
+const fs = require('fs')
+const path = require('path')
+const expect = require('expect')
+const mock = require('mock-fs')
+const husky = require('../src')
 
-var gitDir = '/.git'
+const gitDir = '/.git'
 
-function readHook (hookPath) {
+function readHook(hookPath) {
   return fs.readFileSync(path.join(gitDir, hookPath), 'utf-8')
 }
 
-function exists (hookPath) {
+function exists(hookPath) {
   return fs.existsSync(path.join(gitDir, hookPath))
 }
 
-describe('husky', function () {
-  afterEach(function () {
+describe('husky', function() {
+  afterEach(function() {
     mock.restore()
   })
 
-  it('should support basic layout', function () {
+  it('should support basic layout', function() {
     mock({
       '/.git/hooks': {},
       '/node_modules/husky': {}
     })
 
     husky.installFrom('/node_modules/husky')
-    var hook = readHook('hooks/pre-commit')
+    const hook = readHook('hooks/pre-commit')
 
     expect(hook).toInclude('#husky')
     expect(hook).toInclude('cd .')
@@ -36,14 +36,14 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
-  it('should support project installed in sub directory', function () {
+  it('should support project installed in sub directory', function() {
     mock({
       '/.git/hooks': {},
       '/A/B/node_modules/husky': {}
     })
 
     husky.installFrom('/A/B/node_modules/husky')
-    var hook = readHook('hooks/pre-commit')
+    const hook = readHook('hooks/pre-commit')
 
     expect(hook).toInclude('cd A/B')
 
@@ -51,7 +51,7 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
-  it('should support git submodule', function () {
+  it('should support git submodule', function() {
     mock({
       '/.git/modules/A/B': {},
       '/A/B/.git': 'git: ../../.git/modules/A/B',
@@ -59,7 +59,7 @@ describe('husky', function () {
     })
 
     husky.installFrom('/A/B/node_modules/husky')
-    var hook = readHook('modules/A/B/hooks/pre-commit')
+    const hook = readHook('modules/A/B/hooks/pre-commit')
 
     expect(hook).toInclude('cd .')
 
@@ -67,7 +67,7 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
-  it('should support git submodule and sub directory', function () {
+  it('should support git submodule and sub directory', function() {
     mock({
       '/.git/modules/A/B': {},
       '/A/B/.git': 'git: ../../.git/modules/A/B',
@@ -75,7 +75,7 @@ describe('husky', function () {
     })
 
     husky.installFrom('/A/B/C/node_modules/husky')
-    var hook = readHook('modules/A/B/hooks/pre-commit')
+    const hook = readHook('modules/A/B/hooks/pre-commit')
 
     expect(hook).toInclude('cd C')
 
@@ -83,7 +83,7 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
-  it('should support git worktrees', function () {
+  it('should support git worktrees', function() {
     mock({
       '/.git/worktrees/B': {},
       '/A/B/.git': 'git: /.git/worktrees/B',
@@ -91,7 +91,7 @@ describe('husky', function () {
     })
 
     husky.installFrom('/A/B/node_modules/husky')
-    var hook = readHook('worktrees/B/hooks/pre-commit')
+    const hook = readHook('worktrees/B/hooks/pre-commit')
 
     expect(hook).toInclude('cd .')
 
@@ -99,7 +99,7 @@ describe('husky', function () {
     expect(exists('hooks/pre-commit')).toBeFalsy()
   })
 
-  it('should not modify user hooks', function () {
+  it('should not modify user hooks', function() {
     mock({
       '/.git/hooks': {},
       '/.git/hooks/pre-push': 'foo',
@@ -108,14 +108,14 @@ describe('husky', function () {
 
     // Verify that it's not overwritten
     husky.installFrom('/node_modules/husky')
-    var hook = readHook('hooks/pre-push')
+    const hook = readHook('hooks/pre-push')
     expect(hook).toBe('foo')
 
     husky.uninstallFrom('/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeTruthy()
   })
 
-  it('should not install from /node_modules/A/node_modules', function () {
+  it('should not install from /node_modules/A/node_modules', function() {
     mock({
       '/.git/hooks': {},
       '/node_modules/A/node_modules/husky': {}
@@ -125,26 +125,28 @@ describe('husky', function () {
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
-  it('should not crash if there\'s no .git directory', function () {
+  it("should not crash if there's no .git directory", function() {
     mock({
       '/node_modules/husky': {}
     })
 
-    expect(function () { husky.installFrom('/node_modules/husky') })
-      .toNotThrow()
+    expect(function() {
+      husky.installFrom('/node_modules/husky')
+    }).toNotThrow()
 
-    expect(function () { husky.uninstallFrom('/node_modules/husky') })
-      .toNotThrow()
+    expect(function() {
+      husky.uninstallFrom('/node_modules/husky')
+    }).toNotThrow()
   })
 
-  it('should migrate ghooks scripts', function () {
+  it('should migrate ghooks scripts', function() {
     mock({
       '/.git/hooks/pre-commit': '// Generated by ghooks. Do not edit this file.',
       '/node_modules/husky': {}
     })
 
     husky.installFrom('/node_modules/husky')
-    var hook = readHook('hooks/pre-commit')
+    const hook = readHook('hooks/pre-commit')
     expect(hook).toInclude('husky')
     expect(hook).toNotInclude('ghooks')
   })
