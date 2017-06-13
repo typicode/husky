@@ -37,7 +37,7 @@
   "devDependencies": {
     "expect": "^1.20.2",
     "mocha": "^3.2.0",
-    "mock-fs": "^3.12.1",
+    "mock-fs": "^4.4.1",
     "pkg-ok": "^1.0.1",
     "rimraf": "^2.2.8",
     "standard": "^8.6.0"
