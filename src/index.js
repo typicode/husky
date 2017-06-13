@@ -2,6 +2,7 @@ var fs = require('fs')
 var path = require('path')
 var normalize = require('normalize-path')
 var findParentDir = require('find-parent-dir')
+var yarnOrNpm = require('yarn-or-npm')
 var hooks = require('./hooks.json')
 var pkg = require('../package.json')
 
@@ -50,6 +51,9 @@ function findHooksDir (dirname) {
 function getHookScript (hookName, relativePath, cmd) {
   // On Windows normalize path (i.e. convert \ to /)
   var normalizedPath = normalize(relativePath)
+
+  // Check if we're using yarn or npm
+  var packageManager = yarnOrNpm()
 
   // Hook script
   var arr = [
@@ -123,30 +127,30 @@ function getHookScript (hookName, relativePath, cmd) {
     ])
   }
 
-  // Can't find npm message
-  var npmNotFound = '> husky - Can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
+  // Can't find package manager message
+  var pmNotFound = '> husky - Can\'t find yarn or npm in PATH. Skipping ' + cmd + ' script in package.json'
 
   var scriptName = hookName.replace(/-/g, '')
   arr = arr.concat([
-    // Test if npm is in PATH
-    'command_exists npm || {',
-    '  echo >&2 "' + npmNotFound + '"',
+    // Test if package manager is in PATH
+    'command_exists ' + packageManager + ' || {',
+    '  echo >&2 "' + pmNotFound + '"',
     '  exit 0',
     '}',
     '',
 
     // Run script
     'echo',
-    'echo "> husky - npm run -s ' + cmd + '"',
+    'echo "> husky - ' + packageManager + ' run -s ' + cmd + '"',
     'echo "> husky - node `node -v`"',
     'echo',
     '',
 
     'export GIT_PARAMS="$*"',
-    'npm run -s ' + cmd + ' || {',
+    packageManager + ' run -s ' + cmd + ' || {',
     '  echo',
     '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
-    '  echo "> husky - to debug, use \'npm run ' + scriptName + '\'"',
+    '  echo "> husky - to debug, use \'' + packageManager + ' run ' + scriptName + '\'"',
     '  exit 1',
     '}',
     ''
