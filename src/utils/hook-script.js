@@ -68,6 +68,9 @@ module.exports = function getHookScript(hookName, relativePath, cmd) {
   // Can't find npm message
   const npmNotFound = `> husky - Can't find npm in PATH. Skipping ${cmd} script in package.json`
 
+  const noVerifyMessage =
+    hookName !== preparecommitmsg && '(add --no-verify to bypass)'
+
   const scriptName = hookName.replace(/-/g, '')
   script += `
     # Test if npm is in PATH
@@ -85,7 +88,7 @@ module.exports = function getHookScript(hookName, relativePath, cmd) {
     export GIT_PARAMS="$*"
     npm run -s ${cmd} || {
       echo
-      echo "> husky - ${hookName} hook failed (add --no-verify to bypass)"
+      echo "> husky - ${hookName} hook failed ${noVerifyMessage}"
       echo "> husky - to debug, use \'npm run ${scriptName}\'"
       exit 1
     }

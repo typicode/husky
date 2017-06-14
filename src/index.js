@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-
-const hookScript = require('./hook-script')
+const hookScript = require('./utils/hook-script')
 const hooks = require('./hooks.json')
 const pkg = require('../package.json')
 
