@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const findParentDir = require('find-parent-dir')
 
 function findHooksDir(dirname) {

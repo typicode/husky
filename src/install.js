@@ -1,5 +1,7 @@
 const fs = require('fs')
 const path = require('path')
+const findParentDir = require('find-parent-dir')
+const findHooksDir = require('./utils/find-hooks-dir')
 const hookScript = require('./utils/hook-script')
 const hooks = require('./hooks.json')
 const pkg = require('../package.json')
@@ -104,7 +106,4 @@ function installFrom(huskyDir) {
   }
 }
 
-module.exports = {
-  installFrom: installFrom,
-  uninstallFrom: uninstallFrom
-}
+module.exports = installFrom

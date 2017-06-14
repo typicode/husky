@@ -2,7 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const expect = require('expect')
 const mock = require('mock-fs')
-const husky = require('../src')
+const installFrom = require('../src/install')
+const uninstallFrom = require('../src/uninstall')
 
 const gitDir = '/.git'
 
@@ -25,7 +26,7 @@ describe('husky', function() {
       '/node_modules/husky': {}
     })
 
-    husky.installFrom('/node_modules/husky')
+    installFrom('/node_modules/husky')
     const hook = readHook('hooks/pre-commit')
 
     expect(hook).toInclude('#husky')
@@ -36,7 +37,7 @@ describe('husky', function() {
     const prepareCommitMsg = readHook('hooks/prepare-commit-msg')
     expect(prepareCommitMsg).toNotInclude('--no-verify')
 
-    husky.uninstallFrom('/node_modules/husky')
+    uninstallFrom('/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
@@ -46,12 +47,12 @@ describe('husky', function() {
       '/A/B/node_modules/husky': {}
     })
 
-    husky.installFrom('/A/B/node_modules/husky')
+    installFrom('/A/B/node_modules/husky')
     const hook = readHook('hooks/pre-commit')
 
     expect(hook).toInclude('cd A/B')
 
-    husky.uninstallFrom('/A/B/node_modules/husky')
+    uninstallFrom('/A/B/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
@@ -62,12 +63,12 @@ describe('husky', function() {
       '/A/B/node_modules/husky': {}
     })
 
-    husky.installFrom('/A/B/node_modules/husky')
+    installFrom('/A/B/node_modules/husky')
     const hook = readHook('modules/A/B/hooks/pre-commit')
 
     expect(hook).toInclude('cd .')
 
-    husky.uninstallFrom('/A/B/node_modules/husky')
+    uninstallFrom('/A/B/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
@@ -78,12 +79,12 @@ describe('husky', function() {
       '/A/B/C/node_modules/husky': {}
     })
 
-    husky.installFrom('/A/B/C/node_modules/husky')
+    installFrom('/A/B/C/node_modules/husky')
     const hook = readHook('modules/A/B/hooks/pre-commit')
 
     expect(hook).toInclude('cd C')
 
-    husky.uninstallFrom('/A/B/app/node_modules/husky')
+    uninstallFrom('/A/B/app/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
@@ -94,12 +95,12 @@ describe('husky', function() {
       '/A/B/node_modules/husky': {}
     })
 
-    husky.installFrom('/A/B/node_modules/husky')
+    installFrom('/A/B/node_modules/husky')
     const hook = readHook('worktrees/B/hooks/pre-commit')
 
     expect(hook).toInclude('cd .')
 
-    husky.uninstallFrom('/A/B/node_modules/husky')
+    uninstallFrom('/A/B/node_modules/husky')
     expect(exists('hooks/pre-commit')).toBeFalsy()
   })
 
@@ -111,11 +112,11 @@ describe('husky', function() {
     })
 
     // Verify that it's not overwritten
-    husky.installFrom('/node_modules/husky')
+    installFrom('/node_modules/husky')
     const hook = readHook('hooks/pre-push')
     expect(hook).toBe('foo')
 
-    husky.uninstallFrom('/node_modules/husky')
+    uninstallFrom('/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeTruthy()
   })
 
@@ -125,7 +126,7 @@ describe('husky', function() {
       '/node_modules/A/node_modules/husky': {}
     })
 
-    husky.installFrom('/node_modules/A/node_modules/husky')
+    installFrom('/node_modules/A/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
   })
 
@@ -135,11 +136,11 @@ describe('husky', function() {
     })
 
     expect(function() {
-      husky.installFrom('/node_modules/husky')
+      installFrom('/node_modules/husky')
     }).toNotThrow()
 
     expect(function() {
-      husky.uninstallFrom('/node_modules/husky')
+      uninstallFrom('/node_modules/husky')
     }).toNotThrow()
   })
 
@@ -150,7 +151,7 @@ describe('husky', function() {
       '/node_modules/husky': {}
     })
 
-    husky.installFrom('/node_modules/husky')
+    installFrom('/node_modules/husky')
     const hook = readHook('hooks/pre-commit')
     expect(hook).toInclude('husky')
     expect(hook).toNotInclude('ghooks')

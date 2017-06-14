@@ -1,7 +1,7 @@
 const normalize = require('normalize-path')
-const pkg = require('../package.json')
+const pkg = require('../../package.json')
 
-module.exports = function getHookScript(hookName, relativePath, cmd) {
+function hookScript(hookName, relativePath, cmd) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
@@ -96,3 +96,5 @@ module.exports = function getHookScript(hookName, relativePath, cmd) {
 
   return script
 }
+
+module.exports = hookScript
