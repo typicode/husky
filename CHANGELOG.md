@@ -2,9 +2,10 @@
 
 ## Unreleased
 
-* Add Git worktree support
 * Drop Node 0.12 support
 * Don't reload nvm if it's already in PATH
+* Add Git worktree support [#114](https://github.com/typicode/husky/pull/114)
+* Hide irrelevant `--no-verify` message for `prepare-commit-msg` [#137](https://github.com/typicode/husky/issues/137)
 
 ## 0.13.4
 
