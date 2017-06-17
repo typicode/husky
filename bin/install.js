@@ -3,12 +3,14 @@ const path = require('path')
 const isCI = require('is-ci')
 const installFrom = require('../src/install')
 
+console.log('husky')
+
 if (isCI) {
-  console.log('husky - CI detected, skipping Git hooks installation')
+  console.log('CI detected, skipping Git hooks installation')
   process.exit(0)
 }
 
-console.log('husky - setting up Git hooks')
+console.log('setting up Git hooks')
 
 const huskyDir = path.join(__dirname, '..')
 installFrom(huskyDir)
