@@ -125,8 +125,13 @@ function getHookScript (hookName, relativePath, cmd) {
 
   // Can't find npm message
   var npmNotFound = '> husky - Can\'t find npm in PATH. Skipping ' + cmd + ' script in package.json'
-
+  var failedMessage
   var scriptName = hookName.replace(/-/g, '')
+  if (hookName === 'prepare-commit-msg') {
+    failedMessage = '  echo "> husky - ' + hookName + ' hook failed (cannot be suppressed by --no-verify due to Git specs)"'
+  } else {
+    failedMessage = '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"'
+  }
   arr = arr.concat([
     // Test if npm is in PATH
     'command_exists npm || {',
@@ -145,7 +150,7 @@ function getHookScript (hookName, relativePath, cmd) {
     'export GIT_PARAMS="$*"',
     'npm run -s ' + cmd + ' || {',
     '  echo',
-    '  echo "> husky - ' + hookName + ' hook failed (add --no-verify to bypass)"',
+    failedMessage,
     '  echo "> husky - to debug, use \'npm run ' + scriptName + '\'"',
     '  exit 1',
     '}',
