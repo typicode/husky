@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha && standard",
     "precommit": "npm test",
-    "prepublish": "pkg-ok",
+    "prepublishOnly": "pkg-ok",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },
