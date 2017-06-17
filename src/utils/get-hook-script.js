@@ -1,7 +1,7 @@
 const normalize = require('normalize-path')
 const pkg = require('../../package.json')
 
-function hookScript(hookName, relativePath, cmd) {
+module.exports = function getHookScript (hookName, relativePath, cmd) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
@@ -69,7 +69,7 @@ function hookScript(hookName, relativePath, cmd) {
   const npmNotFound = `> husky - Can't find npm in PATH. Skipping ${cmd} script in package.json`
 
   const noVerifyMessage =
-    hookName !== preparecommitmsg && '(add --no-verify to bypass)'
+    hookName !== 'prepare-commit-msg' && '(add --no-verify to bypass)'
 
   const scriptName = hookName.replace(/-/g, '')
   script += `
@@ -89,12 +89,10 @@ function hookScript(hookName, relativePath, cmd) {
     npm run -s ${cmd} || {
       echo
       echo "> husky - ${hookName} hook failed ${noVerifyMessage}"
-      echo "> husky - to debug, use \'npm run ${scriptName}\'"
+      echo "> husky - to debug, use 'npm run ${scriptName}'"
       exit 1
     }
   `
 
   return script
 }
-
-module.exports = hookScript

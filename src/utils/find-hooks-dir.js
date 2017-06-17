@@ -1,12 +1,12 @@
 const fs = require('fs')
 const path = require('path')
-const findParentDir = require('find-parent-dir')
+const findParent = require('./find-parent')
 
-function findHooksDir(dirname) {
-  const dir = findParentDir.sync(dirname, '.git')
+function findHooksDir (dirname) {
+  const dir = findParent(dirname, '.git')
 
   if (dir) {
-    const gitDir = path.join(dir, '.git')
+    let gitDir = path.join(dir, '.git')
     const stats = fs.lstatSync(gitDir)
 
     if (stats.isFile()) {
