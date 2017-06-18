@@ -1,3 +1,5 @@
+'use strict'
+
 const getHookScript = require('../../src/utils/get-hook-script')
 
 describe('getHookScript', () => {

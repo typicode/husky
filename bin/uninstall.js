@@ -1,3 +1,5 @@
+'use strict'
+
 // Run when package is uninstalled
 const path = require('path')
 const uninstallFrom = require('../src/uninstall')

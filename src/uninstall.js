@@ -1,3 +1,5 @@
+'use strict'
+
 const fs = require('fs')
 const hooks = require('./hooks.json')
 const findHooksDir = require('./utils/find-hooks-dir')
