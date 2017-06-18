@@ -6,7 +6,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "mocha && standard",
+    "test": "jest && standard --fix",
     "precommit": "npm test",
     "prepublish": "pkg-ok",
     "install": "node ./bin/install.js",
@@ -38,9 +38,11 @@
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
     "expect": "^1.20.2",
+    "jest": "^20.0.4",
     "mocha": "^3.2.0",
     "mock-fs": "^4.4.1",
     "pkg-ok": "^1.0.1",
+    "prettier": "^1.4.4",
     "rimraf": "^2.2.8",
     "standard": "^8.6.0"
   },
@@ -51,7 +53,7 @@
   },
   "standard": {
     "env": {
-      "mocha": true
+      "jest": true
     }
   }
 }
