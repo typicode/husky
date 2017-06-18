@@ -1,3 +1,5 @@
+'use strict'
+
 // Run when package is installed
 const path = require('path')
 const isCI = require('is-ci')
