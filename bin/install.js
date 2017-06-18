@@ -12,5 +12,5 @@ if (isCI) {
 
 console.log('setting up Git hooks')
 
-const huskyDir = path.join(__dirname, '..')
+const huskyDir = path.join(__dirname, '.')
 installFrom(huskyDir)

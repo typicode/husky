@@ -35,7 +35,7 @@ describe('husky', function () {
     expect(hook).toInclude('--no-verify')
 
     const prepareCommitMsg = readHook('hooks/prepare-commit-msg')
-    expect(prepareCommitMsg).toNotInclude('--no-verify')
+    expect(prepareCommitMsg).toInclude('cannot be bypassed')
 
     uninstallFrom('/node_modules/husky')
     expect(exists('hooks/pre-push')).toBeFalsy()
