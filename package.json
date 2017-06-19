@@ -6,9 +6,10 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "jest && standard --fix",
-    "precommit": "npm test",
-    "prepublish": "pkg-ok",
+    "test": "jest",
+    "format": "prettier --single-quote --no-semi --write **/*.js",
+    "precommit": "npm test && npm format",
+    "prepublishOnly": "pkg-ok",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },

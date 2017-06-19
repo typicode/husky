@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 
-module.exports = function findParent (currentDir, name) {
+module.exports = function findParent(currentDir, name) {
   const dirs = currentDir.split('/')
 
   while (dirs.pop()) {

@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const findParent = require('./find-parent')
 
-function findHooksDir (dirname) {
+function findHooksDir(dirname) {
   const dir = findParent(dirname, '.git')
 
   if (dir) {

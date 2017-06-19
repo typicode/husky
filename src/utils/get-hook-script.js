@@ -4,7 +4,7 @@ const normalize = require('normalize-path')
 const stripIndent = require('strip-indent')
 const pkg = require('../../package.json')
 
-function platformSpecific () {
+function platformSpecific() {
   // On OS X and Linux, try to use nvm if it's installed
   if (process.platform === 'win32') {
     // Add
@@ -44,13 +44,13 @@ function platformSpecific () {
   }
 }
 
-function noVerifyMessage (hookName) {
+function noVerifyMessage(hookName) {
   return hookName === 'prepare-commit-msg'
     ? `(cannot be bypassed with --no-verify due to Git specs)`
     : '(add --no-verify to bypass)'
 }
 
-module.exports = function getHookScript (hookName, relativePath, npmScriptName) {
+module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
