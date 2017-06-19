@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getHookScript should render win32 1`] = `
+exports[`getHookScript should render (win32) 1`] = `
 "#!/bin/sh
 #husky 0.13.4
 
