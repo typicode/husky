@@ -46,7 +46,7 @@ function platformSpecific() {
 
 function noVerifyMessage(hookName) {
   return hookName === 'prepare-commit-msg'
-    ? `(cannot be bypassed with --no-verify due to Git specs)`
+    ? '(cannot be bypassed with --no-verify due to Git specs)'
     : '(add --no-verify to bypass)'
 }
 
@@ -67,7 +67,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
       # https://github.com/typicode/husky/issues/76
       has_hook_script () {
-        [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"'
+        [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"
       }
 
       cd ${normalizedPath}
@@ -80,8 +80,8 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
     stripIndent(
       `
       # Test if npm is in PATH
-      command_exists npm || {,
-        echo >&2 "> husky - Can't find npm in PATH. Skipping ${npmScriptName} script in package.json",
+      command_exists npm || {
+        echo >&2 "> husky - Can't find npm in PATH. Skipping ${npmScriptName} script in package.json"
         exit 0
       }
 
@@ -91,7 +91,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       # Run script
       echo
       echo "> husky - npm run -s ${npmScriptName}"
-      echo "> husky - node \`node -v\`"'
+      echo "> husky - node \`node -v\`"
       echo
       npm run -s ${npmScriptName} || {
         echo
