@@ -72,14 +72,11 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
       cd ${normalizedPath}
 
-      # Fix for issue #16 #24
-      # If script is not defined in package.json then exit
       has_hook_script ${npmScriptName} || exit 0`
     ).trim(),
     platformSpecific(),
     stripIndent(
       `
-      # Test if npm is in PATH
       command_exists npm || {
         echo >&2 "> husky - Can't find npm in PATH. Skipping ${npmScriptName} script in package.json"
         exit 0
@@ -89,7 +86,6 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       export GIT_PARAMS="$*"
 
       # Run script
-      echo
       echo "> husky - npm run -s ${npmScriptName}"
       echo "> husky - node \`node -v\`"
       echo
