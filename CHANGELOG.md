@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 0.14.0
 
 * Drop Node 0.12 support
 * Don't reload nvm if it's already in PATH

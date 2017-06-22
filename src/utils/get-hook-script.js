@@ -44,15 +44,13 @@ function platformSpecific() {
   }
 }
 
-function noVerifyMessage(hookName) {
-  return hookName === 'prepare-commit-msg'
-    ? '(cannot be bypassed with --no-verify due to Git specs)'
-    : '(add --no-verify to bypass)'
-}
-
 module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
+
+  const noVerifyMessage = hookName === 'prepare-commit-msg'
+    ? '(cannot be bypassed with --no-verify due to Git specs)'
+    : '(add --no-verify to bypass)'
 
   // Hook script
   return [
@@ -78,7 +76,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
     stripIndent(
       `
       command_exists npm || {
-        echo >&2 "> husky - Can't find npm in PATH. Skipping ${npmScriptName} script in package.json"
+        echo >&2 "husky > Can't find npm in PATH. Skipping ${npmScriptName} script in package.json"
         exit 0
       }
 
@@ -86,13 +84,11 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       export GIT_PARAMS="$*"
 
       # Run script
-      echo "> husky - npm run -s ${npmScriptName}"
-      echo "> husky - node \`node -v\`"
+      echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
       echo
       npm run -s ${npmScriptName} || {
         echo
-        echo "> husky - ${hookName} hook failed ${noVerifyMessage(hookName)}"
-        echo "> husky - to debug, use 'npm run ${npmScriptName}'"
+        echo "husky > ${hookName} hook failed ${noVerifyMessage}"
         exit 1
       }`
     ).trim()

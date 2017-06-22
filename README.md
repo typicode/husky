@@ -82,7 +82,7 @@ By default, husky will run scripts using `--silent` to make the output more read
 
 _`-q/--quiet` is equivalent to `--loglevel warn` which is npm default log level._
 
-### Git submodule support
+### Git submodule and subtree support
 
 Yes
 
