@@ -99,6 +99,7 @@ Please use `yarn` `v0.24+`
 ## See also
 
 * [pkg-ok](https://github.com/typicode/pkg-ok) - prevents publishing modules with bad paths
+* [react-fake-props](https://github.com/typicode/react-fake-props) - Fake props for your React tests
 
 ## License
 
