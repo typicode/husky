@@ -10,6 +10,10 @@ Husky can prevent bad commit, push and more :dog: _woof!_
 npm install husky --save-dev
 ```
 
+```sh
+yarn add husky --dev
+```
+
 ```javascript
 // Edit package.json
 {
@@ -42,8 +46,12 @@ _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev 
 
 ## Uninstall
 
-```bash
-npm uninstall husky --save-dev
+```sh
+npm uninstall husky
+```
+
+```sh
+yarn remove husky
 ```
 
 ## Tricks
