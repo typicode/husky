@@ -1,17 +1,18 @@
-// Run when package is installed
-var path = require('path')
-var chalk = require('chalk')
-var isCI = require('is-ci')
-var husky = require('../src/')
+'use strict'
 
-console.log(chalk.cyan.underline('husky'))
+// Run when package is installed
+const path = require('path')
+const isCI = require('is-ci')
+const installFrom = require('../src/install')
+
+console.log('husky')
 
 if (isCI) {
   console.log('CI detected, skipping Git hooks installation')
   process.exit(0)
 }
 
-console.log('setting up hooks')
+console.log('setting up Git hooks')
 
-var huskyDir = path.join(__dirname, '..')
-husky.installFrom(huskyDir)
+const huskyDir = path.join(__dirname, '..')
+installFrom(huskyDir)

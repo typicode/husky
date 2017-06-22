@@ -1,10 +1,11 @@
+'use strict'
+
 // Run when package is uninstalled
-var path = require('path')
-var chalk = require('chalk')
-var husky = require('../src/')
+const path = require('path')
+const uninstallFrom = require('../src/uninstall')
 
-console.log(chalk.cyan.underline('husky'))
-console.log('uninstalling')
+console.log('husky')
+console.log('uninstalling Git hooks')
 
-var huskyDir = path.join(__dirname, '..')
-husky.uninstallFrom(huskyDir)
+const huskyDir = path.join(__dirname, '..')
+uninstallFrom(huskyDir)

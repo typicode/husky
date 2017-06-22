@@ -1,12 +1,13 @@
 {
   "name": "husky",
-  "version": "0.13.4",
+  "version": "0.14.0-1",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
-  "main": "./src/index.js",
+  "engines": {
+    "node": ">=4"
+  },
   "scripts": {
-    "test": "mocha && standard",
-    "precommit": "npm test",
-    "prepublish": "pkg-ok",
+    "test": "jest",
+    "format": "prettier --single-quote --no-semi --write **/*.js",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },
@@ -35,22 +36,19 @@
   },
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
-    "expect": "^1.20.2",
-    "mocha": "^3.2.0",
+    "jest": "^20.0.4",
     "mock-fs": "^4.4.1",
-    "pkg-ok": "^1.0.1",
-    "rimraf": "^2.2.8",
-    "standard": "^8.6.0"
+    "prettier": "^1.4.4",
+    "rimraf": "^2.2.8"
   },
   "dependencies": {
-    "chalk": "^1.1.3",
-    "find-parent-dir": "^0.3.0",
-    "is-ci": "^1.0.9",
-    "normalize-path": "^1.0.0"
+    "is-ci": "^1.0.10",
+    "normalize-path": "^1.0.0",
+    "strip-indent": "^2.0.0"
   },
   "standard": {
     "env": {
-      "mocha": true
+      "jest": true
     }
   }
 }

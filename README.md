@@ -74,7 +74,7 @@ Git params can be found in `GIT_PARAMS` environment variable.
 
 ### Setting a different log level
 
-By default, husky will run scripts using `--silent` to make the output more readable. If you want to override this, simply pass a different log level to your scripts: 
+By default, husky will run scripts using `--silent` to make the output more readable. If you want to override this, simply pass a different log level to your scripts:
 
 ```json
 "precommit": "npm run some-script -q"
@@ -82,7 +82,7 @@ By default, husky will run scripts using `--silent` to make the output more read
 
 _`-q/--quiet` is equivalent to `--loglevel warn` which is npm default log level._
 
-### Git submodule support
+### Git submodule and subtree support
 
 Yes
 
@@ -102,4 +102,4 @@ Please use `yarn` `v0.24+`
 
 ## License
 
-MIT - [Typicode :cactus:](https://github.com/typicode)
+MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode)
