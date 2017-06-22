@@ -8,8 +8,6 @@
   "scripts": {
     "test": "jest",
     "format": "prettier --single-quote --no-semi --write **/*.js",
-    "precommit": "npm test && npm format",
-    "prepublishOnly": "pkg-ok",
     "install": "node ./bin/install.js",
     "uninstall": "node ./bin/uninstall.js"
   },
@@ -42,7 +40,6 @@
     "jest": "^20.0.4",
     "mocha": "^3.2.0",
     "mock-fs": "^4.4.1",
-    "pkg-ok": "^1.0.1",
     "prettier": "^1.4.4",
     "rimraf": "^2.2.8",
     "standard": "^8.6.0"

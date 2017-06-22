@@ -32,7 +32,7 @@ describe('husky', function() {
 
     expect(hook).toMatch('#husky')
     expect(hook).toMatch('cd .')
-    expect(hook).toMatch('npm run precommit')
+    expect(hook).toMatch('npm run -s precommit')
     expect(hook).toMatch('--no-verify')
 
     const prepareCommitMsg = readHook('hooks/prepare-commit-msg')

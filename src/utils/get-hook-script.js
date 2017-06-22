@@ -29,8 +29,8 @@ function platformSpecific() {
           command_exists nvm && [ -f .nvmrc ] && nvm use
         }
 
-        export PATH=$PATH:/usr/local/bin:/usr/local
-      `)
+        export PATH=$PATH:/usr/local/bin:/usr/local`
+      )
     ]
 
     if (process.platform === 'darwin') {
