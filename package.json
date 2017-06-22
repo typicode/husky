@@ -36,13 +36,10 @@
   },
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
-    "expect": "^1.20.2",
     "jest": "^20.0.4",
-    "mocha": "^3.2.0",
     "mock-fs": "^4.4.1",
     "prettier": "^1.4.4",
-    "rimraf": "^2.2.8",
-    "standard": "^8.6.0"
+    "rimraf": "^2.2.8"
   },
   "dependencies": {
     "is-ci": "^1.0.10",
