@@ -34,10 +34,6 @@ function exists(dir, filePath) {
 }
 
 describe('husky', () => {
-  afterEach(() => {
-    mock.restore()
-  })
-
   it('should support basic layout', () => {
     const dir = tempy.directory()
 
@@ -111,7 +107,10 @@ describe('husky', () => {
 
     mkdir(dir, '.git/worktrees/B')
     mkdir(dir, 'A/B/node_modules/husky')
-    writeFile(dir, 'A/B/.git', 'git: /.git/worktrees/B')
+
+    // Git path for worktrees is absolute
+    const absolutePath = path.join(dir, '.git/worktrees/B')
+    writeFile(dir, 'A/B/.git', `git: ${absolutePath}`)
 
     install(dir, 'A/B/node_modules/husky')
     const hook = readFile(dir, '.git/worktrees/B/hooks/pre-commit')
