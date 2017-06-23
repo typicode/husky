@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
+const rimraf = require('rimraf')
 const tempy = require('tempy')
 const installFrom = require('../src/install')
 const uninstallFrom = require('../src/uninstall')
@@ -34,9 +35,11 @@ function exists(dir, filePath) {
 }
 
 describe('husky', () => {
-  it('should support basic layout', () => {
-    const dir = tempy.directory()
+  let dir
+  beforeEach(() => (dir = tempy.directory()))
+  afterEach(() => rimraf.sync(dir))
 
+  it('should support basic layout', () => {
     mkdir(dir, '.git/hooks')
     mkdir(dir, 'node_modules/husky')
 
@@ -56,8 +59,6 @@ describe('husky', () => {
   })
 
   it('should support project installed in sub directory', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/hooks')
     mkdir(dir, 'A/B/node_modules/husky')
 
@@ -71,8 +72,6 @@ describe('husky', () => {
   })
 
   it('should support git submodule', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/modules/A/B')
     mkdir(dir, 'A/B/node_modules/husky')
     writeFile(dir, 'A/B/.git', 'git: ../../.git/modules/A/B')
@@ -87,8 +86,6 @@ describe('husky', () => {
   })
 
   it('should support git submodule and sub directory', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/modules/A/B')
     mkdir(dir, 'A/B/C/node_modules/husky')
     writeFile(dir, 'A/B/.git', 'git: ../../.git/modules/A/B')
@@ -103,8 +100,6 @@ describe('husky', () => {
   })
 
   it('should support git worktrees', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/worktrees/B')
     mkdir(dir, 'A/B/node_modules/husky')
 
@@ -122,8 +117,6 @@ describe('husky', () => {
   })
 
   it('should not modify user hooks', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/hooks')
     mkdir(dir, 'node_modules/husky')
     writeFile(dir, '.git/hooks/pre-push', 'foo')
@@ -138,8 +131,6 @@ describe('husky', () => {
   })
 
   it('should not install from /node_modules/A/node_modules', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/hooks')
     mkdir(dir, 'node_modules/A/node_modules/husky')
 
@@ -148,8 +139,6 @@ describe('husky', () => {
   })
 
   it("should not crash if there's no .git directory", () => {
-    const dir = tempy.directory()
-
     mkdir(dir, 'node_modules/husky')
 
     expect(() => install(dir, 'node_modules/husky')).not.toThrow()
@@ -157,8 +146,6 @@ describe('husky', () => {
   })
 
   it('should migrate ghooks scripts', () => {
-    const dir = tempy.directory()
-
     mkdir(dir, '.git/hooks')
     mkdir(dir, '/node_modules/husky')
     writeFile(
