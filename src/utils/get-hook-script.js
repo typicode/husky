@@ -13,9 +13,6 @@ function platformSpecific() {
     // https://github.com/typicode/husky/issues/49
     return 'export PATH="$PATH:/c/Program Files/nodejs"'
   } else {
-    // ~ is unavaible, so $HOME is used
-    const home = process.env.HOME
-
     // Add
     // Brew standard installation path /usr/local/bin
     // Node standard installation path /usr/local
@@ -29,8 +26,7 @@ function platformSpecific() {
           command_exists nvm && [ -f .nvmrc ] && nvm use
         }
 
-        export PATH=$PATH:/usr/local/bin:/usr/local`
-      )
+        export PATH=$PATH:/usr/local/bin:/usr/local`)
     ]
 
     if (process.platform === 'darwin') {
@@ -39,7 +35,8 @@ function platformSpecific() {
     }
 
     // Load nvm with NVM_DIR set to $HOME/.nvm
-    arr.push(`load_nvm NVM_DIR ${home}/.nvm`)
+    // ~ is unavaible, so $HOME is used
+    arr.push(`load_nvm NVM_DIR ${process.env.HOME}/.nvm`)
     return arr.join('\n')
   }
 }

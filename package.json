@@ -37,9 +37,10 @@
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {
     "jest": "^20.0.4",
-    "mock-fs": "^4.4.1",
+    "mkdirp": "^0.5.1",
     "prettier": "^1.4.4",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.6.1",
+    "tempy": "^0.1.0"
   },
   "dependencies": {
     "is-ci": "^1.0.10",
