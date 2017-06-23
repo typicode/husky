@@ -8,8 +8,6 @@ const tempy = require('tempy')
 const installFrom = require('../src/install')
 const uninstallFrom = require('../src/uninstall')
 
-const gitDir = '/.git'
-
 function install(rootDir, dir) {
   installFrom(path.join(rootDir, dir))
 }
