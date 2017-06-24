@@ -72,7 +72,6 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
     ? '(cannot be bypassed with --no-verify due to Git specs)'
     : '(add --no-verify to bypass)'
 
-  // Hook script
   return [
     stripIndent(
       `
@@ -92,7 +91,9 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       # Check if ${npmScriptName} script is defined, skip if not
       has_hook_script ${npmScriptName} || exit 0`
     ).trim(),
+
     platformSpecific(),
+
     stripIndent(
       `
       # Check that npm exists
@@ -105,10 +106,12 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       export GIT_PARAMS="$*"
 
       # Run npm script
-      echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)\\n"
+      echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
+      echo
 
       npm run -s ${npmScriptName} || {
-        echo "\\nhusky > ${hookName} hook failed ${noVerifyMessage}"
+        echo
+        echo "husky > ${hookName} hook failed ${noVerifyMessage}"
         exit 1
       }
       `
