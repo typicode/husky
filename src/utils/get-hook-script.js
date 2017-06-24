@@ -14,7 +14,7 @@ function platformSpecific() {
     return stripIndent(
       `
       # Node standard installation
-      export PATH="$PATH:/c/Program Files/nodejs"'`
+      export PATH="$PATH:/c/Program Files/nodejs"`
     )
   } else {
     // Using normalize to support ' in path
