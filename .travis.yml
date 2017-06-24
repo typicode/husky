@@ -6,4 +6,5 @@ node_js:
   - "stable"
   - "4"
 script:
-  - echo 'script test' && node -v
+  - npm test
+  - node bin/install
