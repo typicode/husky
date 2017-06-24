@@ -28,7 +28,7 @@ function platformSpecific() {
           # If nvm is not loaded, load it
           command_exists nvm || {
             export NVM_DIR=${home}/.nvm
-            [ -s "$1/nvm.sh" ] && . $1/nvm.sh
+            [ -s "$1/nvm.sh" ] && \. "$1/nvm.sh"
           }
 
           # If nvm has been loaded correctly, use project .nvmrc
