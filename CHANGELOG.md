@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.14.1
+
+* Fix Windows issue
+* Fix nvm when installed with Brew
+
 ## 0.14.0
 
 * Fix `npm@5` `Error: Cannot find module` warning when uninstalling
