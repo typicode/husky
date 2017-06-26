@@ -8,3 +8,4 @@ node_js:
 script:
   - npm test
   - node bin/install
+  - bash -n .git/hooks/pre-commit
