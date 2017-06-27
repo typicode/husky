@@ -7,5 +7,5 @@ node_js:
   - "4"
 script:
   - npm test
-  - node bin/install
+  - CI=false node bin/install
   - bash -n .git/hooks/pre-commit
