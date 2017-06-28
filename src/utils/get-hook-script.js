@@ -66,7 +66,7 @@ function platformSpecific() {
 
 module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
-  const normalizedPath = normalize(relativePath)
+  const normalizedPath = normalize(relativePath).replace(/\s/g, '\\ ')
 
   const noVerifyMessage = hookName === 'prepare-commit-msg'
     ? '(cannot be bypassed with --no-verify due to Git specs)'
