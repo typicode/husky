@@ -66,7 +66,7 @@ function platformSpecific() {
 
 module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
-  const normalizedPath = normalize(relativePath).replace(/\s/g, '\\ ')
+  const normalizedPath = normalize(relativePath)
 
   const noVerifyMessage = hookName === 'prepare-commit-msg'
     ? '(cannot be bypassed with --no-verify due to Git specs)'
@@ -74,8 +74,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
   return [
     stripIndent(
-      `
-      #!/bin/sh
+      `#!/bin/sh
       #husky ${pkg.version}
 
       command_exists () {
@@ -86,7 +85,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
         [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"
       }
 
-      cd ${normalizedPath}
+      cd "${normalizedPath}"
 
       # Check if ${npmScriptName} script is defined, skip if not
       has_hook_script ${npmScriptName} || exit 0`
