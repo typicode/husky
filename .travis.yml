@@ -5,3 +5,7 @@ language: node_js
 node_js:
   - "stable"
   - "4"
+script:
+  - npm test
+  - HUSKY_IGNORE_CI=true node bin/install
+  - bash -n .git/hooks/pre-commit

@@ -7,7 +7,7 @@ const installFrom = require('../src/install')
 
 console.log('husky')
 
-if (isCI) {
+if (isCI && !process.env.HUSKY_IGNORE_CI) {
   console.log('CI detected, skipping Git hooks installation')
   process.exit(0)
 }
