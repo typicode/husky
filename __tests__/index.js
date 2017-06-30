@@ -45,7 +45,7 @@ describe('husky', () => {
     const hook = readFile(dir, '.git/hooks/pre-commit')
 
     expect(hook).toMatch('#husky')
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
     expect(hook).toMatch('npm run -s precommit')
     expect(hook).toMatch('--no-verify')
 
@@ -63,7 +63,7 @@ describe('husky', () => {
     install(dir, 'A/B/node_modules/husky')
     const hook = readFile(dir, '.git/hooks/pre-commit')
 
-    expect(hook).toMatch('cd A/B')
+    expect(hook).toMatch('cd "A/B"')
 
     uninstall(dir, 'A/B/node_modules/husky')
     expect(exists(dir, '.git/hooks/pre-push')).toBeFalsy()
@@ -77,7 +77,7 @@ describe('husky', () => {
     install(dir, 'A/B/node_modules/husky')
     const hook = readFile(dir, '.git/modules/A/B/hooks/pre-commit')
 
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
 
     uninstall(dir, 'A/B/node_modules/husky')
     expect(exists(dir, '.git/hooks/pre-push')).toBeFalsy()
@@ -91,7 +91,7 @@ describe('husky', () => {
     install(dir, 'A/B/C/node_modules/husky')
     const hook = readFile(dir, '.git/modules/A/B/hooks/pre-commit')
 
-    expect(hook).toMatch('cd C')
+    expect(hook).toMatch('cd "C"')
 
     uninstall(dir, 'A/B/app/node_modules/husky')
     expect(exists(dir, '.git/hooks/pre-push')).toBeFalsy()
@@ -108,7 +108,7 @@ describe('husky', () => {
     install(dir, 'A/B/node_modules/husky')
     const hook = readFile(dir, '.git/worktrees/B/hooks/pre-commit')
 
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
 
     uninstall(dir, 'A/B/node_modules/husky')
     expect(exists(dir, '.git/hooks/pre-commit')).toBeFalsy()

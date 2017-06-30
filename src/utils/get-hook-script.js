@@ -74,8 +74,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
   return [
     stripIndent(
-      `
-      #!/bin/sh
+      `#!/bin/sh
       #husky ${pkg.version}
 
       command_exists () {
@@ -86,7 +85,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
         [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"
       }
 
-      cd ${normalizedPath}
+      cd "${normalizedPath}"
 
       # Check if ${npmScriptName} script is defined, skip if not
       has_hook_script ${npmScriptName} || exit 0`
