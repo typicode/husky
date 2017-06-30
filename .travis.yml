@@ -7,5 +7,5 @@ node_js:
   - "4"
 script:
   - npm test
-  - CI=false CONTINUOUS_INTEGRATION=false TRAVIS=false node bin/install
+  - HUSKY_IGNORE_CI=true node bin/install
   - bash -n .git/hooks/pre-commit
