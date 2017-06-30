@@ -74,7 +74,8 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
   return [
     stripIndent(
-      `#!/bin/sh
+      `
+      #!/bin/sh
       #husky ${pkg.version}
 
       command_exists () {
