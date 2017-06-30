@@ -1,9 +1,13 @@
 # CHANGELOG
 
+## 0.14.2
+
+* Fix When a space was present in $HOME, hook script was failing
+
 ## 0.14.1
 
-* Fix Windows issue
-* Fix nvm when installed with Brew
+* Fix Husky wasn't installing Git hooks on Windows
+* Fix When nvm was installed with Brew, hook script was failing
 
 ## 0.14.0
 
