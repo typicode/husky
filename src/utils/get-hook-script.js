@@ -38,7 +38,7 @@ function platformSpecific() {
         # Add common path where Node can be found
         # Brew standard installation path /usr/local/bin
         # Node standard installation path /usr/local
-        export PATH=$PATH:/usr/local/bin:/usr/local`
+        export PATH="$PATH:/usr/local/bin:/usr/local"`
       )
     ]
 
