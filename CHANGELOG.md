@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 0.14.3
+
+* Fix PATH export [#150](https://github.com/typicode/husky/pull/114)
+
 ## 0.14.2
 
-* Fix When a space was present in $HOME, hook script was failing
+* Fix When a space was present in `$HOME`, hook script was failing
 
 ## 0.14.1
 
