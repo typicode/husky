@@ -2,16 +2,16 @@
 
 ## 0.14.3
 
-* Fix PATH export [#150](https://github.com/typicode/husky/pull/114)
+* Fix handle space in `PATH` [#150](https://github.com/typicode/husky/pull/114)
 
 ## 0.14.2
 
-* Fix When a space was present in `$HOME`, hook script was failing
+* Fix handle space in `HOME`
 
 ## 0.14.1
 
-* Fix Husky wasn't installing Git hooks on Windows
-* Fix When nvm was installed with Brew, hook script was failing
+* Fix Git hooks install on Windows
+* Fix hook script when `nvm` was installed with Brew
 
 ## 0.14.0
 
