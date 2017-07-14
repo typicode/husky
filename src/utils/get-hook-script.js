@@ -1,5 +1,6 @@
 'use strict'
 
+const escapeQuotes = require('escape-quotes')
 const normalize = require('normalize-path')
 const stripIndent = require('strip-indent')
 const pkg = require('../../package.json')
@@ -19,7 +20,7 @@ function platformSpecific() {
   } else {
     // Using normalize to support ' in path
     // https://github.com/typicode/husky/issues/117
-    const home = normalize(process.env.HOME)
+    const home = escapeQuotes(normalize(process.env.HOME))
 
     const arr = [
       stripIndent(
