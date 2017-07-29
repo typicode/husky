@@ -102,6 +102,20 @@ Yes
 
 Please use `yarn` `v0.24+`
 
+### Gotchas
+
+#### PreCommit
+If rebasing is a part of your workflow, wrapping your precommit commands in an IF statement may be necessary.
+
+```
+  ...
+  "scripts": {
+    "precommit": "if [ $(git branch | grep '*' | sed 's/* //') != '(no branch)' ]; then <your precommit commands here>; fi",
+    ...
+  }
+  ...
+```
+
 </details>
 
 ## See also
