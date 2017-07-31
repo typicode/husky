@@ -89,7 +89,7 @@ function installFrom(huskyDir) {
             case UPDATE:
               break
             case SKIP:
-              console.log(`skipping${item.hookName} hook (existing user hook)`)
+              console.log(`skipping ${item.hookName} hook (existing user hook)`)
               break
             case CREATE:
               break
