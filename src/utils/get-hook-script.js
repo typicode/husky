@@ -109,6 +109,9 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
       echo
 
+      # Allows us to read user input below, assigns stdin to keyboard
+      exec < /dev/tty
+
       npm run -s ${npmScriptName} || {
         echo
         echo "husky > ${hookName} hook failed ${noVerifyMessage}"
