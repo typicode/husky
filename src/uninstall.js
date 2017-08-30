@@ -3,12 +3,12 @@
 const fs = require('fs')
 const hooks = require('./hooks.json')
 const findHooksDir = require('./utils/find-hooks-dir')
-const isHusky = require('./utils/is-husky')
+const is = require('./utils/is')
 
 function removeHook(dir, name) {
   const filename = `${dir}/${name}`
 
-  if (fs.existsSync(filename) && isHusky(filename)) {
+  if (fs.existsSync(filename) && is.husky(filename)) {
     fs.unlinkSync(`${dir}/${name}`)
   }
 }

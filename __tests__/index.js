@@ -143,7 +143,7 @@ describe('husky', () => {
     expect(() => uninstall(dir, 'node_modules/husky')).not.toThrow()
   })
 
-  it('should migrate ghooks scripts', () => {
+  it('should migrate existing scripts (ghooks)', () => {
     mkdir(dir, '.git/hooks')
     mkdir(dir, '/node_modules/husky')
     writeFile(
@@ -156,5 +156,20 @@ describe('husky', () => {
     const hook = readFile(dir, '.git/hooks/pre-commit')
     expect(hook).toMatch('husky')
     expect(hook).not.toMatch('ghooks')
+  })
+
+  it('should migrate existing scripts (pre-commit)', () => {
+    mkdir(dir, '.git/hooks')
+    mkdir(dir, '/node_modules/husky')
+    writeFile(
+      dir,
+      '.git/hooks/pre-commit',
+      './node_modules/pre-commit/hook'
+    )
+
+    install(dir, 'node_modules/husky')
+    const hook = readFile(dir, '.git/hooks/pre-commit')
+    expect(hook).toMatch('husky')
+    expect(hook).not.toMatch('./node_modules/pre-commit/hook')
   })
 })
