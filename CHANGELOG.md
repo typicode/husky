@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Support `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
-* Drop `nvm` installed with `brew` support as it's not supported by `nvm` itself (see https://github.com/creationix/nvm#important-notes). `nvm` standard installation is still supported though.
+* Drop `nvm` installed with `brew` support as it's not supported by `nvm` itself (see [creationix/nvm#important-notes](https://github.com/creationix/nvm#important-notes)). `nvm` standard installation is still supported though.
 
 
 ## 0.14.3
