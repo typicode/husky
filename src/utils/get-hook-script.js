@@ -26,10 +26,10 @@ function platformSpecific() {
         `
         load_nvm () {
           # If nvm is not loaded, load it
-          if ! command_exists nvm ; then
+          command_exists nvm || {
             export NVM_DIR="$1"
             [ -s "$1/nvm.sh" ] && . "$1/nvm.sh"
-          fi
+          }
         }
 
         run_nvm () {
@@ -48,23 +48,7 @@ function platformSpecific() {
       stripIndent(
         `
         # Try to load nvm using path of standard installation
-        load_nvm ${home}/.nvm`
-      )
-    )
-
-    if (process.platform === 'darwin') {
-      arr.push(
-        stripIndent(
-          `
-          # Try to load nvm using path when installed with Brew
-          load_nvm /usr/local/opt/nvm`
-        )
-      )
-    }
-
-    arr.push(
-      stripIndent(
-        `
+        load_nvm ${home}/.nvm
         run_nvm`
       )
     )
