@@ -26,11 +26,13 @@ function platformSpecific() {
         `
         load_nvm () {
           # If nvm is not loaded, load it
-          command_exists nvm || {
-            export NVM_DIR=${home}/.nvm
-            [ -s "$1/nvm.sh" ] && \. "$1/nvm.sh"
-          }
+          if ! command_exists nvm ; then
+            export NVM_DIR="$1"
+            [ -s "$1/nvm.sh" ] && . "$1/nvm.sh"
+          fi
+        }
 
+        run_nvm () {
           # If nvm has been loaded correctly, use project .nvmrc
           command_exists nvm && [ -f .nvmrc ] && nvm use
         }
@@ -45,7 +47,7 @@ function platformSpecific() {
     arr.push(
       stripIndent(
         `
-        # nvm path with standard installation
+        # Try to load nvm using path of standard installation
         load_nvm ${home}/.nvm`
       )
     )
@@ -54,11 +56,18 @@ function platformSpecific() {
       arr.push(
         stripIndent(
           `
-          # nvm path installed with Brew
+          # Try to load nvm using path when installed with Brew
           load_nvm /usr/local/opt/nvm`
         )
       )
     }
+
+    arr.push(
+      stripIndent(
+        `
+        run_nvm`
+      )
+    )
 
     return arr.join('\n')
   }
