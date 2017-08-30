@@ -22,3 +22,4 @@ Husky supports all git hooks (https://git-scm.com/docs/githooks). Simply add the
 | prepare-commit-msg | preparecommitmsg |
 | push-to-checkout | pushtocheckout |
 | update | update |
+| sendemail-validate | sendemailvalidate |

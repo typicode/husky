@@ -16,5 +16,6 @@
   "post-update",
   "push-to-checkout",
   "pre-auto-gc",
-  "post-rewrite"
+  "post-rewrite",
+  "sendemail-validate"
 ]
