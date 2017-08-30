@@ -157,4 +157,22 @@ describe('husky', () => {
     expect(hook).toMatch('husky')
     expect(hook).not.toMatch('ghooks')
   })
+
+  it('should escape apostrophes in the path on mac/linux', () => {
+    mkdir(dir, '.git/hooks')
+    mkdir(dir, 'node_modules/husky')
+
+    if (process.platform !== 'win32') {
+      // Override home to be a path with an apostrophe in it
+      process.env.HOME = '/User/apotr\'ophe'
+
+      install(dir, 'node_modules/husky')
+      const hook = readFile(dir, '.git/hooks/pre-commit')
+
+      expect(hook).toMatch('load_nvm /User/apotr\\\'ophe/.nvm')
+    }
+
+    uninstall(dir, 'node_modules/husky')
+    expect(exists(dir, '.git/hooks/pre-push')).toBeFalsy()
+  })
 })
