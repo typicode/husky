@@ -104,6 +104,29 @@ Please use `yarn` `v0.24+`
 
 </details>
 
+## Configuration
+
+### Scope
+
+The scope parameter is optional.
+Scope is a path relative to package.json directory to restrict husky hooks triggering.
+
+### package.json
+
+```javascript
+"husky": {
+  "scope": "path/to/js"
+}
+```
+
+### .huskyrc
+
+```json
+"husky": {
+  "scope": "path/to/js"
+}
+```
+
 ## See also
 
 * [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing modules with bad paths

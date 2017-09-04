@@ -57,7 +57,7 @@ function platformSpecific() {
   }
 }
 
-module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
+module.exports = function getHookScript(hookName, relativePath, npmScriptName, config) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
@@ -78,6 +78,11 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       has_hook_script () {
         [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"
       }
+      
+      # Checks modified, staged & untracked files in scope.
+      has_changes_in_scope () {
+        [ $((git diff HEAD --name-only; git ls-files -o --exclude-standard --modified) | grep "^${config.scope}" | wc -l) -ne 0 ]
+      }
 
       cd "${normalizedPath}"
 
@@ -92,6 +97,11 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       # Check that npm exists
       command_exists npm || {
         echo >&2 "husky > can't find npm in PATH, skipping ${npmScriptName} script in package.json"
+        exit 0
+      }
+      
+      # Check any changes exists in scope
+      has_changes_in_scope || {
         exit 0
       }
 
