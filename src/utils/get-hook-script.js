@@ -21,32 +21,13 @@ function platformSpecific() {
     // https://github.com/typicode/husky/issues/117
     const home = normalize(process.env.HOME)
 
-    const arr = [
-      stripIndent(
+    return stripIndent(
         `
-        load_nvm () {
-          # If nvm is not loaded, load it
-          command_exists nvm || {
-            export NVM_DIR="$1"
-            [ -s "$1/nvm.sh" ] && . "$1/nvm.sh"
-          }
-        }
-
-        run_nvm () {
-          # If nvm has been loaded correctly, use project .nvmrc
-          command_exists nvm && [ -f .nvmrc ] && nvm use
-        }
-
         # Add common path where Node can be found
         # Brew standard installation path /usr/local/bin
         # Node standard installation path /usr/local
-        export PATH="$PATH:/usr/local/bin:/usr/local"`
-      )
-    ]
+        export PATH="$PATH:/usr/local/bin:/usr/local"
 
-    arr.push(
-      stripIndent(
-        `
         # Try to load nvm using path of standard installation
         load_nvm ${home}/.nvm
         run_nvm`
@@ -77,6 +58,21 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
       has_hook_script () {
         [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"
+      }
+
+      # OS X and Linux only
+      load_nvm () {
+        # If nvm is not loaded, load it
+        command_exists nvm || {
+          export NVM_DIR="$1"
+          [ -s "$1/nvm.sh" ] && . "$1/nvm.sh"
+        }
+      }
+
+      # OS X and Linux only
+      run_nvm () {
+        # If nvm has been loaded correctly, use project .nvmrc
+        command_exists nvm && [ -f .nvmrc ] && nvm use
       }
 
       cd "${normalizedPath}"
