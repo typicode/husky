@@ -4,40 +4,6 @@ const normalize = require('normalize-path')
 const stripIndent = require('strip-indent')
 const pkg = require('../../package.json')
 
-function platformSpecific() {
-  // On OS X and Linux, try to use nvm if it's installed
-  if (process.platform === 'win32') {
-    // Add
-    // Node standard installation path /c/Program Files/nodejs
-    // for GUI apps
-    // https://github.com/typicode/husky/issues/49
-    return stripIndent(
-      `
-      # Node standard installation
-      export PATH="$PATH:/c/Program Files/nodejs"`
-    )
-  } else {
-    // Using normalize to support ' in path
-    // https://github.com/typicode/husky/issues/117
-    const home = normalize(process.env.HOME)
-
-    return stripIndent(
-        `
-        # Add common path where Node can be found
-        # Brew standard installation path /usr/local/bin
-        # Node standard installation path /usr/local
-        export PATH="$PATH:/usr/local/bin:/usr/local"
-
-        # Try to load nvm using path of standard installation
-        load_nvm ${home}/.nvm
-        run_nvm`
-      )
-    )
-
-    return arr.join('\n')
-  }
-}
-
 module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
@@ -60,12 +26,17 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
         [ -f package.json ] && cat package.json | grep -q "\\"$1\\"[[:space:]]*:"
       }
 
+      is_osx_or_linux () {
+        OS=\`uname -s\`
+        [[ "$OS" == "Darwin" || "$OS" == "Linux" ]]
+      }
+
       # OS X and Linux only
       load_nvm () {
         # If nvm is not loaded, load it
         command_exists nvm || {
-          export NVM_DIR="$1"
-          [ -s "$1/nvm.sh" ] && . "$1/nvm.sh"
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$1/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"
         }
       }
 
@@ -78,13 +49,23 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       cd "${normalizedPath}"
 
       # Check if ${npmScriptName} script is defined, skip if not
-      has_hook_script ${npmScriptName} || exit 0`
-    ).trim(),
+      has_hook_script ${npmScriptName} || exit 0
 
-    platformSpecific(),
+      if is_osx_or_linux
+      then
+        # Add common path where Node can be found
+        # Brew standard installation path /usr/local/bin
+        # Node standard installation path /usr/local
+        export PATH="$PATH:/usr/local/bin:/usr/local"
 
-    stripIndent(
-      `
+        # Try to load nvm using path of standard installation
+        load_nvm
+        run_nvm
+      else
+        # Node standard installation
+        export PATH="$PATH:/c/Program Files/nodejs"
+      fi
+
       # Check that npm exists
       command_exists npm || {
         echo >&2 "husky > can't find npm in PATH, skipping ${npmScriptName} script in package.json"
