@@ -58,7 +58,6 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
         # Node standard installation path /usr/local
         export PATH="$PATH:/usr/local/bin:/usr/local"
 
-        # Try to load nvm using path of standard installation
         load_nvm
         run_nvm
       else
