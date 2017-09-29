@@ -22,7 +22,7 @@ function platformSpecific() {
     const home = normalize(process.env.HOME)
 
     return stripIndent(
-        `
+      `
         # Add common path where Node can be found
         # Brew standard installation path /usr/local/bin
         # Node standard installation path /usr/local
@@ -31,7 +31,6 @@ function platformSpecific() {
         # Try to load nvm using path of standard installation
         load_nvm ${home}/.nvm
         run_nvm`
-      )
     )
 
     return arr.join('\n')
@@ -42,9 +41,10 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
-  const noVerifyMessage = hookName === 'prepare-commit-msg'
-    ? '(cannot be bypassed with --no-verify due to Git specs)'
-    : '(add --no-verify to bypass)'
+  const noVerifyMessage =
+    hookName === 'prepare-commit-msg'
+      ? '(cannot be bypassed with --no-verify due to Git specs)'
+      : '(add --no-verify to bypass)'
 
   return [
     stripIndent(

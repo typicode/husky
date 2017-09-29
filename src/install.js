@@ -88,7 +88,9 @@ function installFrom(huskyDir) {
               console.log(`migrating existing ghooks ${item.hookName} script`)
               break
             case MIGRATE_PRE_COMMIT:
-              console.log(`migrating existing pre-commit ${item.hookName} script`)
+              console.log(
+                `migrating existing pre-commit ${item.hookName} script`
+              )
               break
             case UPDATE:
               break

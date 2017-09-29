@@ -161,11 +161,7 @@ describe('husky', () => {
   it('should migrate existing scripts (pre-commit)', () => {
     mkdir(dir, '.git/hooks')
     mkdir(dir, '/node_modules/husky')
-    writeFile(
-      dir,
-      '.git/hooks/pre-commit',
-      './node_modules/pre-commit/hook'
-    )
+    writeFile(dir, '.git/hooks/pre-commit', './node_modules/pre-commit/hook')
 
     install(dir, 'node_modules/husky')
     const hook = readFile(dir, '.git/hooks/pre-commit')
