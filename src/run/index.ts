@@ -1,3 +1,4 @@
 import run from './run'
 
-run(process.argv)
+const status = run(process.argv)
+process.exit(status)
