@@ -1,5 +1,5 @@
-test/
-lib/
+test
+src
 appveyor.yml
 .travis.yml
 husky-dev.js
