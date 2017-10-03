@@ -3,7 +3,7 @@
   "version": "0.15.0-beta.0",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "scripts": {
-    "test": "jest",
+    "test": "npm run lint && jest",
     "postinstall": "node husky install",
     "preuninstall": "node husky uninstall",
     "devInstall": "npm run build && node husky-dev install",
@@ -75,7 +75,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test && npm run lint"
+      "pre-commit": "npm test"
     }
   }
 }
