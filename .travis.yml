@@ -7,5 +7,3 @@ node_js:
   - "4"
 script:
   - npm test
-  - HUSKY_IGNORE_CI=true node bin/install
-  - bash -n .git/hooks/pre-commit
