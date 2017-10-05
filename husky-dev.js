@@ -7,7 +7,9 @@ if (fs.existsSync('./lib/install/index.js')) {
   const action = process.argv[2]
 
   // Run installer
-  require('./lib/install')[action]('node_modules/husky')
+  const huskyDir = 'node_modules/husky' // Faking Husky location
+  const gitDir = path.join(__dirname, '.git')
+  require('./lib/install')[action](huskyDir, gitDir)
 
   // Replace ./node_modules/husky/run with ./lib/run
   const gitHooksDir = '.git/hooks'

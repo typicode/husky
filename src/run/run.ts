@@ -2,10 +2,9 @@ import * as execa from 'execa'
 import * as readPkg from 'read-pkg'
 
 export default function run(
-  argv: string[],
+  [, , hookName = '']: string[],
   { cwd = process.cwd() } = {}
 ): number {
-  const hookName = argv[2] || ''
   const pkg = readPkg.sync(cwd)
   const command: string | undefined =
     pkg && pkg.husky && pkg.husky.hooks && pkg.husky.hooks[hookName]
