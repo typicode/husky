@@ -1,17 +1,7 @@
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
 
-// Script template
-const hookScript = `#!/bin/sh
+export default `#!/bin/sh
 ${huskyIdentifier}
-
-hookname=\`basename "$0"\`
-[ -f package.json ] && cat package.json | grep -q "\\"$hookname\\"[[:space:]]*:"
-
-if [[ $? -eq 0 ]]; then
-  ./node_modules/.bin/run-node ./node_modules/husky/lib/run $gitdir $hookname
-  exit $?
-fi
+./node_modules/husky/scripts/run.sh
 `
-
-export default hookScript
