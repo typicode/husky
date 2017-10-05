@@ -88,51 +88,9 @@ function removeHooks(filenames: string[]) {
   filenames.filter(canRemove).forEach(removeHook)
 }
 
-export class HuskyError extends Error {}
-
 function getHooks(userDir: string): string[] {
   const gitHooksDir = path.join(userDir, '.git/hooks')
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
-}
-
-function getGitDir(huskyModuleDir: string) {
-  const nodeModulesDir = path.join(huskyModuleDir, '..')
-
-  // Search user's package.json starting from node_modules directory
-  // Should support pnpm directory hierarchy
-  const userPackageDir: string = pkgDir.sync(nodeModulesDir)
-  return path.join(userPackageDir, '.git')
-}
-
-function getPkgDir(rootDir: string): string {
-  return pkgDir.sync(path.join(rootDir, '..'))
-}
-
-function checkCI() {
-  if (isCI) {
-    throw new HuskyError('CI detected, skipping Git hooks installation"')
-  }
-}
-
-function checkPkgDir(packageDir: string | null) {
-  if (packageDir === null) {
-    throw new HuskyError("Error: Can't find package.json")
-  }
-}
-
-function checkGitHooksDir(gitDir: string) {
-  // TODO mkdirp?
-  if (!fs.existsSync(path.join(gitDir, 'hooks'))) {
-    throw new HuskyError(`Error: Can't find .git/hooks directory in ${gitDir}`)
-  }
-}
-
-function checkGitDirHasPackage(gitDir: string, packageDir: string) {
-  if (packageDir !== gitDir) {
-    throw new HuskyError(
-      `Error: expecting package.json to be at the same level than .git`
-    )
-  }
 }
 
 function getConf(huskyDir: string) {
@@ -146,50 +104,42 @@ function getConf(huskyDir: string) {
 }
 
 export function install(gitDir: string, huskyDir: string) {
-  try {
-    console.log('husky > setting up git hooks')
-    const userDir = getPkgDir(huskyDir)
-    const conf = getConf(userDir)
+  console.log('husky > setting up git hooks')
+  const userDir = pkgDir.sync(path.join(huskyDir, '..'))
+  const conf = getConf(userDir)
 
-    // Checks
-    if (!conf.skipCI) {
-      checkCI()
-    }
-    checkPkgDir(userDir)
-    checkGitDirHasPackage(gitDir, userDir)
-    checkGitHooksDir(gitDir)
-
-    // Create hooks
-    const hooks = getHooks(gitDir)
-    createHooks(hooks)
-  } catch (e) {
-    if (e instanceof HuskyError) {
-      console.log(e.message)
-    } else {
-      throw e
-    }
+  if (isCI && conf.skipCI) {
+    console.log('CI detected, skipping Git hooks installation"')
+    return
   }
+
+  if (userDir === null) {
+    console.log("Can't find package.json, skipping Git hooks installation")
+    return
+  }
+
+  if (userDir !== gitDir) {
+    console.log(
+      `Expecting package.json to be at the same level than .git, skipping Git hooks installation`
+    )
+    return
+  }
+
+  // Create hooks
+  const hooks = getHooks(gitDir)
+  createHooks(hooks)
 
   console.log(`husky > done`)
 }
 
 export function uninstall(gitDir: string, huskyDir: string) {
-  try {
-    console.log('husky > uninstalling git hooks')
-    const packageDir = getPkgDir(huskyDir)
+  console.log('husky > uninstalling git hooks')
+  const userDir = pkgDir.sync(path.join(huskyDir, '..'))
 
-    // Checks
-    checkGitDirHasPackage(packageDir, gitDir)
-    checkGitHooksDir(packageDir)
-
+  if (userDir === gitDir) {
     // Remove hooks
-    const hooks = getHooks(packageDir)
+    const hooks = getHooks(gitDir)
     removeHooks(hooks)
-  } catch (e) {
-    // Ignore husky errors
-    if (!(e instanceof HuskyError)) {
-      console.log(e)
-    }
   }
 
   console.log('husky > done')
