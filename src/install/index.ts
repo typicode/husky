@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import isCI from 'is-ci'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
+import readPkg from 'read-pkg'
 import hookScript from './hookScript'
 import { isGhooks, isHusky, isPreCommit } from './is'
 
@@ -126,7 +127,7 @@ function checkGitHooksDir(gitDir: string) {
   }
 }
 
-function checkGitDirHasPackage(packageDir: string, gitDir: string) {
+function checkGitDirHasPackage(gitDir: string, packageDir: string) {
   if (packageDir !== gitDir) {
     throw new HuskyError(
       `Error: expecting package.json to be at the same level than .git`
@@ -134,19 +135,32 @@ function checkGitDirHasPackage(packageDir: string, gitDir: string) {
   }
 }
 
-export function install(huskyDir: string, gitDir: string) {
+function getConf(huskyDir: string) {
+  const pkg = readPkg.sync(huskyDir)
+
+  const defaults = {
+    skipCI: true
+  }
+
+  return { defaults, ...pkg.husky }
+}
+
+export function install(gitDir: string, huskyDir: string) {
   try {
     console.log('husky > setting up git hooks')
-    const packageDir = getPkgDir(huskyDir)
+    const userDir = getPkgDir(huskyDir)
+    const conf = getConf(userDir)
 
     // Checks
-    checkCI()
-    checkPkgDir(packageDir)
-    checkGitDirHasPackage(packageDir, gitDir)
-    checkGitHooksDir(packageDir)
+    if (!conf.skipCI) {
+      checkCI()
+    }
+    checkPkgDir(userDir)
+    checkGitDirHasPackage(gitDir, userDir)
+    checkGitHooksDir(gitDir)
 
     // Create hooks
-    const hooks = getHooks(packageDir)
+    const hooks = getHooks(gitDir)
     createHooks(hooks)
   } catch (e) {
     if (e instanceof HuskyError) {
@@ -159,7 +173,7 @@ export function install(huskyDir: string, gitDir: string) {
   console.log(`husky > done`)
 }
 
-export function uninstall(huskyDir: string, gitDir: string) {
+export function uninstall(gitDir: string, huskyDir: string) {
   try {
     console.log('husky > uninstalling git hooks')
     const packageDir = getPkgDir(huskyDir)

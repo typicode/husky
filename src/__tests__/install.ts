@@ -8,12 +8,12 @@ import { huskyIdentifier } from '../install/hookScript'
 
 let tempDir
 
-function installFrom(dir: string) {
-  install(path.join(tempDir, dir))
+function installFrom(huskyDir: string) {
+  install(tempDir, path.join(tempDir, huskyDir))
 }
 
 function uninstallFrom(dir: string) {
-  uninstall(path.join(tempDir, dir))
+  uninstall(tempDir, path.join(tempDir, dir))
 }
 
 function mkdir(dir: string) {
@@ -47,7 +47,7 @@ describe('install', () => {
 
     mkdir('.git/hooks')
     mkdir(huskyDir)
-    writeFile('package.json', '{}')
+    writeFile('package.json', JSON.stringify({ husky: { skipCI: false } }))
 
     installFrom(huskyDir)
     expectHookToExist(hookFilename)
