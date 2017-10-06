@@ -97,7 +97,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       export GIT_PARAMS="$*"
 
       # Run npm script
-      echo "husky > npm run -s ${npmScriptName} (npm \`npm -v\`)"
+      echo "husky > npm run -s ${npmScriptName} ($NPM \`$NPM -v\`)"
       echo
 
       $NPM run -s ${npmScriptName} || {
