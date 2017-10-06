@@ -86,8 +86,10 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
     stripIndent(
       `
       # Check that npm exists
-      command_exists npm || {
-        echo >&2 "husky > can't find npm in PATH, skipping ${npmScriptName} script in package.json"
+      [ -f ".huskyrc" ] && source ./.huskyrc && NPM="${HUSKY_NPM_PATH}" || NPM='npm'
+
+      command_exists $NPM || {
+        echo >&2 "husky > can't find npm in PATH or as HUSKY_NPM_PATH in .huskyrc, skipping ${npmScriptName} script in package.json"
         exit 0
       }
 
@@ -95,10 +97,10 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       export GIT_PARAMS="$*"
 
       # Run npm script
-      echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
+      echo "husky > npm run -s ${npmScriptName} (npm \`npm -v\`)"
       echo
 
-      npm run -s ${npmScriptName} || {
+      $NPM run -s ${npmScriptName} || {
         echo
         echo "husky > ${hookName} hook failed ${noVerifyMessage}"
         exit 1
