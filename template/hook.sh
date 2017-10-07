@@ -1,7 +1,7 @@
 #!/bin/sh
 __huskyIdentifier__
 
-hookname=\`basename "$0"\`
+hookname=`basename "$0"`
 [ -f package.json ] && cat package.json | grep -q "\\"$hookname\\"[[:space:]]*:"
 
 if [[ $? -eq 0 ]]; then

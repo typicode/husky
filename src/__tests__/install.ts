@@ -11,11 +11,11 @@ let tempDir
 const pkg = JSON.stringify({ husky: { skipCI: false } })
 
 function installFrom(huskyDir: string) {
-  install(tempDir, path.join(tempDir, huskyDir))
+  install(path.join(tempDir, '.git'), path.join(tempDir, huskyDir))
 }
 
 function uninstallFrom(dir: string) {
-  uninstall(tempDir, path.join(tempDir, dir))
+  uninstall(path.join(tempDir, '.git'), path.join(tempDir, dir))
 }
 
 function mkdir(dir: string) {
