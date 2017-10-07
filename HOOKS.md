@@ -30,7 +30,7 @@ Advice on how to use specific hooks.
 
 ### commit-msg
 
-Scripts that want to hoook into `commit-msg` must read the commit message themselves; it is not passed in `process.argv`. Instead, the hook script must load the commit message itself. For example, a script could check the message by reading `.git/COMMIT_EDITMSG`. For example, with node,
+Unlike usual with the `commit-msg` git hook, Husky does not pass the commit message in to the `commitmsg` script. Scripts that want to examine the commit message must read the commit message itself. This can be done by reading `.git/COMMIT_EDITMSG`. For example, with node,
 
     var vs = require('fs');
 
