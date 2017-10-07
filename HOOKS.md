@@ -30,7 +30,7 @@ Advice on how to use specific hooks.
 
 ### commit-msg
 
-Unlike usual with the `commit-msg` git hook, Husky does not pass the commit message in to the `commitmsg` script. Scripts that want to examine the commit message must read the commit message itself. This can be done by reading `.git/COMMIT_EDITMSG`. For example, with node,
+Unlike the `commit-msg` git hook, Husky does not pass the commit message in to the `commitmsg` script. Scripts that want to examine the commit message must read the commit message itself. This can be done by reading `.git/COMMIT_EDITMSG`. For example, in Javascript, the commit message script could read the commit message with:
 
     var vs = require('fs');
 
