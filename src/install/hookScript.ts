@@ -3,6 +3,5 @@ export const huskyIdentifier = '# husky'
 
 export default `#!/bin/sh
 ${huskyIdentifier}
-pwd
-sh ./node_modules/husky/scripts/run.sh
+./node_modules/husky/run.sh
 `
