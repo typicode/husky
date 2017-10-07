@@ -16,8 +16,13 @@ if (fs.existsSync('./lib/install/index.js')) {
     process.exit(1)
   }
 
+  // Husky dir
+  const huskyDir = process.env.HUSKY_ENV === 'dev'
+    ? path.join(__dirname, 'node_modules/husky')
+    : __dirname
+
   // Run installer
-  require('./lib/install')[action](gitDir, __dirname)
+  require('./lib/install')[action](gitDir, huskyDir)
 } else {
   console.error("Error can't find lib directory, run `npm run build`")  
 }
