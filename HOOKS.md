@@ -23,3 +23,16 @@ Husky supports all git hooks (https://git-scm.com/docs/githooks). Simply add the
 | push-to-checkout | pushtocheckout |
 | update | update |
 | sendemail-validate | sendemailvalidate |
+
+## Advice
+
+Advice on how to use specific hooks.
+
+### commit-msg
+
+Scripts that want to hoook into `commit-msg` must read the commit message themselves; it is not passed in `process.argv`. Instead, the hook script must load the commit message itself. For example, a script could check the message by reading `.git/COMMIT_EDITMSG`. For example, with node,
+
+    var vs = require('fs');
+
+    const commitMessage = fs.readFileSync('./git/COMMIT_EDITMSG', 'utf8');
+
