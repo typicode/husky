@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import isCI from 'is-ci'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
-import readPkg from 'read-pkg'
+import * as readPkg from 'read-pkg'
 import hookScript from './hookScript'
 import { isGhooks, isHusky, isPreCommit } from './is'
 
@@ -88,8 +88,8 @@ function removeHooks(filenames: string[]) {
   filenames.filter(canRemove).forEach(removeHook)
 }
 
-function getHooks(userDir: string): string[] {
-  const gitHooksDir = path.join(userDir, '.git/hooks')
+function getHooks(gitDir: string): string[] {
+  const gitHooksDir = path.join(gitDir, 'hooks')
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
 
@@ -118,10 +118,12 @@ export function install(gitDir: string, huskyDir: string) {
     return
   }
 
-  if (userDir !== gitDir) {
+  if (path.join(userDir, '.git') !== gitDir) {
     console.log(
       `Expecting package.json to be at the same level than .git, skipping Git hooks installation`
     )
+    console.log(`gitDir: ${gitDir}`)
+    console.log(`userDir: ${userDir}`)
     return
   }
 
@@ -136,7 +138,7 @@ export function uninstall(gitDir: string, huskyDir: string) {
   console.log('husky > uninstalling git hooks')
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
 
-  if (userDir === gitDir) {
+  if (path.join(userDir, '.git') === gitDir) {
     // Remove hooks
     const hooks = getHooks(gitDir)
     removeHooks(hooks)
