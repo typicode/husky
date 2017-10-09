@@ -7,4 +7,4 @@ hookname=`basename "$0"`
 if [[ $? -eq 0 ]]; then
   ./node_modules/.bin/run-node ./node_modules/husky/lib/run $hookname
   exit $?
-fi
+fi 
