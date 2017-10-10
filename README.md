@@ -48,7 +48,7 @@ Check [documentation](DOCS.md) for more.
 * Supports GUI Git clients
 * Supports all Git hooks (`pre-commit`, `pre-push`, ...)
 * Supports monorepo/sub-directories layouts
-* If you were using `ghooks`, it will migrate your git hooks
+* If you were using `ghooks`, it will migrate your Git hooks
 
 ## Used by
 
