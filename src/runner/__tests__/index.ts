@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
-import run from '../run/run'
+import index from '../'
 
 describe('run', () => {
   it.only('should run working command and return 0 status', () => {
@@ -20,7 +20,7 @@ describe('run', () => {
       })
     )
 
-    const status = run([, , 'pre-commit'], { cwd: dir })
+    const status = index([, , 'pre-commit'], { cwd: dir })
     expect(status).toBe(0)
   })
 
@@ -36,7 +36,7 @@ describe('run', () => {
       })
     )
 
-    const status = run([, , 'pre-commit'], { cwd: dir })
+    const status = index([, , 'pre-commit'], { cwd: dir })
     expect(status).toBe(0)
   })
 
@@ -54,7 +54,7 @@ describe('run', () => {
       })
     )
 
-    const status = run([, , 'pre-commit'], { cwd: dir })
+    const status = index([, , 'pre-commit'], { cwd: dir })
     expect(status).toBe(1)
   })
 })

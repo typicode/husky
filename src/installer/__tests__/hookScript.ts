@@ -1,4 +1,4 @@
-import hookScript from '../install/hookScript'
+import hookScript from '../hookScript'
 
 describe('hookScript', () => {
   it('should match snapshot', () => {

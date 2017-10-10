@@ -1,7 +1,6 @@
-test
 src
+scripts
 appveyor.yml
 .travis.yml
-husky-dev.js
 tsconfig.json
 tslint.json

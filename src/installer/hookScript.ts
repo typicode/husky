@@ -5,5 +5,5 @@ import * as path from 'path'
 export const huskyIdentifier = '# husky'
 
 export default fs
-  .readFileSync(path.join(__dirname, '../../template/hook.sh'), 'utf-8')
+  .readFileSync(path.join(__dirname, '../../templates/hook.sh'), 'utf-8')
   .replace('__huskyIdentifier__', huskyIdentifier)

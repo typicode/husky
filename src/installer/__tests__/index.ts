@@ -3,8 +3,8 @@ import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
-import { install, uninstall } from '../install'
-import { huskyIdentifier } from '../install/hookScript'
+import { install, uninstall } from '../'
+import { huskyIdentifier } from '../hookScript'
 
 let tempDir
 

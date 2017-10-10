@@ -1,7 +1,7 @@
 import * as execa from 'execa'
 import * as readPkg from 'read-pkg'
 
-export default function run(
+export default function(
   [, , hookName = '']: string[],
   { cwd = process.cwd() } = {}
 ): number {
