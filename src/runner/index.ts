@@ -12,7 +12,6 @@ export default function(
   try {
     if (command) {
       console.log(`husky > ${hookName} (node ${process.version})`)
-      console.log(command)
       execa.shellSync(command, { cwd, stdio: 'inherit' })
       return 0
     }

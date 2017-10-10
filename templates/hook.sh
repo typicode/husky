@@ -7,6 +7,6 @@ hookname=`basename "$0"`
 export GIT_PARAMS="$*"
 
 if [[ $? -eq 0 ]]; then
-  ./node_modules/.bin/run-node ./node_modules/husky/lib/runner $hookname
+  ./node_modules/.bin/run-node ./node_modules/husky/lib/runner/bin $hookname
   exit $?
 fi 
