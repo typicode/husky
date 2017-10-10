@@ -50,6 +50,7 @@
   "devDependencies": {
     "@types/jest": "^21.1.2",
     "@types/node": "^8.0.34",
+    "crlf": "^1.1.1",
     "cross-env": "^5.0.5",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
