@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 __huskyIdentifier__
 
 hookname=`basename "$0"`
