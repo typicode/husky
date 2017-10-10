@@ -4,7 +4,7 @@
 
 _beta branch, see [master](https://github.com/typicode/husky) for stable release documentation_
 
-Husky can prevent bad commit, push and more :dog: _woof!_
+Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
 ## Install
 
