@@ -2,7 +2,6 @@
   "name": "husky",
   "version": "0.15.0-beta.8",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
-  "bin": "lib/install/husky",
   "scripts": {
     "test": "npm run lint && jest",
     "postinstall": "node lib/installer/bin install",
@@ -10,7 +9,7 @@
     "devinstall": "npm run build && npm run postinstall -- node_modules/husky && node scripts/dev",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
-    "lf": "crlf --set=LF template/hook.sh",
+    "lf": "crlf --set=LF templates/hook.sh",
     "prepublishOnly": "npm run test && npm run build && npm run lf && pkg-ok",
     "lint": "tslint 'src/**/*.ts'",
     "fix": "npm run lint -- --fix"
