@@ -1,10 +1,14 @@
 # Documentation
 
-## Available hooks
+## Supported hooks
 
-`husky` supports all Git hooks (https://git-scm.com/docs/githooks).
+`husky` supports all Git hooks (https://git-scm.com/docs/githooks) and Git params can be accessed using `GIT_PARAMS` environment variable.
 
-## Sub-directory package
+## How to
+
+### Sub-directory package
+
+If your project is in a sub-directory:
 
 ```
 project
@@ -12,9 +16,10 @@ project
     package.json
 ```
 
-Create a root `package.json` and run `npm install husky --save-dev`, then edit `package.json` to configure `husky`:
+Create a root `package.json`, run `npm install husky --save-dev` and edit `package.json` to configure `husky`:
 
-```
+```js
+// project/package.json
 {
   "private": true,
   "devDependencies": {
@@ -30,27 +35,31 @@ Create a root `package.json` and run `npm install husky --save-dev`, then edit `
 
 One of the downside of this approach is that you'll have to run `npm install` in `project` and `subproject`. If you only have one package and you're __not publishing it__, you can do the following to ensure that `husky` is also installed when you run `npm install` in your subdirectory:
 
-```
+```js
+// project/subproject/package.json
 {
   "private": true,
   "scripts": {
     "postinstall": "cd .. && npm install"
   }
 }
-
-## Multi-package repository
-
-If you have a multi-package repository (or monorepo), like that:
-
 ```
+
+### Multi-package repository (monorepo)
+
+If you have a multi-package repository:
+
+```sh
 project
   packages
     A/package.json
     B/package.json
     C/package.json
+```
 
-it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
+It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
 
+```json
 {
   "private": true,
   "devDependencies": {
@@ -65,23 +74,13 @@ it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
 
 ## Options
 
-### skipInstall
-
-Default: false
-
-By default, `husky` will automatically install hooks in `.git/hooks`. You can disable it by setting `skipInstall` to `true` or `HUSKY_SKIP_INSTALL` environment variable.
-
-```
+```json
 {
   "husky": {
-    "skipInstall": true
+    "skipCI": false
   }
 }
 ```
-
-To manually install hooks, you can run `node ./node_modules/husky/husky install` and to uninstall `node ./node_modules/husky/husky uninstall`.
-
-Though, if you run `npm uninstall husky`, it will still automatically revert `.git/hooks` to its previous state. 
 
 ### skipCI
 
