@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`hookScript should match snapshot 1`] = `
-"#!/bin/sh
+"#!/bin/bash
 # husky
 
 hookname=\`basename \\"$0\\"\`
@@ -12,5 +12,6 @@ export GIT_PARAMS=\\"$*\\"
 if [[ $? -eq 0 ]]; then
   ./node_modules/.bin/run-node ./node_modules/husky/lib/runner/bin $hookname
   exit $?
-fi "
+fi 
+"
 `;
