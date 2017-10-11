@@ -39,7 +39,7 @@ npm uninstall husky
 
 By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories.
 
-Check [documentation](DOCS.md) for more.
+Check [documentation](docs.md) for more.
 
 ## Features
 
