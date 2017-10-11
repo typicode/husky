@@ -71,6 +71,7 @@ It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
     }
   }
 }
+```
 
 ## Options
 
