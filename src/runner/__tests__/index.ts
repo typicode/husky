@@ -6,7 +6,7 @@ import * as tempy from 'tempy'
 import index from '../'
 
 describe('run', () => {
-  it.only('should run working command and return 0 status', () => {
+  it('should run working command and return 0 status', () => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -26,7 +26,7 @@ describe('run', () => {
 
   // This shouldn't happen since the shell script checks for command existence
   // but in case there's a false positive, we're testing this also
-  it.only('should return 0 status if the command is undefined', () => {
+  it('should return 0 status if the command is undefined', () => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -40,7 +40,7 @@ describe('run', () => {
     expect(status).toBe(0)
   })
 
-  it.only('should run failing command and return 1 status', () => {
+  it('should run failing command and return 1 status', () => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -56,5 +56,21 @@ describe('run', () => {
 
     const status = index([, , 'pre-commit'], { cwd: dir })
     expect(status).toBe(1)
+  })
+
+  it('should support old scripts but show a deprecated message', () => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        scripts: {
+          precommit: 'echo success'
+        }
+      })
+    )
+
+    const status = index([, , 'pre-commit'], { cwd: dir })
+    expect(status).toBe(0)
   })
 })
