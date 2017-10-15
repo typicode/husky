@@ -1,39 +1,41 @@
-import * as path from 'path'
 import * as fs from 'fs'
+import * as path from 'path'
+import readPkg from 'read-pkg'
 
 const hookList = {
   applypatchmsg: 'applypatch-msg',
-  preapplypatch: 'pre-applypatch',
+  commitmsg: 'commit-msg',
   postapplypatch: 'post-applypatch',
+  postcheckout: 'post-checkout',
+  postcommit: 'post-commit',
+  postmerge: 'post-merge',
+  postreceive: 'post-receive',
+  postrewrite: 'post-rewrite',
+  postupdate: 'post-update',
+  preapplypatch: 'pre-applypatch',
+  preautogc: 'pre-auto-gc',
   precommit: 'pre-commit',
   preparecommitmsg: 'prepare-commit-msg',
-  commitmsg: 'commit-msg',
-  postcommit: 'post-commit',
-  prerebase: 'pre-rebase',
-  postcheckout: 'post-checkout',
-  postmerge: 'post-merge',
   prepush: 'pre-push',
+  prerebase: 'pre-rebase',
   prereceive: 'pre-receive',
-  update: 'update',
-  postreceive: 'post-receive',
-  postupdate: 'post-update',
   pushtocheckout: 'push-to-checkout',
-  preautogc: 'pre-auto-gc',
-  postrewrite: 'post-rewrite',
-  sendemailvalidate: 'sendemail-validate'
+  sendemailvalidate: 'sendemail-validate',
+  update: 'update'
 }
 
 export default function migrate(dir: string) {
   const pkgFile = path.join(dir, 'package.json')
   if (fs.existsSync(pkgFile)) {
-    const pkg = JSON.parse(fs.existsSync(pkgFile))
+    const pkg = readPkg.sync(dir)
     pkg.husky = { hooks: {} }
-    Object.keys(hookList).forEach(previous => {
-      const script = pkg.scripts[previous]
-      if (script) {
-        delete pkg.scripts[previous]        
-      }
 
+    Object.keys(hookList).forEach(name => {
+      const script = pkg.scripts[name]
+      if (script) {
+        delete pkg.scripts[name]
+      }
+      pkg.husky.hooks[hookList[name]] = script
     })
   }
 }
