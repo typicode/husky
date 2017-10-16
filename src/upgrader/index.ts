@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import readPkg from 'read-pkg'
+import * as readPkg from 'read-pkg'
 
 const hookList = {
   applypatchmsg: 'applypatch-msg',
@@ -27,7 +27,7 @@ const hookList = {
 export default function migrate(dir: string) {
   const pkgFile = path.join(dir, 'package.json')
   if (fs.existsSync(pkgFile)) {
-    const pkg = readPkg.sync(dir)
+    const pkg = readPkg.sync(dir, { normalize: false })
     pkg.husky = { hooks: {} }
 
     console.log(`husky > upgrading ${pkgFile}`)

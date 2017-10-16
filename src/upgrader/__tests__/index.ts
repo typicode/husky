@@ -16,7 +16,8 @@ describe('upgrade', () => {
         scripts: {
           precommit: 'npm test'
         }
-      })
+      }),
+      'utf-8'
     )
 
     index(dir)
@@ -26,7 +27,8 @@ describe('upgrade', () => {
         hooks: {
           'pre-commit': 'npm test'
         }
-      }
+      },
+      scripts: {}
     })
   })
 })
