@@ -30,6 +30,7 @@ export default function migrate(dir: string) {
     const pkg = readPkg.sync(dir)
     pkg.husky = { hooks: {} }
 
+    console.log(`husky > upgrading ${pkgFile}`)
     Object.keys(hookList).forEach(name => {
       const script = pkg.scripts[name]
       if (script) {
@@ -37,5 +38,7 @@ export default function migrate(dir: string) {
       }
       pkg.husky.hooks[hookList[name]] = script
     })
+
+    fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2), 'utf-8')
   }
 }
