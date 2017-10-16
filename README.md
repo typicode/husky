@@ -35,6 +35,23 @@ git commit -m 'Keep calm and commit'
 npm uninstall husky
 ```
 
+## Upgrade
+
+If you're upgrading from `0.14` simply move your hooks to `"husky"` field.
+
+```diff
+{
+  "scripts": {
+-    "precommit": "npm test"
+  },
++  "husky": {
++    "hooks": {
++      "pre-commit": "npm test"
++    }
++  }
+}
+```
+
 ## Configure
 
 By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories.
