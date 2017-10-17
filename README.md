@@ -42,13 +42,13 @@ If you're upgrading from `0.14` simply move your hooks to `"husky"` field.
 ```diff
 {
   "scripts": {
--    "precommit": "npm test"
+-   "precommit": "npm test"
   },
-+  "husky": {
-+    "hooks": {
-+      "pre-commit": "npm test"
-+    }
-+  }
++ "husky": {
++   "hooks": {
++     "pre-commit": "npm test"
++   }
++ }
 }
 ```
 
