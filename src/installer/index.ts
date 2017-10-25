@@ -3,7 +3,7 @@ import isCI from 'is-ci'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
 import * as readPkg from 'read-pkg'
-import hookScript from './hookScript'
+import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit } from './is'
 
 const hookList = [
@@ -28,12 +28,12 @@ const hookList = [
   'sendemail-validate'
 ]
 
-function writeHook(filename: string) {
-  fs.writeFileSync(filename, hookScript, 'utf-8')
+function writeHook(filename: string, script: string) {
+  fs.writeFileSync(filename, script, 'utf-8')
   fs.chmodSync(filename, parseInt('0755', 8))
 }
 
-function createHook(filename: string) {
+function createHook(filename: string, script: string) {
   // Get name, used for logging
   const name = path.basename(filename)
 
@@ -44,18 +44,18 @@ function createHook(filename: string) {
     // Migrate
     if (isGhooks(hook)) {
       console.log(`migrating existing ghooks script: ${name} `)
-      return writeHook(filename)
+      return writeHook(filename, script)
     }
 
     // Migrate
     if (isPreCommit(hook)) {
       console.log(`migrating existing pre-commit script: ${name}`)
-      return writeHook(filename)
+      return writeHook(filename, script)
     }
 
     // Update
     if (isHusky(hook)) {
-      return writeHook(filename)
+      return writeHook(filename, script)
     }
 
     // Skip
@@ -64,11 +64,11 @@ function createHook(filename: string) {
   }
 
   // Create hook if it doesn't exist
-  writeHook(filename)
+  writeHook(filename, script)
 }
 
-function createHooks(filenames: string[]) {
-  filenames.forEach(createHook)
+function createHooks(filenames: string[], script: string) {
+  filenames.forEach(filename => createHook(filename, script))
 }
 
 function canRemove(filename: string): boolean {
@@ -129,7 +129,8 @@ export function install(gitDir: string, huskyDir: string) {
 
   // Create hooks
   const hooks = getHooks(gitDir)
-  createHooks(hooks)
+  const script = getScript(userDir)
+  createHooks(hooks, script)
 
   console.log(`husky > done`)
 }

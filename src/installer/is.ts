@@ -1,4 +1,4 @@
-import { huskyIdentifier } from './hookScript'
+import { huskyIdentifier } from './getScript'
 
 export function isHusky(data: string): boolean {
   return data.indexOf(huskyIdentifier) !== -1

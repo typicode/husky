@@ -2,7 +2,11 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as readPkg from 'read-pkg'
 
-const hookList = {
+interface IHookMap {
+  [key: string]: string
+}
+
+const hookList: IHookMap = {
   applypatchmsg: 'applypatch-msg',
   commitmsg: 'commit-msg',
   postapplypatch: 'post-applypatch',
@@ -36,7 +40,8 @@ export default function migrate(dir: string) {
       if (script) {
         delete pkg.scripts[name]
       }
-      pkg.husky.hooks[hookList[name]] = script
+      const newName = hookList[name]
+      pkg.husky.hooks[newName] = script
     })
 
     fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2), 'utf-8')
