@@ -4,12 +4,19 @@
 
 Husky can prevent bad commit, push and more :dog: _woof!_
 
-__New__ beta version available [here](https://github.com/typicode/husky/tree/dev). Feedback and bug reports welcome :wink:
+__New beta version available__ [here](https://github.com/typicode/husky/tree/dev). Feedback and bug reports welcome :wink:
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6WUB3WBwbmZXbZxzrUv5y2A5/typicode/husky'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6WUB3WBwbmZXbZxzrUv5y2A5/typicode/husky.svg' />
+</a>
 
 ## Install
 
 ```sh
 npm install husky --save-dev
+```
+
+```
 yarn add husky --dev
 ```
 
