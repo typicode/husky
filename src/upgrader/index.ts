@@ -39,11 +39,13 @@ export default function migrate(dir: string) {
       const script = pkg.scripts[name]
       if (script) {
         delete pkg.scripts[name]
+        const newName = hookList[name]
+        pkg.husky.hooks[newName] = script
+        console.log(`moved scripts.${name} to husky.hooks.${newName}`)
       }
-      const newName = hookList[name]
-      pkg.husky.hooks[newName] = script
     })
 
     fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2), 'utf-8')
+    console.log(`husky > done`)
   }
 }

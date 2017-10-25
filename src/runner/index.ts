@@ -25,7 +25,7 @@ export default function(
       console.log(
         `Warning: Setting ${hookName} script in package.json > scripts will be deprecated in v1.0`
       )
-      console.log(`Please move it to package.json > husky > hooks`)
+      console.log(`Please move it to husky.hooks in package.json`)
       console.log(
         `Or run ./node_modules/.bin/husky-upgrade for automatic update`
       )
