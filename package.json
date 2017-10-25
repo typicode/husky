@@ -43,37 +43,38 @@
     "execa": "^0.8.0",
     "is-ci": "^1.0.10",
     "pkg-dir": "^2.0.0",
+    "pupa": "^1.0.0",
     "read-pkg": "^2.0.0",
-    "run-node": "^0.1.1"
+    "run-node": "^0.1.1",
+    "slash": "^1.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^21.1.2",
-    "@types/node": "^8.0.34",
+    "@types/jest": "^21.1.5",
+    "@types/node": "^8.0.47",
     "crlf": "^1.1.1",
-    "cross-env": "^5.0.5",
+    "cross-env": "^5.1.0",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
     "jest": "^21.2.1",
     "pkg-ok": "^1.1.0",
     "prettier": "^1.7.4",
     "tempy": "^0.2.1",
-    "ts-jest": "^21.1.2",
-    "tslint": "^5.7.0",
-    "tslint-config-prettier": "^1.5.0",
+    "tslint": "^5.8.0",
+    "tslint-config-prettier": "^1.6.0",
     "tslint-plugin-prettier": "^1.3.0",
     "typescript": "^2.5.3"
   },
   "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
-      "js",
-      "jsx",
-      "json"
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.(ts|tsx|js)"
     ]
   },
   "husky": {

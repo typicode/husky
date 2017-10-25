@@ -1,4 +1,4 @@
-import del from 'del'
+import * as del from 'del'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
