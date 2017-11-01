@@ -51,7 +51,7 @@ If you have a multi-package repository:
 
 ```sh
 project/
-  package.json
+  package.json # Root package.json
   packages/
     A/
       package.json
