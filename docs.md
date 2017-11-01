@@ -50,11 +50,15 @@ One of the downside of this approach is that you'll have to run `npm install` in
 If you have a multi-package repository:
 
 ```sh
-project
-  packages
-    A/package.json
-    B/package.json
-    C/package.json
+project/
+  package.json
+  packages/
+    A/
+      package.json
+    B/
+      package.json
+    C/
+      package.json
 ```
 
 It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
