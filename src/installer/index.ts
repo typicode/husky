@@ -93,14 +93,14 @@ function getHooks(gitDir: string): string[] {
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
 
-function getConf(huskyDir: string) {
+export function getConf(huskyDir: string) {
   const pkg = readPkg.sync(huskyDir)
 
   const defaults = {
     skipCI: true
   }
 
-  return { defaults, ...pkg.husky }
+  return { ...defaults, ...pkg.husky }
 }
 
 export function install(gitDir: string, huskyDir: string) {

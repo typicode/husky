@@ -1,9 +1,10 @@
 import * as del from 'del'
 import * as fs from 'fs'
+import isCI from 'is-ci'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
-import { install, uninstall } from '../'
+import { getConf, install, uninstall } from '../'
 import { huskyIdentifier } from '../getScript'
 
 let tempDir
@@ -131,5 +132,25 @@ describe('install', () => {
     installFrom(huskyDir)
     const hook = readFile(hookFilename)
     expect(hook).toMatch(huskyIdentifier)
+  })
+
+  it('should not install hooks in CI server', () => {
+    if (isCI) {
+      mkdir('.git/hooks')
+      mkdir('node_modules/husky')
+      writeFile('package.json', pkg)
+
+      installFrom('node_modules/husky')
+      expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+    }
+  })
+})
+
+describe('getConf', () => {
+  it('should return default conf', () => {
+    tempDir = tempy.directory()
+    writeFile('package.json', '{}')
+
+    expect(getConf(tempDir)).toEqual({ skipCI: true })
   })
 })
