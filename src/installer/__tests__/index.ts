@@ -9,7 +9,9 @@ import { huskyIdentifier } from '../getScript'
 
 let tempDir
 
-const pkg = JSON.stringify({ husky: { skipCI: false } })
+const pkg = JSON.stringify({
+  husky: { hooks: { 'pre-commit': 'echo' }, skipCI: false }
+})
 
 function installFrom(huskyDir: string) {
   install(path.join(tempDir, '.git'), path.join(tempDir, huskyDir))
@@ -151,6 +153,6 @@ describe('getConf', () => {
     tempDir = tempy.directory()
     writeFile('package.json', '{}')
 
-    expect(getConf(tempDir)).toEqual({ skipCI: true })
+    expect(getConf(tempDir)).toEqual({ hooks: {}, skipCI: true })
   })
 })

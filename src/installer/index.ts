@@ -88,15 +88,16 @@ function removeHooks(filenames: string[]) {
   filenames.filter(canRemove).forEach(removeHook)
 }
 
-function getHooks(gitDir: string): string[] {
+function getHooks(gitDir: string, hooks: string[]): string[] {
   const gitHooksDir = path.join(gitDir, 'hooks')
-  return hookList.map(hookName => path.join(gitHooksDir, hookName))
+  return hooks.map(hookName => path.join(gitHooksDir, hookName))
 }
 
 export function getConf(huskyDir: string) {
   const pkg = readPkg.sync(huskyDir)
 
   const defaults = {
+    hooks: {},
     skipCI: true
   }
 
@@ -128,7 +129,10 @@ export function install(gitDir: string, huskyDir: string) {
   }
 
   // Create hooks
-  const hooks = getHooks(gitDir)
+  const hooks = getHooks(
+    gitDir,
+    hookList.filter(hookName => hookName in conf.hooks)
+  )
   const script = getScript(userDir)
   createHooks(hooks, script)
 
@@ -138,10 +142,14 @@ export function install(gitDir: string, huskyDir: string) {
 export function uninstall(gitDir: string, huskyDir: string) {
   console.log('husky > uninstalling git hooks')
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
+  const conf = getConf(userDir)
 
   if (path.join(userDir, '.git') === gitDir) {
     // Remove hooks
-    const hooks = getHooks(gitDir)
+    const hooks = getHooks(
+      gitDir,
+      hookList.filter(hookName => hookName in conf.hooks)
+    )
     removeHooks(hooks)
   }
 
