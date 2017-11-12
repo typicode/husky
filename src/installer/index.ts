@@ -104,9 +104,9 @@ function getGitHooksDir(gitDir: string): string {
   return path.join(gitDir, 'hooks')
 }
 
-function getHooks(gitDir: string): string[] {
+function getHooks(gitDir: string, hooks: string[]): string[] {
   const gitHooksDir = getGitHooksDir(gitDir)
-  return hookList.map((hookName: string): string =>
+  return hooks.map((hookName: string): string =>
     path.join(gitHooksDir, hookName)
   )
 }
@@ -167,7 +167,12 @@ export function install(
     fs.mkdirSync(gitHooksDir)
   }
 
-  const hooks = getHooks(gitDir)
+  const hooks = getHooks(
+    gitDir,
+    hookList.filter(
+      (hookName: string): boolean => hookName in (conf.hooks || [])
+    )
+  )
   const script = getScript(topLevel, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
@@ -189,8 +194,24 @@ export function uninstall(gitDir: string, huskyDir: string): void {
     return
   }
 
+  const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+
+  if (userPkgDir === undefined) {
+    console.log("Can't find package.json, skipping Git hooks installation.")
+    console.log(
+      'Please check that your project has a package.json or create it and reinstall husky.'
+    )
+    return
+  }
+
   // Remove hooks
-  const hooks = getHooks(gitDir)
+  const conf = getConf(userPkgDir)
+  const hooks = getHooks(
+    gitDir,
+    hookList.filter(
+      (hookName: string): boolean => hookName in (conf.hooks || [])
+    )
+  )
   removeHooks(hooks)
 
   console.log('husky > Done')

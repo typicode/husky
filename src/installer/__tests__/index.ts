@@ -15,7 +15,9 @@ const defaultGitDir = '.git'
 const defaultGitHooksDir = '.git/hooks'
 const defaultHookFilename = '.git/hooks/pre-commit'
 const defaultHuskyDir = 'node_modules/husky'
-const pkg = JSON.stringify({})
+const pkg = JSON.stringify({
+  husky: { hooks: { 'pre-commit': 'echo' }, skipCI: true }
+})
 
 // Helpers
 function install({
@@ -332,9 +334,10 @@ describe('install', (): void => {
 
   it('should install in CI server if skipCI is set to false', (): void => {
     mkdir(defaultGitHooksDir, defaultHuskyDir)
+    writeFile(defaultHookFilename, './node_modules/pre-commit/hook')
     writeFile('package.json', JSON.stringify({ husky: { skipCI: false } }))
 
-    install()
+    install({ isCI: true })
     expect(exists(defaultHookFilename)).toBeTruthy()
   })
 
