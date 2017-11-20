@@ -1,0 +1,14 @@
+[
+  "changegroup",
+  "commit",
+  "incoming",
+  "outgoing",
+  "precommit",
+  "preoutgoing",
+  "pretag",
+  "pretxnchangegroup",
+  "pretxncommit",
+  "preupdate",
+  "tag",
+  "update"
+]
