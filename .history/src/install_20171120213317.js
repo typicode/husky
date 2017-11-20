@@ -31,7 +31,7 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
   const projectDir = findParent(huskyDir, vcs.dirname)
 
   // In order to support projects with package.json in a different directory
-  // than .hg/.git, find relative path from project directory to package.json
+  // than .git, find relative path from project directory to package.json
   const relativePath = path.join(".", path.relative(projectDir, packageDir))
 
   const hookScript = getHookScript(hookName, relativePath, cmd)

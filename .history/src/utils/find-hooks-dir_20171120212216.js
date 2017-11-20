@@ -19,6 +19,14 @@ function findHooksDir(vcs) {
         .join(":")
         .trim();
     }
+
+    switch (vcs) {
+      case "hg":
+        break;
+      default:
+        break;
+    }
+
     return path.resolve(dir, vcsDir, "hooks");
   }
 }

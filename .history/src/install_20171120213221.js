@@ -20,18 +20,18 @@ function write(filename, data) {
   fs.chmodSync(filename, parseInt("0755", 8))
 }
 
-function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
+function createHook(huskyDir, hooksDir, hookName, cmd) {
   const filename = path.join(hooksDir, hookName)
 
   // Assuming that this file is in node_modules/husky
   const packageDir = path.join(huskyDir, "..", "..")
 
   // Get project directory
-  // When used in submodule, the project dir is the first .hg/.git that is found
-  const projectDir = findParent(huskyDir, vcs.dirname)
+  // When used in submodule, the project dir is the first .git that is found
+  const projectDir = findParent(huskyDir, ".git")
 
   // In order to support projects with package.json in a different directory
-  // than .hg/.git, find relative path from project directory to package.json
+  // than .git, find relative path from project directory to package.json
   const relativePath = path.join(".", path.relative(projectDir, packageDir))
 
   const hookScript = getHookScript(hookName, relativePath, cmd)

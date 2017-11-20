@@ -27,11 +27,11 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
   const packageDir = path.join(huskyDir, "..", "..")
 
   // Get project directory
-  // When used in submodule, the project dir is the first .hg/.git that is found
+  // When used in submodule, the project dir is the first .git that is found
   const projectDir = findParent(huskyDir, vcs.dirname)
 
   // In order to support projects with package.json in a different directory
-  // than .hg/.git, find relative path from project directory to package.json
+  // than .git, find relative path from project directory to package.json
   const relativePath = path.join(".", path.relative(projectDir, packageDir))
 
   const hookScript = getHookScript(hookName, relativePath, cmd)

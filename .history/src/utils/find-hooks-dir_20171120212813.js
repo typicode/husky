@@ -19,6 +19,17 @@ function findHooksDir(vcs) {
         .join(":")
         .trim();
     }
+
+    switch (vcs) {
+      case "hg":
+        const newLocal = path.join(vcsDir, "hooks");
+
+        if(!fs.existsSync(newLocal)
+        break;
+      default:
+        break;
+    }
+
     return path.resolve(dir, vcsDir, "hooks");
   }
 }
