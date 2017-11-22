@@ -37,12 +37,16 @@ function platformSpecific() {
   }
 }
 
-module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
+module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
+  const preCommitMsgHookName = vcs.name === 'git' ? 'prepare-commit-msg' : 'pretxncommit';
+
+  const vcsHookParamsVar = vcs.name === 'git' ? 'GIT_PARAMS' : 'HG_ARGS';
+
   const noVerifyMessage =
-    hookName === 'prepare-commit-msg'
+    hookName === preCommitMsgHookName
       ? '(cannot be bypassed with --no-verify due to Git specs)'
       : '(add --no-verify to bypass)'
 
@@ -91,8 +95,8 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
         exit 0
       }
 
-      # Export Git hook params
-      export GIT_PARAMS="$*"
+      # Export VCS hook params
+      export ${vcsHookParamsVar}="$*"
 
       # Run npm script
       echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"

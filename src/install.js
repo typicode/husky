@@ -7,7 +7,6 @@ const getVcs = require("./utils/get-vcs");
 const findHooksDir = require("./utils/find-hooks-dir");
 const getHookScript = require("./utils/get-hook-script");
 const is = require("./utils/is");
-const hooks = require("./hooks.json");
 
 const SKIP = "SKIP";
 const UPDATE = "UPDATE";
@@ -34,10 +33,12 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
   // than .hg/.git, find relative path from project directory to package.json
   const relativePath = path.join(".", path.relative(projectDir, packageDir));
 
-  const hookScript = getHookScript(hookName, relativePath, cmd);
+  const hookScript = getHookScript(vcs, hookName, relativePath, cmd);
 
   // Create hooks directory if needed
-  if (!fs.existsSync(hooksDir)) fs.mkdirSync(hooksDir);
+  if (!fs.existsSync(hooksDir)){
+    fs.mkdirSync(hooksDir);
+  } 
 
   if (!fs.existsSync(filename)) {
     write(filename, hookScript);
@@ -97,7 +98,7 @@ function installFrom(huskyDir) {
     const hooksDir = findHooksDir(vcs);
 
     if (hooksDir) {
-      hooks
+      vcs.hooks
         .map(function(hookName) {
           const npmScriptName = hookName.replace(/-/g, "");
           return {

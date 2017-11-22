@@ -171,24 +171,24 @@ describe("husky", () => {
     });
   });
 
-  fdescribe("hg", () => {
+  describe("hg", () => {
     it("should support basic layout", () => {
       mkdir(dir, ".hg/hooks");
       mkdir(dir, "node_modules/husky");
 
       install(dir, "/node_modules/husky");
-      const hook = readFile(dir, ".hg/hooks/pre-commit");
+      const hook = readFile(dir, ".hg/hooks/precommit");
 
       expect(hook).toMatch("#husky");
       expect(hook).toMatch('cd "."');
       expect(hook).toMatch("npm run -s precommit");
       expect(hook).toMatch("--no-verify");
 
-      const prepareCommitMsg = readFile(dir, ".git/hooks/prepare-commit-msg");
+      const prepareCommitMsg = readFile(dir, ".hg/hooks/pretxncommit");
       expect(prepareCommitMsg).toMatch("cannot be bypassed");
 
       uninstall(dir, "node_modules/husky");
-      expect(exists(dir, ".git/hooks/pre-push")).toBeFalsy();
+      expect(exists(dir, ".hg/hooks/prepush")).toBeFalsy();
     });
   });
 });

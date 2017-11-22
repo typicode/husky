@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const findParent = require('./find-parent')
 
 function findHooksDir(vcs) {
   if (vcs.dir) {
@@ -19,7 +20,7 @@ function findHooksDir(vcs) {
         .join(":")
         .trim();
     }
-    return path.resolve(vcsDir, "hooks");
+    return path.resolve(vcs.dir, vcsDir, "hooks");
   }
 }
 

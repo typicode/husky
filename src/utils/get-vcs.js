@@ -3,11 +3,13 @@
 const fs = require("fs");
 const path = require("path");
 const findParent = require("./find-parent");
+const gitHooks = require("../hooks.json");
+const hgHooks = require("../hg-hooks.json");
 
 function getVcs(dirname) {
   const vcsProvider = [
-    { name: "git", dirname: ".git" },
-    { name: "hg", dirname: ".hg" }
+    { name: "git", dirname: ".git", hooks: gitHooks },
+    { name: "hg", dirname: ".hg", hooks: hgHooks }
   ];
 
   let vcs;
