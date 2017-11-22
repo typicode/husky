@@ -5,7 +5,7 @@ const path = require("path");
 
 function findHooksDir(vcs) {
   if (vcs.dir) {
-    let vcsDir = path.join(vcs.dir, vcs);
+    let vcsDir = path.join(vcs.dir, vcs.dirname);
     const stats = fs.lstatSync(vcsDir);
 
     if (stats.isFile()) {
@@ -19,7 +19,7 @@ function findHooksDir(vcs) {
         .join(":")
         .trim();
     }
-    return path.resolve(dir, vcsDir, "hooks");
+    return path.resolve(vcsDir, "hooks");
   }
 }
 

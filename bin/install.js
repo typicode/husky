@@ -8,19 +8,19 @@ const installFrom = require('../src/install')
 console.log('husky')
 
 if (isCI && !process.env.HUSKY_IGNORE_CI) {
-  console.log('CI detected, skipping Git hooks installation')
+  console.log('CI detected, skipping Git / hg hooks installation')
   process.exit(0)
 }
 
 if (process.env.HUSKY_SKIP_INSTALL) {
   console.log(
     `env variable HUSKY_SKIP_INSTALL is set to ${process.env
-      .HUSKY_SKIP_INSTALL}, skipping Git hooks installation`
+      .HUSKY_SKIP_INSTALL}, skipping Git / hg hooks installation`
   )
   process.exit(0)
 }
 
-console.log('setting up Git hooks')
+console.log('setting up Git / hg hooks')
 
 const huskyDir = path.join(__dirname, '..')
 installFrom(huskyDir)
