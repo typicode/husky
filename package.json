@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/typicode/husky#readme",
   "dependencies": {
+    "cosmiconfig": "^3.0.0",
     "execa": "^0.8.0",
     "is-ci": "^1.0.10",
     "pkg-dir": "^2.0.0",
