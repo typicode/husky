@@ -190,5 +190,41 @@ describe("husky", () => {
       uninstall(dir, "node_modules/husky");
       expect(exists(dir, ".hg/hooks/prepush")).toBeFalsy();
     });
+
+    it("should create a hgrc file, if none is present", () => {
+      mkdir(dir, ".hg/hooks");
+      mkdir(dir, "node_modules/husky");
+      install(dir, "/node_modules/husky");
+
+      const hgrc = readFile(dir, ".hg/hgrc");
+      expect(hgrc).toMatch("[hooks]");
+    });
+
+    it("should append a hooks section to an existing hgrc file", () => {
+      mkdir(dir, ".hg/hooks");
+      writeFile(dir, ".hg/hgrc", "[ui]\nusername=husky");
+      mkdir(dir, "node_modules/husky");
+      install(dir, "/node_modules/husky");
+
+      const hgrc = readFile(dir, ".hg/hgrc");
+      expect(hgrc).toMatch("[ui]\nusername=husky\n[hooks]");
+    });
+
+    it("should not modify user hooks", () => {
+      mkdir(dir, ".hg/hooks");
+      writeFile(
+        dir,
+        ".hg/hgrc",
+        "[ui]\nusername=husky\n[hooks]\nprecommit=./hooks/precommit"
+      );
+      mkdir(dir, "node_modules/husky");
+      install(dir, "/node_modules/husky");
+
+      const hgrc = readFile(dir, ".hg/hgrc");
+      console.log(hgrc);
+      expect(hgrc).toMatch(
+        "[ui]\nusername=husky\n[hooks]\nprecommit=./hooks/precommit"
+      );
+    });
   });
 });

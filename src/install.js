@@ -36,12 +36,19 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
   const hookScript = getHookScript(vcs, hookName, relativePath, cmd);
 
   // Create hooks directory if needed
-  if (!fs.existsSync(hooksDir)){
+  if (!fs.existsSync(hooksDir)) {
     fs.mkdirSync(hooksDir);
-  } 
+  }
+
+  if (vcs.name === "hg") {
+    initHgrc(huskyDir);
+  }
 
   if (!fs.existsSync(filename)) {
     write(filename, hookScript);
+    if (vcs.name === "hg") {
+      updateHgHooks(huskyDir, hooksDir, hookName);
+    }
     return CREATE;
   }
 
@@ -63,8 +70,9 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
   return SKIP;
 }
 
-function addHookToHg(huskyDir, hookName, hooksDir) {
-  const vcsDir = findParent(huskyDir, ".hg");
+function initHgrc(huskyDir) {
+  const rootDir = findParent(huskyDir, ".hg");
+  const vcsDir = path.join(rootDir, ".hg");
   const hgrcFile = path.join(vcsDir, "hgrc");
   if (!fs.existsSync(hgrcFile)) {
     try {
@@ -72,12 +80,26 @@ function addHookToHg(huskyDir, hookName, hooksDir) {
     } catch (e) {
       console.error(e);
     }
+  } else {
+    try {
+      const hgrcData = fs.readFileSync(hgrcFile, "utf8");
+      if (hgrcData.indexOf("[hooks]") === -1) {
+        fs.appendFileSync(hgrcFile, "\n[hooks]");
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 
-function updateHgHooks(hgrcFile, hooksDir, hookName) {
+function updateHgHooks(huskyDir, hooksDir, hookName) {
+  const rootDir = findParent(huskyDir, ".hg");
+  const vcsDir = path.join(rootDir, ".hg");
+  const hgrcFile = path.join(vcsDir, "hgrc");
+  const hgrcData = fs.readFileSync(hgrcFile, "utf8");
   try {
     const hgrcData = fs.readFileSync(hgrcFile, "utf8");
+    fs.appendFileSync(hgrcFile, `\n${hookName}=.hg/hooks/${hookName}`);
   } catch (e) {
     console.error(e);
   }
@@ -123,9 +145,7 @@ function installFrom(huskyDir) {
                 `skipping ${item.hookName} hook (existing user hook)`
               );
               break;
-            case CREATE:
-              if (vcs.name === "hg") {
-              }
+              case CREATE:
               break;
             default:
               console.error("Unknown action");
