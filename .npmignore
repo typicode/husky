@@ -2,5 +2,6 @@ src
 scripts
 appveyor.yml
 .travis.yml
+preprocessor.js
 tsconfig.json
 tslint.json
