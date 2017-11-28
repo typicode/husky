@@ -1,6 +1,6 @@
 import * as del from 'del'
 import * as fs from 'fs'
-import isCI from 'is-ci'
+import * as isCI from 'is-ci'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
@@ -9,7 +9,8 @@ import { huskyIdentifier } from '../getScript'
 
 let tempDir
 
-const pkg = JSON.stringify({ husky: { skipCI: false } })
+const huskyConf = { skipCI: false }
+const pkg = JSON.stringify({ husky: huskyConf })
 
 function installFrom(huskyDir: string) {
   install(path.join(tempDir, '.git'), path.join(tempDir, huskyDir))
@@ -135,6 +136,10 @@ describe('install', () => {
   })
 
   it('should not install hooks in CI server', () => {
+    // https://github.com/typicode/husky/pull/210
+    expect(isCI).toBeDefined()
+    expect(typeof isCI).toBe('boolean')
+
     if (isCI) {
       mkdir('.git/hooks')
       mkdir('node_modules/husky')
@@ -146,18 +151,19 @@ describe('install', () => {
   })
 })
 
-describe('isCI', () => {
-  it('should return boolean', () => {
-    expect(isCI).toBeDefined()
-    expect(typeof isCI).toBe('boolean')
-  })
-})
-
 describe('getConf', () => {
   it('should return default conf', () => {
     tempDir = tempy.directory()
     writeFile('package.json', '{}')
 
     expect(getConf(tempDir)).toEqual({ skipCI: true })
+  })
+
+  it('should support .huskyrc', () => {
+    tempDir = tempy.directory()
+    writeFile('.huskyrc', JSON.stringify(huskyConf))
+    writeFile('package.json', '{}')
+
+    expect(getConf(tempDir)).toEqual(huskyConf)
   })
 })

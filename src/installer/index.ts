@@ -1,3 +1,4 @@
+import * as cosmiconfig from 'cosmiconfig'
 import * as fs from 'fs'
 import isCI from 'is-ci'
 import * as path from 'path'
@@ -93,14 +94,27 @@ function getHooks(gitDir: string): string[] {
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
 
-export function getConf(huskyDir: string) {
-  const pkg = readPkg.sync(huskyDir)
+// export function getConf(huskyDir: string) {
+//   const pkg = readPkg.sync(huskyDir)
+
+//   const defaults = {
+//     skipCI: true
+//   }
+
+//   return { ...defaults, ...pkg.husky }
+// }
+
+export function getConf(dir: string) {
+  const { config }: any = cosmiconfig('husky', {
+    rcExtensions: true,
+    sync: true
+  }).load(dir)
 
   const defaults = {
     skipCI: true
   }
 
-  return { ...defaults, ...pkg.husky }
+  return { ...defaults, ...config }
 }
 
 export function install(gitDir: string, huskyDir: string) {
