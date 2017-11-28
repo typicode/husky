@@ -4,7 +4,7 @@ import * as isCI from 'is-ci'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
-import { getConf, install, uninstall } from '../'
+import { install, uninstall } from '../'
 import { huskyIdentifier } from '../getScript'
 
 let tempDir
@@ -148,22 +148,5 @@ describe('install', () => {
       installFrom('node_modules/husky')
       expect(exists('.git/hooks/pre-commit')).toBeFalsy()
     }
-  })
-})
-
-describe('getConf', () => {
-  it('should return default conf', () => {
-    tempDir = tempy.directory()
-    writeFile('package.json', '{}')
-
-    expect(getConf(tempDir)).toEqual({ skipCI: true })
-  })
-
-  it('should support .huskyrc', () => {
-    tempDir = tempy.directory()
-    writeFile('.huskyrc', JSON.stringify(huskyConf))
-    writeFile('package.json', '{}')
-
-    expect(getConf(tempDir)).toEqual(huskyConf)
   })
 })

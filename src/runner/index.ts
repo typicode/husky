@@ -1,6 +1,7 @@
 import * as cosmiconfig from 'cosmiconfig'
 import * as execa from 'execa'
 import * as readPkg from 'read-pkg'
+import getConf from '../getConf'
 
 export default function(
   [, , hookName = '']: string[],
@@ -8,11 +9,7 @@ export default function(
 ): number {
   const pkg = readPkg.sync(cwd)
 
-  const { config }: any =
-    cosmiconfig('husky', {
-      rcExtensions: true,
-      sync: true
-    }).load(cwd) || {}
+  const config = getConf(cwd)
 
   const command: string | undefined =
     config && config.hooks && config.hooks[hookName]

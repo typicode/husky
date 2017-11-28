@@ -14,7 +14,7 @@ declare namespace Cosmiconfig {
   }
 
   export interface Explorer {
-    load(searchPath?: string): Cosmiconfig.Result;
+    load(searchPath?: string): Cosmiconfig.Result | null;
   }
   
   export interface Result {

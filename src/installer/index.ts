@@ -1,9 +1,9 @@
-import * as cosmiconfig from 'cosmiconfig'
 import * as fs from 'fs'
 import isCI from 'is-ci'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
 import * as readPkg from 'read-pkg'
+import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit } from './is'
 
@@ -103,19 +103,6 @@ function getHooks(gitDir: string): string[] {
 
 //   return { ...defaults, ...pkg.husky }
 // }
-
-export function getConf(dir: string) {
-  const { config }: any = cosmiconfig('husky', {
-    rcExtensions: true,
-    sync: true
-  }).load(dir)
-
-  const defaults = {
-    skipCI: true
-  }
-
-  return { ...defaults, ...config }
-}
 
 export function install(gitDir: string, huskyDir: string) {
   console.log('husky > setting up git hooks')

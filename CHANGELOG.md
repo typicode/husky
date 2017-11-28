@@ -1,10 +1,9 @@
 # CHANGELOG
 
-## Unreleased
+## Beta
 
 * Support `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
-* Support `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation
-* Drop `nvm` installed with `brew` support as it's not supported by `nvm` itself (see [creationix/nvm#important-notes](https://github.com/creationix/nvm#important-notes)), `nvm` standard installation is still supported though
+* Add `.huskyrc` support [#209](https://github.com/typicode/husky/pull/209)
 
 ## 0.14.3
 
