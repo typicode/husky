@@ -1,3 +1,4 @@
+import * as cosmiconfig from 'cosmiconfig'
 import * as execa from 'execa'
 import * as readPkg from 'read-pkg'
 
@@ -7,8 +8,14 @@ export default function(
 ): number {
   const pkg = readPkg.sync(cwd)
 
+  const { config }: any =
+    cosmiconfig('husky', {
+      rcExtensions: true,
+      sync: true
+    }).load(cwd) || {}
+
   const command: string | undefined =
-    pkg && pkg.husky && pkg.husky.hooks && pkg.husky.hooks[hookName]
+    config && config.hooks && config.hooks[hookName]
 
   const oldCommand: string | undefined =
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
@@ -27,7 +34,9 @@ export default function(
           hookName
         } script in package.json > scripts will be deprecated in v1.0`
       )
-      console.log(`Please move it to husky.hooks in package.json`)
+      console.log(
+        `Please move it to husky.hooks in package.json, a .huskyrc file, or a husky.config.js file`
+      )
       console.log(
         `Or run ./node_modules/.bin/husky-upgrade for automatic update`
       )
