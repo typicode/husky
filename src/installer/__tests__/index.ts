@@ -146,6 +146,13 @@ describe('install', () => {
   })
 })
 
+describe('isCI', () => {
+  it('should return boolean', () => {
+    expect(isCI).toBeDefined()
+    expect(typeof isCI).toBe('boolean')
+  })
+})
+
 describe('getConf', () => {
   it('should return default conf', () => {
     tempDir = tempy.directory()
