@@ -52,6 +52,8 @@ If you're upgrading from `0.14` simply move your hooks to `"husky"` field.
 }
 ```
 
+Alternatively, you may use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml`.
+
 ## Configure
 
 By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories.
