@@ -79,7 +79,7 @@ Check [documentation](docs.md) for more.
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 12k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories).
+* ... and 12k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
 
 ## See also
 
