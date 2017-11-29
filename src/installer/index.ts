@@ -1,5 +1,4 @@
 import * as fs from 'fs'
-import * as isCI from 'is-ci'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
 import * as readPkg from 'read-pkg'
@@ -94,7 +93,7 @@ function getHooks(gitDir: string): string[] {
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
 
-export function install(gitDir: string, huskyDir: string) {
+export function install(gitDir: string, huskyDir: string, isCI: boolean) {
   console.log('husky > setting up git hooks')
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
   const conf = getConf(userDir)

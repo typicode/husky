@@ -1,5 +1,6 @@
 import * as execa from 'execa'
 import * as fs from 'fs'
+import * as isCI from 'is-ci'
 import * as path from 'path'
 import { install, uninstall } from './'
 
@@ -18,7 +19,7 @@ if (status !== 0) {
 
 // Run installer
 if (action === 'install') {
-  install(gitDir, huskyDir)
+  install(gitDir, huskyDir, isCI)
 } else {
   uninstall(gitDir, huskyDir)
 }

@@ -1,6 +1,5 @@
 import * as del from 'del'
 import * as fs from 'fs'
-import * as isCI from 'is-ci'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
@@ -9,11 +8,10 @@ import { huskyIdentifier } from '../getScript'
 
 let tempDir
 
-const huskyConf = { skipCI: false }
-const pkg = JSON.stringify({ husky: huskyConf })
+const pkg = JSON.stringify({})
 
-function installFrom(huskyDir: string) {
-  install(path.join(tempDir, '.git'), path.join(tempDir, huskyDir))
+function installFrom(huskyDir: string, isCI = false) {
+  install(path.join(tempDir, '.git'), path.join(tempDir, huskyDir), isCI)
 }
 
 function uninstallFrom(dir: string) {
@@ -135,18 +133,23 @@ describe('install', () => {
     expect(hook).toMatch(huskyIdentifier)
   })
 
-  it('should not install hooks in CI server', () => {
-    // https://github.com/typicode/husky/pull/210
-    expect(isCI).toBeDefined()
-    expect(typeof isCI).toBe('boolean')
+  it('should not install hooks in CI server by default', () => {
+    mkdir('.git/hooks')
+    mkdir('node_modules/husky')
+    writeFile('package.json', pkg)
 
-    if (isCI) {
-      mkdir('.git/hooks')
-      mkdir('node_modules/husky')
-      writeFile('package.json', pkg)
+    const isCI = true
+    installFrom('node_modules/husky', isCI)
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+  })
 
-      installFrom('node_modules/husky')
-      expect(exists('.git/hooks/pre-commit')).toBeFalsy()
-    }
+  it('should install in CI server if skipCI is set to false', () => {
+    mkdir('.git/hooks')
+    mkdir('node_modules/husky')
+    writeFile('package.json', JSON.stringify({ husky: { skipCI: false } }))
+
+    const isCI = true
+    installFrom('node_modules/husky', isCI)
+    expect(exists('.git/hooks/pre-commit')).toBeTruthy()
   })
 })
