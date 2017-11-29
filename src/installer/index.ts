@@ -99,7 +99,7 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
   const conf = getConf(userDir)
 
   if (isCI && conf.skipCI) {
-    console.log('CI detected, skipping Git hooks installation"')
+    console.log('CI detected, skipping Git hooks installation')
     return
   }
 
