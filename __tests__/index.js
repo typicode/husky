@@ -215,16 +215,30 @@ describe("husky", () => {
       writeFile(
         dir,
         ".hg/hgrc",
-        "[ui]\nusername=husky\n[hooks]\nprecommit=./hooks/precommit"
+        "[ui]\nusername=husky\n[hooks]\nprecommit=.hg/hooks/husky"
       );
       mkdir(dir, "node_modules/husky");
       install(dir, "/node_modules/husky");
 
       const hgrc = readFile(dir, ".hg/hgrc");
-      console.log(hgrc);
-      expect(hgrc).toMatch(
-        "[ui]\nusername=husky\n[hooks]\nprecommit=./hooks/precommit"
-      );
+      expect(hgrc).toMatchSnapshot();
+      expect(hgrc).not.toMatch("precommit=.hg/hooks/precommit");
     });
+
+    it("should not matter where the user defined hooks are", () => {
+      mkdir(dir, ".hg/hooks");
+      writeFile(
+        dir,
+        ".hg/hgrc",
+        "[ui]\nusername=husky\n[hooks]\nprecommit=.hg/hooks/husky\n[extensions]"
+      );
+      mkdir(dir, "node_modules/husky");
+      install(dir, "/node_modules/husky");
+
+      const hgrc = readFile(dir, ".hg/hgrc");
+      expect(hgrc).toMatchSnapshot();
+      expect(hgrc).not.toMatch("precommit=.hg/hooks/precommit");
+    });
+
   });
 });

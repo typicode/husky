@@ -6,6 +6,7 @@ const findParent = require("./utils/find-parent");
 const getVcs = require("./utils/get-vcs");
 const findHooksDir = require("./utils/find-hooks-dir");
 const getHookScript = require("./utils/get-hook-script");
+const updateHgHooks = require("./utils/update-hg-hooks");
 const is = require("./utils/is");
 
 const SKIP = "SKIP";
@@ -89,19 +90,6 @@ function initHgrc(huskyDir) {
     } catch (e) {
       console.error(e);
     }
-  }
-}
-
-function updateHgHooks(huskyDir, hooksDir, hookName) {
-  const rootDir = findParent(huskyDir, ".hg");
-  const vcsDir = path.join(rootDir, ".hg");
-  const hgrcFile = path.join(vcsDir, "hgrc");
-  const hgrcData = fs.readFileSync(hgrcFile, "utf8");
-  try {
-    const hgrcData = fs.readFileSync(hgrcFile, "utf8");
-    fs.appendFileSync(hgrcFile, `\n${hookName}=.hg/hooks/${hookName}`);
-  } catch (e) {
-    console.error(e);
   }
 }
 

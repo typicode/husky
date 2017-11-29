@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`husky hg should not matter where the user defined hooks are 1`] = `
+"[ui]
+username=husky
+[hooks]
+precommit=.hg/hooks/husky
+changegroup=.hg/hooks/changegroup
+incoming=.hg/hooks/incoming
+outgoing=.hg/hooks/outgoing
+preoutgoing=.hg/hooks/preoutgoing
+pretag=.hg/hooks/pretag
+pretxnchangegroup=.hg/hooks/pretxnchangegroup
+pretxncommit=.hg/hooks/pretxncommit
+preupdate=.hg/hooks/preupdate
+[extensions]"
+`;
+
+exports[`husky hg should not modify user hooks 1`] = `
+"[ui]
+username=husky
+[hooks]
+precommit=.hg/hooks/husky
+changegroup=.hg/hooks/changegroup
+incoming=.hg/hooks/incoming
+outgoing=.hg/hooks/outgoing
+preoutgoing=.hg/hooks/preoutgoing
+pretag=.hg/hooks/pretag
+pretxnchangegroup=.hg/hooks/pretxnchangegroup
+pretxncommit=.hg/hooks/pretxncommit
+preupdate=.hg/hooks/preupdate"
+`;

@@ -18,8 +18,8 @@ module.exports = function updateHgHooks(huskyDir, hooksdir, hookName) {
         const hooksSectionStartIndex = hgrcData.indexOf("[hooks]");
         const lastSection = hgrcData.search(/\[([^\]]*)\][^\[]*$/g);
         const hooksSectionEndIndex = lastSection === hooksSectionStartIndex ? hgrcData.length : lastSection - 1;
-        let hooksSection = hgrcData.substr(hgrcData.indexOf("[hooks]"), hooksSectionEndIndex);
-        if (!containsHook(hooksSection)) {
+        let hooksSection = hgrcData.substring(hooksSectionStartIndex, hooksSectionEndIndex);
+        if (!containsHook(hooksSection, hookName)) {
             hooksSection += `\n${hookName}=.hg/hooks/${hookName}`
         }
         fs.writeFileSync(hgrcFile, hgrcData.substring(0, hooksSectionStartIndex) + hooksSection + hgrcData.substring(hooksSectionEndIndex), "utf8");
