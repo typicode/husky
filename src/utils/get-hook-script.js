@@ -41,9 +41,9 @@ module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptNa
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
 
-  const preCommitMsgHookName = vcs.name === 'git' ? 'prepare-commit-msg' : 'pretxncommit';
+  const preCommitMsgHookName = vcs.name === 'git' ? 'prepare-commit-msg' : 'pretxncommit'
 
-  const vcsHookParamsVar = vcs.name === 'git' ? 'GIT_PARAMS' : 'HG_ARGS';
+  const vcsHookParamsVar = vcs.name === 'git' ? 'GIT_PARAMS' : 'HG_ARGS'
 
   const noVerifyMessage =
     hookName === preCommitMsgHookName

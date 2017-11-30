@@ -1,7 +1,7 @@
 'use strict'
 
 const fs = require('fs')
-const getVcs = require("./utils/get-vcs");
+const getVcs = require('./utils/get-vcs')
 const findHooksDir = require('./utils/find-hooks-dir')
 const is = require('./utils/is')
 
@@ -16,8 +16,8 @@ function removeHook(dir, name) {
 function uninstallFrom(huskyDir) {
   try {
 
-    const vcs = getVcs(huskyDir);
-    const hooksDir = findHooksDir(vcs);
+    const vcs = getVcs(huskyDir)
+    const hooksDir = findHooksDir(vcs)
 
     vcs.hooks.forEach(function(hookName) {
       removeHook(hooksDir, hookName)
