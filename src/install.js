@@ -95,8 +95,7 @@ function initHgrc(huskyDir) {
 
 function installFrom(huskyDir) {
   try {
-    const isInSubNodeModule =
-      (huskyDir.match(/node_modules/g) || []).length > 1
+    const isInSubNodeModule = (huskyDir.match(/node_modules/g) || []).length > 1
     if (isInSubNodeModule) {
       return console.log(
         'trying to install from sub "node_module" directory,',
@@ -129,11 +128,9 @@ function installFrom(huskyDir) {
             case UPDATE:
               break
             case SKIP:
-              console.log(
-                `skipping ${item.hookName} hook (existing user hook)`
-              )
+              console.log(`skipping ${item.hookName} hook (existing user hook)`)
               break
-              case CREATE:
+            case CREATE:
               break
             default:
               console.error('Unknown action')

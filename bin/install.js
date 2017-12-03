@@ -14,8 +14,9 @@ if (isCI && !process.env.HUSKY_IGNORE_CI) {
 
 if (process.env.HUSKY_SKIP_INSTALL) {
   console.log(
-    `env variable HUSKY_SKIP_INSTALL is set to ${process.env
-      .HUSKY_SKIP_INSTALL}, skipping Git / hg hooks installation`
+    `env variable HUSKY_SKIP_INSTALL is set to ${
+      process.env.HUSKY_SKIP_INSTALL
+    }, skipping Git / hg hooks installation`
   )
   process.exit(0)
 }

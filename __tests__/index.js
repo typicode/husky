@@ -255,7 +255,6 @@ describe('husky', () => {
       expect(hgrc).toMatchSnapshot()
       expect(hgrc).not.toMatch('#husky-hg:begin')
       expect(hgrc).not.toMatch('#husky-hg:end')
-    });
-
+    })
   })
 })

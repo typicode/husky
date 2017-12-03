@@ -16,7 +16,6 @@ function removeHook(dir, name) {
 
 function uninstallFrom(huskyDir) {
   try {
-
     const vcs = getVcs(huskyDir)
     const hooksDir = findHooksDir(vcs)
 
@@ -24,8 +23,8 @@ function uninstallFrom(huskyDir) {
       removeHook(hooksDir, hookName)
     })
 
-    if(vcs.name === 'hg'){
-      hgUpdater.remove(huskyDir);
+    if (vcs.name === 'hg') {
+      hgUpdater.remove(huskyDir)
     }
 
     console.log('done\n')
