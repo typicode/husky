@@ -102,8 +102,6 @@ module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptNa
       echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
       echo
 
-      ${vcs.name === 'hg' ? 'for i in "$@" ; do [[ $i == "--no-verify" ]] && exit 0 && break ; done' : ''}
-      
       npm run -s ${npmScriptName} || {
         echo
         echo "husky > ${hookName} hook failed ${noVerifyMessage}"
