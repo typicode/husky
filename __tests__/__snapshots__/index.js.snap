@@ -34,3 +34,11 @@ pretxncommit=.hg/hooks/pretxncommit
 preupdate=.hg/hooks/preupdate
 #husky-hg:end"
 `;
+
+exports[`husky hg should remove the husky section on uninstall 1`] = `
+"[ui]
+username=husky
+[hooks]
+precommit=.hg/hooks/husky
+"
+`;

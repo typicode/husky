@@ -4,6 +4,9 @@ const fs = require('fs')
 const path = require('path')
 const findParent = require('./find-parent')
 
+const SECTION_BEGIN = '#husky-hg:begin'
+const SECTION_END = '#husky-hg:end'
+
 function containsHook(section, hookName) {
   return section.data.indexOf(hookName) >= 0
 }
@@ -25,8 +28,8 @@ function findHooksSection(hgrcData) {
 }
 
 function findHuskySection(hgrcData) {
-  const huskySectionStartIndex = hgrcData.indexOf('#husky-hg:begin')
-  const huskySectionEndIndex = hgrcData.indexOf('#husky-hg:end')
+  const huskySectionStartIndex = hgrcData.indexOf(SECTION_BEGIN)
+  const huskySectionEndIndex = hgrcData.indexOf(SECTION_END)
   const huskySection = hgrcData.substring(
     huskySectionStartIndex,
     huskySectionEndIndex
@@ -56,7 +59,7 @@ function hasHooksSection(hgrcData) {
   return hgrcData.indexOf('[hooks]') > -1
 }
 function hasHuskySection(hgrcData) {
-  return hgrcData.indexOf('#husky-hg:begin') > -1
+  return hgrcData.indexOf(SECTION_BEGIN) > -1
 }
 
 
@@ -66,7 +69,7 @@ function init(huskyDir) {
   const hgrcFile = path.join(vcsDir, 'hgrc')
   if (!fs.existsSync(hgrcFile)) {
     try {
-      fs.writeFileSync(hgrcFile, '#husky-hg:begin\n[hooks]\n#husky-hg:end')
+      fs.writeFileSync(hgrcFile, `${SECTION_BEGIN}\n[hooks]\n${SECTION_END}`)
     } catch (e) {
       console.error(e)
     }
@@ -76,12 +79,12 @@ function init(huskyDir) {
       if (!hasHooksSection(hgrcData)) {
         fs.appendFileSync(
           hgrcFile,
-          '\n#husky-hg:begin\n[hooks]\n#husky-hg:end'
+          `\n${SECTION_BEGIN}\n[hooks]\n${SECTION_END}`
         )
       }
       else if(!hasHuskySection(hgrcData)) {
         const hooksSection = findHooksSection(hgrcData)
-        hooksSection.data += '\n#husky-hg:begin\n#husky-hg:end'
+        hooksSection.data += `\n${SECTION_BEGIN}\n${SECTION_END}`
         update(hgrcFile, hgrcData, hooksSection)
       } 
     } catch (e) {
@@ -118,7 +121,7 @@ function remove(huskyDir) {
       hgrcFile,
       hgrcData.substring(0, section.start) +
         '' +
-        hgrcData.substring(section.end),
+        hgrcData.substring(section.end + SECTION_END.length),
       'utf8'
     )
   } catch (e) {

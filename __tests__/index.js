@@ -241,7 +241,20 @@ describe('husky', () => {
     })
 
     it('should remove the husky section on uninstall', () => {
+      mkdir(dir, '.hg/hooks')
+      writeFile(
+        dir,
+        '.hg/hgrc',
+        '[ui]\nusername=husky\n[hooks]\nprecommit=.hg/hooks/husky'
+      )
+      mkdir(dir, 'node_modules/husky')
+      install(dir, '/node_modules/husky')
+      uninstall(dir, '/node_modules/husky')
 
+      const hgrc = readFile(dir, '.hg/hgrc')
+      expect(hgrc).toMatchSnapshot()
+      expect(hgrc).not.toMatch('#husky-hg:begin')
+      expect(hgrc).not.toMatch('#husky-hg:end')
     });
 
   })
