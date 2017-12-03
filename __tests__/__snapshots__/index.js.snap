@@ -5,6 +5,7 @@ exports[`husky hg should not matter where the user defined hooks are 1`] = `
 username=husky
 [hooks]
 precommit=.hg/hooks/husky
+#husky-hg:begin
 changegroup=.hg/hooks/changegroup
 incoming=.hg/hooks/incoming
 outgoing=.hg/hooks/outgoing
@@ -13,6 +14,7 @@ pretag=.hg/hooks/pretag
 pretxnchangegroup=.hg/hooks/pretxnchangegroup
 pretxncommit=.hg/hooks/pretxncommit
 preupdate=.hg/hooks/preupdate
+#husky-hg:end
 [extensions]"
 `;
 
@@ -21,6 +23,7 @@ exports[`husky hg should not modify user hooks 1`] = `
 username=husky
 [hooks]
 precommit=.hg/hooks/husky
+#husky-hg:begin
 changegroup=.hg/hooks/changegroup
 incoming=.hg/hooks/incoming
 outgoing=.hg/hooks/outgoing
@@ -28,5 +31,6 @@ preoutgoing=.hg/hooks/preoutgoing
 pretag=.hg/hooks/pretag
 pretxnchangegroup=.hg/hooks/pretxnchangegroup
 pretxncommit=.hg/hooks/pretxncommit
-preupdate=.hg/hooks/preupdate"
+preupdate=.hg/hooks/preupdate
+#husky-hg:end"
 `;

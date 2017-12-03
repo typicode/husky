@@ -6,7 +6,7 @@ const findParent = require('./utils/find-parent')
 const getVcs = require('./utils/get-vcs')
 const findHooksDir = require('./utils/find-hooks-dir')
 const getHookScript = require('./utils/get-hook-script')
-const updateHgHooks = require('./utils/update-hg-hooks')
+const hgUpdater = require('./utils/hg-updater')
 const is = require('./utils/is')
 
 const SKIP = 'SKIP'
@@ -42,13 +42,13 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
   }
 
   if (vcs.name === 'hg') {
-    initHgrc(huskyDir)
+    hgUpdater.init(huskyDir)
   }
 
   if (!fs.existsSync(filename)) {
     write(filename, hookScript)
     if (vcs.name === 'hg') {
-      updateHgHooks(huskyDir, hooksDir, hookName)
+      hgUpdater.addHook(huskyDir, hooksDir, hookName)
     }
     return CREATE
   }

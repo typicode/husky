@@ -197,7 +197,7 @@ describe('husky', () => {
       install(dir, '/node_modules/husky')
 
       const hgrc = readFile(dir, '.hg/hgrc')
-      expect(hgrc).toMatch('[hooks]')
+      expect(hgrc).toMatch('#husky-hg:begin\n[hooks]')
     })
 
     it('should append a hooks section to an existing hgrc file', () => {
@@ -207,7 +207,7 @@ describe('husky', () => {
       install(dir, '/node_modules/husky')
 
       const hgrc = readFile(dir, '.hg/hgrc')
-      expect(hgrc).toMatch('[ui]\nusername=husky\n[hooks]')
+      expect(hgrc).toMatch('[ui]\nusername=husky\n#husky-hg:begin\n[hooks]')
     })
 
     it('should not modify user hooks', () => {
@@ -239,6 +239,10 @@ describe('husky', () => {
       expect(hgrc).toMatchSnapshot()
       expect(hgrc).not.toMatch('precommit=.hg/hooks/precommit')
     })
+
+    it('should remove the husky section on uninstall', () => {
+
+    });
 
   })
 })

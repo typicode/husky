@@ -4,6 +4,7 @@ const fs = require('fs')
 const getVcs = require('./utils/get-vcs')
 const findHooksDir = require('./utils/find-hooks-dir')
 const is = require('./utils/is')
+const hgUpdater = require('./utils/hg-updater')
 
 function removeHook(dir, name) {
   const filename = `${dir}/${name}`
@@ -22,6 +23,11 @@ function uninstallFrom(huskyDir) {
     vcs.hooks.forEach(function(hookName) {
       removeHook(hooksDir, hookName)
     })
+
+    if(vcs.name === 'hg'){
+      hgUpdater.remove(huskyDir);
+    }
+
     console.log('done\n')
   } catch (e) {
     console.error(e)
