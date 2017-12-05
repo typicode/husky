@@ -35,6 +35,8 @@ _Existing hooks aren't replaced and you can use [any Git hook](HOOKS.md)._
 
 _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev && npm install husky --save-dev` and edit `package.json`. Husky will automatically migrate `ghooks` hooks._
 
+_If you use Docker and need to specify the location of your npm script you can create a .huskyrc in your project directory and add a `HUSKY_NPM_PATH="/my/path/to/npm"` to it_
+
 ## Used by
 
 * [jQuery](https://github.com/jquery/jquery)
