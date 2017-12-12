@@ -3,7 +3,9 @@
 ## Beta
 
 * Support `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
-* Add `.huskyrc` support [#209](https://github.com/typicode/husky/pull/209)
+* Support `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation [#178](https://github.com/typicode/husky/pull/178)
+* Support `.huskyrc` [#209](https://github.com/typicode/husky/pull/209)
+
 
 ## 0.14.3
 
