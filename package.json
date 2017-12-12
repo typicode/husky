@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@types/jest": "^21.1.8",
-    "@types/node": "^8.0.53",
+    "@types/node": "^8.0.58",
     "crlf": "^1.1.1",
     "cross-env": "^5.1.1",
     "del": "^3.0.0",
@@ -59,7 +59,7 @@
     "jest": "^21.2.1",
     "mkdirp": "^0.5.1",
     "pkg-ok": "^1.1.0",
-    "prettier": "^1.8.2",
+    "prettier": "^1.9.2",
     "tempy": "^0.2.1",
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
