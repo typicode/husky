@@ -77,12 +77,17 @@ It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
 }
 ```
 
-## Options
+## Husky options
+
+In `package.json`:
 
 ```json
 {
   "husky": {
-    "skipCI": false
+    "skipCI": true,
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }
 ```
@@ -93,3 +98,10 @@ Default: true
 
 By default, `husky` won't install Git hooks in CI environments.
 
+## Preventing auto-install
+
+If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_SKIP_INSTALL` environment variable to `true`.
+
+```
+HUSKY_SKIP_INSTALL=true npm install
+```

@@ -98,6 +98,14 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
   const conf = getConf(userDir)
 
+  if (process.env.HUSKY_SKIP_INSTALL === 'true') {
+    console.log(
+      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
+      'skipping Git hooks installation'
+    )
+    return
+  }
+
   if (isCI && conf.skipCI) {
     console.log('CI detected, skipping Git hooks installation')
     return

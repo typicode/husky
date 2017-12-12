@@ -133,6 +133,17 @@ describe('install', () => {
     expect(hook).toMatch(huskyIdentifier)
   })
 
+  it('should not install hooks if HUSKY_SKIP_INSTALL=true', () => {
+    mkdir('.git/hooks')
+    mkdir('node_modules/husky')
+    writeFile('package.json', pkg)
+
+    process.env.HUSKY_SKIP_INSTALL = 'true'
+    installFrom('node_modules/husky')
+    delete process.env.HUSKY_SKIP_INSTALL
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+  })
+
   it('should not install hooks in CI server by default', () => {
     mkdir('.git/hooks')
     mkdir('node_modules/husky')
