@@ -27,9 +27,7 @@ export default function(
     if (oldCommand) {
       console.log()
       console.log(
-        `Warning: Setting ${
-          hookName
-        } script in package.json > scripts will be deprecated in v1.0`
+        `Warning: Setting ${hookName} script in package.json > scripts will be deprecated in v1.0`
       )
       console.log(
         `Please move it to husky.hooks in package.json, a .huskyrc file, or a husky.config.js file`
