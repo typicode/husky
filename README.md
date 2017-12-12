@@ -37,7 +37,7 @@ npm uninstall husky
 
 ## Upgrade
 
-If you're upgrading from `0.14`, simply move your hooks to `"husky"` field.
+If you're upgrading from `0.14`, simply move your hooks to `husky` field.
 
 ```diff
 {
