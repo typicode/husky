@@ -1,3 +1,4 @@
+import * as execa from 'execa'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
@@ -93,6 +94,22 @@ function getHooks(gitDir: string): string[] {
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
 
+function getGitDir() {
+  // Find Git dir
+  const { status, stdout, stderr } = execa.sync('git', [
+    'rev-parse',
+    '--git-dir'
+  ])
+  const gitDir = path.resolve(stdout) // Needed to normalize path on Windows
+
+  if (status !== 0) {
+    console.log(stderr)
+    process.exit(1)
+  }
+
+  return gitDir
+}
+
 export function install(gitDir: string, huskyDir: string, isCI: boolean) {
   console.log('husky > setting up git hooks')
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
@@ -107,6 +124,8 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
     console.log("Can't find package.json, skipping Git hooks installation")
     return
   }
+
+  gitDir = gitDir || getGitDir()
 
   if (path.join(userDir, '.git') !== gitDir) {
     console.log(
@@ -128,6 +147,8 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
 export function uninstall(gitDir: string, huskyDir: string) {
   console.log('husky > uninstalling git hooks')
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
+
+  gitDir = gitDir || getGitDir()
 
   if (path.join(userDir, '.git') === gitDir) {
     // Remove hooks
