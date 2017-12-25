@@ -98,7 +98,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
       echo
 
-      npm run -s ${npmScriptName} || {
+      npm run -s ${npmScriptName} --script-shell="$SHELL" || {
         echo
         echo "husky > ${hookName} hook failed ${noVerifyMessage}"
         exit 1
