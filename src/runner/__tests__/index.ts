@@ -82,6 +82,28 @@ describe('run', () => {
     expect(status).toBe(1)
   })
 
+  it('should support POSIX shell command on Windows', () => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'MSG=success npm run test --script-shell=$SHELL'
+          }
+        },
+        scripts: {
+          test: 'echo "$MSG"'
+        }
+      })
+    )
+
+    const status = index([, getScriptPath(dir), 'pre-commit'])
+
+    expect(status).toBe(0)
+  })
+
   it('should support old scripts but show a deprecated message', () => {
     const dir = tempy.directory()
 

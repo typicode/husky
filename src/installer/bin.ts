@@ -1,4 +1,3 @@
-import * as execa from 'execa'
 import * as fs from 'fs'
 import * as isCI from 'is-ci'
 import * as path from 'path'
