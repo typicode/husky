@@ -8,10 +8,12 @@ __New beta version available__ [here](https://github.com/typicode/husky/tree/dev
 
 ## Install
 
+Using npm:
 ```sh
 npm install husky --save-dev
 ```
 
+Using yarn:
 ```
 yarn add husky --dev
 ```
@@ -48,10 +50,12 @@ _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev 
 
 ## Uninstall
 
+Using npm:
 ```sh
 npm uninstall husky
 ```
 
+Using yarn:
 ```sh
 yarn remove husky
 ```
