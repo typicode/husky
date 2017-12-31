@@ -46,6 +46,7 @@ describe('husky', () => {
 
     expect(hook).toMatch('#husky')
     expect(hook).toMatch('cd "."')
+    expect(hook).toMatch('npm run -s githook -- pre-commit precommit')
     expect(hook).toMatch('npm run -s precommit')
     expect(hook).toMatch('--no-verify')
 

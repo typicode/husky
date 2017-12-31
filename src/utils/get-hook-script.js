@@ -4,6 +4,8 @@ const normalize = require('normalize-path')
 const stripIndent = require('strip-indent')
 const pkg = require('../../package.json')
 
+const genericNpmScriptName = 'githook'
+
 function platformSpecific() {
   // On OS X and Linux, try to use nvm if it's installed
   if (process.platform === 'win32') {
@@ -78,7 +80,7 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
       cd "${normalizedPath}"
 
       # Check if ${npmScriptName} script is defined, skip if not
-      has_hook_script ${npmScriptName} || exit 0`
+      has_hook_script ${npmScriptName} || has_hook_script ${genericNpmScriptName} || exit 0`
     ).trim(),
 
     platformSpecific(),
@@ -93,6 +95,18 @@ module.exports = function getHookScript(hookName, relativePath, npmScriptName) {
 
       # Export Git hook params
       export GIT_PARAMS="$*"
+
+      # Run generic npm script, if defined
+      has_hook_script ${genericNpmScriptName} && {
+        echo "husky > npm run -s ${genericNpmScriptName} (node \`node -v\`)"
+        echo
+
+        npm run -s ${genericNpmScriptName} -- ${hookName} ${npmScriptName} || {
+          echo
+          echo "husky > generic hook during ${hookName} hook failed ${noVerifyMessage}"
+          exit 1
+        }
+      }
 
       # Run npm script
       echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
