@@ -1,7 +1,7 @@
 {
-  "name": "husky",
+  "name": "husky-hg",
   "version": "0.14.3",
-  "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
+  "description": "Prevents bad commit or push (git/hg hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "engines": {
     "node": ">=4"
   },
@@ -13,10 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/typicode/husky.git"
+    "url": "git://github.com/TobiasTimm/husky-hg.git"
   },
   "keywords": [
     "git",
+    "hg",
+    "mercurial",
     "hook",
     "hooks",
     "pre-commit",
@@ -29,10 +31,10 @@
     "postmerge",
     "test"
   ],
-  "author": "Typicode <typicode@gmail.com>",
+  "author": "Tobias Timm <tbs.timm@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/typicode/husky/issues"
+    "url": "https://github.com/TobiasTimm/husky-hg/issues"
   },
   "homepage": "https://github.com/typicode/husky",
   "devDependencies": {

@@ -1,6 +1,9 @@
 # Hooks
 
-Husky supports all git hooks (https://git-scm.com/docs/githooks). Simply add the corresponding `npm script` to your `package.json`.
+Husky supports all [git](https://git-scm.com/docs/githooks) / [mercurial](https://www.mercurial-scm.org/repo/hg/help/hgrc) hooks.
+Simply add the corresponding `npm script` to your `package.json`.
+
+#### git
 
 | Git hook | npm script |
 | -------- | ---------- |
@@ -23,3 +26,32 @@ Husky supports all git hooks (https://git-scm.com/docs/githooks). Simply add the
 | push-to-checkout | pushtocheckout |
 | update | update |
 | sendemail-validate | sendemailvalidate |
+
+#### Mercurial / hg
+
+| hg hook | npm script |
+| -------- | ---------- |
+| changegroup | changegroup |
+| commit | commit |
+| incoming | incoming |
+| outgoing| outgoing |
+| post-<command> | post<command> |
+| fail-<command> | fail<command> |
+| pre-<command> | pre<command> |
+| prechangegroup | prechangegroup |
+| precommit | precommit |
+| prelistkeys | prelistkeys |
+| preoutgoing | preoutgoing |
+| prepushkey | prepushkey |
+| pretag | pretag |
+| pretxnopen | pretxnopen |
+| pretxnclose | pretxnclose |
+| txnclose | txnclose |
+| txnabort | txnabort |
+| pretxnchangegroup | pretxnchangegroup |
+| pretxncommit | pretxncommit |
+| preupdate | preupdate |
+| listkeys | listkeys |
+| pushkey | pushkey |
+| tag | tag |
+| update | update |

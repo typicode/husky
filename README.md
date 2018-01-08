@@ -1,23 +1,22 @@
-# husky [![](http://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![npm version](https://badge.fury.io/js/husky.svg)](https://www.npmjs.com/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/branch/master)
+# husky-hg [![](http://img.shields.io/npm/dm/husky-hg.svg?style=flat)](https://www.npmjs.org/package/husky-hg) [![npm version](https://badge.fury.io/js/husky-hg.svg)](https://www.npmjs.com/package/husky-hg) [![Mac/Linux Build Status](https://img.shields.io/travis/tobiastimm/husky-hg/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/tobiastimm/husky-hg) [![Windows Build status](https://img.shields.io/appveyor/ci/tobiastimm/husky-hg/master.svg?label=Windows)](https://ci.appveyor.com/project/tobiastimm/husky-hg/branch/master)
 
-> Git hooks made easy
+> Git / Mercurial hooks made easy
+> husky-hg is a fork of husky, the only difference is that Mercurial is 
+> supported as an alternative to Git. This fork will be kept up-to-date as 
+> much as possible. WIP own npm package
 
 Husky can prevent bad commit, push and more :dog: _woof!_
 
 __New beta version available__ [here](https://github.com/typicode/husky/tree/dev). Feedback and bug reports welcome :wink:
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/6WUB3WBwbmZXbZxzrUv5y2A5/typicode/husky'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/6WUB3WBwbmZXbZxzrUv5y2A5/typicode/husky.svg' />
-</a>
-
 ## Install
 
 ```sh
-npm install husky --save-dev
+npm install husky-hg --save-dev
 ```
 
 ```
-yarn add husky --dev
+yarn add husky-hg --dev
 ```
 
 ```javascript
@@ -35,7 +34,7 @@ yarn add husky --dev
 git commit -m "Keep calm and commit"
 ```
 
-_Existing hooks aren't replaced and you can use [any Git hook](HOOKS.md)._
+_Existing hooks aren't replaced and you can use [any Git/Mercurial hook](HOOKS.md)._
 
 _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev && npm install husky --save-dev` and edit `package.json`. Husky will automatically migrate `ghooks` hooks._
 
@@ -53,11 +52,11 @@ _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev 
 ## Uninstall
 
 ```sh
-npm uninstall husky
+npm uninstall husky-hg
 ```
 
 ```sh
-yarn remove husky
+yarn remove husky-hg
 ```
 
 ## Tricks
@@ -100,6 +99,10 @@ _`-q/--quiet` is equivalent to `--loglevel warn` which is npm default log level.
 
 Yes
 
+### Mercurial subrepo support
+
+No
+
 ### Cygwin support
 
 Yes
@@ -118,4 +121,4 @@ Please use `yarn` `v0.24+`
 
 ## License
 
-MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode)
+MIT 
