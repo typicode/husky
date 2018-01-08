@@ -14,6 +14,12 @@ __New beta version available__ [here](https://github.com/typicode/husky/tree/dev
 
 ## Install
 
+Until own npm package is available just try it out with
+
+```sh
+npm install https://github.com/TobiasTimm/husky-hg/tarball/master
+```
+
 ```sh
 npm install husky-hg --save-dev
 ```
