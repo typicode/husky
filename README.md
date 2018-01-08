@@ -5,6 +5,9 @@
 > supported as an alternative to Git. This fork will be kept up-to-date as 
 > much as possible. WIP own npm package
 
+#### WIP
+- publishing own npm package
+
 Husky can prevent bad commit, push and more :dog: _woof!_
 
 __New beta version available__ [here](https://github.com/typicode/husky/tree/dev). Feedback and bug reports welcome :wink:
