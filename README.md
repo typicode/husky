@@ -11,12 +11,10 @@ __New beta version available__ [here](https://github.com/typicode/husky/tree/dev
 
 ## Install
 
-```sh
-npm install husky-hg --save-dev
-```
+Until own npm package is available just try it out with
 
-```
-yarn add husky-hg --dev
+```sh
+npm install https://github.com/TobiasTimm/husky-hg/tarball/master
 ```
 
 ```javascript
