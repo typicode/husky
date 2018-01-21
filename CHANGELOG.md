@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.15.0-rc-1
+## 0.15.0-rc.1
 
 * `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
 * `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation [#178](https://github.com/typicode/husky/pull/178)
