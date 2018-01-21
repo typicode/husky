@@ -3,7 +3,7 @@
   "version": "0.15.0-rc.1",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
-    "husky-upgrade": "./lib/upgrader/bin"
+    "husky-upgrade": "./lib/upgrader/bin.js"
   },
   "scripts": {
     "test": "npm run lint && jest",
