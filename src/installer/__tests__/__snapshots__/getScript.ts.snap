@@ -3,7 +3,7 @@
 exports[`hookScript should match snapshot 1`] = `
 "#!/bin/bash
 # husky
-# v0.15.0-beta.16
+# v0.15.0-rc.1
 
 hookname=\`basename \\"$0\\"\`
 [ -f package.json ] && cat package.json | grep -q \\"\\\\\\"$hookname\\\\\\"[[:space:]]*:\\"
