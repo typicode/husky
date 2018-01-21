@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.2
+
+* Fix install error
+
 ## 0.15.0-rc.1
 
 * `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
