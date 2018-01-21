@@ -2,7 +2,7 @@
 
 ## Supported hooks
 
-`husky` supports all Git hooks (https://git-scm.com/docs/githooks).
+`husky` supports all Git hooks defined [here](https://git-scm.com/docs/githooks).
 
 ## Access Git params
 

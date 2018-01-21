@@ -29,6 +29,10 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
+By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories.
+
+Check [documentation](DOCS.md) for more.
+
 ## Uninstall
 
 ```sh
@@ -52,13 +56,13 @@ If you're upgrading from `0.14`, simply move your hooks to `husky.hooks`:
 }
 ```
 
+Or run the following command which will do the same automatically:
+
+```
+./node_modules/.bin/husky-upgrade
+```
+
 Alternatively, you can now also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml` file formats.
-
-## Extras
-
-By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories.
-
-Check [documentation](DOCS.md) for more.
 
 ## Features
 
