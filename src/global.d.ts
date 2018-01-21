@@ -1,4 +1,3 @@
-declare module 'execa'
 declare module 'is-ci'
 declare module 'pupa'
 declare module 'pkg-dir'

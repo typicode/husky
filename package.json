@@ -53,6 +53,7 @@
     "slash": "^1.0.0"
   },
   "devDependencies": {
+    "@types/execa": "^0.8.1",
     "@types/jest": "^22.0.1",
     "@types/node": "^9.3.0",
     "crlf": "^1.1.1",
