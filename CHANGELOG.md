@@ -10,8 +10,9 @@
 * Move config from `scripts` field to `husky` field
 * Prefer raw names for Git hooks (`pre-commit` rather than `precommit`)
 * Drop integrated `nvm` support
-* Provide `husky-upgrade` command
-* Add deprecation warning for hooks that are defined in `scripts`
+* To ease upgrade:
+  * Provide `husky-upgrade` command
+  * Add deprecation warning for hooks that are defined in `scripts` (but still run them)
 
 ## 0.14.3
 
