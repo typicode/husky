@@ -2,14 +2,14 @@
 
 > Git hooks made easy
 
-_beta branch, see [master](https://github.com/typicode/husky) for stable release documentation_
+_next branch, see [master](https://github.com/typicode/husky) for stable release documentation_
 
 Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
 ## Install
 
 ```sh
-npm install husky@beta --save-dev
+npm install husky@next --save-dev
 ```
 
 ```js
@@ -35,9 +35,9 @@ git commit -m 'Keep calm and commit'
 npm uninstall husky
 ```
 
-## Upgrade
+## Upgrading from 0.14
 
-If you're upgrading from `0.14`, simply move your hooks to `husky` field.
+If you're upgrading from `0.14`, simply move your hooks to `husky.hooks`:
 
 ```diff
 {
@@ -52,13 +52,13 @@ If you're upgrading from `0.14`, simply move your hooks to `husky` field.
 }
 ```
 
-Alternatively, you may use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml`.
+Alternatively, you can now also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml` file formats.
 
-## Configure
+## Extras
 
 By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories.
 
-Check [documentation](docs.md) for more.
+Check [documentation](DOCS.md) for more.
 
 ## Features
 
@@ -66,7 +66,6 @@ Check [documentation](docs.md) for more.
 * Keeps existing user hooks
 * Supports GUI Git clients
 * Supports all Git hooks (`pre-commit`, `pre-push`, ...)
-* Supports monorepo/sub-directories layouts
 * If you were using `ghooks`, it will automatically migrate your previous Git hooks
 
 ## Used by

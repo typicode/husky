@@ -1,15 +1,17 @@
 # CHANGELOG
 
-## Beta
+## 0.15.0-rc-1
 
 * `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
 * `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation [#178](https://github.com/typicode/husky/pull/178)
 * `.huskyrc` config [#209](https://github.com/typicode/husky/pull/209)
 * `pnpm` support
 * Support environments where `yarn` is the only package manager installed
-* Move config from `package.json` `scripts` field to `husky` field
+* Move config from `scripts` field to `husky` field
 * Prefer raw names for Git hooks (`pre-commit` rather than `precommit`)
 * Drop integrated `nvm` support
+* Provide `husky-upgrade` command
+* Add deprecation warning for hooks that are defined in `scripts`
 
 ## 0.14.3
 

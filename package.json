@@ -2,6 +2,9 @@
   "name": "husky",
   "version": "0.15.0-beta.16",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
+  "bin": {
+    "husky-upgrade": "./lib/upgrader/bin"
+  },
   "scripts": {
     "test": "npm run lint && jest",
     "postinstall": "node lib/installer/bin install",

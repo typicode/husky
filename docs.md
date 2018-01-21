@@ -2,11 +2,53 @@
 
 ## Supported hooks
 
-`husky` supports all Git hooks (https://git-scm.com/docs/githooks) and Git params can be accessed using `GIT_PARAMS` environment variable.
+`husky` supports all Git hooks (https://git-scm.com/docs/githooks).
 
-## How to
+## Access Git params
 
-### Sub-directory package
+You can access them using `GIT_PARAMS` environment variable.
+
+## Disable auto-install
+
+If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_SKIP_INSTALL` environment variable to `true`.
+
+```
+HUSKY_SKIP_INSTALL=true npm install
+```
+
+## Multi-package repository (monorepo)
+
+If you have a multi-package repository:
+
+```sh
+project/
+  package.json # Root package.json
+  packages/
+    A/
+      package.json
+    B/
+      package.json
+    C/
+      package.json
+```
+
+It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
+
+```json
+{
+  "private": true,
+  "devDependencies": {
+    "husky": "..."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run ..."
+    }
+  }
+}
+```
+
+## Sub-directory package
 
 If your project is in a sub-directory:
 
@@ -43,65 +85,4 @@ One of the downside of this approach is that you'll have to run `npm install` in
     "postinstall": "cd .. && npm install"
   }
 }
-```
-
-### Multi-package repository (monorepo)
-
-If you have a multi-package repository:
-
-```sh
-project/
-  package.json # Root package.json
-  packages/
-    A/
-      package.json
-    B/
-      package.json
-    C/
-      package.json
-```
-
-It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
-
-```json
-{
-  "private": true,
-  "devDependencies": {
-    "husky": "..."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lerna run ..."
-    }
-  }
-}
-```
-
-## Husky options
-
-In `package.json`:
-
-```json
-{
-  "husky": {
-    "skipCI": true,
-    "hooks": {
-      "pre-commit": "npm test"
-    }
-  }
-}
-```
-
-### skipCI
-
-Default: true
-
-By default, `husky` won't install Git hooks in CI environments.
-
-## Preventing auto-install
-
-If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_SKIP_INSTALL` environment variable to `true`.
-
-```
-HUSKY_SKIP_INSTALL=true npm install
 ```
