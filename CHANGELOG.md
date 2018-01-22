@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.3
+
+* Fix `husky-upgrade`
+
 ## 0.15.0-rc.2
 
 * Fix install error
