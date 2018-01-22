@@ -32,9 +32,20 @@ export default function migrate(dir: string) {
   const pkgFile = path.join(dir, 'package.json')
   if (fs.existsSync(pkgFile)) {
     const pkg = readPkg.sync(dir, { normalize: false })
-    pkg.husky = { hooks: {} }
 
     console.log(`husky > upgrading ${pkgFile}`)
+
+    // Don't overwrite pkg.husky if it exists
+    if (pkg.husky) {
+      return console.log(
+        `husky field in package.json isn't empty, skipping automatic upgrade`
+      )
+    }
+
+    // Create empty husky.hooks field
+    pkg.husky = { hooks: {} }
+
+    // Loop trhough hooks and move them to husky.hooks
     Object.keys(hookList).forEach(name => {
       const script = pkg.scripts[name]
       if (script) {
@@ -45,6 +56,7 @@ export default function migrate(dir: string) {
       }
     })
 
+    // Update package.json
     fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2), 'utf-8')
     console.log(`husky > done`)
   }
