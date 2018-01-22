@@ -3,7 +3,7 @@
 ## 0.15.0-rc.3
 
 * Fix `husky-upgrade`
-* Drop Node 4 support
+* Drop `Node 4` support
 
 ## 0.15.0-rc.2
 
