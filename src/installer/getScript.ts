@@ -6,10 +6,11 @@ import * as slash from 'slash'
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
 
-export default function(userDir: string) {
-  const runNodePath = slash(
-    path.relative(userDir, require.resolve('.bin/run-node'))
-  )
+export default function(
+  userDir: string,
+  requireRunNodePath: string = require.resolve('.bin/run-node') // For testing
+) {
+  const runNodePath = slash(path.relative(userDir, requireRunNodePath))
 
   const { version } = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
