@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`hookScript should match snapshot 1`] = `
-"#!/bin/bash
+exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
+"#!/bin/sh
 # husky
-# v0.15.0-rc.4
+# v0.15.0-rc.4 darwin
 
 hookname=\`basename \\"$0\\"\`
 [ -f package.json ] && cat package.json | grep -q \\"\\\\\\"$hookname\\\\\\"[[:space:]]*:\\"
@@ -12,6 +12,23 @@ export GIT_PARAMS=\\"$*\\"
 
 if [[ $? -eq 0 ]]; then
   node_modules/run-node/run-node ./node_modules/husky/lib/runner/bin $hookname
+  exit $?
+fi 
+"
+`;
+
+exports[`hookScript should match snapshot (Windows) 1`] = `
+"#!/bin/sh
+# husky
+# v0.15.0-rc.4 win32
+
+hookname=\`basename \\"$0\\"\`
+[ -f package.json ] && cat package.json | grep -q \\"\\\\\\"$hookname\\\\\\"[[:space:]]*:\\"
+
+export GIT_PARAMS=\\"$*\\"
+
+if [[ $? -eq 0 ]]; then
+  node ./node_modules/husky/lib/runner/bin $hookname
   exit $?
 fi 
 "

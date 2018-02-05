@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.5
+
+* Fix error with GitHub Desktop on Windows
+
 ## 0.15.0-rc.4
 
 * Catch error if `git` command fails
