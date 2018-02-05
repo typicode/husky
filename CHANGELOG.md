@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.4
+
+* Catch error if `git` command fails
+
 ## 0.15.0-rc.3
 
 * Fix `husky-upgrade`

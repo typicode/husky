@@ -9,18 +9,19 @@ import { install, uninstall } from './'
 const [, , action, huskyDir = path.join(__dirname, '../..')] = process.argv
 
 // Find Git dir
-const { code, stdout, stderr } = execa.sync('git', ['rev-parse', '--git-dir'])
-const gitDir = path.resolve(stdout) // Needed to normalize path on Windows
+try {
+  const { stdout } = execa.sync('git', ['rev-parse', '--git-dir'])
 
-if (code !== 0) {
-  console.log('husky > failed to install')
-  console.log(stderr)
-  process.exit(1)
-}
+  // Needed to normalize path on Windows
+  const gitDir = path.resolve(stdout)
 
-// Run installer
-if (action === 'install') {
-  install(gitDir, huskyDir, isCI)
-} else {
-  uninstall(gitDir, huskyDir)
+  // Run installer
+  if (action === 'install') {
+    install(gitDir, huskyDir, isCI)
+  } else {
+    uninstall(gitDir, huskyDir)
+  }
+} catch (error) {
+  console.log(`husky > failed to ${action}`)
+  console.log(error.message)
 }
