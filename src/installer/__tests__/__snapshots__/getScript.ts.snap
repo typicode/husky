@@ -3,7 +3,7 @@
 exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 "#!/bin/sh
 # husky
-# v0.15.0-rc.4 darwin
+# v0.15.0-rc.5 darwin
 
 hookname=\`basename \\"$0\\"\`
 [ -f package.json ] && cat package.json | grep -q \\"\\\\\\"$hookname\\\\\\"[[:space:]]*:\\"
@@ -20,7 +20,7 @@ fi
 exports[`hookScript should match snapshot (Windows) 1`] = `
 "#!/bin/sh
 # husky
-# v0.15.0-rc.4 win32
+# v0.15.0-rc.5 win32
 
 hookname=\`basename \\"$0\\"\`
 [ -f package.json ] && cat package.json | grep -q \\"\\\\\\"$hookname\\\\\\"[[:space:]]*:\\"
