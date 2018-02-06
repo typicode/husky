@@ -2,12 +2,11 @@
 {huskyIdentifier}
 # v{version} {platform}
 
-hookname=`basename "$0"`
-[ -f package.json ] && cat package.json | grep -q "\"$hookname\"[[:space:]]*:"
-
 export GIT_PARAMS="$*"
 
-if [[ $? -eq 0 ]]; then
+hookname=`basename "$0"`
+
+if [ -f package.json ] && cat package.json | grep -q "\"$hookname\"[[:space:]]*:"; then
   {node} ./node_modules/husky/lib/runner/bin $hookname
   exit $?
 fi 
