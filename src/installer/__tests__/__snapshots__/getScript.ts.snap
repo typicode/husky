@@ -3,7 +3,7 @@
 exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 "#!/bin/sh
 # husky
-# v0.15.0-rc.5 darwin
+# v0.15.0-rc.6 darwin
 
 export GIT_PARAMS=\\"$*\\"
 
@@ -19,7 +19,7 @@ fi
 exports[`hookScript should match snapshot (Windows) 1`] = `
 "#!/bin/sh
 # husky
-# v0.15.0-rc.5 win32
+# v0.15.0-rc.6 win32
 
 export GIT_PARAMS=\\"$*\\"
 
