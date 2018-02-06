@@ -1,8 +1,10 @@
-scripts
-src
-typings
 .travis.yml
 appveyor.yml
+ci-check.js
+ci.ok
 preprocessor.js
+scripts
+src
 tsconfig.json
 tslint.json
+typings

@@ -1,6 +1,6 @@
 {
   "skipCI": false,
   "hooks": {
-    "post-checkout": "rm -f post-checkout.ok && echo \"running CI post-checkout test\" && touch post-checkout.ok"
+    "post-checkout": "rm -f ci.ok && echo \"running CI post-checkout test\" && touch ci.ok"
   }
 }

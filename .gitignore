@@ -1,5 +1,5 @@
 *.log
 .DS_Store
-node_modules/
+ci.ok
 lib
-pre-commit.ok
+node_modules/
