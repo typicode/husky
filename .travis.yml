@@ -7,4 +7,6 @@ node_js:
   - "6"
 install:
   - npm install --ignore-scripts
-  - bash -n templates/hook.sh
+script:
+  - sh -n templates/hook.sh
+  - npm test
