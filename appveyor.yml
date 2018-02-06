@@ -16,6 +16,9 @@ test_script:
   - npm --version
   # run tests
   - npm test
+  - npm run devinstall
+  - git commit
+  - node check-ci
 
 # Don't actually build.
 build: off
