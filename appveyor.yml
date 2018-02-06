@@ -17,8 +17,8 @@ test_script:
   # run tests
   - npm test
   - npm run devinstall
-  - git commit
-  - node check-ci
+  - .git/hooks/pre-commit
+  - node ci-check
 
 # Don't actually build.
 build: off
