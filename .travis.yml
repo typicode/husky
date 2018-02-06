@@ -7,3 +7,5 @@ node_js:
   - "6"
 install:
   - npm install --ignore-scripts
+  - npm run devinstall
+  - git commit
