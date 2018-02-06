@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.6
+
+* Fix `[[` error
+
 ## 0.15.0-rc.5
 
 * Fix error with GitHub Desktop on Windows
