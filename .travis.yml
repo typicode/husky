@@ -10,5 +10,5 @@ install:
 script:
   - npm test
   - npm run devinstall
-  - .git/hooks/pre-commit
+  - git checkout
   - node ci-check
