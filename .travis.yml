@@ -10,4 +10,4 @@ install:
 script:
   - npm test
   - npm run devinstall
-  - git commit
+  - sh .git/hooks/pre-commit
