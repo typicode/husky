@@ -17,7 +17,7 @@ test_script:
   # run tests
   - npm test
   - npm run devinstall
-  - git checkout
+  - git push
   - node ci-check
 
 # Don't actually build.
