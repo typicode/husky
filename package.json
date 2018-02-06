@@ -84,6 +84,7 @@
     ]
   },
   "husky": {
+    "skipCI": false,
     "hooks": {
       "pre-commit": "npm test"
     }
