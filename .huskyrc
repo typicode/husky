@@ -1,6 +1,6 @@
 {
   "skipCI": false,
   "hooks": {
-    "pre-commit": "rm -f pre-commit.ok && echo \"running CI pre-commit test\" &&  && touch pre-commit.ok"
+    "pre-commit": "rm -f pre-commit.ok && echo \"running CI pre-commit test\" && touch pre-commit.ok"
   }
 }
