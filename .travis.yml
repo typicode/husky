@@ -11,3 +11,4 @@ script:
   - npm test
   - npm run devinstall
   - .git/hooks/pre-commit
+  - [ -f pre-commit.ok ]

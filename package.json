@@ -82,11 +82,5 @@
     "testMatch": [
       "**/__tests__/*.(ts|tsx|js)"
     ]
-  },
-  "husky": {
-    "skipCI": false,
-    "hooks": {
-      "pre-commit": "npm test"
-    }
   }
 }
