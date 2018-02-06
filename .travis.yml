@@ -11,4 +11,4 @@ script:
   - npm test
   - npm run devinstall
   - .git/hooks/pre-commit
-  - sh ci-check.sh
+  - node ci-check
