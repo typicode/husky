@@ -1,6 +1,7 @@
 {
   "skipCI": false,
   "hooks": {
+    "pre-commit": "npm test",
     "post-checkout": "rm -f ci.ok && echo \"running CI post-checkout test\" && touch ci.ok"
   }
 }

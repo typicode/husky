@@ -1,9 +1,13 @@
 # CHANGELOG
 
+## 0.15.0-rc.8
+
+* Handle case where `v0.14` git hooks wouldn't have been uninstalled
+
 ## 0.15.0-rc.7
 
 * Move `postinstall` script to `install`
-* Set `LF` line ending on `upgrader`
+* Fix line ending error when running `upgrader` from OS X/Linux
 
 ## 0.15.0-rc.6
 

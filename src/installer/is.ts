@@ -1,7 +1,14 @@
 import { huskyIdentifier } from './getScript'
 
 export function isHusky(data: string): boolean {
-  return data.indexOf(huskyIdentifier) !== -1
+  // v0.14 and prior used #husky as an identifier.
+  // Just in case some previous hooks weren't correctly uninstalled,
+  // and for a better transition this will allow v0.15+ to uninstall them as well.
+  const previousHuskyIdentifier = '#husky'
+  return (
+    data.indexOf(huskyIdentifier) !== -1 ||
+    data.indexOf(previousHuskyIdentifier) !== -1
+  )
 }
 
 export function isGhooks(data: string): boolean {

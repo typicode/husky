@@ -76,6 +76,24 @@ describe('install', () => {
     expect(hook).not.toContain('foo')
   })
 
+  it('should update existing husky hooks (v0.14 and earlier)', () => {
+    const huskyDir = 'node_modules/husky'
+    const hookFilename = '.git/hooks/pre-commit'
+
+    mkdir('.git/hooks')
+    mkdir(huskyDir)
+    writeFile('package.json', pkg)
+
+    // Create an existing husky hook
+    writeFile(hookFilename, '#husky\nfoo')
+
+    // Verify that it has been updated
+    installFrom(huskyDir)
+    const hook = readFile(hookFilename)
+    expect(hook).toContain('# husky')
+    expect(hook).not.toContain('foo')
+  })
+
   it('should not modify user hooks', () => {
     const huskyDir = 'node_modules/husky'
     const hookFilename = '.git/hooks/pre-push'
