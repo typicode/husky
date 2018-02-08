@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "postinstall": "node lib/installer/bin install",
+    "install": "node lib/installer/bin install",
     "preuninstall": "node lib/installer/bin uninstall",
     "devinstall": "npm run build && npm run postinstall -- node_modules/husky && node scripts/dev",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
