@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.15.0-rc.7
+
+* Move `postinstall` script to `install`
+* Set `LF` line ending on `upgrader`
+
 ## 0.15.0-rc.6
 
 * Fix `[[` error
