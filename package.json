@@ -9,7 +9,7 @@
     "test": "npm run lint && jest",
     "install": "node lib/installer/bin install",
     "preuninstall": "node lib/installer/bin uninstall",
-    "devinstall": "npm run build && npm run postinstall -- node_modules/husky && node scripts/dev",
+    "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "lf": "crlf --set=LF templates/hook.sh && crlf --set=LF lib/upgrader/bin.js",
