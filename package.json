@@ -12,7 +12,7 @@
     "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
-    "lf": "crlf --set=LF templates/hook.sh && crlf --set=LF lib/upgrader/bin.js",
+    "lf": "crlf --set=LF templates/hook.sh lib/upgrader/bin.js",
     "prepublishOnly": "npm run test && npm run build && npm run lf && pkg-ok",
     "lint": "tslint 'src/**/*.ts'",
     "fix": "npm run lint -- --fix"
