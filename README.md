@@ -85,7 +85,7 @@ Alternatively, you can also use any of the files/formats that are supported by [
 
 ## See also
 
-* [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing modules with bad paths
+* [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
 * [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
 * [react-fake-props](https://github.com/typicode/react-fake-props) - Fake props for your React tests
 
