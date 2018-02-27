@@ -16,6 +16,14 @@ If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_
 HUSKY_SKIP_INSTALL=true npm install
 ```
 
+## Allow installation in the outer .git directory
+
+If you want to install hooks in outer git repository, set `HUSKY_ALLOW_INSTALL_OUTER` environment variable to `true`.
+
+```
+HUSKY_ALLOW_INSTALL_OUTER=true npm install
+```
+
 ## Multi-package repository (monorepo)
 
 If you have a multi-package repository:

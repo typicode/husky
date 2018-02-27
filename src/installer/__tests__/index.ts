@@ -162,6 +162,17 @@ describe('install', () => {
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
+  it('should install hooks in outer the .git dir if HUSKY_ALLOW_INSTALL_OUTER=true', () => {
+    mkdir('.git/hooks')
+    mkdir('subdir/node_modules/husky')
+    writeFile('package.json', pkg)
+
+    process.env.HUSKY_ALLOW_INSTALL_OUTER = 'true'
+    installFrom('subdir/node_modules/husky')
+    delete process.env.HUSKY_ALLOW_INSTALL_OUTER
+    expect(exists('.git/hooks/pre-commit')).toBeTruthy()
+  })
+
   it('should not install hooks in CI server by default', () => {
     mkdir('.git/hooks')
     mkdir('node_modules/husky')

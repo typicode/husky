@@ -116,7 +116,10 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
     return
   }
 
-  if (path.join(userDir, '.git') !== gitDir) {
+  if (
+    path.join(userDir, '.git') !== gitDir &&
+    process.env.HUSKY_ALLOW_INSTALL_OUTER !== 'true'
+  ) {
     console.log(
       `Expecting package.json to be at the same level as .git, skipping Git hooks installation`
     )
