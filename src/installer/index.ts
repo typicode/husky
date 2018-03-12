@@ -43,7 +43,7 @@ function createHook(filename: string, script: string) {
 
     // Migrate
     if (isGhooks(hook)) {
-      console.log(`migrating existing ghooks script: ${name} `)
+      console.log(`migrating existing ghooks script: ${name}`)
       return writeHook(filename, script)
     }
 
@@ -101,27 +101,35 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
   if (process.env.HUSKY_SKIP_INSTALL === 'true') {
     console.log(
       "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
-      'skipping Git hooks installation'
+      'skipping Git hooks installation.'
     )
     return
   }
 
   if (isCI && conf.skipCI) {
-    console.log('CI detected, skipping Git hooks installation')
+    console.log('CI detected, skipping Git hooks installation.')
     return
   }
 
   if (userDir === null) {
-    console.log("Can't find package.json, skipping Git hooks installation")
+    console.log("Can't find package.json, skipping Git hooks installation.")
     return
   }
 
   if (path.join(userDir, '.git') !== gitDir) {
     console.log(
-      `Expecting package.json to be at the same level as .git, skipping Git hooks installation`
+      `Expecting package.json to be at the same level as .git, skipping Git hooks installation.`
     )
     console.log(`gitDir: ${gitDir}`)
     console.log(`userDir: ${userDir}`)
+    return
+  }
+
+  if (!fs.existsSync(path.join(userDir, '.git/hooks'))) {
+    console.log(
+      "Can't find .git/hooks directory. You can try to fix this error by creating it manually."
+    )
+    console.log('Skipping Git hooks installation.')
     return
   }
 

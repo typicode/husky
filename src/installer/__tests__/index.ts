@@ -181,4 +181,14 @@ describe('install', () => {
     installFrom('node_modules/husky', isCI)
     expect(exists('.git/hooks/pre-commit')).toBeTruthy()
   })
+
+  it("should not crash if .git/hooks doesn't exist", () => {
+    const huskyDir = 'node_modules/husky'
+
+    mkdir('.git')
+    mkdir(huskyDir)
+    writeFile('package.json', pkg)
+
+    expect(() => installFrom(huskyDir)).not.toThrow()
+  })
 })
