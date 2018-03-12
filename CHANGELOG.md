@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.9
+
+* Handle case where `.git/hooks` directory doesn't exit
+
 ## 0.15.0-rc.8
 
 * Handle case where `v0.14` git hooks wouldn't have been uninstalled
