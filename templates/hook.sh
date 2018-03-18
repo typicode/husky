@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 {huskyIdentifier}
 # v{version} {platform}
 

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
-"#!/bin/sh -e
+"#!/bin/sh
 # husky
 # v0.15.0-rc.10 darwin
 
@@ -13,7 +13,7 @@ node_modules/run-node/run-node ./node_modules/husky/lib/runner/bin \`basename \\
 `;
 
 exports[`hookScript should match snapshot (Windows) 1`] = `
-"#!/bin/sh -e
+"#!/bin/sh
 # husky
 # v0.15.0-rc.10 win32
 
