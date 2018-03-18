@@ -10,5 +10,5 @@ install:
 script:
   - npm test
   - npm run devinstall
-  - git checkout
+  - time git checkout
   - node ci-check
