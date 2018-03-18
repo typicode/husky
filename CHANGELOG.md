@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.11
+
+* Fix hooks not running
+
 ## 0.15.0-rc.10
 
 * Add `GIT_STDIN` environment variable
