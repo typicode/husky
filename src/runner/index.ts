@@ -36,7 +36,7 @@ export default function(
         `Or run ./node_modules/.bin/husky-upgrade for automatic update`
       )
       console.log()
-      console.log(`See https://github.com/typicode/husky/tree/dev for usage`)
+      console.log(`See https://github.com/typicode/husky for usage`)
       console.log()
       console.log(`husky > ${hookName} (node ${process.version})`)
       execa.shellSync(oldCommand, { cwd, stdio: 'inherit' })
