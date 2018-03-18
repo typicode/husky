@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.0-rc.10
+
+* Add `GIT_STDIN` environment variable
+
 ## 0.15.0-rc.9
 
 * Handle case where `.git/hooks` directory doesn't exit
