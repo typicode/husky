@@ -4,7 +4,7 @@
 
 * Add `GIT_STDIN` environment variable
 
-`rc.10` and `rc.11` are bugged
+`rc.10` and `rc.11` are broken
 
 ## 0.15.0-rc.9
 
