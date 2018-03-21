@@ -35,9 +35,7 @@ Simply add the corresponding `npm script` to your `package.json`.
 | commit | commit |
 | incoming | incoming |
 | outgoing| outgoing |
-| post-<command> | post<command> |
-| fail-<command> | fail<command> |
-| pre-<command> | pre<command> |
+| pre-push | prepush |
 | prechangegroup | prechangegroup |
 | precommit | precommit |
 | prelistkeys | prelistkeys |

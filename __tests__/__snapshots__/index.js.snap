@@ -9,11 +9,18 @@ precommit=.hg/hooks/husky
 changegroup=.hg/hooks/changegroup
 incoming=.hg/hooks/incoming
 outgoing=.hg/hooks/outgoing
+pre-push=.hg/hooks/pre-push
+prechangegroup=.hg/hooks/prechangegroup
+prelistkeys=.hg/hooks/prelistkeys
 preoutgoing=.hg/hooks/preoutgoing
 pretag=.hg/hooks/pretag
+pretxnopen=.hg/hooks/pretxnopen
+pretxnclose=.hg/hooks/pretxnclose
+txnabort=.hg/hooks/txnabort
 pretxnchangegroup=.hg/hooks/pretxnchangegroup
 pretxncommit=.hg/hooks/pretxncommit
 preupdate=.hg/hooks/preupdate
+pushkey=.hg/hooks/pushkey
 #husky-hg:end
 [extensions]"
 `;
@@ -27,11 +34,18 @@ precommit=.hg/hooks/husky
 changegroup=.hg/hooks/changegroup
 incoming=.hg/hooks/incoming
 outgoing=.hg/hooks/outgoing
+pre-push=.hg/hooks/pre-push
+prechangegroup=.hg/hooks/prechangegroup
+prelistkeys=.hg/hooks/prelistkeys
 preoutgoing=.hg/hooks/preoutgoing
 pretag=.hg/hooks/pretag
+pretxnopen=.hg/hooks/pretxnopen
+pretxnclose=.hg/hooks/pretxnclose
+txnabort=.hg/hooks/txnabort
 pretxnchangegroup=.hg/hooks/pretxnchangegroup
 pretxncommit=.hg/hooks/pretxncommit
 preupdate=.hg/hooks/preupdate
+pushkey=.hg/hooks/pushkey
 #husky-hg:end"
 `;
 
