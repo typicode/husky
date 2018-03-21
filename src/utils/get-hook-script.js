@@ -4,7 +4,7 @@ const normalize = require('normalize-path')
 const stripIndent = require('strip-indent')
 const pkg = require('../../package.json')
 
-function platformSpecific() {
+function gitPlatformSpecific() {
   // On OS X and Linux, try to use nvm if it's installed
   if (process.platform === 'win32') {
     // Add
@@ -37,19 +37,43 @@ function platformSpecific() {
   }
 }
 
+function hgPlatformSpecific() {
+  // On OS X and Linux, try to use nvm if it's installed
+  if (process.platform === 'win32') {
+    // Add
+    // Node standard installation path /c/Program Files/nodejs
+    // for GUI apps
+    // https://github.com/typicode/husky/issues/49
+    return stripIndent(
+      ``
+    )
+  } else {
+    // Using normalize to support ' in path
+    // https://github.com/typicode/husky/issues/117
+    const home = normalize(process.env.HOME)
+
+    return stripIndent(
+      `
+    # comment for indent
+      # use nvm (if available)
+      use_nvm('${home}/.nvm')`
+    )
+
+    return arr.join('\n')
+  }
+}
+
 module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptName) {
   // On Windows normalize path (i.e. convert \ to /)
   const normalizedPath = normalize(relativePath)
+  const isGit = vcs.name === 'git'
 
-  const preCommitMsgHookName = vcs.name === 'git' ? 'prepare-commit-msg' : 'pretxncommit'
+  return isGit 
+    ? createGitScript(normalizedPath, hookName, npmScriptName)
+    : createHgScript(normalizedPath, hookName, npmScriptName);
+}
 
-  const vcsHookParamsVar = vcs.name === 'git' ? 'GIT_PARAMS' : 'HG_ARGS'
-
-  const noVerifyMessage =
-    hookName === preCommitMsgHookName
-      ? '(cannot be bypassed with --no-verify due to Git specs)'
-      : '(add --no-verify to bypass)'
-
+function createGitScript(normalizedPath, hookName, npmScriptName) {
   return [
     stripIndent(
       `
@@ -85,7 +109,7 @@ module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptNa
       has_hook_script ${npmScriptName} || exit 0`
     ).trim(),
 
-    platformSpecific(),
+    gitPlatformSpecific(),
 
     stripIndent(
       `
@@ -96,7 +120,7 @@ module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptNa
       }
 
       # Export VCS hook params
-      export ${vcsHookParamsVar}="$*"
+      export GIT_PARAMS="$*"
 
       # Run npm script
       echo "husky > npm run -s ${npmScriptName} (node \`node -v\`)"
@@ -104,10 +128,108 @@ module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptNa
 
       npm run -s ${npmScriptName} || {
         echo
-        echo "husky > ${hookName} hook failed ${noVerifyMessage}"
+        echo "husky > ${hookName} hook failed (cannot be bypassed with --no-verify due to Git specs)"
         exit 1
       }
       `
+    )
+  ].join('\n')
+}
+
+function createHgScript(normalizedPath, hookName, npmScriptName)
+{
+  return [
+    stripIndent(
+      `
+        #!/usr/bin/python
+        #husky ${pkg.version}
+        import os
+        import sys
+        import re
+        import subprocess
+
+        pfx = 'husky > '
+
+        def print_msg(msg):
+          print pfx + msg
+
+        def print_error_msg(msg):
+          print >> sys.stderr, pfx + msg
+
+        def has_cmd(cmd):
+          def is_exe(fp):
+            return os.path.isfile(fp) and os.access(fp, os.X_OK)
+
+          fp, fn = os.path.split(cmd)
+
+          if fp:
+            if is_exe(cmd):
+              return True
+          else:
+            for path in os.environ['PATH'].split(os.pathsep):
+              fn = os.path.join(path, cmd)
+              if is_exe(fn):
+                return True
+
+          return False
+
+        def execute_cmd(cmd):
+          try:
+            FNULL = os.open(os.devnull, os.O_WRONLY)
+            return subprocess.check_call(cmd, stdin=FNULL, stdout=FNULL, stderr=FNULL) == 0
+          except (OSError, subprocess.CalledProcessError) as e:
+            print_error_msg(str(e))
+            return False
+
+        def has_hook_script(hookName):
+          if re.search('"' + hookName + '"\\s*:', open('package.json').read()):
+            return True
+          return False
+
+        def has_file(fn):
+          return os.path.isfile(fn)
+
+        def use_nvm(fn):
+          # if no project file is here, return
+          if has_file('.nvmrc') is False:
+            return
+
+          # if nvm is in PATH, use it
+          if has_cmd('nvm') is True:
+            execute_cmd(['nvm', 'use'])
+            return
+
+          # with a shell, try to source it
+          execute_cmd(['sh', '-c', 'source ' + fn + ' && nvm use'])
+
+
+        def execute_hook(ui, repo, hooktype, **kwargs):
+          os.chdir('${normalizedPath}')
+
+          # check if a precommit hook is set
+          if has_hook_script('${npmScriptName}') is False:
+            return False`
+    ).trim(),
+
+    hgPlatformSpecific(),
+
+    stripIndent(
+      `
+    # comment for indent
+      # check if npm is available
+      if has_cmd('npm') is False:
+        print_error_msg('can\\'t find npm in PATH, skipping precommit script in package.json')
+        return True
+
+      # export arguments for husky
+      os.environ['HG_ARGS'] = ' '.join(sys.argv)
+
+      npm_cmd = ['npm', 'run', '-s', '${npmScriptName}']
+      print_msg(' '.join(npm_cmd) + '\\n')
+
+      if execute_cmd(npm_cmd) is False:
+        print_error_msg('${hookName} hook failed (add --no-verify to bypass)')
+        return True`
     )
   ].join('\n')
 }

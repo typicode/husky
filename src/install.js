@@ -21,7 +21,9 @@ function write(filename, data) {
 }
 
 function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
-  const filename = path.join(hooksDir, hookName)
+  const isMercurial = vcs.name === 'hg'
+  const extension = isMercurial ? '.py' : ''
+  const filename = path.join(hooksDir, hookName) + extension
 
   // Assuming that this file is in node_modules/husky
   const packageDir = path.join(huskyDir, '..', '..')
@@ -41,7 +43,7 @@ function createHook(huskyDir, vcs, hooksDir, hookName, cmd) {
     fs.mkdirSync(hooksDir)
   }
 
-  if (vcs.name === 'hg') {
+  if (isMercurial) {
     hgUpdater.init(huskyDir)
   }
 

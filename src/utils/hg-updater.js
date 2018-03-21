@@ -102,7 +102,7 @@ function addHook(huskyDir, hooksdir, hookName) {
     const hooksSection = findHooksSection(hgrcData)
     let huskySection = findHuskySection(hgrcData)
     if (!containsHook(huskySection, hookName) && !containsHook(hooksSection, hookName)) {
-      huskySection.data += `${hookName}=.hg/hooks/${hookName}\n`
+      huskySection.data += `${hookName}=python:.hg/hooks/${hookName}.py:execute_hook\n`
     }
     update(hgrcFile, hgrcData, huskySection)
   } catch (e) {
