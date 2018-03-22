@@ -5,8 +5,6 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # husky
 # v0.15.0-rc.12 darwin
 
-read stdin
-export GIT_STDIN=\\"$stdin\\"
 export GIT_PARAMS=\\"$*\\"
 node_modules/run-node/run-node ./node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
 "
@@ -17,8 +15,6 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # husky
 # v0.15.0-rc.12 win32
 
-read stdin
-export GIT_STDIN=\\"$stdin\\"
 export GIT_PARAMS=\\"$*\\"
 node ./node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
 "

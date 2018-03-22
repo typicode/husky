@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## 0.15.0-rc.12
+## 0.15.0-rc.13
 
-* Add `GIT_STDIN` environment variable
+* Revert `GIT_STDIN` for the moment. Needs more testing.
 
-`rc.10` and `rc.11` are broken
+`rc.10`, `rc.11` and `rc.12` are broken for some GUI clients due to `read`
 
 ## 0.15.0-rc.9
 

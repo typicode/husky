@@ -4,9 +4,9 @@
 
 `husky` supports all Git hooks defined [here](https://git-scm.com/docs/githooks).
 
-## Access Git params and stdin
+## Access Git params
 
-You can access them using `GIT_PARAMS` and `GIT_STDIN` environment variables.
+You can access them using `GIT_PARAMS` environment variable.
 
 ## Disable auto-install
 
