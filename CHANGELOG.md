@@ -4,7 +4,7 @@
 
 * Revert `GIT_STDIN` for the moment. Needs more testing.
 
-`rc.10`, `rc.11` and `rc.12` are broken for some GUI clients due to `read`
+`rc.10`, `rc.11` and `rc.12` are broken for some GUI clients due to `read` command
 
 ## 0.15.0-rc.9
 
