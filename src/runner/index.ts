@@ -1,12 +1,20 @@
 import * as cosmiconfig from 'cosmiconfig'
 import * as execa from 'execa'
+import * as getStdin from 'get-stdin'
 import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 
-export default function(
-  [, , hookName = '']: string[],
+export interface IEnv extends NodeJS.ProcessEnv {
+  GIT_STDIN?: string
+  GIT_PARAMS?: string
+}
+
+export default async function(
+  // process.argv
+  [, , hookName = '', GIT_PARAMS]: string[],
+  // options for testing
   { cwd = process.cwd() } = {}
-): number {
+): Promise<number> {
   const pkg = readPkg.sync(cwd)
 
   const config = getConf(cwd)
@@ -18,9 +26,17 @@ export default function(
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
   try {
+    const env: IEnv = {
+      GIT_PARAMS
+    }
+
+    if (['pre-push', 'pre-receive', 'post-receive', 'post-rewrite']) {
+      env.GIT_STDIN = await getStdin()
+    }
+
     if (command) {
       console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(command, { cwd, stdio: 'inherit' })
+      execa.shellSync(command, { cwd, stdio: 'inherit', env })
       return 0
     }
 
