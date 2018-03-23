@@ -177,18 +177,18 @@ describe('husky', () => {
       mkdir(dir, 'node_modules/husky')
 
       install(dir, '/node_modules/husky')
-      const hook = readFile(dir, '.hg/hooks/precommit')
+      const hook = readFile(dir, '.hg/hooks/precommit.py')
 
       expect(hook).toMatch('#husky')
-      expect(hook).toMatch('cd "."')
-      expect(hook).toMatch('npm run -s precommit')
+      expect(hook).toMatch('os.chdir(\'.\')')
+      expect(hook).toMatch('[\'npm\', \'run\', \'-s\', \'precommit\']')
       expect(hook).toMatch('--no-verify')
 
-      const prepareCommitMsg = readFile(dir, '.hg/hooks/pretxncommit')
+      const prepareCommitMsg = readFile(dir, '.hg/hooks/pretxncommit.py')
       expect(prepareCommitMsg).toMatch('cannot be bypassed')
 
       uninstall(dir, 'node_modules/husky')
-      expect(exists(dir, '.hg/hooks/prepush')).toBeFalsy()
+      expect(exists(dir, '.hg/hooks/prepush.py')).toBeFalsy()
     })
 
     it('should create a hgrc file, if none is present', () => {
