@@ -68,12 +68,18 @@ module.exports = function getHookScript(vcs, hookName, relativePath, npmScriptNa
   const normalizedPath = normalize(relativePath)
   const isGit = vcs.name === 'git'
 
+  const preCommitMsgHookName = isGit ? 'prepare-commit-msg' : 'pretxncommit'
+  const verifyMessage =
+    hookName === preCommitMsgHookName
+      ? '(cannot be bypassed with --no-verify due to Git specs)'
+      : '(add --no-verify to bypass)'
+
   return isGit 
-    ? createGitScript(normalizedPath, hookName, npmScriptName)
-    : createHgScript(normalizedPath, hookName, npmScriptName);
+    ? createGitScript(normalizedPath, hookName, npmScriptName, verifyMessage)
+    : createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage);
 }
 
-function createGitScript(normalizedPath, hookName, npmScriptName) {
+function createGitScript(normalizedPath, hookName, npmScriptName, verifyMessage) {
   return [
     stripIndent(
       `
@@ -128,7 +134,7 @@ function createGitScript(normalizedPath, hookName, npmScriptName) {
 
       npm run -s ${npmScriptName} || {
         echo
-        echo "husky > ${hookName} hook failed (cannot be bypassed with --no-verify due to Git specs)"
+        echo "husky > ${hookName} hook failed ${verifyMessage}"
         exit 1
       }
       `
@@ -136,7 +142,7 @@ function createGitScript(normalizedPath, hookName, npmScriptName) {
   ].join('\n')
 }
 
-function createHgScript(normalizedPath, hookName, npmScriptName)
+function createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage)
 {
   return [
     stripIndent(
@@ -228,7 +234,7 @@ function createHgScript(normalizedPath, hookName, npmScriptName)
       print_msg(' '.join(npm_cmd) + '\\n')
 
       if execute_cmd(npm_cmd) is False:
-        print_error_msg('${hookName} hook failed (add --no-verify to bypass)')
+        print_error_msg('${hookName} hook failed ${verifyMessage}')
         return True`
     )
   ].join('\n')
