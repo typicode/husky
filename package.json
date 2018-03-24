@@ -1,6 +1,6 @@
 {
   "name": "husky-hg",
-  "version": "0.14.4",
+  "version": "0.15.0",
   "description": "Prevents bad commit or push (git/hg hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "engines": {
     "node": ">=4"
