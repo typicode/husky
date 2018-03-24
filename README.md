@@ -1,13 +1,14 @@
-# husky-hg [![](http://img.shields.io/npm/dm/husky-hg.svg?style=flat)](https://www.npmjs.org/package/husky-hg) [![npm version](https://badge.fury.io/js/husky-hg.svg)](https://www.npmjs.com/package/husky-hg) [![Mac/Linux Build Status](https://img.shields.io/travis/TobiasTimm/husky-hg/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/tobiastimm/husky-hg) [![Windows Build status](https://img.shields.io/appveyor/ci/tobiastimm/husky-hg/master.svg?label=Windows)](https://ci.appveyor.com/project/tobiastimm/husky-hg/branch/master)
+# husky-hg [![](http://img.shields.io/npm/dm/husky-hg.svg?style=flat)](https://www.npmjs.org/package/husky-hg) [![npm version](https://badge.fury.io/js/husky-hg.svg)](https://www.npmjs.com/package/husky-hg) [![Mac/Linux Build Status](https://img.shields.io/travis/TobiasTimm/husky-hg/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/tobiastimm/husky-hg) [![Windows Build status](https://img.shields.io/appveyor/ci/TobiasTimm/husky-hg/master.svg?label=Windows)](https://ci.appveyor.com/project/tobiastimm/husky-hg/branch/master)
 
-> Git / Mercurial hooks made easy
-> husky-hg is a fork of husky, the only difference is that Mercurial is 
-> supported as an alternative to Git. This fork will be kept up-to-date as 
-> much as possible. WIP own npm package
+> Git / Mercurial hooks made easy.
+>
+> `husky-hg` is a fork of `husky`. 
+> The only difference is, that Mercurial is 
+> supported as an alternative to git. 
+>
+> *This fork will be kept up-to-date as much as possible.*
 
 Husky can prevent bad commit, push and more :dog: _woof!_
-
-__New beta version available__ [here](https://github.com/typicode/husky/tree/dev). Feedback and bug reports welcome :wink:
 
 ## Install
 
@@ -34,7 +35,7 @@ yarn add husky-hg --dev
 git commit -m "Keep calm and commit"
 ```
 
-_Existing hooks aren't replaced and you can use [any Git/Mercurial hook](HOOKS.md)._
+_Existing hooks aren't replaced and you can use [any git/Mercurial hook](HOOKS.md)._
 
 _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev && npm install husky --save-dev` and edit `package.json`. Husky will automatically migrate `ghooks` hooks._
 
