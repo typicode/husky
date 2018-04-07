@@ -5,6 +5,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # husky
 # v0.15.0-rc.13 darwin
 
+unset GIT_DIR
 export GIT_PARAMS=\\"$*\\"
 node_modules/run-node/run-node ./node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
 "
@@ -15,6 +16,7 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # husky
 # v0.15.0-rc.13 win32
 
+unset GIT_DIR
 export GIT_PARAMS=\\"$*\\"
 node ./node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
 "
