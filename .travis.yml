@@ -3,8 +3,7 @@ os:
   - osx
 language: node_js
 node_js:
-  - "stable"
-  - "6"
+  - "node"
 install:
   - npm install --ignore-scripts
 script:
