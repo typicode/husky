@@ -44,7 +44,7 @@ It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lerna run ..."
+      "pre-commit": "lerna run test"
     }
   }
 }
