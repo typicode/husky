@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.0.0-rc.1
+
+* Namespace environment variable created by husky
+  * `GIT_PARAMS` becomes `HUSKY_GIT_PARAMS`
+* Starting also with `1.0.0` versioning
+
 ## 0.15.0-rc.13
 
 * Revert `GIT_STDIN` for the moment. Needs more testing.
