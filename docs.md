@@ -81,7 +81,7 @@ If your project is in a sub-directory, create a root `package.json`, run `npm in
 One of the downside of this approach is that you'll have to run `npm install` in `project` and `subproject`. If you only have one package and you're __not publishing it__, you can do the following to ensure that `husky` is also installed when you run `npm install` in your subdirectory:
 
 ```js
-// project/subproject/package.json
+// root/subdirectory/package.json
 {
   "private": true,
   "scripts": {
