@@ -21,15 +21,17 @@ HUSKY_SKIP_INSTALL=true npm install
 If you have a multi-package repository:
 
 ```sh
-project/
-  package.json # Root package.json
-  packages/
-    A/
-      package.json
-    B/
-      package.json
-    C/
-      package.json
+.
+└── root
+    ├── .git
+    ├── package.json 🐶 # add husky here
+    └── packages
+        ├── A
+        │   └── package.json
+        ├── B
+        │   └── package.json
+        └── C
+            └── package.json
 ```
 
 It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
@@ -50,18 +52,19 @@ It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
 
 ## Sub-directory package
 
-If your project is in a sub-directory:
+If your project is in a sub-directory, create a root `package.json`, run `npm install husky --save-dev` and edit `package.json` to configure `husky`:
 
+```sh
+.
+└── root
+    ├── .git
+    ├── package.json 🐶 # add husky here
+    └── subdirectory
+        └── package.json
 ```
-project
-  subproject
-    package.json
-```
-
-Create a root `package.json`, run `npm install husky --save-dev` and edit `package.json` to configure `husky`:
 
 ```js
-// project/package.json
+// Create root/package.json
 {
   "private": true,
   "devDependencies": {

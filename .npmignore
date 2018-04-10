@@ -8,3 +8,4 @@ src
 tsconfig.json
 tslint.json
 typings
+docs-util.js
