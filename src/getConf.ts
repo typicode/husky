@@ -1,10 +1,6 @@
 import * as cosmiconfig from 'cosmiconfig'
 
-interface IHook {
-  skipCI: boolean
-}
-
-export default function getConf(dir: string): IHook {
+export default function getConf(dir: string): any {
   const { config = {} } =
     cosmiconfig('husky', {
       rcExtensions: true,
