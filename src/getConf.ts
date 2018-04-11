@@ -1,13 +1,18 @@
 import * as cosmiconfig from 'cosmiconfig'
 
-export default function getConf(dir: string): any {
+interface IConf {
+  skipCI: boolean
+  hooks?: any
+}
+
+export default function getConf(dir: string): IConf {
   const { config = {} } =
     cosmiconfig('husky', {
       rcExtensions: true,
       sync: true
     }).load(dir) || {}
 
-  const defaults = {
+  const defaults: IConf = {
     skipCI: true
   }
 
