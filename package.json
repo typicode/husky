@@ -5,6 +5,9 @@
   "bin": {
     "husky-upgrade": "./lib/upgrader/bin.js"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "test": "npm run lint && jest",
     "install": "node lib/installer/bin install",

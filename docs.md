@@ -6,7 +6,7 @@
 
 ## Access Git params
 
-You can access them using `GIT_PARAMS` environment variable.
+You can access them using `HUSKY_GIT_PARAMS` environment variable.
 
 ## Disable auto-install
 
