@@ -4,6 +4,11 @@ import * as isCI from 'is-ci'
 import * as path from 'path'
 import { install, uninstall } from './'
 
+// Just for testing
+if (process.env.HUSKY_DEBUG) {
+  console.log(process.env.INIT_CWD)
+}
+
 // Action can be "install" or "uninstall"
 // huskyDir is ONLY used in dev, don't use this arguments
 const [, , action, huskyDir = path.join(__dirname, '../..')] = process.argv
