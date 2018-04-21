@@ -5,6 +5,10 @@ import * as path from 'path'
 import * as tempy from 'tempy'
 import index from '../'
 
+function getScriptPath(dir) {
+  return path.join(dir, 'node_modules/husky/runner/index.js')
+}
+
 describe('run', () => {
   it('should run working command and return 0 status', () => {
     const dir = tempy.directory()
@@ -20,7 +24,27 @@ describe('run', () => {
       })
     )
 
-    const status = index([, , 'pre-commit'], { cwd: dir })
+    const status = index([, getScriptPath(dir), 'pre-commit'])
+    expect(status).toBe(0)
+  })
+
+  it('should run working command and return 0 status when husky is installed in a sub directory', () => {
+    const dir = tempy.directory()
+    const subDir = path.join(dir, 'A/B')
+    mkdirp.sync(subDir)
+
+    fs.writeFileSync(
+      path.join(subDir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo success'
+          }
+        }
+      })
+    )
+
+    const status = index([, getScriptPath(subDir), 'pre-commit'])
     expect(status).toBe(0)
   })
 
@@ -36,7 +60,7 @@ describe('run', () => {
       })
     )
 
-    const status = index([, , 'pre-commit'], { cwd: dir })
+    const status = index([, getScriptPath(dir), 'pre-commit'])
     expect(status).toBe(0)
   })
 
@@ -54,7 +78,7 @@ describe('run', () => {
       })
     )
 
-    const status = index([, , 'pre-commit'], { cwd: dir })
+    const status = index([, getScriptPath(dir), 'pre-commit'])
     expect(status).toBe(1)
   })
 
@@ -70,7 +94,7 @@ describe('run', () => {
       })
     )
 
-    const status = index([, , 'pre-commit'], { cwd: dir })
+    const status = index([, getScriptPath(dir), 'pre-commit'])
     expect(status).toBe(0)
   })
 })

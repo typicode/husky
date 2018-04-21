@@ -113,6 +113,19 @@ describe('install', () => {
     expect(exists(hookFilename)).toBeTruthy()
   })
 
+  it('should support package.json installed in sub directory (not recommanded)', () => {
+    mkdir('.git/hooks')
+    mkdir('A/B/node_modules/husky')
+    writeFile('package.json', pkg)
+
+    installFrom('A/B/node_modules/husky')
+    const hook = readFile('.git/hooks/pre-commit')
+    expect(hook).toMatch('./A/B/node_modules/husky/lib/runner/bin')
+
+    uninstallFrom('A/B/node_modules/husky')
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+  })
+
   it('should not install from /node_modules/A/node_modules', () => {
     mkdir('.git/hooks')
     mkdir('node_modules/A/node_modules/husky')
