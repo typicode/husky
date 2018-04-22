@@ -40,7 +40,10 @@ function expectHookToExist(filename: string) {
 }
 
 describe('install', () => {
-  beforeEach(() => (tempDir = tempy.directory()))
+  beforeEach(() => {
+    delete process.env.INIT_CWD
+    tempDir = tempy.directory()
+  })
   afterEach(() => del(tempDir, { force: true }))
 
   it('should install and uninstall', () => {
@@ -133,6 +136,17 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     installFrom('node_modules/A/node_modules/husky')
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+  })
+
+  it('should not install from node_modules using INIT_CWD', () => {
+    process.env.INIT_CWD = 'node_modules'
+    const huskyDir = 'node_modules/husky'
+    const hookFilename = '.git/hooks/pre-commit'
+    mkdir('.git/hooks')
+    writeFile('package.json', pkg)
+
+    installFrom(huskyDir)
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 

@@ -8,12 +8,12 @@ import * as slash from 'slash'
 export const huskyIdentifier = '# husky'
 
 export default function(
-  userDir: string,
+  rootDir: string,
   // Additional params used for testing
   requireRunNodePath: string = require.resolve('.bin/run-node'),
   platform: string = os.platform()
 ) {
-  const runNodePath = slash(path.relative(userDir, requireRunNodePath))
+  const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
 
   // On Windows do not rely on run-node
   const node = platform === 'win32' ? 'node' : runNodePath

@@ -88,15 +88,37 @@ function removeHooks(filenames: string[]) {
   filenames.filter(canRemove).forEach(removeHook)
 }
 
+// This prevents the case where someone would want to debug a node_module that has
+// husky as devDependency and run npm install from node_modules directory
+function isInNodeModules(dir: string) {
+  // INIT_CWD holds the full path you were in when you ran npm install (supported by pnpm also)
+  // See https://docs.npmjs.com/cli/run-script
+  if (
+    process.env.INIT_CWD &&
+    process.env.INIT_CWD.indexOf('node_modules') !== -1
+  ) {
+    return true
+  }
+
+  // Old technique
+  return (dir.match(/node_modules/g) || []).length > 1
+}
+
 function getHooks(gitDir: string): string[] {
   const gitHooksDir = path.join(gitDir, 'hooks')
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
 
+/**
+ * @param gitDir - e.g. /home/typicode/project/.git/
+ * @param huskyDir - e.g. /home/typicode/project/node_modules/husky
+ * @param isCI - true if running in CI
+ */
 export function install(gitDir: string, huskyDir: string, isCI: boolean) {
   console.log('husky > setting up git hooks')
-  const userDir = pkgDir.sync(path.join(huskyDir, '..'))
-  const conf = getConf(userDir)
+  const rootDir = path.join(gitDir, '..')
+  const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+  const conf = getConf(userPkgDir)
 
   if (process.env.HUSKY_SKIP_INSTALL === 'true') {
     console.log(
@@ -111,21 +133,19 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
     return
   }
 
-  if (userDir === null) {
+  if (userPkgDir === null) {
     console.log("Can't find package.json, skipping Git hooks installation.")
     return
   }
 
-  if (path.join(userDir, '.git') !== gitDir) {
+  if (isInNodeModules(huskyDir)) {
     console.log(
-      `Expecting package.json to be at the same level as .git, skipping Git hooks installation.`
+      'Trying to install from node_modules directory, skipping Git hooks installation.'
     )
-    console.log(`gitDir: ${gitDir}`)
-    console.log(`userDir: ${userDir}`)
     return
   }
 
-  if (!fs.existsSync(path.join(userDir, '.git/hooks'))) {
+  if (!fs.existsSync(path.join(rootDir, '.git/hooks'))) {
     console.log(
       "Can't find .git/hooks directory. You can try to fix this error by creating it manually."
     )
@@ -135,7 +155,7 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
 
   // Create hooks
   const hooks = getHooks(gitDir)
-  const script = getScript(userDir)
+  const script = getScript(rootDir)
   createHooks(hooks, script)
 
   console.log(`husky > done`)
