@@ -111,15 +111,26 @@ function getHooks(gitDir: string): string[] {
 
 /**
  * @param gitDir - e.g. /home/typicode/project/.git/
- * @param huskyDir - e.g. /home/typicode/project/node_modules/husky
+ * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
+ * @param requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
  * @param isCI - true if running in CI
  */
-export function install(gitDir: string, huskyDir: string, isCI: boolean) {
+export function install(
+  gitDir: string,
+  huskyDir: string,
+  requireRunNodePath: string = require.resolve('.bin/run-node'),
+  isCI: boolean
+) {
   console.log('husky > setting up git hooks')
+
+  // Git repo root directory e.g. /home/typicode/project/
   const rootDir = path.join(gitDir, '..')
+  // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+  // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
 
+  // Checks
   if (process.env.HUSKY_SKIP_INSTALL === 'true') {
     console.log(
       "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
@@ -155,7 +166,7 @@ export function install(gitDir: string, huskyDir: string, isCI: boolean) {
 
   // Create hooks
   const hooks = getHooks(gitDir)
-  const script = getScript(rootDir)
+  const script = getScript(rootDir, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
   console.log(`husky > done`)
@@ -165,11 +176,16 @@ export function uninstall(gitDir: string, huskyDir: string) {
   console.log('husky > uninstalling git hooks')
   const userDir = pkgDir.sync(path.join(huskyDir, '..'))
 
-  if (path.join(userDir, '.git') === gitDir) {
-    // Remove hooks
-    const hooks = getHooks(gitDir)
-    removeHooks(hooks)
+  if (isInNodeModules(huskyDir)) {
+    console.log(
+      'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'
+    )
+    return
   }
+
+  // Remove hooks
+  const hooks = getHooks(gitDir)
+  removeHooks(hooks)
 
   console.log('husky > done')
 }

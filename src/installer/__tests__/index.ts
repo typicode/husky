@@ -10,8 +10,17 @@ let tempDir
 
 const pkg = JSON.stringify({})
 
-function installFrom(huskyDir: string, isCI = false) {
-  install(path.join(tempDir, '.git'), path.join(tempDir, huskyDir), isCI)
+function installFrom(
+  huskyDir: string,
+  requireRunNodePath: string,
+  isCI = false
+) {
+  install(
+    path.join(tempDir, '.git'),
+    path.join(tempDir, huskyDir),
+    requireRunNodePath,
+    isCI
+  )
 }
 
 function uninstallFrom(dir: string) {
@@ -119,11 +128,15 @@ describe('install', () => {
   it('should support package.json installed in sub directory (not recommanded)', () => {
     mkdir('.git/hooks')
     mkdir('A/B/node_modules/husky')
-    writeFile('package.json', pkg)
+    writeFile('A/B/package.json', pkg)
 
-    installFrom('A/B/node_modules/husky')
+    installFrom(
+      'A/B/node_modules/husky',
+      path.join(tempDir, 'A/B/node_modules/.bin/run-node')
+    )
     const hook = readFile('.git/hooks/pre-commit')
-    expect(hook).toMatch('./A/B/node_modules/husky/lib/runner/bin')
+    expect(hook).toMatch('A/B/node_modules/.bin/run-node')
+    expect(hook).toMatch('A/B/node_modules/husky/lib/runner/bin')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
@@ -195,7 +208,7 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     const isCI = true
-    installFrom('node_modules/husky', isCI)
+    installFrom('node_modules/husky', undefined, isCI)
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
@@ -205,7 +218,7 @@ describe('install', () => {
     writeFile('package.json', JSON.stringify({ husky: { skipCI: false } }))
 
     const isCI = true
-    installFrom('node_modules/husky', isCI)
+    installFrom('node_modules/husky', undefined, isCI)
     expect(exists('.git/hooks/pre-commit')).toBeTruthy()
   })
 
