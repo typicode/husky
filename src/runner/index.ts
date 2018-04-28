@@ -3,10 +3,9 @@ import * as execa from 'execa'
 import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 
-// A/B/node_modules/husky
-// A/B <- current working dir
-// cwd
-
+/**
+ * @param argv - process.argv
+ */
 export default function([, scriptPath, hookName = '']: string[]): number {
   const [cwd] = scriptPath.split('node_modules')
   const pkg = readPkg.sync(cwd)
