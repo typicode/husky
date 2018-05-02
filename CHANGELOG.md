@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.3 (unreleased)
+
+* Re-introduce subdirectory support
+
 ## 1.0.0-rc.2
 
 * Upgrade `run-node` dependency
