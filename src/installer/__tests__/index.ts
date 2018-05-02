@@ -1,6 +1,7 @@
 import * as del from 'del'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
+import * as os from 'os'
 import * as path from 'path'
 import * as tempy from 'tempy'
 import { install, uninstall } from '../'
@@ -12,7 +13,7 @@ const pkg = JSON.stringify({})
 
 function installFrom(
   huskyDir: string,
-  requireRunNodePath: string,
+  requireRunNodePath?: string,
   isCI = false
 ) {
   install(
@@ -135,7 +136,9 @@ describe('install', () => {
       path.join(tempDir, 'A/B/node_modules/.bin/run-node')
     )
     const hook = readFile('.git/hooks/pre-commit')
-    expect(hook).toMatch('A/B/node_modules/.bin/run-node')
+    if (os.platform() !== 'win32') {
+      expect(hook).toMatch('A/B/node_modules/.bin/run-node')
+    }
     expect(hook).toMatch('A/B/node_modules/husky/lib/runner/bin')
 
     uninstallFrom('A/B/node_modules/husky')

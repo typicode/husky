@@ -12,7 +12,7 @@
     "test": "npm run lint && jest",
     "install": "node lib/installer/bin install",
     "preuninstall": "node lib/installer/bin uninstall",
-    "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev",
+    "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev-fix-paths",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "prepublishOnly": "npm run test && npm run build && pkg-ok --bin templates/hook.sh",
