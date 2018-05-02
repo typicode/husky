@@ -18,13 +18,14 @@ HUSKY_SKIP_INSTALL=true npm install
 
 ## Multi-package repository (monorepo)
 
-If you have a multi-package repository:
+If you have a multi-package repository, it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
+Generally speaking, you should avoid defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
 
 ```sh
 .
 └── root
     ├── .git
-    ├── package.json 🐶 # Add husky here only
+    ├── package.json 🐶 # Add husky here
     └── packages
         ├── A
         │   └── package.json
@@ -34,9 +35,8 @@ If you have a multi-package repository:
             └── package.json
 ```
 
-It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
-
-```json
+```js
+// root/package.json
 {
   "private": true,
   "devDependencies": {
