@@ -29,8 +29,6 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-_By default, husky expects your project's `package.json` and your `.git` directory to be at the same level. It can be configured to support monorepos or sub-directories._
-
 Check [documentation](https://github.com/typicode/husky/blob/dev/docs.md) for more.
 
 ## Uninstall

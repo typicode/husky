@@ -18,13 +18,14 @@ HUSKY_SKIP_INSTALL=true npm install
 
 ## Multi-package repository (monorepo)
 
-If you have a multi-package repository:
+If you have a multi-package repository, it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
+Generally speaking, you should avoid defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
 
 ```sh
 .
 └── root
     ├── .git
-    ├── package.json 🐶 # add husky here
+    ├── package.json 🐶 # Add husky here
     └── packages
         ├── A
         │   └── package.json
@@ -34,9 +35,8 @@ If you have a multi-package repository:
             └── package.json
 ```
 
-It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
-
-```json
+```js
+// root/package.json
 {
   "private": true,
   "devDependencies": {
@@ -46,46 +46,6 @@ It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
     "hooks": {
       "pre-commit": "lerna run test"
     }
-  }
-}
-```
-
-## Sub-directory package
-
-If your project is in a sub-directory, create a root `package.json`, run `npm install husky --save-dev` and edit `package.json` to configure `husky`:
-
-```sh
-.
-└── root
-    ├── .git
-    ├── package.json 🐶 # add husky here
-    └── subdirectory
-        └── package.json
-```
-
-```js
-// Create root/package.json
-{
-  "private": true,
-  "devDependencies": {
-    "husky": "..."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "cd subproject && npm test"
-    }
-  }
-}
-```
-
-One of the downside of this approach is that you'll have to run `npm install` in `project` and `subproject`. If you only have one package and you're __not publishing it__, you can do the following to ensure that `husky` is also installed when you run `npm install` in your subdirectory:
-
-```js
-// root/subdirectory/package.json
-{
-  "private": true,
-  "scripts": {
-    "postinstall": "cd .. && npm install"
   }
 }
 ```

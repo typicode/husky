@@ -22,7 +22,7 @@ try {
 
   // Run installer
   if (action === 'install') {
-    install(gitDir, huskyDir, isCI)
+    install(gitDir, huskyDir, undefined, isCI)
   } else {
     uninstall(gitDir, huskyDir)
   }

@@ -6,7 +6,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # v1.0.0-rc.2 darwin
 
 export HUSKY_GIT_PARAMS=\\"$*\\"
-node_modules/run-node/run-node ./node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
+node_modules/run-node/run-node node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
 "
 `;
 
@@ -16,6 +16,6 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # v1.0.0-rc.2 win32
 
 export HUSKY_GIT_PARAMS=\\"$*\\"
-node ./node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
+node node_modules/husky/lib/runner/bin \`basename \\"$0\\"\`
 "
 `;
