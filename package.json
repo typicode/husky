@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-upgrade": "./lib/upgrader/bin.js"
@@ -51,7 +51,7 @@
     "pkg-dir": "^2.0.0",
     "pupa": "^1.0.0",
     "read-pkg": "^3.0.0",
-    "run-node": "^0.2.0",
+    "run-node": "^1.0.0",
     "slash": "^2.0.0"
   },
   "devDependencies": {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.2
+
+* Upgrade `run-node` dependency
+
 ## 1.0.0-rc.1
 
 * Namespace environment variable created by husky
