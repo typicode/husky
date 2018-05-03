@@ -1,3 +1,4 @@
+import * as findUp from 'find-up'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
@@ -5,6 +6,7 @@ import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit } from './is'
+import resolveGitDir from './resolveGitDir'
 
 const hookList = [
   'applypatch-msg',
@@ -110,27 +112,39 @@ function getHooks(gitDir: string): string[] {
 }
 
 /**
- * @param gitDir - e.g. /home/typicode/project/.git/
  * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
  * @param requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
  * @param isCI - true if running in CI
  */
 export function install(
-  gitDir: string,
   huskyDir: string,
   requireRunNodePath: string = require.resolve('.bin/run-node'),
   isCI: boolean
 ) {
   console.log('husky > setting up git hooks')
 
-  // Git repo root directory e.g. /home/typicode/project/
-  const rootDir = path.join(gitDir, '..')
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
+  // Get directory containing .git directory or in the case of Git submodules, the .git file
+  const workingDir = findUp.sync('.git', { cwd: userPkgDir })
+  // Resolve git directory (e.g. .git/ or .git/modules/path/to/submodule)
+  const resolvedGitDir = resolveGitDir(userPkgDir)
 
   // Checks
+  if (workingDir === null) {
+    console.log("Can't find .git, skipping Git hooks installation.")
+    return
+  }
+
+  if (resolvedGitDir === null) {
+    console.log(
+      "Can't find resolved .git directory, skipping Git hooks installation."
+    )
+    return
+  }
+
   if (process.env.HUSKY_SKIP_INSTALL === 'true') {
     console.log(
       "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
@@ -156,17 +170,17 @@ export function install(
     return
   }
 
-  if (!fs.existsSync(path.join(rootDir, '.git/hooks'))) {
+  if (!fs.existsSync(path.join(resolvedGitDir, 'hooks'))) {
     console.log(
-      "Can't find .git/hooks directory. You can try to fix this error by creating it manually."
+      `Can't find hooks directory in ${resolvedGitDir}. You can try to fix this error by creating it manually.`
     )
     console.log('Skipping Git hooks installation.')
     return
   }
 
   // Create hooks
-  const hooks = getHooks(gitDir)
-  const script = getScript(rootDir, huskyDir, requireRunNodePath)
+  const hooks = getHooks(resolvedGitDir)
+  const script = getScript(workingDir, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
   console.log(`husky > done`)
