@@ -107,6 +107,7 @@ function isInNodeModules(dir: string) {
 }
 
 function getHooks(gitDir: string): string[] {
+  console.log({ gitDir })
   const gitHooksDir = path.join(gitDir, 'hooks')
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
@@ -128,12 +129,12 @@ export function install(
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
   // Get directory containing .git directory or in the case of Git submodules, the .git file
-  const workingDir = findUp.sync('.git', { cwd: userPkgDir })
+  const gitDirOrFile = findUp.sync('.git', { cwd: userPkgDir })
   // Resolve git directory (e.g. .git/ or .git/modules/path/to/submodule)
-  const resolvedGitDir = resolveGitDir(userPkgDir)
+  const resolvedGitDir = resolveGitDir(userPkgDir) // TODO improve
 
   // Checks
-  if (workingDir === null) {
+  if (gitDirOrFile === null) {
     console.log("Can't find .git, skipping Git hooks installation.")
     return
   }
@@ -179,8 +180,11 @@ export function install(
   }
 
   // Create hooks
+  // Get root dir based on the first .git directory of file found
+  const rootDir = path.dirname(gitDirOrFile)
+
   const hooks = getHooks(resolvedGitDir)
-  const script = getScript(workingDir, huskyDir, requireRunNodePath)
+  const script = getScript(rootDir, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
   console.log(`husky > done`)
@@ -188,7 +192,15 @@ export function install(
 
 export function uninstall(gitDir: string, huskyDir: string) {
   console.log('husky > uninstalling git hooks')
-  const userDir = pkgDir.sync(path.join(huskyDir, '..'))
+  const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+  const resolvedGitDir = resolveGitDir(userPkgDir) // TODO improve
+
+  if (resolvedGitDir === null) {
+    console.log(
+      "Can't find resolved .git directory, skipping Git hooks installation."
+    )
+    return
+  }
 
   if (isInNodeModules(huskyDir)) {
     console.log(
@@ -198,7 +210,7 @@ export function uninstall(gitDir: string, huskyDir: string) {
   }
 
   // Remove hooks
-  const hooks = getHooks(gitDir)
+  const hooks = getHooks(resolvedGitDir)
   removeHooks(hooks)
 
   console.log('husky > done')

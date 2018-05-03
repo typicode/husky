@@ -143,6 +143,7 @@ describe('install', () => {
   it('should support git submodule', () => {
     mkdir('.git/modules/A/B/hooks')
     mkdir('A/B/node_modules/husky')
+    writeFile('A/B/package.json', pkg)
     writeFile('A/B/.git', 'git: ../../.git/modules/A/B')
 
     installFrom(
@@ -152,12 +153,53 @@ describe('install', () => {
     const hook = readFile('.git/modules/A/B/hooks/pre-commit')
 
     if (os.platform() !== 'win32') {
-      expect(hook).toMatch('A/B/node_modules/.bin/run-node')
+      expect(hook).toMatch('node_modules/.bin/run-node')
     }
-    expect(hook).toMatch('A/B/node_modules/husky/lib/runner/bin')
+    expect(hook).toMatch('node_modules/husky/lib/runner/bin')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
+  })
+
+  it('should support git submodule and sub directory', () => {
+    mkdir('.git/modules/A/B/hooks')
+    mkdir('A/B/C/node_modules/husky')
+    writeFile('A/B/C/package.json', pkg)
+    writeFile('A/B/.git', 'git: ../../.git/modules/A/B')
+
+    installFrom(
+      'A/B/C/node_modules/husky',
+      path.join(tempDir, 'A/B/C/node_modules/.bin/run-node')
+    )
+    const hook = readFile('.git/modules/A/B/hooks/pre-commit')
+
+    if (os.platform() !== 'win32') {
+      expect(hook).toMatch('C/node_modules/.bin/run-node')
+    }
+    expect(hook).toMatch('C/node_modules/husky/lib/runner/bin')
+
+    uninstallFrom('A/B/C/node_modules/husky')
+    expect(exists('.git/hooks/pre-push')).toBeFalsy()
+  })
+
+  it('should support git worktrees', () => {
+    mkdir('.git/worktrees/B')
+    mkdir('A/B/node_modules/husky')})
+
+    // Git path for worktrees is absolute
+    const absolutePath = path.join( '.git/worktrees/B')
+    writeFile('A/B/.git', `git: ${absolutePath}`)
+
+    installFrom( 'A/B/node_modules/husky',
+      path.join(tempDir, 'A/B/node_modules/.bin/run-node')
+    )
+  
+    const hook = readFile( '.git/worktrees/B/hooks/pre-commit')
+
+    expect(hook).toMatch('cd "."')
+
+    uninstallFrom('A/B/node_modules/husky')
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
   it('should not install from /node_modules/A/node_modules', () => {

@@ -20,6 +20,7 @@ export default function(
   // Additional param used for testing only
   platform: string = os.platform()
 ) {
+  console.log({ rootDir, huskyDir, requireRunNodePath })
   const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
 
   // On Windows do not rely on run-node
