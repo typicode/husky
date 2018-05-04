@@ -107,7 +107,6 @@ function isInNodeModules(dir: string) {
 }
 
 function getHooks(gitDir: string): string[] {
-  console.log({ gitDir })
   const gitHooksDir = path.join(gitDir, 'hooks')
   return hookList.map(hookName => path.join(gitHooksDir, hookName))
 }
@@ -131,7 +130,7 @@ export function install(
   // Get directory containing .git directory or in the case of Git submodules, the .git file
   const gitDirOrFile = findUp.sync('.git', { cwd: userPkgDir })
   // Resolve git directory (e.g. .git/ or .git/modules/path/to/submodule)
-  const resolvedGitDir = resolveGitDir(userPkgDir) // TODO improve
+  const resolvedGitDir = resolveGitDir(userPkgDir)
 
   // Checks
   if (gitDirOrFile === null) {
@@ -190,10 +189,10 @@ export function install(
   console.log(`husky > done`)
 }
 
-export function uninstall(gitDir: string, huskyDir: string) {
+export function uninstall(huskyDir: string) {
   console.log('husky > uninstalling git hooks')
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
-  const resolvedGitDir = resolveGitDir(userPkgDir) // TODO improve
+  const resolvedGitDir = resolveGitDir(userPkgDir)
 
   if (resolvedGitDir === null) {
     console.log(

@@ -20,7 +20,7 @@ function installFrom(
 }
 
 function uninstallFrom(dir: string) {
-  uninstall(path.join(tempDir, '.git'), path.join(tempDir, dir))
+  uninstall(path.join(tempDir, dir))
 }
 
 function mkdir(dir: string) {
@@ -183,11 +183,11 @@ describe('install', () => {
   })
 
   it('should support git worktrees', () => {
-    mkdir('.git/worktrees/B')
+    mkdir('.git/worktrees/B/hooks')
     mkdir('A/B/node_modules/husky')
-
+    writeFile('A/B/package.json', pkg)
     // Git path for worktrees is absolute
-    const absolutePath = path.join('.git/worktrees/B')
+    const absolutePath = path.join(tempDir, '.git/worktrees/B')
     writeFile('A/B/.git', `git: ${absolutePath}`)
 
     installFrom(

@@ -5,11 +5,9 @@ import * as path from 'path'
 export default function(cwd: string): string | null {
   const foundPath = findUp.sync('.git', { cwd })
 
-  console.log({ foundPath })
   if (foundPath) {
     const stats = fs.lstatSync(foundPath)
 
-    console.log('is file', stats.isFile())
     // If it's a .git file resolve path
     if (stats.isFile()) {
       // Expect following format
