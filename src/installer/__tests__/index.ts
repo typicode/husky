@@ -126,7 +126,7 @@ describe('install', () => {
     expect(exists(hookFilename)).toBeTruthy()
   })
 
-  it('should support package.json installed in sub directory (not recommended)', () => {
+  it('should support package.json installed in sub directory', () => {
     mkdir('.git/hooks')
     mkdir('A/B/node_modules/husky')
     writeFile('A/B/package.json', pkg)

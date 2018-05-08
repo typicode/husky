@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.0-rc.3 (unreleased)
+## 1.0.0-rc.3
 
 * Re-introduce subdirectory support
 
