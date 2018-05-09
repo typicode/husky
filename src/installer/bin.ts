@@ -15,16 +15,11 @@ const [, , action, huskyDir = path.join(__dirname, '../..')] = process.argv
 
 // Find Git dir
 try {
-  const { stdout } = execa.sync('git', ['rev-parse', '--git-dir'])
-
-  // Needed to normalize path on Windows
-  const gitDir = path.resolve(stdout)
-
   // Run installer
   if (action === 'install') {
-    install(gitDir, huskyDir, undefined, isCI)
+    install(huskyDir, undefined, isCI)
   } else {
-    uninstall(gitDir, huskyDir)
+    uninstall(huskyDir)
   }
 } catch (error) {
   console.log(`husky > failed to ${action}`)
