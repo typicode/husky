@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 1.0.0-rc.4
+
+* Re-enable Git submodule and worktree support
+
 ## 1.0.0-rc.3
 
-* Re-introduce subdirectory support
+* Re-enable subdirectory support
 
 ## 1.0.0-rc.2
 
