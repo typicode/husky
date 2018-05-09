@@ -1,4 +1,3 @@
-import * as cosmiconfig from 'cosmiconfig'
 import * as execa from 'execa'
 import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
