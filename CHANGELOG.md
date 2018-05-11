@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.5
+
+* Auto migrate `yorkie` hooks 
+
 ## 1.0.0-rc.4
 
 * Re-enable Git submodule and worktree support

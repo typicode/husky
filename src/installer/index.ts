@@ -5,7 +5,7 @@ import * as pkgDir from 'pkg-dir'
 import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 import getScript from './getScript'
-import { isGhooks, isHusky, isPreCommit } from './is'
+import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
 import resolveGitDir from './resolveGitDir'
 
 const hookList = [
@@ -56,7 +56,7 @@ function createHook(filename: string, script: string) {
     }
 
     // Update
-    if (isHusky(hook)) {
+    if (isHusky(hook) || isYorkie(hook)) {
       return writeHook(filename, script)
     }
 
