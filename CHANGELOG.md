@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.6
+
+* Fix install error with `pnpm`
+
 ## 1.0.0-rc.5
 
 * Auto migrate `yorkie` hooks 
