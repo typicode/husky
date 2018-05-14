@@ -70,6 +70,25 @@ describe('install', () => {
     expect(exists(hookFilename)).toBeFalsy()
   })
 
+  it('should install and uninstall with pnpm', () => {
+    // pnpm installs husky in node_modules/.../node_modules/husky
+    // this tests ensures that husky will install from this path
+    process.env.INIT_CWD = tempDir
+    const huskyDir =
+      'node_modules/.registry.npmjs.org/husky/1.0.0/node_modules/husky'
+    const hookFilename = '.git/hooks/pre-commit'
+
+    mkdir('.git/hooks')
+    mkdir(huskyDir)
+    writeFile('package.json', pkg)
+
+    installFrom(huskyDir)
+    expectHookToExist(hookFilename)
+
+    uninstallFrom(huskyDir)
+    expect(exists(hookFilename)).toBeFalsy()
+  })
+
   it('should update existing husky hooks', () => {
     const huskyDir = 'node_modules/husky'
     const hookFilename = '.git/hooks/pre-commit'

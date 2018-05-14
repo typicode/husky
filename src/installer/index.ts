@@ -95,11 +95,8 @@ function removeHooks(filenames: string[]) {
 function isInNodeModules(dir: string) {
   // INIT_CWD holds the full path you were in when you ran npm install (supported also by yarn and pnpm)
   // See https://docs.npmjs.com/cli/run-script
-  if (
-    process.env.INIT_CWD &&
-    process.env.INIT_CWD.indexOf('node_modules') !== -1
-  ) {
-    return true
+  if (process.env.INIT_CWD) {
+    return process.env.INIT_CWD.indexOf('node_modules') !== -1
   }
 
   // Old technique
