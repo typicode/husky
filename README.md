@@ -81,7 +81,7 @@ Alternatively, you can also use any of the files/formats that are supported by [
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 20k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
+* ... and 21k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
 
 ## See also
 
