@@ -3,18 +3,12 @@ declare module 'cosmiconfig' {
 }
 
 declare function Cosmiconfig(
-  moduleName: string,
-  options?: Cosmiconfig.Options,
+  moduleName: string
 ):Cosmiconfig.Explorer;
 
 declare namespace Cosmiconfig {  
-  export interface Options {
-    rcExtensions?: boolean,
-    sync?: boolean,
-  }
-
   export interface Explorer {
-    load(searchPath?: string): Cosmiconfig.Result | null;
+    searchSync(searchFrom?: string): Cosmiconfig.Result | null;
   }
   
   export interface Result {
