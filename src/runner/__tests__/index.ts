@@ -8,6 +8,10 @@ import index from '../'
 
 jest.spyOn(execa, 'shellSync')
 
+function getScriptPath(dir) {
+  return path.join(dir, 'node_modules/husky/runner/index.js')
+}
+
 describe('run', () => {
   afterEach(() => {
     execa.shellSync.mockReset()
@@ -27,11 +31,33 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, , 'pre-commit'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'pre-commit'], {
+      cwd: dir
+    })
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       stdio: 'inherit'
     })
+    expect(status).toBe(0)
+  })
+
+  it('should run working command and return 0 status when husky is installed in a sub directory', () => {
+    const dir = tempy.directory()
+    const subDir = path.join(dir, 'A/B')
+    mkdirp.sync(subDir)
+
+    fs.writeFileSync(
+      path.join(subDir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo success'
+          }
+        }
+      })
+    )
+
+    const status = await index([, getScriptPath(subDir), 'pre-commit'])
     expect(status).toBe(0)
   })
 
@@ -47,7 +73,9 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, , 'pre-commit'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'pre-commit'], {
+      cwd: dir
+    })
     expect(execa.shellSync).not.toBeCalled()
     expect(status).toBe(0)
   })
@@ -66,7 +94,9 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, , 'pre-commit'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'pre-commit'], {
+      cwd: dir
+    })
     expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 1', {
       cwd: dir,
       stdio: 'inherit'
@@ -86,7 +116,9 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, , 'pre-commit'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'pre-commit'], {
+      cwd: dir
+    })
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       stdio: 'inherit'
@@ -111,7 +143,7 @@ describe('run', () => {
     process.stdin.isTTY = false
     process.stdin.push('foo')
     setTimeout(() => process.stdin.emit('end'))
-    const status = await index([, , 'pre-push'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'pre-push'], { cwd: dir })
 
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
@@ -146,6 +178,7 @@ describe('run', () => {
       },
       stdio: 'inherit'
     })
+    const status = index([, getScriptPath(dir), 'pre-commit'])
     expect(status).toBe(0)
   })
 })

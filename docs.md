@@ -4,9 +4,9 @@
 
 `husky` supports all Git hooks defined [here](https://git-scm.com/docs/githooks).
 
-## Access Git params and stdin
+## Access Git params
 
-You can access them using `GIT_PARAMS` and `GIT_STDIN` environment variables.
+You can access them using `HUSKY_GIT_PARAMS` environment variable.
 
 ## Disable auto-install
 
@@ -18,23 +18,25 @@ HUSKY_SKIP_INSTALL=true npm install
 
 ## Multi-package repository (monorepo)
 
-If you have a multi-package repository:
+If you have a multi-package repository, it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
+Generally speaking, you should avoid defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
 
 ```sh
-project/
-  package.json # Root package.json
-  packages/
-    A/
-      package.json
-    B/
-      package.json
-    C/
-      package.json
+.
+└── root
+    ├── .git
+    ├── package.json 🐶 # Add husky here
+    └── packages
+        ├── A
+        │   └── package.json
+        ├── B
+        │   └── package.json
+        └── C
+            └── package.json
 ```
 
-It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed in the root `package.json`:
-
-```json
+```js
+// root/package.json
 {
   "private": true,
   "devDependencies": {
@@ -42,47 +44,8 @@ It's recommended to use tools like [lerna](https://github.com/lerna/lerna) and h
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lerna run ..."
+      "pre-commit": "lerna run test"
     }
-  }
-}
-```
-
-## Sub-directory package
-
-If your project is in a sub-directory:
-
-```
-project
-  subproject
-    package.json
-```
-
-Create a root `package.json`, run `npm install husky --save-dev` and edit `package.json` to configure `husky`:
-
-```js
-// project/package.json
-{
-  "private": true,
-  "devDependencies": {
-    "husky": "..."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "cd subproject && npm test"
-    }
-  }
-}
-```
-
-One of the downside of this approach is that you'll have to run `npm install` in `project` and `subproject`. If you only have one package and you're __not publishing it__, you can do the following to ensure that `husky` is also installed when you run `npm install` in your subdirectory:
-
-```js
-// project/subproject/package.json
-{
-  "private": true,
-  "scripts": {
-    "postinstall": "cd .. && npm install"
   }
 }
 ```

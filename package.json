@@ -1,15 +1,18 @@
 {
   "name": "husky",
-  "version": "0.15.0-rc.12",
+  "version": "1.0.0-rc.6",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-upgrade": "./lib/upgrader/bin.js"
+  },
+  "engines": {
+    "node": ">=6"
   },
   "scripts": {
     "test": "npm run lint && jest",
     "install": "node lib/installer/bin install",
     "preuninstall": "node lib/installer/bin uninstall",
-    "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev",
+    "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev-fix-paths",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "prepublishOnly": "npm run test && npm run build && pkg-ok --bin templates/hook.sh",
@@ -42,33 +45,36 @@
   },
   "homepage": "https://github.com/typicode/husky#readme",
   "dependencies": {
-    "cosmiconfig": "^4.0.0",
+    "cosmiconfig": "^5.0.2",
     "execa": "^0.9.0",
     "get-stdin": "^6.0.0",
+    "find-up": "^2.1.0",
     "is-ci": "^1.1.0",
     "pkg-dir": "^2.0.0",
     "pupa": "^1.0.0",
     "read-pkg": "^3.0.0",
-    "run-node": "^0.2.0",
-    "slash": "^1.0.0"
+    "run-node": "^1.0.0",
+    "slash": "^2.0.0"
   },
   "devDependencies": {
-    "@types/execa": "^0.8.1",
+    "@types/execa": "^0.9.0",
+    "@types/find-up": "^2.1.1",
     "@types/get-stdin": "^5.0.1",
-    "@types/jest": "^22.2.0",
-    "@types/node": "^9.4.7",
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.0.6",
     "cross-env": "^5.1.4",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
-    "jest": "^22.4.2",
+    "formatree": "^1.0.2",
+    "jest": "^22.4.3",
     "mkdirp": "^0.5.1",
-    "pkg-ok": "^2.1.0",
-    "prettier": "^1.11.1",
+    "pkg-ok": "^2.2.0",
+    "prettier": "^1.12.1",
     "tempy": "^0.2.1",
-    "tslint": "^5.9.1",
-    "tslint-config-prettier": "^1.9.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.12.0",
     "tslint-plugin-prettier": "^1.3.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.8.3"
   },
   "jest": {
     "moduleFileExtensions": [

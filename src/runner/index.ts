@@ -1,4 +1,3 @@
-import * as cosmiconfig from 'cosmiconfig'
 import * as execa from 'execa'
 import * as getStdin from 'get-stdin'
 import * as readPkg from 'read-pkg'
@@ -9,12 +8,15 @@ export interface IEnv extends NodeJS.ProcessEnv {
   GIT_PARAMS?: string
 }
 
+/**
+ * @param argv - process.argv
+ * @param opts - options for testing only
+ */
 export default async function(
-  // process.argv
-  [, , hookName = '', GIT_PARAMS]: string[],
-  // options for testing
+  [, scriptPath, hookName = '', GIT_PARAMS]: string[],
   { cwd = process.cwd() } = {}
 ): Promise<number> {
+  const [cwd] = scriptPath.split('node_modules')
   const pkg = readPkg.sync(cwd)
 
   const config = getConf(cwd)

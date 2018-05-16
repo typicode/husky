@@ -1,10 +1,40 @@
 # CHANGELOG
 
-## 0.15.0-rc.12
+## 1.0.0-rc.7 (unreleased)
 
-* Add `GIT_STDIN` environment variable
+* Update `cosmiconfig` dependency
 
-`rc.10` and `rc.11` are broken
+## 1.0.0-rc.6
+
+* Fix install error with `pnpm`
+
+## 1.0.0-rc.5
+
+* Auto migrate `yorkie` hooks 
+
+## 1.0.0-rc.4
+
+* Re-enable Git submodule and worktree support
+
+## 1.0.0-rc.3
+
+* Re-enable subdirectory support
+
+## 1.0.0-rc.2
+
+* Upgrade `run-node` dependency
+
+## 1.0.0-rc.1
+
+* Namespace environment variable created by husky
+  * `GIT_PARAMS` becomes `HUSKY_GIT_PARAMS`
+* Starting also with `1.0.0` versioning
+
+## 0.15.0-rc.13
+
+* Revert `GIT_STDIN` for the moment. Needs more testing.
+
+`rc.10`, `rc.11` and `rc.12` are broken for some GUI clients due to `read` command
 
 ## 0.15.0-rc.9
 

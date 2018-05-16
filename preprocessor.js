@@ -1,4 +1,4 @@
-// https://github.com/facebook/jest/blob/master/examples/typescript/package.json
+// https://github.com/facebook/jest/blob/master/examples/typescript/preprocessor.js
 const tsc = require('typescript');
 const tsConfig = require('./tsconfig.json');
 
