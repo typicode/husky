@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.7 (unreleased)
+
+* Update `cosmiconfig` dependency
+
 ## 1.0.0-rc.6
 
 * Fix install error with `pnpm`
