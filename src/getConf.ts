@@ -6,11 +6,8 @@ interface IConf {
 }
 
 export default function getConf(dir: string): IConf {
-  const { config = {} } =
-    cosmiconfig('husky', {
-      rcExtensions: true,
-      sync: true
-    }).load(dir) || {}
+  const explorer = cosmiconfig('husky')
+  const { config = {} } = explorer.searchSync(dir) || {}
 
   const defaults: IConf = {
     skipCI: true
