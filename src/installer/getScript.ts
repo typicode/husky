@@ -21,7 +21,7 @@ export default function(
   platform: string = os.platform()
 ) {
   const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
-  console.log({ rootDir, huskyDir, requireRunNodePath })
+
   // On Windows do not rely on run-node
   const node = platform === 'win32' ? 'node' : runNodePath
 
@@ -32,7 +32,7 @@ export default function(
   const script = slash(
     path.join(path.relative(rootDir, huskyDir), 'lib/runner/bin')
   )
-  console.log('script is', script, rootDir, huskyDir, path.relative(rootDir, huskyDir))
+
   const template = fs.readFileSync(
     path.join(__dirname, '../../templates/hook.sh'),
     'utf-8'

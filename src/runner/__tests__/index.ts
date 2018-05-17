@@ -6,15 +6,18 @@ import * as path from 'path'
 import * as tempy from 'tempy'
 import index from '../'
 
-jest.spyOn(execa, 'shellSync')
-
 function getScriptPath(dir) {
   return path.join(dir, 'node_modules/husky/runner/index.js')
 }
 
 describe('run', () => {
+  beforeEach(() => {
+    jest.spyOn(execa, 'shellSync')
+  })
+
   afterEach(() => {
     execa.shellSync.mockReset()
+    execa.shellSync.mockRestore()
   })
 
   it('should run working command and return 0 status', async () => {
@@ -36,12 +39,13 @@ describe('run', () => {
     })
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
+      env: {},
       stdio: 'inherit'
     })
     expect(status).toBe(0)
   })
 
-  it('should run working command and return 0 status when husky is installed in a sub directory', () => {
+  it('should run working command and return 0 status when husky is installed in a sub directory', async () => {
     const dir = tempy.directory()
     const subDir = path.join(dir, 'A/B')
     mkdirp.sync(subDir)
@@ -58,6 +62,11 @@ describe('run', () => {
     )
 
     const status = await index([, getScriptPath(subDir), 'pre-commit'])
+    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
+      cwd: subDir,
+      env: {},
+      stdio: 'inherit'
+    })
     expect(status).toBe(0)
   })
 
@@ -74,7 +83,8 @@ describe('run', () => {
     )
 
     const status = await index([, getScriptPath(dir), 'pre-commit'], {
-      cwd: dir
+      cwd: dir,
+      env: {}
     })
     expect(execa.shellSync).not.toBeCalled()
     expect(status).toBe(0)
@@ -88,7 +98,7 @@ describe('run', () => {
       JSON.stringify({
         husky: {
           hooks: {
-            'pre-commit': 'echo fail && exit 1'
+            'pre-commit': 'echo fail && exit 2'
           }
         }
       })
@@ -97,11 +107,12 @@ describe('run', () => {
     const status = await index([, getScriptPath(dir), 'pre-commit'], {
       cwd: dir
     })
-    expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 1', {
+    expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 2', {
       cwd: dir,
+      env: {},
       stdio: 'inherit'
     })
-    expect(status).toBe(1)
+    expect(status).toBe(2)
   })
 
   it('should support old scripts but show a deprecated message', async () => {
@@ -121,6 +132,7 @@ describe('run', () => {
     })
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
+      env: {},
       stdio: 'inherit'
     })
     expect(status).toBe(0)
@@ -143,8 +155,8 @@ describe('run', () => {
     process.stdin.isTTY = false
     process.stdin.push('foo')
     setTimeout(() => process.stdin.emit('end'))
-    const status = await index([, getScriptPath(dir), 'pre-push'], { cwd: dir })
 
+    const status = await index([, getScriptPath(dir), 'pre-push'], { cwd: dir })
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {
@@ -169,7 +181,9 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, , 'commit-msg', 'params'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'commit-msg', 'params'], {
+      cwd: dir
+    })
 
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
@@ -178,7 +192,8 @@ describe('run', () => {
       },
       stdio: 'inherit'
     })
-    const status = index([, getScriptPath(dir), 'pre-commit'])
+
+    const status = await index([, getScriptPath(dir), 'pre-commit'])
     expect(status).toBe(0)
   })
 })

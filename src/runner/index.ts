@@ -1,5 +1,7 @@
 import * as execa from 'execa'
+import * as fs from 'fs'
 import * as getStdin from 'get-stdin'
+import * as path from 'path'
 import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 
@@ -10,14 +12,16 @@ export interface IEnv extends NodeJS.ProcessEnv {
 
 /**
  * @param argv - process.argv
- * @param opts - options for testing only
  */
-export default async function(
-  [, scriptPath, hookName = '', GIT_PARAMS]: string[],
-  { cwd = process.cwd() } = {}
-): Promise<number> {
-  const [cwd] = scriptPath.split('node_modules')
-  const pkg = readPkg.sync(cwd)
+export default async function([
+  ,
+  scriptPath,
+  hookName = '',
+  GIT_PARAMS
+]: string[]): Promise<number> {
+  const cwd = path.resolve(scriptPath.split('node_modules')[0])
+  //  const pkg = readPkg.sync(cwd)
+  const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json')))
 
   const config = getConf(cwd)
 
@@ -28,17 +32,23 @@ export default async function(
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
   try {
-    const env: IEnv = {
-      GIT_PARAMS
+    const env: IEnv = {}
+
+    if (GIT_PARAMS) {
+      env.GIT_PARAMS = GIT_PARAMS
     }
 
-    if (['pre-push', 'pre-receive', 'post-receive', 'post-rewrite']) {
+    if (
+      ['pre-push', 'pre-receive', 'post-receive', 'post-rewrite'].includes(
+        hookName
+      )
+    ) {
       env.GIT_STDIN = await getStdin()
     }
 
     if (command) {
       console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(command, { cwd, stdio: 'inherit', env })
+      execa.shellSync(command, { cwd, env, stdio: 'inherit' })
       return 0
     }
 
@@ -57,18 +67,18 @@ export default async function(
       console.log(`See https://github.com/typicode/husky for usage`)
       console.log()
       console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(oldCommand, { cwd, stdio: 'inherit' })
+      execa.shellSync(oldCommand, { cwd, env, stdio: 'inherit' })
       return 0
     }
 
     return 0
-  } catch (e) {
+  } catch (err) {
     const noVerifyMessage =
       hookName === 'prepare-commit-msg'
         ? '(cannot be bypassed with --no-verify due to Git specs)'
         : '(add --no-verify to bypass)'
 
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
-    return 1
+    return err.code
   }
 }
