@@ -174,16 +174,7 @@ export function install(
   }
 
   if (!fs.existsSync(path.join(resolvedGitDir, 'hooks'))) {
-    console.log(
-      `Can't find hooks directory in ${resolvedGitDir}, skipping Git hooks installation.`
-    )
-    console.log(
-      `Please create ${path.join(
-        resolvedGitDir,
-        'hooks'
-      )} directory and reinstall husky.`
-    )
-    return
+    fs.mkdirSync(path.join(resolvedGitDir, 'hooks'))
   }
 
   // Create hooks
