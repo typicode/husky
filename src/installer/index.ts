@@ -168,11 +168,7 @@ export function install(
   }
 
   if (!fs.existsSync(path.join(resolvedGitDir, 'hooks'))) {
-    console.log(
-      `Can't find hooks directory in ${resolvedGitDir}. You can try to fix this error by creating it manually.`
-    )
-    console.log('Skipping Git hooks installation.')
-    return
+    fs.mkdirSync(path.join(resolvedGitDir, 'hooks'))
   }
 
   // Create hooks
