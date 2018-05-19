@@ -7,7 +7,7 @@ import getConf from '../getConf'
  */
 export default function([, scriptPath, hookName = '']: string[]): number {
   const [cwd] = scriptPath.split('node_modules')
-  const pkg = readPkg.sync(cwd)
+  const pkg = readPkg.sync(cwd, { normalize: false })
 
   const config = getConf(cwd)
 
