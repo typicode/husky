@@ -6,19 +6,17 @@ import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 
 export interface IEnv extends NodeJS.ProcessEnv {
-  GIT_STDIN?: string
-  GIT_PARAMS?: string
+  HUSKY_GIT_STDIN?: string
+  HUSKY_GIT_PARAMS?: string
 }
 
 /**
  * @param argv - process.argv
  */
-export default async function([
-  ,
-  scriptPath,
-  hookName = '',
-  GIT_PARAMS
-]: string[]): Promise<number> {
+export default async function(
+  [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
+  getStdinFn = getStdin // Used for mocking
+): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
   //  const pkg = readPkg.sync(cwd)
   const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json')))
@@ -34,8 +32,8 @@ export default async function([
   try {
     const env: IEnv = {}
 
-    if (GIT_PARAMS) {
-      env.GIT_PARAMS = GIT_PARAMS
+    if (HUSKY_GIT_PARAMS) {
+      env.HUSKY_GIT_PARAMS = GIT_PARAMS
     }
 
     if (
@@ -43,7 +41,7 @@ export default async function([
         hookName
       )
     ) {
-      env.GIT_STDIN = await getStdin()
+      env.HUSKY_GIT_STDIN = await getStdinFn()
     }
 
     if (command) {

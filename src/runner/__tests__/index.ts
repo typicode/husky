@@ -34,9 +34,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'], {
-      cwd: dir
-    })
+    const status = await index([, getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {},
@@ -82,10 +80,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'], {
-      cwd: dir,
-      env: {}
-    })
+    const status = await index([, getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).not.toBeCalled()
     expect(status).toBe(0)
   })
@@ -104,9 +99,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'], {
-      cwd: dir
-    })
+    const status = await index([, getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 2', {
       cwd: dir,
       env: {},
@@ -127,9 +120,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'], {
-      cwd: dir
-    })
+    const status = await index([, getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {},
@@ -138,7 +129,7 @@ describe('run', () => {
     expect(status).toBe(0)
   })
 
-  it('should set GIT_STDIN env for some hooks', async () => {
+  it('should set HUSKY_GIT_STDIN env for some hooks', async () => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -152,15 +143,13 @@ describe('run', () => {
       })
     )
 
-    process.stdin.isTTY = false
-    process.stdin.push('foo')
-    setTimeout(() => process.stdin.emit('end'))
-
-    const status = await index([, getScriptPath(dir), 'pre-push'], { cwd: dir })
+    const status = await index([, getScriptPath(dir), 'pre-push'], () =>
+      Promise.resolve('foo')
+    )
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {
-        GIT_STDIN: 'foo'
+        HUSKY_GIT_STDIN: 'foo'
       },
       stdio: 'inherit'
     })
@@ -181,9 +170,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'commit-msg', 'params'], {
-      cwd: dir
-    })
+    const status = await index([, getScriptPath(dir), 'commit-msg', 'params'])
 
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
