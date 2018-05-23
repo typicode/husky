@@ -156,7 +156,7 @@ describe('run', () => {
     expect(status).toBe(0)
   })
 
-  it('should set GIT_PARAMS', async () => {
+  it('should set HUSKY_GIT_PARAMS', async () => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -171,16 +171,13 @@ describe('run', () => {
     )
 
     const status = await index([, getScriptPath(dir), 'commit-msg', 'params'])
-
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {
-        GIT_PARAMS: 'params'
+        HUSKY_GIT_PARAMS: 'params'
       },
       stdio: 'inherit'
     })
-
-    const status = await index([, getScriptPath(dir), 'pre-commit'])
     expect(status).toBe(0)
   })
 })

@@ -33,7 +33,7 @@ export default async function(
     const env: IEnv = {}
 
     if (HUSKY_GIT_PARAMS) {
-      env.HUSKY_GIT_PARAMS = GIT_PARAMS
+      env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS
     }
 
     if (
