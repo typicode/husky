@@ -4,6 +4,9 @@ os:
 language: node_js
 node_js:
   - "node"
+cache:
+  directories:
+    - "node_modules"
 install:
   - npm install --ignore-scripts
 script:
@@ -11,3 +14,4 @@ script:
   - npm run devinstall
   - time git checkout
   - node ci-check
+
