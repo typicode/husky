@@ -3,6 +3,7 @@
 ## 1.0.0-rc.7 (unreleased)
 
 * Update `cosmiconfig` dependency
+* Fix `package.json` normalization error
 
 ## 1.0.0-rc.6
 
