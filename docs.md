@@ -6,7 +6,7 @@
 
 ## Access Git params and stdin
 
-You can access them using `HUSKY_GIT_PARAMS` and `HUSKY_GIT_STDIN` environment variable.
+You can access them using `HUSKY_GIT_PARAMS` and `HUSKY_GIT_STDIN` environment variables.
 
 ## Disable auto-install
 
