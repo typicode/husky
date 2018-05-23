@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 1.0.0-rc.7 (unreleased)
+## 1.0.0-rc.7
 
 * Update `cosmiconfig` dependency
+* Fix `package.json` normalization error
 
 ## 1.0.0-rc.6
 

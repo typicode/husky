@@ -18,9 +18,7 @@ export default async function(
   getStdinFn = getStdin // Used for mocking
 ): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
-  //  const pkg = readPkg.sync(cwd)
-  const pkg = JSON.parse(fs.readFileSync(path.join(cwd, 'package.json')))
-
+  const pkg = readPkg.sync(cwd, { normalize: false })
   const config = getConf(cwd)
 
   const command: string | undefined =
