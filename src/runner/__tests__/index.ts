@@ -6,18 +6,20 @@ import * as path from 'path'
 import * as tempy from 'tempy'
 import index from '../'
 
+let spy
+
 function getScriptPath(dir) {
   return path.join(dir, 'node_modules/husky/runner/index.js')
 }
 
 describe('run', () => {
   beforeEach(() => {
-    jest.spyOn(execa, 'shellSync')
+    spy = jest.spyOn(execa, 'shellSync')
   })
 
   afterEach(() => {
-    execa.shellSync.mockReset()
-    execa.shellSync.mockRestore()
+    spy.mockReset()
+    spy.mockRestore()
   })
 
   it('should run working command and return 0 status', async () => {
@@ -170,11 +172,17 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'commit-msg', 'params'])
+    // commit-msg takes one parameter from git
+    const status = await index([
+      ,
+      getScriptPath(dir),
+      'commit-msg',
+      'git fake param'
+    ])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {
-        HUSKY_GIT_PARAMS: 'params'
+        HUSKY_GIT_PARAMS: 'git fake param'
       },
       stdio: 'inherit'
     })
