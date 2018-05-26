@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.8 (unreleased)
+
+* Add `HUSKY_GIT_STDIN` environment variable for `pre-push`, `pre-receive`, `post-receive` and `post-rewrite` to access arguments passed by Git via stdin.
+
 ## 1.0.0-rc.7
 
 * Update `cosmiconfig` dependency
