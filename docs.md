@@ -6,7 +6,17 @@
 
 ## Access Git params and stdin
 
-You can access them using `HUSKY_GIT_PARAMS` and `HUSKY_GIT_STDIN` environment variables.
+Git hooks can get parameters via command-line arguments and stdin. Husky makes them accessible via `HUSKY_GIT_PARAMS` and `HUSKY_GIT_STDIN` environment variables.
+
+```
+{
+  "husky": {
+    "hooks": {
+      "commit-msg": "echo $HUSKY_GIT_PARAMS"
+    }
+  }
+}
+```
 
 ## Disable auto-install
 
@@ -19,7 +29,8 @@ HUSKY_SKIP_INSTALL=true npm install
 ## Multi-package repository (monorepo)
 
 If you have a multi-package repository, it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
-Generally speaking, you should avoid defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
+
+Generally speaking, you should AVOID defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
 
 ```sh
 .
