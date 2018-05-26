@@ -15,4 +15,3 @@ script:
   - npm run devinstall
   - time git checkout
   - node ci-check
-
