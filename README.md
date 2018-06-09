@@ -6,7 +6,7 @@
 
 Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
-_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/master) if you prefer to use the stable release_
+_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/v0.14.3) if you prefer to view docs for the stable version (`v0.14.3`)_
 
 ## Install
 
