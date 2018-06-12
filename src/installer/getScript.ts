@@ -1,11 +1,25 @@
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
-import * as pupa from 'pupa'
 import * as slash from 'slash'
+
+interface IContext {
+  node: string
+  platform: string
+  script: string
+  version: string
+}
 
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
+
+// Render script
+const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
+${huskyIdentifier}
+# v${version} ${platform}
+
+${node} ${script} \`basename "$0"\` "$*"
+`
 
 /**
  * @param rootDir - e.g. /home/typicode/project/
@@ -33,10 +47,5 @@ export default function(
     path.join(path.relative(rootDir, huskyDir), 'lib/runner/bin')
   )
 
-  const template = fs.readFileSync(
-    path.join(__dirname, '../../templates/hook.sh'),
-    'utf-8'
-  )
-
-  return pupa(template, { huskyIdentifier, node, platform, script, version })
+  return render({ node, platform, script, version })
 }

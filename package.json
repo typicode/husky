@@ -15,7 +15,8 @@
     "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev-fix-paths",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
-    "prepublishOnly": "npm run test && npm run build && pkg-ok --bin templates/hook.sh",
+    "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
+    "postpublish": "pinst --disable",
     "lint": "tslint 'src/**/*.ts'",
     "fix": "npm run lint -- --fix"
   },
@@ -47,11 +48,10 @@
   "dependencies": {
     "cosmiconfig": "^5.0.2",
     "execa": "^0.9.0",
-    "get-stdin": "^6.0.0",
     "find-up": "^2.1.0",
+    "get-stdin": "^6.0.0",
     "is-ci": "^1.1.0",
     "pkg-dir": "^2.0.0",
-    "pupa": "^1.0.0",
     "read-pkg": "^3.0.0",
     "run-node": "^1.0.0",
     "slash": "^2.0.0"
@@ -68,6 +68,7 @@
     "formatree": "^1.0.2",
     "jest": "^22.4.3",
     "mkdirp": "^0.5.1",
+    "pinst": "^1.1.1",
     "pkg-ok": "^2.2.0",
     "prettier": "^1.12.1",
     "tempy": "^0.2.1",
