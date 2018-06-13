@@ -13,6 +13,7 @@ install:
 script:
   - npm test
   - npm run devinstall
+  - cat .git/hooks/post-checkout
   - time git checkout
   - node ci-check
   # Should not fail due to missing node_modules
