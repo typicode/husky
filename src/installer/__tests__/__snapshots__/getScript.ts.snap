@@ -5,7 +5,13 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # husky
 # v1.0.0-rc.8 darwin
 
-node_modules/run-node/run-node node_modules/husky/lib/runner/bin \`basename \\"$0\\"\` \\"$*\\"
+HOOK_NAME=\`basename \\"$0\\"\`
+if [ -f node_modules/husky/lib/runner/bin ]; then
+  node_modules/run-node/run-node node_modules/husky/lib/runner/bin $HOOK_NAME \\"$*\\"
+else
+  echo \\"Can't find husky, skipping $HOOK_NAME hook\\"
+  echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+fi
 "
 `;
 
@@ -14,6 +20,12 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # husky
 # v1.0.0-rc.8 win32
 
-node node_modules/husky/lib/runner/bin \`basename \\"$0\\"\` \\"$*\\"
+HOOK_NAME=\`basename \\"$0\\"\`
+if [ -f node_modules/husky/lib/runner/bin ]; then
+  node node_modules/husky/lib/runner/bin $HOOK_NAME \\"$*\\"
+else
+  echo \\"Can't find husky, skipping $HOOK_NAME hook\\"
+  echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+fi
 "
 `;
