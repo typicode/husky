@@ -6,7 +6,7 @@ environment:
 install:
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
-  # install modules
+  # Install modules
   - npm install --ignore-scripts
 
 # Post-install test scripts.
@@ -14,11 +14,14 @@ test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  # run tests
+  # Run tests
   - npm test
   - npm run devinstall
   - git checkout
   - node ci-check
+  # Should not fail due to missing node_modules
+  - rm -rf node_modules
+  - time git checkout 
 
 # Don't actually build.
 build: off
