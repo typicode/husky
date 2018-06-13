@@ -19,7 +19,7 @@ ${huskyIdentifier}
 # v${version} ${platform}
 
 HOOK_NAME=\`basename "$0"\`
-if [ -f ${script} ]; then
+if [ -f ${script}.js ]; then
   ${node} ${script} $HOOK_NAME "$*"
 else
   echo "Can't find husky, skipping $HOOK_NAME hook"
