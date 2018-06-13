@@ -15,3 +15,6 @@ script:
   - npm run devinstall
   - time git checkout
   - node ci-check
+  # Should not fail due to missing node_modules
+  - rm -rf node_modules
+  - time git checkout 
