@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "install": "node lib/installer/bin install",
+    "_install": "node lib/installer/bin install",
     "preuninstall": "node lib/installer/bin uninstall",
     "devinstall": "npm run build && npm run install -- node_modules/husky && node scripts/dev-fix-path",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
