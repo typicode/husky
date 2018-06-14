@@ -3,7 +3,7 @@
 ## Unreleased
 
 * If `node_modules/husky` is missing, show message but do not crash
-* Remove some `dependencies`
+* Remove and upgrade some `dependencies`
 
 ## 1.0.0-rc.8
 
