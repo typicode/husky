@@ -25,7 +25,7 @@ test_script:
   - cat .git/hooks/post-checkout
   - git checkout
   - node scripts/ci-post-checkout-check
-  # Should not fail due to missing node_modules
+  # Should not fail due to missing script
   - node scripts/ci-break-path.js
   - cat .git/hooks/post-checkout
   - git checkout 
