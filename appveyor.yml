@@ -23,7 +23,7 @@ test_script:
   # Run post-checkout hook test
   - npm run devinstall
   - cat .git/hooks/post-checkout
-  - time git checkout
+  - git checkout
   - node scripts/ci-post-checkout-check
   # Should not fail due to missing node_modules
   - node scripts/ci-break-path.js
