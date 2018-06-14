@@ -1,3 +1,5 @@
+.gitattributes
+.huskyrc
 .travis.yml
 appveyor.yml
 ci-check.js
