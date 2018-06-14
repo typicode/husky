@@ -27,8 +27,7 @@ if [ -f $scriptPath ]; then
 else
   echo "Can't find husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
-fi
-`
+fi`
 
 /**
  * @param rootDir - e.g. /home/typicode/project/
