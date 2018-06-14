@@ -9,7 +9,7 @@ module.exports = function replaceScriptPath(newPath) {
     const absoluteFilename = path.join('.git/hooks', filename)
     const data = fs.readFileSync(absoluteFilename, 'utf-8')
   
-    if (!data.test(regExp)) {
+    if (!regExp.test(data)) {
       throw new Error("Can't find scriptPath")
     }
 
