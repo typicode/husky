@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.0.0-rc.9
 
 * If `node_modules/husky` is missing, show message but do not crash
 * Remove and upgrade some `dependencies`
