@@ -9,7 +9,7 @@ cache:
   directories:
     - "node_modules"
 install:
-  - npm install
+  - npm ci || npm install
 script:
   - npm test
   # Test post-checkout
