@@ -62,7 +62,6 @@
     "@types/get-stdin": "^5.0.1",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.0.6",
-    "cross-env": "^5.1.4",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
     "formatree": "^1.0.2",
