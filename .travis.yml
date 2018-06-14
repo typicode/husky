@@ -9,13 +9,15 @@ cache:
   directories:
     - "node_modules"
 install:
-  - npm install --ignore-scripts
+  - npm install
 script:
   - npm test
+  # Test post-checkout
   - npm run devinstall
   - cat .git/hooks/post-checkout
   - time git checkout
-  - node ci-check
-  # Should not fail due to missing node_modules
-  - rm -rf node_modules
-  - time git checkout 
+  - node scripts/ci-post-checkout-check
+  # Should not fail due to missing script
+  - node scripts/ci-break-path.js
+  - cat .git/hooks/post-checkout
+  - time git checkout

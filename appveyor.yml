@@ -1,13 +1,17 @@
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "8"
+  nodejs_version: "10"
 
 # Install scripts. (runs after repo cloning)
 install:
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
   # Install modules
-  - npm install --ignore-scripts
+  - npm install
+
+cache:
+  - '%APPDATA%\npm-cache'
+  - node_modules
 
 # Post-install test scripts.
 test_script:
@@ -16,11 +20,14 @@ test_script:
   - npm --version
   # Run tests
   - npm test
+  # Run post-checkout hook test
   - npm run devinstall
-  - git checkout
-  - node ci-check
+  - cat .git/hooks/post-checkout
+  - time git checkout
+  - node scripts/ci-post-checkout-check
   # Should not fail due to missing node_modules
-  - rm -rf node_modules
+  - node scripts/ci-break-path.js
+  - cat .git/hooks/post-checkout
   - git checkout 
 
 # Don't actually build.

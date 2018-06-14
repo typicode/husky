@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* If `node_modules/husky` is missing, show message but do not crash
+
 ## 1.0.0-rc.8
 
 * Add `HUSKY_GIT_STDIN` environment variable for `pre-push`, `pre-receive`, `post-receive` and `post-rewrite` to access arguments passed by Git via stdin.

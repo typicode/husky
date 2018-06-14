@@ -18,11 +18,14 @@ const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
 ${huskyIdentifier}
 # v${version} ${platform}
 
-HOOK_NAME=\`basename "$0"\`
-if [ -f ${script}.js ]; then
-  ${node} ${script} $HOOK_NAME "$*"
+scriptPath="${script}.js"
+hookName=\`basename "$0"\`
+gitParams="$*"
+
+if [ -f $scriptPath ]; then
+  ${node} $scriptPath $hookName $gitParams
 else
-  echo "Can't find husky, skipping $HOOK_NAME hook"
+  echo "Can't find husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
 fi
 `
