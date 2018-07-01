@@ -1,5 +1,4 @@
 import * as execa from 'execa'
-import * as fs from 'fs'
 import * as getStdin from 'get-stdin'
 import * as path from 'path'
 import * as readPkg from 'read-pkg'

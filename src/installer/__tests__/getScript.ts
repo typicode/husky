@@ -1,4 +1,3 @@
-import * as path from 'path'
 import getScript from '../getScript'
 
 const rootDir = '/home/typicode/project'

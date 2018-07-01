@@ -1,4 +1,3 @@
-import del from 'del'
 import * as execa from 'execa'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
