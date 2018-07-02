@@ -8,6 +8,7 @@ if (fs.existsSync(filename)) {
 
   if (data.split(' ').length !== 3) {
     console.log('Not all params were set in HUSKY_GIT_PARAMS')
+    console.log('Got', data)
     process.exit(1)
   }
 
