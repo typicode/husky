@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.10
+
+* Fix `HUSKY_GIT_PARAMS` containing only the first Git param
+
 ## 1.0.0-rc.9
 
 * If `node_modules/husky` is missing, show message but do not crash
