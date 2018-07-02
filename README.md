@@ -31,7 +31,7 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-Check [documentation](https://github.com/typicode/husky/blob/dev/docs.md) for more.
+Check [documentation](https://github.com/typicode/husky/blob/dev/DOCS.md) for more.
 
 ## Uninstall
 
