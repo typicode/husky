@@ -14,7 +14,8 @@ if [ -f $scriptPath ]; then
 else
   echo \\"Can't find husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
-fi"
+fi
+"
 `;
 
 exports[`hookScript should match snapshot (Windows) 1`] = `
@@ -31,5 +32,6 @@ if [ -f $scriptPath ]; then
 else
   echo \\"Can't find husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
-fi"
+fi
+"
 `;
