@@ -29,6 +29,8 @@ test_script:
   - node scripts/ci-break-path.js
   - cat .git/hooks/post-checkout
   - git checkout 
+  # Test uninstall
+  - npm run devuninstall
 
 # Don't actually build.
 build: off
