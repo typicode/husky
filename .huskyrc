@@ -2,6 +2,6 @@
   "skipCI": false,
   "hooks": {
     "pre-commit": "npm test",
-    "post-checkout": "rm -f ci-post-checkout && echo \"running CI post-checkout test\" && echo $HUSKY_GIT_PARAMS > ci-post-checkout"
+    "post-checkout": "rm -f ci-post-checkout && echo \"running CI post-checkout test\" && node scripts/ci-post-checkout-hooks"
   }
 }
