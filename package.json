@@ -15,6 +15,7 @@
     "devinstall": "npm run build && npm run _install -- node_modules/husky && node scripts/dev-fix-path",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
+    "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
     "lint": "tslint 'src/**/*.ts'",
