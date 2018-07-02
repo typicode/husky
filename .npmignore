@@ -2,8 +2,7 @@
 .huskyrc
 .travis.yml
 appveyor.yml
-ci-check.js
-ci.ok
+ci-post-checkout
 preprocessor.js
 scripts
 src
