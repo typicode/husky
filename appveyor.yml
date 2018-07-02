@@ -16,7 +16,6 @@ cache:
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
-  - git --version
   - node --version
   - npm --version
   # Run tests
