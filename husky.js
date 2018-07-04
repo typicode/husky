@@ -1,8 +1,7 @@
-// This code must work with at least Node 0.12 that's why it's outside of src/
 const pleaseUpgradeNode = require('please-upgrade-node')
 const pkg = require('./package.json')
 
-// Don't try to install if Node version doesn't satisfy package.engines.node version
+// Node version isn't supported, skip install
 pleaseUpgradeNode(pkg, {
   exitCode: 0,
   message: function(requiredVersion) {
@@ -10,5 +9,5 @@ pleaseUpgradeNode(pkg, {
   }
 })
 
-// Node version is supported, install
-require('./lib/installer/bin').default()
+// Node version is supported, continue
+require('./lib/installer/bin')
