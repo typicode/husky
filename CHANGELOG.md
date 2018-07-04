@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.11
+
+* Show a message instead of crashing if Node version is unsupported by Husky
+
 ## 1.0.0-rc.10
 
 * Fix `HUSKY_GIT_PARAMS` containing only the first Git param
