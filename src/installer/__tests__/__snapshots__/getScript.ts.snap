@@ -3,7 +3,7 @@
 exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 "#!/bin/sh
 # husky
-# v1.0.0-rc.10 darwin
+# v1.0.0-rc.11 darwin
 
 scriptPath=\\"node_modules/husky/lib/runner/bin.js\\"
 hookName=\`basename \\"$0\\"\`
@@ -21,7 +21,7 @@ fi
 exports[`hookScript should match snapshot (Windows) 1`] = `
 "#!/bin/sh
 # husky
-# v1.0.0-rc.10 win32
+# v1.0.0-rc.11 win32
 
 scriptPath=\\"node_modules/husky/lib/runner/bin.js\\"
 hookName=\`basename \\"$0\\"\`
