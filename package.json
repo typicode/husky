@@ -10,8 +10,8 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "_install": "node lib/installer/bin install",
-    "preuninstall": "node lib/installer/bin uninstall",
+    "_install": "node husky install",
+    "preuninstall": "node husky uninstall",
     "devinstall": "npm run build && npm run _install -- node_modules/husky && node scripts/dev-fix-path",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
@@ -53,6 +53,7 @@
     "get-stdin": "^6.0.0",
     "is-ci": "^1.1.0",
     "pkg-dir": "^2.0.0",
+    "please-upgrade-node": "^3.1.0",
     "read-pkg": "^3.0.0",
     "run-node": "^1.0.0",
     "slash": "^2.0.0"
