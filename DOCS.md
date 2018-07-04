@@ -60,3 +60,11 @@ Generally speaking, you should AVOID defining `husky` in multiple `package.json`
   }
 }
 ```
+
+## Node version management
+
+If you're on Windows, husky will simply use the version installed globally on your system.
+
+For macOS and Linux users:
+- if you're running `git` commands in the terminal, husky will use the version defined in your shell `PATH`. So if you're a `nvm` user, husky will use the version that you've set with `nvm`.
+- if you're using a GUI tools and `nvm`, GUI tools may have a different `PATH` and not load `nvm`, in this case husky will usually pick the highest `node` version installed by `nvm`. You can also check `~/.node_path` to see which version is used by GUIs.
