@@ -12,12 +12,12 @@ export interface IEnv extends NodeJS.ProcessEnv {
 /**
  * @param argv - process.argv
  */
-export default async function(
+export default async function run(
   [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
   getStdinFn = getStdin // Used for mocking
 ): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
-  const pkg = readPkg.sync(cwd, { normalize: false })
+  const pkg = readPkg.sync({ cwd, normalize: false })
   const config = getConf(cwd)
 
   const command: string | undefined =

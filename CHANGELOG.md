@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0-rc.12
+
+* Fix exit code when used with unsupported Node version
+* Update dependencies
+
 ## 1.0.0-rc.11
 
 * Show a message instead of crashing if Node version is unsupported by Husky
