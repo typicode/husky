@@ -69,7 +69,6 @@ Alternatively, you can also use any of the files/formats that are supported by [
 * Keeps existing user hooks
 * Supports GUI Git clients
 * Supports all Git hooks (`pre-commit`, `pre-push`, ...)
-* Auto-migrates Git hooks installed by `ghooks`
 
 ## Used by
 
