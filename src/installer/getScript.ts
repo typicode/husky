@@ -25,7 +25,7 @@ ${
   platform !== 'win32'
     ? `
 if ! command -v node >/dev/null 2>&1; then
-  echo "Can't find Node in PATH, Husky will try to find a Node binary on your system to run hook"
+  echo "Can't find node in PATH, trying to find a node binary on your system"
 fi
 `
     : ''
