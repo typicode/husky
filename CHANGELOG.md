@@ -2,7 +2,7 @@
 
 ## 1.0.0-rc.13
 
-* Show message when Node can't be found in PATH
+* Show a message when Node can't be found in PATH
 
 ## 1.0.0-rc.12
 
