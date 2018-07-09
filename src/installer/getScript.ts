@@ -21,11 +21,19 @@ ${huskyIdentifier}
 scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
-
+${
+  platform !== 'win32'
+    ? `
+if ! command -v node >/dev/null 2>&1; then
+  echo "Can't find Node in PATH, Husky will try to find a Node binary on your system to run hook"
+fi
+`
+    : ''
+}
 if [ -f $scriptPath ]; then
   ${node} $scriptPath $hookName "$gitParams"
 else
-  echo "Can't find husky, skipping $hookName hook"
+  echo "Can't find Husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
 fi
 `

@@ -28,7 +28,7 @@ HUSKY_SKIP_INSTALL=true npm install
 
 ## Multi-package repository (monorepo)
 
-If you have a multi-package repository, it's recommended to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
+If you have a multi-package repository, it's __recommended__ to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
 
 Generally speaking, you should AVOID defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
 
@@ -67,4 +67,4 @@ If you're on Windows, husky will simply use the version installed globally on yo
 
 For macOS and Linux users:
 - if you're running `git` commands in the terminal, husky will use the version defined in your shell `PATH`. So if you're a `nvm` user, husky will use the version that you've set with `nvm`.
-- if you're using a GUI tools and `nvm`, GUI tools may have a different `PATH` and not load `nvm`, in this case husky will usually pick the highest `node` version installed by `nvm`. You can also check `~/.node_path` to see which version is used by GUIs.
+- if you're using a GUI client and `nvm`, it may have a different `PATH` and not load `nvm`, in this case the highest `node` version installed by `nvm` will usually be picked. You can also check `~/.node_path` to see which version is used by GUIs.
