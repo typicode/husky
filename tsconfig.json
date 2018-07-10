@@ -5,6 +5,8 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
