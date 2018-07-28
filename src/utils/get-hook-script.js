@@ -179,10 +179,13 @@ function createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage)
 
           return False
 
-        def execute_cmd(cmd):
+        def execute_cmd(cmd, show_output = False):
           try:
             FNULL = os.open(os.devnull, os.O_WRONLY)
-            return subprocess.check_call(cmd, stdin=FNULL, stdout=FNULL, stderr=FNULL, shell=True) == 0
+            if show_output:
+              return subprocess.check_call(cmd, stdin=FNULL, shell=True) == 0
+            else:
+              return subprocess.check_call(cmd, stdin=FNULL, stdout=FNULL, stderr=FNULL, shell=True) == 0
           except (OSError, subprocess.CalledProcessError) as e:
             print_error_msg(str(e))
             return False
@@ -233,7 +236,7 @@ function createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage)
       npm_cmd = ['npm', 'run', '-s', '${npmScriptName}']
       print_msg(' '.join(npm_cmd) + '\\n')
 
-      if execute_cmd(npm_cmd) is False:
+      if execute_cmd(npm_cmd, True) is False:
         print_error_msg('${hookName} hook failed ${verifyMessage}')
         return True`
     )
