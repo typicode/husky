@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.3
+
+* Show output from hooks (#8)
+
 ## 0.15.0
 
 * Add universal os support via `python` hooks [#4](https://github.com/TobiasTimm/husky-hg/pull/4)
