@@ -17,6 +17,7 @@
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
     "postversion": "git push && git push --tags",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
     "lint": "tslint 'src/**/*.ts'",
