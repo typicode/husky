@@ -358,7 +358,7 @@ describe('install', () => {
 
     installFrom(huskyDir)
     expect(readFile('.git/hooks/pre-commit')).toBe('user')
-    expect(exists('.git/hooks/pre-commit-husky-user')).toBeFalsy()
+    expect(exists('.git/hooks/pre-commit.husky-user')).toBeFalsy()
   })
 
   it('should overwrite when user hooks has existed', () => {
@@ -373,11 +373,11 @@ describe('install', () => {
 
     installFrom(huskyDir, 'node_modules/.bin/run-node')
     expect(readFile('.git/hooks/pre-commit')).not.toBe('user')
-    expect(readFile('.git/hooks/pre-commit-husky-user')).toBe('user')
+    expect(readFile('.git/hooks/pre-commit.husky-user')).toBe('user')
 
     uninstallFrom(huskyDir)
     expect(readFile('.git/hooks/pre-commit')).toBe('user')
-    expect(exists('.git/hooks/pre-commit-husky-user')).toBeFalsy()
+    expect(exists('.git/hooks/pre-commit.husky-user')).toBeFalsy()
   })
 
   it('should overwrite when user hooks has existed and installed twice', () => {
@@ -395,7 +395,7 @@ describe('install', () => {
     expect(readFile('.git/hooks/pre-commit')).toContain(
       'node_modules/.bin/run-node'
     )
-    expect(readFile('.git/hooks/pre-commit-husky-user')).toBe('user')
+    expect(readFile('.git/hooks/pre-commit.husky-user')).toBe('user')
 
     // Verify update
     installFrom(huskyDir, '.bin/run-node')
@@ -403,11 +403,11 @@ describe('install', () => {
       'node_modules/.bin/run-node'
     )
     expect(readFile('.git/hooks/pre-commit')).toContain('.bin/run-node')
-    expect(readFile('.git/hooks/pre-commit-husky-user')).toBe('user')
+    expect(readFile('.git/hooks/pre-commit.husky-user')).toBe('user')
 
     uninstallFrom(huskyDir)
     expect(readFile('.git/hooks/pre-commit')).toBe('user')
-    expect(exists('.git/hooks/pre-commit-husky-user')).toBeFalsy()
+    expect(exists('.git/hooks/pre-commit.husky-user')).toBeFalsy()
   })
 
   it('should append when user hooks has existed', () => {
@@ -423,10 +423,10 @@ describe('install', () => {
     installFrom(huskyDir, 'node_modules/.bin/run-node')
     expect(readFile('.git/hooks/pre-commit')).toContain('# husky-append start!')
     expect(readFile('.git/hooks/pre-commit')).toContain('# husky\n')
-    expect(readFile('.git/hooks/pre-commit-husky-user')).toBe('user')
+    expect(readFile('.git/hooks/pre-commit.husky-user')).toBe('user')
 
     uninstallFrom(huskyDir)
     expect(readFile('.git/hooks/pre-commit')).toBe('user')
-    expect(exists('.git/hooks/pre-commit-husky-user')).toBeFalsy()
+    expect(exists('.git/hooks/pre-commit.husky-user')).toBeFalsy()
   })
 })

@@ -1,13 +1,13 @@
 import * as del from 'del'
+import * as execa from 'execa'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
-import * as execa from 'execa'
 
 import getAppendScript, {
-  remove,
-  huskyAppendIdentifier
+  huskyAppendIdentifier,
+  remove
 } from '../getAppendScript'
 import { getUserStagedFilename } from '../index'
 
@@ -26,7 +26,7 @@ function mkdir(dir: string) {
   mkdirp.sync(path.join(tempDir, dir))
 }
 
-function filename(name: string) {
+function getFilename(name: string) {
   return path.join(tempDir, name)
 }
 
@@ -140,7 +140,7 @@ describe('getAppendScript', () => {
     writeExecFile('script.sh', script)
     writeExecFile(
       getUserStagedFilename('script.sh'),
-      `echo $* > ${filename('echoed')}`
+      `echo $* > ${getFilename('echoed')}`
     )
     execSync('script.sh', ['777', 'sss'], { stdio: 'inherit' })
 

@@ -43,7 +43,7 @@ interface IOptions {
 }
 
 export function getUserStagedFilename(filename: string): string {
-  return filename + '-husky-user'
+  return filename + '.husky-user'
 }
 
 function createHook(

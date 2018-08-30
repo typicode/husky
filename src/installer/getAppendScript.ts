@@ -18,7 +18,6 @@ export const huskyAppendIdentifier = `${huskyIdentifier}-append`
 const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
 ${huskyAppendIdentifier} start!
 # v${version} ${platform}
-scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 selfPath="$(cd -P -- "$(dirname -- "$0")" && pwd -P)/$(basename -- "$0")"
 ${
@@ -30,8 +29,8 @@ fi
 `
     : ''
 }
-if [ -f $scriptPath ]; then
-  ${node} $scriptPath $selfPath $* || exit $?
+if [ -f "${script}.js" ]; then
+  ${node} "${script}.js" $selfPath $* || exit $?
 else
   echo "Can't find user's $hookName hook"
 fi
