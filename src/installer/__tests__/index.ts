@@ -399,7 +399,9 @@ describe('install', () => {
     expect(readFile('.git/hooks/pre-commit')).not.toContain(
       'node_modules/.bin/run-node'
     )
-    expect(readFile('.git/hooks/pre-commit')).toContain('.bin/run-node')
+    if (os.platform() !== 'win32') {
+      expect(readFile('.git/hooks/pre-commit')).toContain('.bin/run-node')
+    }
     expect(readFile('.git/hooks/pre-commit.husky-user')).toBe('user')
 
     uninstallFrom(huskyDir)

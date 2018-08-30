@@ -20,6 +20,8 @@ ${huskyAppendIdentifier} start!
 # v${version} ${platform}
 hookName=\`basename "$0"\`
 appendScriptPath="${script}.js"
+echo "test-appendScriptPath $PWD"
+ls ${path.dirname(script)}
 selfPath="$(cd -P -- "$(dirname -- "$0")" && pwd -P)/$(basename -- "$0")"
 ${
   platform !== 'win32'

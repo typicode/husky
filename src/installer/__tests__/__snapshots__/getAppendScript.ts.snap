@@ -6,6 +6,8 @@ exports[`getAppendScript should match snapshot (OS X/Linux) 1`] = `
 # v1.0.0-rc.13 darwin
 hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
+echo \\"test-appendScriptPath $PWD\\"
+ls node_modules/husky/lib/runner
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
 if ! command -v node >/dev/null 2>&1; then
@@ -27,6 +29,8 @@ exports[`getAppendScript should match snapshot (Windows) 1`] = `
 # v1.0.0-rc.13 win32
 hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
+echo \\"test-appendScriptPath $PWD\\"
+ls node_modules/husky/lib/runner
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
 if [ -f $appendScriptPath ]; then
