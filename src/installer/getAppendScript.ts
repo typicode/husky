@@ -21,8 +21,6 @@ ${huskyAppendIdentifier} start!
 hookName=\`basename "$0"\`
 appendScriptPath="${script}.js"
 selfPath="$(cd -P -- "$(dirname -- "$0")" && pwd -P)/$(basename -- "$0")"
-
-echo "TEST appendScript $PWD  $selfPath"
 ${
   platform !== 'win32'
     ? `
@@ -35,7 +33,7 @@ fi
 if [ -f $appendScriptPath ]; then
   ${node} $appendScriptPath $selfPath $* || exit $?
 else
-  echo "Can't find user's $hookName hook"
+  echo "Can't find Husky user hook appending script, skipping $hookName hook"
 fi
 ${huskyAppendIdentifier} end!
 `

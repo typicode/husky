@@ -8,8 +8,6 @@ hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
-echo \\"TEST appendScript $PWD  $selfPath\\"
-
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
@@ -17,7 +15,7 @@ fi
 if [ -f $appendScriptPath ]; then
   node_modules/run-node/run-node $appendScriptPath $selfPath $* || exit $?
 else
-  echo \\"Can't find user's $hookName hook\\"
+  echo \\"Can't find Husky user hook appending script, skipping $hookName hook\\"
 fi
 # husky-append end!
 "
@@ -31,12 +29,10 @@ hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
-echo \\"TEST appendScript $PWD  $selfPath\\"
-
 if [ -f $appendScriptPath ]; then
   node $appendScriptPath $selfPath $* || exit $?
 else
-  echo \\"Can't find user's $hookName hook\\"
+  echo \\"Can't find Husky user hook appending script, skipping $hookName hook\\"
 fi
 # husky-append end!
 "
