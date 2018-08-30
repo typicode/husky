@@ -8,6 +8,8 @@ hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
+echo \\"TEST appendScript $PWD  $selfPath\\"
+
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
@@ -28,6 +30,8 @@ exports[`getAppendScript should match snapshot (Windows) 1`] = `
 hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
+
+echo \\"TEST appendScript $PWD  $selfPath\\"
 
 if [ -f $appendScriptPath ]; then
   node $appendScriptPath $selfPath $* || exit $?
