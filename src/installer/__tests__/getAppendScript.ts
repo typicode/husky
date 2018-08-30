@@ -127,7 +127,7 @@ describe('getAppendScript', () => {
     ).toBe(`\n`)
   })
 
-  it("should remove append wrapper when user's hook is not found", () => {
+  it.skip("should remove append wrapper when user's hook is not found", () => {
     const script = getAppendScript(tempDir, curHuskyDir)
     writeExecFile('script.sh', script)
     expect(readFile('script.sh')).toContain(huskyAppendIdentifier)
@@ -137,7 +137,7 @@ describe('getAppendScript', () => {
     expect(readFile('script.sh')).not.toContain(huskyAppendIdentifier)
   })
 
-  it('should run well', () => {
+  it.skip('should run well', () => {
     const script = getAppendScript(tempDir, curHuskyDir)
     writeExecFile('script.sh', script)
     writeExecFile(
