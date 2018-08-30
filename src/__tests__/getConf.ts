@@ -13,7 +13,11 @@ describe('getConf', () => {
       JSON.stringify(testConf)
     )
 
-    expect(getConf(tempDir)).toEqual({ skipCI: true, foo: 'bar' })
+    expect(getConf(tempDir)).toEqual({
+      foo: 'bar',
+      installType: 'skip',
+      skipCI: true
+    })
   })
 
   it('should allow overriding default conf', () => {
@@ -23,7 +27,11 @@ describe('getConf', () => {
       JSON.stringify(testConf)
     )
 
-    expect(getConf(tempDir)).toEqual({ skipCI: true, foo: 'bar' })
+    expect(getConf(tempDir)).toEqual({
+      foo: 'bar',
+      installType: 'skip',
+      skipCI: true
+    })
   })
 
   it('should support .huskyrc', () => {
@@ -33,6 +41,10 @@ describe('getConf', () => {
       JSON.stringify(testConf.husky)
     )
 
-    expect(getConf(tempDir)).toEqual({ skipCI: true, foo: 'bar' })
+    expect(getConf(tempDir)).toEqual({
+      foo: 'bar',
+      installType: 'skip',
+      skipCI: true
+    })
   })
 })

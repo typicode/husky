@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getAppendScript should match snapshot (OS X/Linux) 1`] = `
+"#!/bin/sh
+# husky-append start!
+# v1.0.0-rc.13 darwin
+
+scriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
+hookName=\`basename \\"$0\\"\`
+userHookName=\\"$hookName-user\\"
+gitParams=\\"$*\\"
+
+if ! command -v node >/dev/null 2>&1; then
+  echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
+fi
+
+if [ -f $scriptPath ]; then
+  node_modules/run-node/run-node $scriptPath $userHookName \\"$gitParams\\" || exit $?
+else
+  echo \\"Can't find Husky, skipping $hookName hook\\"
+  echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+fi
+# husky-append end!
+"
+`;
+
+exports[`getAppendScript should match snapshot (Windows) 1`] = `
+"#!/bin/sh
+# husky-append start!
+# v1.0.0-rc.13 win32
+
+scriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
+hookName=\`basename \\"$0\\"\`
+userHookName=\\"$hookName-user\\"
+gitParams=\\"$*\\"
+
+if [ -f $scriptPath ]; then
+  node $scriptPath $userHookName \\"$gitParams\\" || exit $?
+else
+  echo \\"Can't find Husky, skipping $hookName hook\\"
+  echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+fi
+# husky-append end!
+"
+`;

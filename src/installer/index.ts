@@ -2,9 +2,10 @@ import * as findUp from 'find-up'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
-import getConf from '../getConf'
+import getConf, { IConfInstallType } from '../getConf'
+import getAppendScript, { remove } from './getAppendScript'
 import getScript from './getScript'
-import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
+import { isGhooks, isHusky, isHuskyAppend, isPreCommit, isYorkie } from './is'
 import resolveGitDir from './resolveGitDir'
 
 const hookList = [
@@ -29,12 +30,27 @@ const hookList = [
   'sendemail-validate'
 ]
 
-function writeHook(filename: string, script: string) {
+export function writeHook(filename: string, script: string) {
   fs.writeFileSync(filename, script, 'utf-8')
   fs.chmodSync(filename, parseInt('0755', 8))
 }
 
-function createHook(filename: string, script: string) {
+interface IOptions {
+  installType: IConfInstallType
+  rootDir: string
+  requireRunNodePath: string
+  huskyDir: string
+}
+
+export function getUserStagedFilename(filename: string): string {
+  return filename + '-husky-user'
+}
+
+function createHook(
+  filename: string,
+  script: string,
+  { installType = 'skip', rootDir, huskyDir, requireRunNodePath }: IOptions
+) {
   // Get name, used for logging
   const name = path.basename(filename)
 
@@ -59,6 +75,40 @@ function createHook(filename: string, script: string) {
       return writeHook(filename, script)
     }
 
+    const newUserhookFilename = getUserStagedFilename(filename)
+    // Exists previous one
+    if (isHuskyAppend(hook)) {
+      if (fs.existsSync(newUserhookFilename)) {
+        // Reset
+        fs.renameSync(newUserhookFilename, filename)
+      }
+    }
+
+    // Exists user hooks
+    if ('overwrite' === installType) {
+      // Renames user hook
+      fs.renameSync(filename, newUserhookFilename)
+      console.log(`overwriting existing user hook: ${name}`)
+      return writeHook(filename, script)
+    } else if ('append' === installType) {
+      // Renames user hook
+      fs.renameSync(filename, newUserhookFilename)
+
+      const appendScript = getAppendScript(
+        rootDir,
+        huskyDir,
+        requireRunNodePath
+      )
+      const content = appendScript + '\n' + script
+      console.log(`appending existing user hook: ${name}`)
+      return writeHook(filename, content)
+    }
+
+    // Removes appended
+    const removedScript = remove(hook)
+    if (script !== removedScript) {
+      writeHook(filename, removedScript)
+    }
     // Skip
     console.log(`skipping existing user hook: ${name}`)
     return
@@ -68,25 +118,31 @@ function createHook(filename: string, script: string) {
   writeHook(filename, script)
 }
 
-function createHooks(filenames: string[], script: string) {
-  filenames.forEach(filename => createHook(filename, script))
-}
-
-function canRemove(filename: string): boolean {
-  if (fs.existsSync(filename)) {
-    const data = fs.readFileSync(filename, 'utf-8')
-    return isHusky(data)
-  }
-
-  return false
+function createHooks(filenames: string[], script: string, options: IOptions) {
+  filenames.forEach(filename => createHook(filename, script, options))
 }
 
 function removeHook(filename: string) {
-  fs.unlinkSync(filename)
+  if (fs.existsSync(filename)) {
+    const data = fs.readFileSync(filename, 'utf-8')
+
+    if (isHusky(data) || isHuskyAppend(data)) {
+      fs.unlinkSync(filename)
+    }
+
+    const newUserHookFilename = getUserStagedFilename(filename)
+    if (fs.existsSync(newUserHookFilename)) {
+      // Reset
+      if (fs.existsSync(filename)) {
+        fs.unlinkSync(filename)
+      }
+      fs.renameSync(newUserHookFilename, filename)
+    }
+  }
 }
 
 function removeHooks(filenames: string[]) {
-  filenames.filter(canRemove).forEach(removeHook)
+  filenames.forEach(removeHook)
 }
 
 // This prevents the case where someone would want to debug a node_module that has
@@ -180,7 +236,12 @@ export function install(
 
   const hooks = getHooks(resolvedGitDir)
   const script = getScript(rootDir, huskyDir, requireRunNodePath)
-  createHooks(hooks, script)
+  createHooks(hooks, script, {
+    huskyDir,
+    installType: conf.installType,
+    requireRunNodePath,
+    rootDir
+  })
 
   console.log(`husky > done`)
 }

@@ -3,3 +3,4 @@
 ci-post-checkout
 lib
 node_modules/
+.idea/

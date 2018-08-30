@@ -1,3 +1,4 @@
+import { huskyAppendIdentifier } from './getAppendScript'
 import { huskyIdentifier } from './getScript'
 
 export function isHusky(data: string): boolean {
@@ -6,9 +7,14 @@ export function isHusky(data: string): boolean {
   // and for a better transition this will allow v0.15+ to uninstall them as well.
   const previousHuskyIdentifier = '#husky'
   return (
-    data.indexOf(huskyIdentifier) !== -1 ||
-    data.indexOf(previousHuskyIdentifier) !== -1
+    (data.indexOf(huskyIdentifier) !== -1 ||
+      data.indexOf(previousHuskyIdentifier) !== -1) &&
+    !isHuskyAppend(data)
   )
+}
+
+export function isHuskyAppend(data: string): boolean {
+  return data.indexOf(huskyAppendIdentifier) !== -1
 }
 
 export function isYorkie(data: string): boolean {
