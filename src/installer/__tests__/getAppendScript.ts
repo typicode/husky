@@ -2,6 +2,7 @@ import * as del from 'del'
 import * as execa from 'execa'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
+import * as os from 'os'
 import * as path from 'path'
 import * as tempy from 'tempy'
 
@@ -138,6 +139,10 @@ describe('getAppendScript', () => {
   })
 
   it('should run well', () => {
+    if (os.platform() === 'win32') {
+      // skip
+      return
+    }
     const script = getAppendScript(tempDir, curHuskyDir)
     writeExecFile('script.sh', script)
     writeExecFile(
