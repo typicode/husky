@@ -5,14 +5,15 @@ exports[`getAppendScript should match snapshot (OS X/Linux) 1`] = `
 # husky-append start!
 # v1.0.0-rc.13 darwin
 hookName=\`basename \\"$0\\"\`
+appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
 
-if [ -f \\"node_modules/husky/lib/runner/append-bin.js\\" ]; then
-  node_modules/run-node/run-node \\"node_modules/husky/lib/runner/append-bin.js\\" $selfPath $* || exit $?
+if [ -f $appendScriptPath ]; then
+  node_modules/run-node/run-node $appendScriptPath $selfPath $* || exit $?
 else
   echo \\"Can't find user's $hookName hook\\"
 fi
@@ -25,10 +26,11 @@ exports[`getAppendScript should match snapshot (Windows) 1`] = `
 # husky-append start!
 # v1.0.0-rc.13 win32
 hookName=\`basename \\"$0\\"\`
+appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
 
-if [ -f \\"node_modules/husky/lib/runner/append-bin.js\\" ]; then
-  node \\"node_modules/husky/lib/runner/append-bin.js\\" $selfPath $* || exit $?
+if [ -f $appendScriptPath ]; then
+  node $appendScriptPath $selfPath $* || exit $?
 else
   echo \\"Can't find user's $hookName hook\\"
 fi

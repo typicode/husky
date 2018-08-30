@@ -19,6 +19,7 @@ const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
 ${huskyAppendIdentifier} start!
 # v${version} ${platform}
 hookName=\`basename "$0"\`
+appendScriptPath="${script}.js"
 selfPath="$(cd -P -- "$(dirname -- "$0")" && pwd -P)/$(basename -- "$0")"
 ${
   platform !== 'win32'
@@ -29,8 +30,8 @@ fi
 `
     : ''
 }
-if [ -f "${script}.js" ]; then
-  ${node} "${script}.js" $selfPath $* || exit $?
+if [ -f $appendScriptPath ]; then
+  ${node} $appendScriptPath $selfPath $* || exit $?
 else
   echo "Can't find user's $hookName hook"
 fi
