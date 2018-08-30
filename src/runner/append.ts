@@ -32,7 +32,7 @@ export default async function run([hookFilename, ...args]: string[]): Promise<
     const rlt = execa.sync(userHookFilename, args, { cwd, stdio: 'inherit' })
     return rlt.code
   } catch (err) {
-    console.log(`husky > run ${hookName} user's hook failed ${err.message}`)
+    console.log(`husky > run ${hookName} user's hook failed`)
     return err.code
   }
 }
