@@ -392,9 +392,6 @@ describe('install', () => {
 
     installFrom(huskyDir, 'node_modules/.bin/run-node')
     expect(readFile('.git/hooks/pre-commit')).not.toBe('user')
-    expect(readFile('.git/hooks/pre-commit')).toContain(
-      'node_modules/.bin/run-node'
-    )
     expect(readFile('.git/hooks/pre-commit.husky-user')).toBe('user')
 
     // Verify update

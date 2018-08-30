@@ -130,7 +130,9 @@ describe('getAppendScript', () => {
     const script = getAppendScript(tempDir, curHuskyDir)
     writeExecFile('script.sh', script)
     expect(readFile('script.sh')).toContain(huskyAppendIdentifier)
+    console.log("readFile('script.sh')", readFile('script.sh'))
     execSync('script.sh', ['777', 'sss'], { stdio: 'inherit' })
+    console.log("readFile('script.sh')", readFile('script.sh'))
     // Verify removing
     expect(readFile('script.sh')).not.toContain(huskyAppendIdentifier)
   })
@@ -144,8 +146,8 @@ describe('getAppendScript', () => {
     )
     execSync('script.sh', ['777', 'sss'], { stdio: 'inherit' })
 
-    expect(readFile('echoed')).toEqual('777 sss\n')
-    // Verify removing
     expect(readFile('script.sh')).toContain(huskyAppendIdentifier)
+    console.log("readFile('echoed')", readFile('echoed'))
+    expect(readFile('echoed')).toEqual('777 sss\n')
   })
 })
