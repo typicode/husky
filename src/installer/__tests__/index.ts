@@ -116,7 +116,7 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     // Create an existing husky hook
-    writeFile(hookFilename, '#husky\nfoo')
+    writeFile(hookFilename, '#!/bin/sh\n#husky 0.14.3\nfoo')
 
     // Verify that it has been updated
     installFrom(huskyDir)
