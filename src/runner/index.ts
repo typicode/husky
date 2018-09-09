@@ -69,7 +69,7 @@ export default async function run(
     return 0
   } catch (err) {
     const noVerifyMessage =
-      hookName === 'prepare-commit-msg'
+      hookName === 'prepare-commit-msg' || hookName.includes('post')
         ? '(cannot be bypassed with --no-verify due to Git specs)'
         : '(add --no-verify to bypass)'
 
