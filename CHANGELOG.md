@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Make `--no-verify` message more accurate and show it only for hooks that can be skipped
+* Only show `--no-verify` message for hooks that can be skipped
 
 ## 1.0.0-rc.13
 
