@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Make `--no-verify` message more accurate and show it only for hooks that can be skipped
+
 ## 1.0.0-rc.13
 
 * Show a message when Node can't be found in PATH
