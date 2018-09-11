@@ -6,7 +6,7 @@
 
 Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
-_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/master) if you prefer to use the stable release_
+_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/v0.14.3) if you prefer to view docs for the stable version (`v0.14.3`)_
 
 ## Install
 
@@ -31,7 +31,7 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-Check [documentation](https://github.com/typicode/husky/blob/dev/docs.md) for more.
+Check [documentation](https://github.com/typicode/husky/blob/dev/DOCS.md) for more.
 
 ## Uninstall
 
@@ -69,7 +69,6 @@ Alternatively, you can also use any of the files/formats that are supported by [
 * Keeps existing user hooks
 * Supports GUI Git clients
 * Supports all Git hooks (`pre-commit`, `pre-push`, ...)
-* Auto-migrates Git hooks installed by `ghooks`
 
 ## Used by
 
@@ -81,7 +80,7 @@ Alternatively, you can also use any of the files/formats that are supported by [
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 21k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
+* ... and 23k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
 
 ## See also
 

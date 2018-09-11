@@ -2,7 +2,6 @@ import * as findUp from 'find-up'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as pkgDir from 'pkg-dir'
-import * as readPkg from 'read-pkg'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
@@ -132,6 +131,10 @@ export function install(
   // Checks
   if (gitDirOrFile === null) {
     console.log("Can't find .git, skipping Git hooks installation.")
+    console.log(
+      "Please check that you're in a cloned repository",
+      "or run 'git init' to create an empty Git repository and reinstall husky."
+    )
     return
   }
 
@@ -157,6 +160,9 @@ export function install(
 
   if (userPkgDir === null) {
     console.log("Can't find package.json, skipping Git hooks installation.")
+    console.log(
+      'Please check that your project has a package.json or create it and reinstall husky.'
+    )
     return
   }
 
@@ -189,7 +195,7 @@ export function uninstall(huskyDir: string) {
 
   if (resolvedGitDir === null) {
     console.log(
-      "Can't find resolved .git directory, skipping Git hooks installation."
+      "Can't find resolved .git directory, skipping Git hooks uninstallation."
     )
     return
   }

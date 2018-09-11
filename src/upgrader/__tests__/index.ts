@@ -1,6 +1,4 @@
-import del from 'del'
 import * as fs from 'fs'
-import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 import * as tempy from 'tempy'
 import index from '../'

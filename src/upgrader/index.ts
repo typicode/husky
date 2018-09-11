@@ -28,10 +28,10 @@ const hookList: IHookMap = {
   update: 'update'
 }
 
-export default function migrate(dir: string) {
-  const pkgFile = path.join(dir, 'package.json')
+export default function upgrade(cwd: string) {
+  const pkgFile = path.join(cwd, 'package.json')
   if (fs.existsSync(pkgFile)) {
-    const pkg = readPkg.sync(dir, { normalize: false })
+    const pkg = readPkg.sync({ cwd, normalize: false })
 
     console.log(`husky > upgrading ${pkgFile}`)
 

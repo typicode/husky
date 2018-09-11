@@ -1,8 +1,40 @@
 # CHANGELOG
 
-## 1.0.0-rc.7 (unreleased)
+## 1.0.0-rc.14
+
+* Make `--no-verify` message more accurate and only show it for hooks that can be skipped
+* Improve error messages
+
+## 1.0.0-rc.13
+
+* Show a message when Node can't be found in PATH
+
+## 1.0.0-rc.12
+
+* Fix exit code when used with unsupported Node version
+* Update dependencies
+
+## 1.0.0-rc.11
+
+* Show a message instead of crashing if Node version is unsupported by Husky
+
+## 1.0.0-rc.10
+
+* Fix `HUSKY_GIT_PARAMS` containing only the first Git param
+
+## 1.0.0-rc.9
+
+* If `node_modules/husky` is missing, show message but do not crash
+* Remove and upgrade some `dependencies`
+
+## 1.0.0-rc.8
+
+* Add `HUSKY_GIT_STDIN` environment variable for `pre-push`, `pre-receive`, `post-receive` and `post-rewrite` to access arguments passed by Git via stdin.
+
+## 1.0.0-rc.7
 
 * Update `cosmiconfig` dependency
+* Fix `package.json` normalization error
 
 ## 1.0.0-rc.6
 

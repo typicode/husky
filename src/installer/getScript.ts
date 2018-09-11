@@ -1,11 +1,42 @@
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
-import * as pupa from 'pupa'
 import * as slash from 'slash'
+
+interface IContext {
+  node: string
+  platform: string
+  script: string
+  version: string
+}
 
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
+
+// Render script
+const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
+${huskyIdentifier}
+# v${version} ${platform}
+
+scriptPath="${script}.js"
+hookName=\`basename "$0"\`
+gitParams="$*"
+${
+  platform !== 'win32'
+    ? `
+if ! command -v node >/dev/null 2>&1; then
+  echo "Can't find node in PATH, trying to find a node binary on your system"
+fi
+`
+    : ''
+}
+if [ -f $scriptPath ]; then
+  ${node} $scriptPath $hookName "$gitParams"
+else
+  echo "Can't find Husky, skipping $hookName hook"
+  echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
+fi
+`
 
 /**
  * @param rootDir - e.g. /home/typicode/project/
@@ -33,10 +64,5 @@ export default function(
     path.join(path.relative(rootDir, huskyDir), 'lib/runner/bin')
   )
 
-  const template = fs.readFileSync(
-    path.join(__dirname, '../../templates/hook.sh'),
-    'utf-8'
-  )
-
-  return pupa(template, { huskyIdentifier, node, platform, script, version })
+  return render({ node, platform, script, version })
 }
