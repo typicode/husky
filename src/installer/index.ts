@@ -192,7 +192,7 @@ export function uninstall(huskyDir: string) {
 
   if (resolvedGitDir === null) {
     console.log(
-      "Can't find resolved .git directory, skipping Git hooks installation."
+      "Can't find resolved .git directory, skipping Git hooks uninstallation."
     )
     return
   }
