@@ -131,6 +131,10 @@ export function install(
   // Checks
   if (gitDirOrFile === null) {
     console.log("Can't find .git, skipping Git hooks installation.")
+    console.log(
+      "Please check that you're in a cloned repository",
+      "or run 'git init' to create an empty Git repository and reinstall husky."
+    )
     return
   }
 
@@ -156,6 +160,9 @@ export function install(
 
   if (userPkgDir === null) {
     console.log("Can't find package.json, skipping Git hooks installation.")
+    console.log(
+      'Please check that your project has a package.json or create it and reinstall husky.'
+    )
     return
   }
 
@@ -168,9 +175,14 @@ export function install(
 
   if (!fs.existsSync(path.join(resolvedGitDir, 'hooks'))) {
     console.log(
-      `Can't find hooks directory in ${resolvedGitDir}. You can try to fix this error by creating it manually.`
+      `Can't find hooks directory in ${resolvedGitDir}, skipping Git hooks installation.`
     )
-    console.log('Skipping Git hooks installation.')
+    console.log(
+      `Please create ${path.join(
+        resolvedGitDir,
+        'hooks'
+      )} directory and reinstall husky.`
+    )
     return
   }
 
