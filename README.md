@@ -1,5 +1,3 @@
-# Important: looking for your feedback, [husky survey](https://goo.gl/forms/rvSbDFhR5jLcwDGn2) ❤️
-
 # husky [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/dev.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/dev.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
 
 > Git hooks made easy
@@ -7,6 +5,12 @@
 Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
 _You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/v0.14.3) if you prefer to view docs for the stable version (`v0.14.3`)_
+
+_9/14: to all the amazing people who have answered the Husky survey I posted a few months ago, thanks so much <3 !_
+
+<a href="https://www.patreon.com/typicode">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
 ## Install
 
@@ -90,4 +94,4 @@ Alternatively, you can also use any of the files/formats that are supported by [
 
 ## License
 
-MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode)
+MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com)
