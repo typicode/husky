@@ -1,50 +1,41 @@
-# husky [![](http://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![npm version](https://badge.fury.io/js/husky.svg)](https://www.npmjs.com/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/branch/master)
+# husky [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/dev.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/dev.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
 
 > Git hooks made easy
 
-Husky can prevent bad commit, push and more :dog: _woof!_
+Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
-__New beta version available__ [here](https://github.com/typicode/husky/tree/dev). Feedback and bug reports welcome :wink:
+_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/v0.14.3) if you prefer to view docs for the stable version (`v0.14.3`)_
+
+_9/14: to all the amazing people who have answered the Husky survey I posted a few months ago, thanks so much <3 !_
+
+<a href="https://www.patreon.com/typicode">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
 ## Install
 
 ```sh
-npm install husky --save-dev
+npm install husky@next --save-dev
 ```
 
-```
-yarn add husky --dev
-```
-
-```javascript
-// Edit package.json
+```js
+// package.json
 {
-  "scripts": {
-    "precommit": "npm test",
-    "prepush": "npm test",
-    "...": "..."
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test",
+      "...": "..."
+    }
   }
 }
 ```
 
-```bash
-git commit -m "Keep calm and commit"
+```sh
+git commit -m 'Keep calm and commit'
 ```
 
-_Existing hooks aren't replaced and you can use [any Git hook](HOOKS.md)._
-
-_If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev && npm install husky --save-dev` and edit `package.json`. Husky will automatically migrate `ghooks` hooks._
-
-## Used by
-
-* [jQuery](https://github.com/jquery/jquery)
-* [Next.js](https://github.com/zeit/next.js)
-* [Hyper](https://github.com/zeit/hyper)
-* [Paper.js](https://github.com/paperjs/paper.js)
-* [Kibana](https://github.com/elastic/kibana)
-* [JSON Server](https://github.com/typicode/json-server)
-* [Hotel](https://github.com/typicode/hotel)
-* ... and 12000+ [other awesome projects](https://libraries.io/npm/husky/dependent-repositories).
+Check [documentation](https://github.com/typicode/husky/blob/dev/DOCS.md) for more.
 
 ## Uninstall
 
@@ -52,66 +43,55 @@ _If you're migrating from `ghooks`, simply run `npm uninstall ghooks --save-dev 
 npm uninstall husky
 ```
 
-```sh
-yarn remove husky
+## Upgrading from 0.14
+
+If you're upgrading from `0.14`, simply move your hooks to `husky.hooks`:
+
+```diff
+{
+  "scripts": {
+-   "precommit": "npm test"
+  },
++ "husky": {
++   "hooks": {
++     "pre-commit": "npm test"
++   }
++ }
+}
 ```
 
-## Tricks
+Or run the following command which will do the same automatically for you ;)
 
-<details>
-
-### Debug hooks easily
-
-If you need to debug hooks, simply use `npm run <script-name>`. For example:
-
-```bash
-npm run precommit
+```
+./node_modules/.bin/husky-upgrade
 ```
 
-### Git GUI clients support
+Alternatively, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml` file formats.
 
-If you've installed Node using the [standard installer](https://nodejs.org/en/), [nvm](https://github.com/creationix/nvm) or [homebrew](http://brew.sh/), Git hooks will be executed in GUI applications.
+## Features
 
-### Working with multiple version of Node
+* Keeps existing user hooks
+* Supports GUI Git clients
+* Supports all Git hooks (`pre-commit`, `pre-push`, ...)
 
-If [`nvm`](https://github.com/creationix/nvm) is installed, husky will try to use the `default`/`current` installed Node version or use the project `.nvmrc`.
+## Used by
 
-__Tip__ to use the system-installed version of node, `nvm` provides a [`system`](https://github.com/creationix/nvm#system-version-of-node) alias
-
-### Accessing Git params
-
-Git params can be found in `GIT_PARAMS` environment variable.
-
-### Setting a different log level
-
-By default, husky will run scripts using `--silent` to make the output more readable. If you want to override this, simply pass a different log level to your scripts:
-
-```json
-"precommit": "npm run some-script -q"
-```
-
-_`-q/--quiet` is equivalent to `--loglevel warn` which is npm default log level._
-
-### Git submodule and subtree support
-
-Yes
-
-### Cygwin support
-
-Yes
-
-### Yarn support
-
-Please use `yarn` `v0.24+`
-
-</details>
+* [jQuery](https://github.com/jquery/jquery)
+* [babel](https://github.com/babel/babel)
+* [create-react-app](https://github.com/facebookincubator/create-react-app)
+* [Next.js](https://github.com/zeit/next.js)
+* [Hyper](https://github.com/zeit/hyper)
+* [Kibana](https://github.com/elastic/kibana)
+* [JSON Server](https://github.com/typicode/json-server)
+* [Hotel](https://github.com/typicode/hotel)
+* ... and 23k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
 
 ## See also
 
-* [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing modules with bad paths
+* [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
 * [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
 * [react-fake-props](https://github.com/typicode/react-fake-props) - Fake props for your React tests
 
 ## License
 
-MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode)
+MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com)

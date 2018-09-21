@@ -3,9 +3,21 @@ os:
   - osx
 language: node_js
 node_js:
-  - "stable"
-  - "4"
+  - "node"
+  - "6"
+cache:
+  directories:
+    - "node_modules"
 script:
   - npm test
-  - HUSKY_IGNORE_CI=true node bin/install
-  - bash -n .git/hooks/pre-commit
+  # Test post-checkout
+  - npm run devinstall
+  - cat .git/hooks/post-checkout
+  - time git checkout
+  - node scripts/ci-post-checkout-check
+  # Should not fail due to missing script
+  - node scripts/ci-break-path.js
+  - cat .git/hooks/post-checkout
+  - time git checkout
+  # Test uninstall
+  - npm run devuninstall

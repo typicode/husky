@@ -1,19 +1,30 @@
 {
   "name": "husky",
-  "version": "0.14.3",
+  "version": "1.0.0-rc.14",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
+  "bin": {
+    "husky-upgrade": "./lib/upgrader/bin.js"
+  },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "scripts": {
-    "test": "jest",
-    "format": "prettier --single-quote --no-semi --write **/*.js",
-    "install": "node ./bin/install.js",
-    "uninstall": "node ./bin/uninstall.js"
+    "test": "npm run lint && jest",
+    "_install": "node husky install",
+    "preuninstall": "node husky uninstall",
+    "devinstall": "npm run build && npm run _install -- node_modules/husky && node scripts/dev-fix-path",
+    "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
+    "build": "del-cli lib && tsc",
+    "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
+    "postversion": "git push && git push --tags",
+    "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
+    "postpublish": "pinst --disable",
+    "lint": "tslint 'src/**/*.ts'",
+    "fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/typicode/husky.git"
+    "url": "git+https://github.com/typicode/husky.git"
   },
   "keywords": [
     "git",
@@ -27,29 +38,60 @@
     "prepush",
     "post-merge",
     "postmerge",
-    "test"
+    "test",
+    "lint"
   ],
   "author": "Typicode <typicode@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/typicode/husky/issues"
   },
-  "homepage": "https://github.com/typicode/husky",
-  "devDependencies": {
-    "jest": "^20.0.4",
-    "mkdirp": "^0.5.1",
-    "prettier": "^1.4.4",
-    "rimraf": "^2.6.1",
-    "tempy": "^0.1.0"
-  },
+  "homepage": "https://github.com/typicode/husky#readme",
   "dependencies": {
-    "is-ci": "^1.0.10",
-    "normalize-path": "^1.0.0",
-    "strip-indent": "^2.0.0"
+    "cosmiconfig": "^5.0.6",
+    "execa": "^0.9.0",
+    "find-up": "^3.0.0",
+    "get-stdin": "^6.0.0",
+    "is-ci": "^1.2.1",
+    "pkg-dir": "^3.0.0",
+    "please-upgrade-node": "^3.1.1",
+    "read-pkg": "^4.0.1",
+    "run-node": "^1.0.0",
+    "slash": "^2.0.0"
   },
-  "standard": {
-    "env": {
-      "jest": true
-    }
+  "devDependencies": {
+    "@types/execa": "^0.9.0",
+    "@types/find-up": "^2.1.1",
+    "@types/get-stdin": "^5.0.1",
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.9.4",
+    "del": "^3.0.0",
+    "del-cli": "^1.1.0",
+    "formatree": "^1.0.2",
+    "jest": "^23.6.0",
+    "mkdirp": "^0.5.1",
+    "pinst": "^1.1.1",
+    "pkg-ok": "^2.2.0",
+    "prettier": "^1.14.2",
+    "tempy": "^0.2.1",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-plugin-prettier": "^1.3.0",
+    "typescript": "^3.0.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

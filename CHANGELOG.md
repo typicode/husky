@@ -1,10 +1,120 @@
 # CHANGELOG
 
-## Unreleased
+## 1.0.0-rc.14
 
-* Support `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
-* Support `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation
-* Drop `nvm` installed with `brew` support as it's not supported by `nvm` itself (see [creationix/nvm#important-notes](https://github.com/creationix/nvm#important-notes)), `nvm` standard installation is still supported though
+* Make `--no-verify` message more accurate and only show it for hooks that can be skipped
+* Improve error messages
+
+## 1.0.0-rc.13
+
+* Show a message when Node can't be found in PATH
+
+## 1.0.0-rc.12
+
+* Fix exit code when used with unsupported Node version
+* Update dependencies
+
+## 1.0.0-rc.11
+
+* Show a message instead of crashing if Node version is unsupported by Husky
+
+## 1.0.0-rc.10
+
+* Fix `HUSKY_GIT_PARAMS` containing only the first Git param
+
+## 1.0.0-rc.9
+
+* If `node_modules/husky` is missing, show message but do not crash
+* Remove and upgrade some `dependencies`
+
+## 1.0.0-rc.8
+
+* Add `HUSKY_GIT_STDIN` environment variable for `pre-push`, `pre-receive`, `post-receive` and `post-rewrite` to access arguments passed by Git via stdin.
+
+## 1.0.0-rc.7
+
+* Update `cosmiconfig` dependency
+* Fix `package.json` normalization error
+
+## 1.0.0-rc.6
+
+* Fix install error with `pnpm`
+
+## 1.0.0-rc.5
+
+* Auto migrate `yorkie` hooks 
+
+## 1.0.0-rc.4
+
+* Re-enable Git submodule and worktree support
+
+## 1.0.0-rc.3
+
+* Re-enable subdirectory support
+
+## 1.0.0-rc.2
+
+* Upgrade `run-node` dependency
+
+## 1.0.0-rc.1
+
+* Namespace environment variable created by husky
+  * `GIT_PARAMS` becomes `HUSKY_GIT_PARAMS`
+* Starting also with `1.0.0` versioning
+
+## 0.15.0-rc.13
+
+* Revert `GIT_STDIN` for the moment. Needs more testing.
+
+`rc.10`, `rc.11` and `rc.12` are broken for some GUI clients due to `read` command
+
+## 0.15.0-rc.9
+
+* Handle case where `.git/hooks` directory doesn't exit
+
+## 0.15.0-rc.8
+
+* Handle case where `v0.14` git hooks wouldn't have been uninstalled
+
+## 0.15.0-rc.7
+
+* Move `postinstall` script to `install`
+* Fix line ending error when running `upgrader` from OS X/Linux
+
+## 0.15.0-rc.6
+
+* Fix `[[` error
+
+## 0.15.0-rc.5
+
+* Fix error with GitHub Desktop on Windows
+
+## 0.15.0-rc.4
+
+* Catch error if `git` command fails
+
+## 0.15.0-rc.3
+
+* Fix `husky-upgrade`
+* Drop `Node 4` support
+
+## 0.15.0-rc.2
+
+* Fix install error
+
+## 0.15.0-rc.1
+
+* `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
+* `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation [#178](https://github.com/typicode/husky/pull/178)
+* `.huskyrc` config [#209](https://github.com/typicode/husky/pull/209)
+* `pnpm` support
+* Support environments where `yarn` is the only package manager installed
+* Move config from `scripts` field to `husky` field
+* Prefer raw names for Git hooks (`pre-commit` rather than `precommit`)
+* Drop integrated `nvm` support
+* To ease upgrade:
+  * Provide `husky-upgrade` command
+  * Add deprecation warning for hooks that are defined in `scripts` (but still run them)
 
 ## 0.14.3
 

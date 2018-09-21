@@ -1,3 +1,12 @@
-test/
+.gitattributes
+.huskyrc
 .travis.yml
-
+appveyor.yml
+ci-post-checkout
+preprocessor.js
+scripts
+src
+tsconfig.json
+tslint.json
+typings
+docs-util.js
