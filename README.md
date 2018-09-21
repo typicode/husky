@@ -4,9 +4,7 @@
 
 Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
 
-_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/v0.14.3) if you prefer to view docs for the stable version (`v0.14.3`)_
-
-_9/14: to all the amazing people who have answered the Husky survey I posted a few months ago, thanks so much <3 !_
+_To all the amazing people who have answered the Husky survey, thanks so much <3 !_
 
 <a href="https://www.patreon.com/typicode">
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
@@ -35,7 +33,7 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-Check [documentation](https://github.com/typicode/husky/blob/dev/DOCS.md) for more.
+To go further, please see the [documentation](https://github.com/typicode/husky/blob/master/DOCS.md).
 
 ## Uninstall
 
@@ -45,7 +43,7 @@ npm uninstall husky
 
 ## Upgrading from 0.14
 
-If you're upgrading from `0.14`, simply move your hooks to `husky.hooks`:
+If you're upgrading from `0.14`, simply move your hooks to `husky.hooks` field:
 
 ```diff
 {
@@ -68,6 +66,8 @@ Or run the following command which will do the same automatically for you ;)
 
 Alternatively, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml` file formats.
 
+To view the full list of changes, please see the [CHANGELOG](https://github.com/typicode/husky/blob/master/CHANGELOG.md).
+
 ## Features
 
 * Keeps existing user hooks
@@ -84,7 +84,7 @@ Alternatively, you can also use any of the files/formats that are supported by [
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 23k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
+* ... and 25k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) 🎉
 
 ## See also
 
@@ -94,4 +94,6 @@ Alternatively, you can also use any of the files/formats that are supported by [
 
 ## License
 
-MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com)
+MIT
+
+[Typicode](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com) ✨
