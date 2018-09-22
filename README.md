@@ -15,7 +15,7 @@ _To all the amazing people who have answered the Husky survey, thanks so much <3
 ## Install
 
 ```sh
-npm install husky@next --save-dev
+npm install husky --save-dev
 ```
 
 ```js
