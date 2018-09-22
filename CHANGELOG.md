@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0-rc.15
+
+* Update docs
+
 ## 1.0.0-rc.14
 
 * Make `--no-verify` message more accurate and only show it for hooks that can be skipped
