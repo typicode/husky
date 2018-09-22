@@ -1,8 +1,10 @@
-# husky [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/dev.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/dev.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
+# husky
 
 > Git hooks made easy
 
-Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
+[![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/dev.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/dev.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
+
+Husky can prevent bad `git commit`, `git push` and more 🐶 ❤️ _woof!_
 
 _To all the amazing people who have answered the Husky survey, thanks so much <3 !_
 
@@ -33,7 +35,7 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-To go further, please see the [documentation](https://github.com/typicode/husky/blob/master/DOCS.md).
+To go further, see the docs [here](https://github.com/typicode/husky/blob/master/DOCS.md).
 
 ## Uninstall
 
@@ -64,7 +66,7 @@ Or run the following command which will do the same automatically for you ;)
 ./node_modules/.bin/husky-upgrade
 ```
 
-Alternatively, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml` file formats.
+Alternatively, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `.js`, `.json`, and `.yaml` file formats.
 
 To view the full list of changes, please see the [CHANGELOG](https://github.com/typicode/husky/blob/master/CHANGELOG.md).
 
@@ -96,4 +98,4 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 
 MIT
 
-[Typicode](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com) ✨
+[Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com) ✨
