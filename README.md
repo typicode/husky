@@ -86,7 +86,7 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 25k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) 🎉
+* ... and 25k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories)
 
 ## See also
 
