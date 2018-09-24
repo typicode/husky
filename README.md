@@ -64,8 +64,14 @@ Simply move your existing hooks to `husky.hooks` field and use raw Git hooks nam
 
 Alternatively, you can run the following command which will do the same automatically for you ;)
 
-```
+```sh
 ./node_modules/.bin/husky-upgrade
+```
+
+Or with `npx`:
+
+```sh
+npx husky husky-upgrade
 ```
 
 Starting with `1.0.0`, you can also configure hooks using `.huskyrc`, `.huskyrc.json` or `.huskyrc.js` file.
