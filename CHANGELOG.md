@@ -27,7 +27,7 @@ Below you'll find consolidated changes since `0.14.3`. There's no change in code
 
 * Messages
   * Add many more messages in case of errors
-  * Add [please-upgrade-node](https://github.com/typicode/) message if using with unsupported Node version
+  * Add [please-upgrade-node](https://github.com/typicode/please-upgrade-node) message if using with unsupported Node version
   * Make `--no-verify` message more accurate and only show it for hooks that can be skipped
 
 * Upgrade
