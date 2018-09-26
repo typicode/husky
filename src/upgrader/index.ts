@@ -57,7 +57,7 @@ export default function upgrade(cwd: string) {
     })
 
     // Update package.json
-    fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2), 'utf-8')
+    fs.writeFileSync(pkgFile, `${JSON.stringify(pkg, null, 2)}\n`, 'utf-8')
     console.log(`husky > done`)
   }
 }
