@@ -50,7 +50,10 @@ export default function upgrade(cwd: string) {
       if (script) {
         delete pkg.scripts[name]
         const newName = hookList[name]
-        hooks[newName] = script
+        hooks[newName] = script.replace(
+          /\bGIT_PARAMS\b/g,
+          'HUSKY_GIT_PARAMS'
+        )
         console.log(`moved scripts.${name} to husky.hooks.${newName}`)
       }
     })
@@ -62,7 +65,7 @@ export default function upgrade(cwd: string) {
     }
 
     // Update package.json
-    fs.writeFileSync(pkgFile, JSON.stringify(pkg, null, 2), 'utf-8')
+    fs.writeFileSync(pkgFile, `${JSON.stringify(pkg, null, 2)}\n`, 'utf-8')
     console.log(`husky > done`)
   }
 }

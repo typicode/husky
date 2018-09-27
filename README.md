@@ -50,11 +50,13 @@ If you're upgrading from `0.14`, simply move your hooks to `husky.hooks` field:
 ```diff
 {
   "scripts": {
--   "precommit": "npm test"
+-   "precommit": "npm test",
+-   "commitmsg": "commitlint -E GIT_PARAMS"
   },
 + "husky": {
 +   "hooks": {
-+     "pre-commit": "npm test"
++     "pre-commit": "npm test",
++     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
 +   }
 + }
 }
