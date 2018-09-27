@@ -70,6 +70,15 @@ Alternatively, you can run the following command which will do the same automati
 
 Starting with `1.0.0`, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `.js`, `.json`, and `.yaml` file formats.
 
+```js
+// .huskyrc
+{
+  "hooks": {
+    "pre-commit": "npm test"
+  }
+}
+```
+
 To view the full list of changes, please see the [CHANGELOG](https://github.com/typicode/husky/blob/master/CHANGELOG.md).
 
 ## Features
