@@ -45,7 +45,7 @@ npm uninstall husky
 
 ## Upgrading from 0.14
 
-If you're upgrading from `0.14`, simply move your hooks to `husky.hooks` field:
+Simply move your existing hooks to `husky.hooks` field and use raw Git hooks names. Also, if you're using the `GIT_PARAMS` env variable, rename it to `HUSKY_GIT_PARAMS`.
 
 ```diff
 {
@@ -62,13 +62,13 @@ If you're upgrading from `0.14`, simply move your hooks to `husky.hooks` field:
 }
 ```
 
-Or run the following command which will do the same automatically for you ;)
+Alternatively, you can run the following command which will do the same automatically for you ;)
 
 ```
 ./node_modules/.bin/husky-upgrade
 ```
 
-Alternatively, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `.js`, `.json`, and `.yaml` file formats.
+Starting with `1.0.0`, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `.js`, `.json`, and `.yaml` file formats.
 
 To view the full list of changes, please see the [CHANGELOG](https://github.com/typicode/husky/blob/master/CHANGELOG.md).
 
