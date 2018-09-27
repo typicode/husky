@@ -42,8 +42,7 @@ export default function upgrade(cwd: string) {
       )
     }
 
-    // Create empty husky.hooks field
-    pkg.husky = { hooks: {} }
+    const hooks: IHookMap = {}
 
     // Loop trhough hooks and move them to husky.hooks
     Object.keys(hookList).forEach(name => {
@@ -51,13 +50,19 @@ export default function upgrade(cwd: string) {
       if (script) {
         delete pkg.scripts[name]
         const newName = hookList[name]
-        pkg.husky.hooks[newName] = script.replace(
+        hooks[newName] = script.replace(
           /\bGIT_PARAMS\b/g,
           'HUSKY_GIT_PARAMS'
         )
         console.log(`moved scripts.${name} to husky.hooks.${newName}`)
       }
     })
+
+    if (Object.keys(hooks).length) {
+      pkg.husky = { hooks }
+    } else {
+      console.log('no hooks found')
+    }
 
     // Update package.json
     fs.writeFileSync(pkgFile, `${JSON.stringify(pkg, null, 2)}\n`, 'utf-8')
