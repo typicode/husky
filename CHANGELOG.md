@@ -2,7 +2,7 @@
 
 ## 1.0.1
 
-* Various `husky-upgrade` improvements ([#362](https://github.com/typicode/husky/pull/362), [#360](https://github.com/typicode/husky/pull/360), [#359](https://github.com/typicode/husky/pull/359))
+* Various `husky-upgrade` changes ([#362](https://github.com/typicode/husky/pull/362), [#360](https://github.com/typicode/husky/pull/360), [#359](https://github.com/typicode/husky/pull/359))
 
 ## 1.0.0
 
