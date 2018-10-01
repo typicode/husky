@@ -1,5 +1,5 @@
 declare module 'is-ci'
-declare module 'pupa'
 declare module 'pkg-dir'
 declare module 'slash'
+declare module 'tempy'
 declare module 'read-pkg'

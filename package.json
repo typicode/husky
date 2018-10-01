@@ -64,6 +64,7 @@
     "@types/find-up": "^2.1.1",
     "@types/get-stdin": "^5.0.1",
     "@types/jest": "^23.3.2",
+    "@types/mkdirp": "^0.5.2",
     "@types/node": "^10.11.3",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
