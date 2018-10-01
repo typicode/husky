@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Unreleased
+## 1.1.0
 
-* Create .git/hooks if doesn't exist
+* Create `.git/hooks` if it doesn't exist
 
 ## 1.0.1
 
