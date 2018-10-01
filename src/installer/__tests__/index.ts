@@ -28,7 +28,7 @@ function uninstallFrom(dir: string) {
 }
 
 function mkdir(dir: string) {
-  mkdirp.sync(path.join(tempDir, dir))
+  return mkdirp.sync(path.join(tempDir, dir))
 }
 
 function writeFile(filename: string, data: string) {
@@ -306,5 +306,18 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     expect(() => installFrom(huskyDir)).not.toThrow()
+  })
+
+  it("should install even .git/hooks doesn't exist", () => {
+    const huskyDir = 'node_modules/husky'
+    const hookFilename = '.git/hooks/pre-commit'
+
+    mkdir('.git')
+    mkdir(huskyDir)
+    writeFile('package.json', pkg)
+
+    installFrom(huskyDir)
+    expect(exists(hookFilename)).toBeTruthy()
+    expectHookToExist(hookFilename)
   })
 })
