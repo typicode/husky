@@ -173,6 +173,7 @@ export function install(
     return
   }
 
+  // Create hooks directory if doesn't exist
   if (!fs.existsSync(path.join(resolvedGitDir, 'hooks'))) {
     fs.mkdirSync(path.join(resolvedGitDir, 'hooks'))
   }
