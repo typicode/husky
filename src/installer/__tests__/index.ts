@@ -7,7 +7,7 @@ import * as tempy from 'tempy'
 import { install, uninstall } from '../'
 import { huskyIdentifier } from '../getScript'
 
-let tempDir
+let tempDir: string
 
 const pkg = JSON.stringify({})
 
@@ -236,7 +236,7 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     installFrom(huskyDir)
-    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+    expect(exists(hookFilename)).toBeFalsy()
   })
 
   it('should migrate existing scripts (ghooks)', () => {

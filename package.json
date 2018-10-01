@@ -60,6 +60,7 @@
     "slash": "^2.0.0"
   },
   "devDependencies": {
+    "@types/del": "^3.0.1",
     "@types/execa": "^0.9.0",
     "@types/find-up": "^2.1.1",
     "@types/get-stdin": "^5.0.1",
