@@ -9,13 +9,13 @@ const runNodePath = '/home/typicode/project/node_modules/run-node/run-node'
 
 describe('hookScript', () => {
   it('should match snapshot (OS X/Linux)', () => {
-    const script = getScript(rootDir, huskyDir, runNodePath, 'darwin')
+    const script = getScript(rootDir, huskyDir, runNodePath, false, 'darwin')
     expect(script).toMatchSnapshot()
     expect(script).toMatch('run-node')
   })
 
   it('should match snapshot (Windows)', () => {
-    const script = getScript(rootDir, huskyDir, runNodePath, 'win32')
+    const script = getScript(rootDir, huskyDir, runNodePath, false, 'win32')
 
     expect(script).toMatchSnapshot()
     expect(script).not.toMatch('run-node')

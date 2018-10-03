@@ -183,7 +183,7 @@ export function install(
   const rootDir = path.dirname(gitDirOrFile)
 
   const hooks = getHooks(resolvedGitDir)
-  const script = getScript(rootDir, huskyDir, requireRunNodePath)
+  const script = getScript(rootDir, huskyDir, requireRunNodePath, conf.tty)
   createHooks(hooks, script)
 
   console.log(`husky > done`)

@@ -8,13 +8,20 @@ interface IContext {
   platform: string
   script: string
   version: string
+  tty: boolean
 }
 
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
 
 // Render script
-const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
+const render = ({
+  node,
+  platform,
+  script,
+  version,
+  tty
+}: IContext) => `#!/bin/sh
 ${huskyIdentifier}
 # v${version} ${platform}
 
@@ -31,7 +38,7 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
-  ${node} $scriptPath $hookName "$gitParams"
+  ${tty ? 'exec < /dev/tty\n  ' : ''}${node} $scriptPath $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
@@ -48,6 +55,7 @@ export default function(
   rootDir: string,
   huskyDir: string,
   requireRunNodePath: string,
+  tty: boolean = false,
   // Additional param used for testing only
   platform: string = os.platform()
 ) {
@@ -64,5 +72,5 @@ export default function(
     path.join(path.relative(rootDir, huskyDir), 'lib/runner/bin')
   )
 
-  return render({ node, platform, script, version })
+  return render({ node, platform, script, version, tty })
 }
