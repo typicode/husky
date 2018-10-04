@@ -14,7 +14,7 @@ export interface IEnv extends NodeJS.ProcessEnv {
  */
 export default async function run(
   [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
-  getStdinFn = getStdin // Used for mocking
+  getStdinFn: () => Promise<string> = getStdin // Used for mocking
 ): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
   const pkg = readPkg.sync({ cwd, normalize: false })

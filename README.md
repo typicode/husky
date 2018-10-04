@@ -2,7 +2,7 @@
 
 > Git hooks made easy
 
-[![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/dev.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/dev.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
+[![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 ❤️ _woof!_
 
@@ -68,7 +68,7 @@ Alternatively, you can run the following command which will do the same automati
 ./node_modules/.bin/husky-upgrade
 ```
 
-Starting with `1.0.0`, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `.js`, `.json`, and `.yaml` file formats.
+Starting with `1.0.0`, you can also configure hooks using `.huskyrc`, `.huskyrc.json` or `.huskyrc.js` file.
 
 ```js
 // .huskyrc
