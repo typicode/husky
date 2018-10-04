@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Check HUSKY_SKIP_INSTALL first
+
 ## 1.1.0
 
 * Create `.git/hooks` if it doesn't exist
