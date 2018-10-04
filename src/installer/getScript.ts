@@ -60,9 +60,7 @@ export default function(
     fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
   )
 
-  const script = slash(
-    path.join(path.relative(rootDir, huskyDir), 'lib/runner/bin')
-  )
+  const script = slash(path.join(path.relative(rootDir, huskyDir), 'run'))
 
   return render({ node, platform, script, version })
 }

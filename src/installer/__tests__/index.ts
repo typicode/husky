@@ -155,7 +155,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'A/B/node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('A/B/node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('A/B/node_modules/husky/run.js')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
@@ -173,7 +173,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('node_modules/husky/run.js')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
@@ -191,7 +191,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'C/node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('C/node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('C/node_modules/husky/run.js')
 
     uninstallFrom('A/B/C/node_modules/husky')
     expect(exists('.git/hooks/pre-push')).toBeFalsy()
@@ -212,7 +212,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('node_modules/husky/run.js')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/worktrees/B/hooks/pre-commit')).toBeFalsy()
