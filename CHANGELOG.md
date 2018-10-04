@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-* Check HUSKY_SKIP_INSTALL value first before checking if `.git` exists
-* Check Node version before running hook
+* Check `HUSKY_SKIP_INSTALL` value first before checking if `.git` exists
+* Check Node version before running hooks
 
 ## 1.1.0
 
