@@ -129,6 +129,14 @@ export function install(
   const resolvedGitDir = resolveGitDir(userPkgDir)
 
   // Checks
+  if (process.env.HUSKY_SKIP_INSTALL === 'true') {
+    console.log(
+      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
+      'skipping Git hooks installation.'
+    )
+    return
+  }
+
   if (gitDirOrFile === null) {
     console.log("Can't find .git, skipping Git hooks installation.")
     console.log(
@@ -141,14 +149,6 @@ export function install(
   if (resolvedGitDir === null) {
     console.log(
       "Can't find resolved .git directory, skipping Git hooks installation."
-    )
-    return
-  }
-
-  if (process.env.HUSKY_SKIP_INSTALL === 'true') {
-    console.log(
-      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
-      'skipping Git hooks installation.'
     )
     return
   }
