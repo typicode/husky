@@ -5,7 +5,7 @@ import * as path from 'path'
 import * as tempy from 'tempy'
 import index from '../'
 
-let spy: jest.SpyInstance
+let spy: jest.MockInstance<{}>
 
 function getScriptPath(dir: string) {
   return path.join(dir, 'node_modules/husky/runner/index.js')
