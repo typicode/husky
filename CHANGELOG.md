@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.1.1
 
 * Check `HUSKY_SKIP_INSTALL` value first before checking if `.git` exists
 * Check Node version before running hooks
