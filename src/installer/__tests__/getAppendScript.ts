@@ -2,6 +2,7 @@ import * as del from 'del'
 import * as execa from 'execa'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
+import * as os from 'os'
 import * as path from 'path'
 
 import getAppendScript, {
@@ -120,7 +121,6 @@ describe('getAppendScript', () => {
     const script = getAppendScript(tmpDir, curHuskyDir)
     writeExecFile('script.sh', script)
     expect(readFile('script.sh')).toContain(huskyAppendIdentifier)
-    console.log("readFile('script.sh')", readFile('script.sh'))
     execSync('script.sh', ['777', 'sss'], { stdio: 'inherit', cwd: tmpDir })
     // Verify removing
     expect(readFile('script.sh')).not.toContain(huskyAppendIdentifier)
@@ -131,7 +131,9 @@ describe('getAppendScript', () => {
     writeExecFile('script.sh', script)
     writeExecFile(
       getUserStagedFilename('script.sh'),
-      `echo $* > ${getFilename('echoed')}`
+      os.platform() === 'win32'
+        ? `echo %*\necho %* > ${getFilename('echoed')}`
+        : `echo $*\necho $* > ${getFilename('echoed')}`
     )
     execSync('script.sh', ['777', 'sss'], { stdio: 'inherit', cwd: tmpDir })
 
