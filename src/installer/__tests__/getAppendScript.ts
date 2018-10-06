@@ -126,14 +126,13 @@ describe('getAppendScript', () => {
     expect(readFile('script.sh')).not.toContain(huskyAppendIdentifier)
   })
 
-  it('should run well', () => {
+  const test = os.platform() === 'win32' ? it.skip : it
+  test('should run well', () => {
     const script = getAppendScript(tmpDir, curHuskyDir)
     writeExecFile('script.sh', script)
     writeExecFile(
       getUserStagedFilename('script.sh'),
-      os.platform() === 'win32'
-        ? `echo %*\necho %* > ${getFilename('echoed')}`
-        : `echo $*\necho $* > ${getFilename('echoed')}`
+      `echo $*\necho $* > ${getFilename('echoed')}`
     )
     execSync('script.sh', ['777', 'sss'], { stdio: 'inherit', cwd: tmpDir })
 
