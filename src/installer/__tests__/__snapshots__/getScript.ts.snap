@@ -8,13 +8,16 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
+node=node
 
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
+  # Fall-back to run-node since plain node was not found.
+  node=node_modules/run-node/run-node
 fi
 
 if [ -f $scriptPath ]; then
-  node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\"
+  $node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
@@ -30,9 +33,10 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
+node=node
 
 if [ -f $scriptPath ]; then
-  node $scriptPath $hookName \\"$gitParams\\"
+  $node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"

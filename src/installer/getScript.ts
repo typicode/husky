@@ -21,17 +21,20 @@ ${huskyIdentifier}
 scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
+node=node
 ${
   platform !== 'win32'
     ? `
 if ! command -v node >/dev/null 2>&1; then
   echo "Can't find node in PATH, trying to find a node binary on your system"
+  # Fall-back to run-node since plain node was not found.
+  node=${node}
 fi
 `
     : ''
 }
 if [ -f $scriptPath ]; then
-  ${node} $scriptPath $hookName "$gitParams"
+  $node $scriptPath $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
@@ -53,7 +56,7 @@ export default function(
 ) {
   const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
 
-  // On Windows do not rely on run-node
+  // On Windows do not fall-back to run-node
   const node = platform === 'win32' ? 'node' : runNodePath
 
   const { version } = JSON.parse(
