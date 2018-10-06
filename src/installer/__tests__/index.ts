@@ -1,5 +1,4 @@
 import * as del from 'del'
-import * as execa from 'execa'
 import * as fs from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as os from 'os'
@@ -8,20 +7,9 @@ import * as tempy from 'tempy'
 import { install, uninstall } from '../'
 import { huskyIdentifier } from '../getScript'
 
-let tempDir
+let tempDir: string
 
 const pkg = JSON.stringify({})
-
-function execSync(
-  filename: string,
-  argsOrOptions?: string[] | object = { stdio: 'inherit' },
-  options?: object = { stdio: 'inherit' }
-) {
-  if (Array.isArray(argsOrOptions)) {
-    return execa.sync(path.join(tempDir, filename), argsOrOptions, options)
-  }
-  return execa.sync(path.join(tempDir, filename), argsOrOptions)
-}
 
 function installFrom(
   huskyDir: string,
@@ -39,16 +27,8 @@ function uninstallFrom(dir: string) {
   uninstall(path.join(tempDir, dir))
 }
 
-function stat(dir: string) {
-  return fs.statSync(path.join(tempDir, dir))
-}
-
 function mkdir(dir: string) {
   mkdirp.sync(path.join(tempDir, dir))
-}
-
-function chmod(filename: string, data: string | number) {
-  fs.chmodSync(path.join(tempDir, filename), data)
 }
 
 function writeFile(filename: string, data: string) {
@@ -61,10 +41,6 @@ function readFile(filename: string) {
 
 function exists(filename: string) {
   return fs.existsSync(path.join(tempDir, filename))
-}
-
-function readdir(filename: string) {
-  return fs.readdirSync(path.join(tempDir, filename))
 }
 
 function expectHookToExist(filename: string) {
@@ -140,7 +116,7 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     // Create an existing husky hook
-    writeFile(hookFilename, '#husky\nfoo')
+    writeFile(hookFilename, '#!/bin/sh\n#husky 0.14.3\nfoo')
 
     // Verify that it has been updated
     installFrom(huskyDir)
@@ -179,7 +155,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'A/B/node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('A/B/node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('A/B/node_modules/husky/run.js')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
@@ -197,7 +173,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('node_modules/husky/run.js')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
@@ -215,7 +191,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'C/node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('C/node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('C/node_modules/husky/run.js')
 
     uninstallFrom('A/B/C/node_modules/husky')
     expect(exists('.git/hooks/pre-push')).toBeFalsy()
@@ -236,7 +212,7 @@ describe('install', () => {
     const node =
       os.platform() !== 'win32' ? 'node_modules/.bin/run-node' : 'node'
     expect(hook).toMatch(node)
-    expect(hook).toMatch('node_modules/husky/lib/runner/bin.js')
+    expect(hook).toMatch('node_modules/husky/run.js')
 
     uninstallFrom('A/B/node_modules/husky')
     expect(exists('.git/worktrees/B/hooks/pre-commit')).toBeFalsy()
@@ -260,7 +236,7 @@ describe('install', () => {
     writeFile('package.json', pkg)
 
     installFrom(huskyDir)
-    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+    expect(exists(hookFilename)).toBeFalsy()
   })
 
   it('should migrate existing scripts (ghooks)', () => {
@@ -331,21 +307,21 @@ describe('install', () => {
 
     expect(() => installFrom(huskyDir)).not.toThrow()
   })
-  // Install Type
-  it("should don't skip when user hooks has not existed", () => {
-    const conf = {
-      installType: 'overwrite'
-    }
-    const huskyDir = 'node_modules/husky'
-    mkdir('.git/hooks')
-    writeFile('.git/hooks/precommit', '')
-    writeFile('.huskyrc', JSON.stringify(conf))
-    mkdir(huskyDir)
 
-    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
-    expect(readFile('.git/hooks/precommit')).toBe('')
+  it("should install even .git/hooks doesn't exist", () => {
+    const huskyDir = 'node_modules/husky'
+    const hookFilename = '.git/hooks/pre-commit'
+
+    mkdir('.git')
+    mkdir(huskyDir)
+    writeFile('package.json', pkg)
+
+    installFrom(huskyDir)
+    expect(exists(hookFilename)).toBeTruthy()
+    expectHookToExist(hookFilename)
   })
 
+  // Install Type
   it('should skip when user hooks has existed', () => {
     const conf = {
       // installType: 'skip'

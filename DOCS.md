@@ -4,6 +4,8 @@
 
 `husky` supports all Git hooks defined [here](https://git-scm.com/docs/githooks).
 
+Server-side hooks (`pre-receive`, `update` and `post-receive`) aren't supported.
+
 ## Access Git params and stdin
 
 Git hooks can get parameters via command-line arguments and stdin. Husky makes them accessible via `HUSKY_GIT_PARAMS` and `HUSKY_GIT_STDIN` environment variables.

@@ -14,7 +14,7 @@ export interface IEnv extends NodeJS.ProcessEnv {
  */
 export default async function run(
   [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
-  getStdinFn = getStdin // Used for mocking
+  getStdinFn: () => Promise<string> = getStdin // Used for mocking
 ): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
   const pkg = readPkg.sync({ cwd, normalize: false })
@@ -68,10 +68,14 @@ export default async function run(
 
     return 0
   } catch (err) {
-    const noVerifyMessage =
-      hookName === 'prepare-commit-msg'
-        ? '(cannot be bypassed with --no-verify due to Git specs)'
-        : '(add --no-verify to bypass)'
+    const noVerifyMessage = [
+      'commit-msg',
+      'pre-commit',
+      'pre-rebase',
+      'pre-push'
+    ].includes(hookName)
+      ? '(add --no-verify to bypass)'
+      : '(cannot be bypassed with --no-verify due to Git specs)'
 
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
     return err.code

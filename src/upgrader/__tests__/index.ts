@@ -12,6 +12,7 @@ describe('upgrade', () => {
       filename,
       JSON.stringify({
         scripts: {
+          commitmsg: 'echo $GIT_PARAMS GIT_PARAMS HUSKY_GIT_PARAMS',
           precommit: 'npm test'
         }
       }),
@@ -23,6 +24,8 @@ describe('upgrade', () => {
     expect(JSON.parse(fs.readFileSync(filename, 'utf-8'))).toEqual({
       husky: {
         hooks: {
+          'commit-msg':
+            'echo $HUSKY_GIT_PARAMS HUSKY_GIT_PARAMS HUSKY_GIT_PARAMS',
           'pre-commit': 'npm test'
         }
       },

@@ -185,22 +185,26 @@ export function install(
   const resolvedGitDir = resolveGitDir(userPkgDir)
 
   // Checks
+  if (process.env.HUSKY_SKIP_INSTALL === 'true') {
+    console.log(
+      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
+      'skipping Git hooks installation.'
+    )
+    return
+  }
+
   if (gitDirOrFile === null) {
     console.log("Can't find .git, skipping Git hooks installation.")
+    console.log(
+      "Please check that you're in a cloned repository",
+      "or run 'git init' to create an empty Git repository and reinstall husky."
+    )
     return
   }
 
   if (resolvedGitDir === null) {
     console.log(
       "Can't find resolved .git directory, skipping Git hooks installation."
-    )
-    return
-  }
-
-  if (process.env.HUSKY_SKIP_INSTALL === 'true') {
-    console.log(
-      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
-      'skipping Git hooks installation.'
     )
     return
   }
@@ -212,6 +216,9 @@ export function install(
 
   if (userPkgDir === null) {
     console.log("Can't find package.json, skipping Git hooks installation.")
+    console.log(
+      'Please check that your project has a package.json or create it and reinstall husky.'
+    )
     return
   }
 
@@ -222,12 +229,9 @@ export function install(
     return
   }
 
+  // Create hooks directory if doesn't exist
   if (!fs.existsSync(path.join(resolvedGitDir, 'hooks'))) {
-    console.log(
-      `Can't find hooks directory in ${resolvedGitDir}. You can try to fix this error by creating it manually.`
-    )
-    console.log('Skipping Git hooks installation.')
-    return
+    fs.mkdirSync(path.join(resolvedGitDir, 'hooks'))
   }
 
   // Create hooks
@@ -253,7 +257,7 @@ export function uninstall(huskyDir: string) {
 
   if (resolvedGitDir === null) {
     console.log(
-      "Can't find resolved .git directory, skipping Git hooks installation."
+      "Can't find resolved .git directory, skipping Git hooks uninstallation."
     )
     return
   }

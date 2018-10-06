@@ -5,9 +5,9 @@ import * as path from 'path'
 import * as tempy from 'tempy'
 import index from '../'
 
-let spy
+let spy: jest.SpyInstance
 
-function getScriptPath(dir) {
+function getScriptPath(dir: string) {
   return path.join(dir, 'node_modules/husky/runner/index.js')
 }
 
@@ -35,7 +35,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'])
+    const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {},
@@ -60,7 +60,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(subDir), 'pre-commit'])
+    const status = await index(['', getScriptPath(subDir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: subDir,
       env: {},
@@ -81,7 +81,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'])
+    const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).not.toBeCalled()
     expect(status).toBe(0)
   })
@@ -100,7 +100,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'])
+    const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 2', {
       cwd: dir,
       env: {},
@@ -121,7 +121,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-commit'])
+    const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {},
@@ -144,7 +144,7 @@ describe('run', () => {
       })
     )
 
-    const status = await index([, getScriptPath(dir), 'pre-push'], () =>
+    const status = await index(['', getScriptPath(dir), 'pre-push'], () =>
       Promise.resolve('foo')
     )
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
@@ -173,7 +173,7 @@ describe('run', () => {
 
     // commit-msg takes one parameter from git
     const status = await index([
-      ,
+      '',
       getScriptPath(dir),
       'commit-msg',
       'git fake param'

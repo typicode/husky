@@ -3,7 +3,7 @@
 exports[`getAppendScript should match snapshot (OS X/Linux) 1`] = `
 "#!/bin/sh
 # husky-append start!
-# v1.0.0-rc.13 darwin
+# v1.1.1 darwin
 hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"
@@ -24,7 +24,7 @@ fi
 exports[`getAppendScript should match snapshot (Windows) 1`] = `
 "#!/bin/sh
 # husky-append start!
-# v1.0.0-rc.13 win32
+# v1.1.1 win32
 hookName=\`basename \\"$0\\"\`
 appendScriptPath=\\"node_modules/husky/lib/runner/append-bin.js\\"
 selfPath=\\"$(cd -P -- \\"$(dirname -- \\"$0\\")\\" && pwd -P)/$(basename -- \\"$0\\")\\"

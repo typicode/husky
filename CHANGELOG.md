@@ -1,5 +1,69 @@
 # CHANGELOG
 
+## 1.1.1
+
+* Check `HUSKY_SKIP_INSTALL` value first before checking if `.git` exists
+* Check Node version before running hooks
+
+## 1.1.0
+
+* Create `.git/hooks` if it doesn't exist
+
+## 1.0.1
+
+* Various `husky-upgrade` changes ([#362](https://github.com/typicode/husky/pull/362), [#360](https://github.com/typicode/husky/pull/360), [#359](https://github.com/typicode/husky/pull/359))
+
+## 1.0.0
+
+After a year of pre-releases and a complete rewrite, this marks the first stable release of husky 🐶🎉.
+
+### Notable changes
+
+Below you'll find consolidated changes since `0.14.3`. There's no change in code between `1.0.0-rc.15` and `1.0.0`.
+
+* Hooks
+  * Add `sendemail-validate` hook
+
+* Config
+  * Move hooks config from `scripts` field to `husky` field
+  * Prefer raw names for hooks (e.g. `pre-commit` rather than `precommit`)
+  * Support `.huskyrc` config
+
+* Package managers
+  * Support environments where [yarn](https://github.com/yarnpkg/yarn/) is the only package manager installed
+  * Support [pnpm](https://github.com/pnpm/pnpm) package manager
+
+* Environment variables
+  * Add `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation
+  * Add `HUSKY_GIT_STDIN` environment variable for `pre-push`, `pre-receive`, `post-receive` and `post-rewrite` to access arguments passed by Git via stdin
+  * Rename `GIT_PARAMS` to `HUSKY_GIT_PARAMS`
+
+* Messages
+  * Add many more messages in case of errors
+  * Add [please-upgrade-node](https://github.com/typicode/please-upgrade-node) message if using with unsupported Node version
+  * Make `--no-verify` message more accurate and only show it for hooks that can be skipped
+
+* Upgrade
+  * Add `husky-upgrade` command to automatically migrate hooks in `package.json`
+  * Add deprecation warning for hooks that are still defined in `scripts`
+
+* Other
+  * Drop `Node 4` support
+  * Drop integrated `nvm` support (see Node version management in docs)
+
+### Credits
+
+Huge thanks to all the Contributors and [Patreon Supporters](https://thanks.typicode.com)! 🙏
+
+## 1.0.0-rc.15
+
+* Update docs
+
+## 1.0.0-rc.14
+
+* Make `--no-verify` message more accurate and only show it for hooks that can be skipped
+* Improve error messages
+
 ## 1.0.0-rc.13
 
 * Show a message when Node can't be found in PATH
@@ -102,7 +166,7 @@
 * `sendemail-validate` hook [#173](https://github.com/typicode/husky/pull/173)
 * `HUSKY_SKIP_INSTALL` environment variable for skipping git hooks installation [#178](https://github.com/typicode/husky/pull/178)
 * `.huskyrc` config [#209](https://github.com/typicode/husky/pull/209)
-* `pnpm` support
+* [`pnpm`](https://github.com/pnpm/pnpm) support
 * Support environments where `yarn` is the only package manager installed
 * Move config from `scripts` field to `husky` field
 * Prefer raw names for Git hooks (`pre-commit` rather than `precommit`)

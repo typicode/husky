@@ -1,17 +1,21 @@
-# Important: looking for your feedback, [husky survey](https://goo.gl/forms/rvSbDFhR5jLcwDGn2) ❤️
-
-# husky [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/dev.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/dev.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
+# husky
 
 > Git hooks made easy
 
-Husky can prevent bad `git commit`, `git push` and more :dog: _woof!_
+[![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
 
-_You're viewing the documentation for the next version of husky, click [here](https://github.com/typicode/husky/tree/v0.14.3) if you prefer to view docs for the stable version (`v0.14.3`)_
+Husky can prevent bad `git commit`, `git push` and more 🐶 ❤️ _woof!_
+
+_To all the amazing people who have answered the Husky survey, thanks so much <3 !_
+
+<a href="https://www.patreon.com/typicode">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
 ## Install
 
 ```sh
-npm install husky@next --save-dev
+npm install husky --save-dev
 ```
 
 ```js
@@ -31,7 +35,7 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-Check [documentation](https://github.com/typicode/husky/blob/dev/DOCS.md) for more.
+To go further, see the docs [here](https://github.com/typicode/husky/blob/master/DOCS.md).
 
 ## Uninstall
 
@@ -41,28 +45,41 @@ npm uninstall husky
 
 ## Upgrading from 0.14
 
-If you're upgrading from `0.14`, simply move your hooks to `husky.hooks`:
+Simply move your existing hooks to `husky.hooks` field and use raw Git hooks names. Also, if you're using the `GIT_PARAMS` env variable, rename it to `HUSKY_GIT_PARAMS`.
 
 ```diff
 {
   "scripts": {
--   "precommit": "npm test"
+-   "precommit": "npm test",
+-   "commitmsg": "commitlint -E GIT_PARAMS"
   },
 + "husky": {
 +   "hooks": {
-+     "pre-commit": "npm test"
++     "pre-commit": "npm test",
++     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
 +   }
 + }
 }
 ```
 
-Or run the following command which will do the same automatically for you ;)
+Alternatively, you can run the following command which will do the same automatically for you ;)
 
 ```
 ./node_modules/.bin/husky-upgrade
 ```
 
-Alternatively, you can also use any of the files/formats that are supported by [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). This means that you can place your husky hooks config in a `.huskyrc` file or export them from a `husky.config.js` file as well. Cosmiconfig supports `js`, `json`, and `yaml` file formats.
+Starting with `1.0.0`, you can also configure hooks using `.huskyrc`, `.huskyrc.json` or `.huskyrc.js` file.
+
+```js
+// .huskyrc
+{
+  "hooks": {
+    "pre-commit": "npm test"
+  }
+}
+```
+
+To view the full list of changes, please see the [CHANGELOG](https://github.com/typicode/husky/blob/master/CHANGELOG.md).
 
 ## Features
 
@@ -80,7 +97,7 @@ Alternatively, you can also use any of the files/formats that are supported by [
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 23k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories) :tada:
+* ... and 25k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories)
 
 ## See also
 
@@ -90,4 +107,6 @@ Alternatively, you can also use any of the files/formats that are supported by [
 
 ## License
 
-MIT - [Typicode :cactus:](https://github.com/typicode) - [Patreon](https://www.patreon.com/typicode)
+MIT
+
+[Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com) ✨

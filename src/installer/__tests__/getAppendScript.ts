@@ -1,8 +1,6 @@
 import * as del from 'del'
 import * as execa from 'execa'
 import * as fs from 'fs'
-import * as mkdirp from 'mkdirp'
-import * as os from 'os'
 import * as path from 'path'
 import * as tempy from 'tempy'
 
@@ -21,11 +19,7 @@ const curHuskyDir = path.join(__dirname, '../../..')
 // In order to make the test deterministic on AppVeyor, the value is hardcoded
 const runNodePath = '/home/typicode/project/node_modules/run-node/run-node'
 
-let tempDir
-
-function mkdir(dir: string) {
-  mkdirp.sync(path.join(tempDir, dir))
-}
+let tempDir: string
 
 function getFilename(name: string) {
   return path.join(tempDir, name)
@@ -53,14 +47,6 @@ function writeExecFile(filename: string, data: string) {
 
 function readFile(filename: string) {
   return fs.readFileSync(path.join(tempDir, filename), 'utf-8')
-}
-
-function exists(filename: string) {
-  return fs.existsSync(path.join(tempDir, filename))
-}
-
-function readdir(filename: string) {
-  return fs.readdirSync(path.join(tempDir, filename))
 }
 
 describe('getAppendScript', () => {
@@ -127,7 +113,7 @@ describe('getAppendScript', () => {
     ).toBe(`\n`)
   })
 
-  it.skip("should remove append wrapper when user's hook is not found", () => {
+  it("should remove append wrapper when user's hook is not found", () => {
     const script = getAppendScript(tempDir, curHuskyDir)
     writeExecFile('script.sh', script)
     expect(readFile('script.sh')).toContain(huskyAppendIdentifier)
@@ -137,7 +123,7 @@ describe('getAppendScript', () => {
     expect(readFile('script.sh')).not.toContain(huskyAppendIdentifier)
   })
 
-  it.skip('should run well', () => {
+  it('should run well', () => {
     const script = getAppendScript(tempDir, curHuskyDir)
     writeExecFile('script.sh', script)
     writeExecFile(
