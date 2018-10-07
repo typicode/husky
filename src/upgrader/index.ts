@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as readPkg from 'read-pkg'
+import checkVersion from './checkVersion'
 
 interface IHookMap {
   [key: string]: string
@@ -34,6 +35,8 @@ export default function upgrade(cwd: string) {
     const pkg = readPkg.sync({ cwd, normalize: false })
 
     console.log(`husky > upgrading ${pkgFile}`)
+
+    checkVersion(cwd)
 
     // Don't overwrite pkg.husky if it exists
     if (pkg.husky) {
