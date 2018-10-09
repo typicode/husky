@@ -25,7 +25,6 @@ gitParams="$*"
 if [[ ! -z "$\{HUSKY_DEBUG\}" ]]; then
   echo "\\nhusky:debug $hookName hook started...\\n"
 fi
-
 ${
   platform !== 'win32'
     ? `
