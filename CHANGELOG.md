@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Add debug message
+
 ## 1.1.1
 
 * Check `HUSKY_SKIP_INSTALL` value first before checking if `.git` exists
