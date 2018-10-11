@@ -4,7 +4,7 @@ import { install, uninstall } from './'
 
 // Just for testing
 if (process.env.HUSKY_DEBUG) {
-  console.log(process.env.INIT_CWD)
+  console.log(`husky:debug INIT_CWD=${process.env.INIT_CWD}`)
 }
 
 // Action can be "install" or "uninstall"
