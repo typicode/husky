@@ -22,8 +22,8 @@ scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
 
-if [[ ! -z "$\{HUSKY_DEBUG\}" ]]; then
-  echo "\\nhusky:debug $hookName hook started...\\n"
+if [ "$\{HUSKY_DEBUG\}" = "true" ]; then
+  echo "husky:debug $hookName hook started..."
 fi
 ${
   platform !== 'win32'
