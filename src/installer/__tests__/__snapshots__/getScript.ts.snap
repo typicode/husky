@@ -9,6 +9,10 @@ scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
 
+if [[ ! -z \\"\${HUSKY_DEBUG}\\" ]]; then
+  echo \\"\\\\nhusky:debug $hookName hook started...\\\\n\\"
+fi
+
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
@@ -30,6 +34,10 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
+
+if [[ ! -z \\"\${HUSKY_DEBUG}\\" ]]; then
+  echo \\"\\\\nhusky:debug $hookName hook started...\\\\n\\"
+fi
 
 if [ -f $scriptPath ]; then
   node $scriptPath $hookName \\"$gitParams\\"
