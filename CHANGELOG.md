@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.1.2
 
 * Add debug message
 
