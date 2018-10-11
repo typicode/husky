@@ -70,3 +70,7 @@ If you're on Windows, husky will simply use the version installed globally on yo
 For macOS and Linux users:
 - if you're running `git` commands in the terminal, husky will use the version defined in your shell `PATH`. So if you're a `nvm` user, husky will use the version that you've set with `nvm`.
 - if you're using a GUI client and `nvm`, it may have a different `PATH` and not load `nvm`, in this case the highest `node` version installed by `nvm` will usually be picked. You can also check `~/.node_path` to see which version is used by GUIs and edit if you want to use something else.
+
+## Debug
+
+It's basic for the moment, but you can use `HUSKY_DEBUG=true` to log debug messages.
