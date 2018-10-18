@@ -7,6 +7,7 @@ import getConf from '../getConf'
 export interface IEnv extends NodeJS.ProcessEnv {
   HUSKY_GIT_STDIN?: string
   HUSKY_GIT_PARAMS?: string
+  HUSKY_GIT_HOOK?: string
 }
 
 /**
@@ -38,6 +39,10 @@ export default async function run(
   // Run command
   try {
     const env: IEnv = {}
+
+    if (hookName) {
+      env.HUSKY_GIT_HOOK = hookName
+    }
 
     if (HUSKY_GIT_PARAMS) {
       env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS

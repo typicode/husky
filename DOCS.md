@@ -2,7 +2,7 @@
 
 ## Supported hooks
 
-`husky` supports all Git hooks defined [here](https://git-scm.com/docs/githooks).
+`husky` supports all Git hooks defined [here](https://git-scm.com/docs/githooks). Husky stores the hook name in the `HUSKY_GIT_HOOK` environment variable so it can be accessed from hook scripts.
 
 Server-side hooks (`pre-receive`, `update` and `post-receive`) aren't supported.
 
