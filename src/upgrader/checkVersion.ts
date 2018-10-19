@@ -1,28 +1,16 @@
-import { execSync } from 'child_process'
+import * as resolve from 'resolve'
 
 export default function checkVersion(cwd: string) {
-  const modulePaths: string[] = module.paths // save module.paths
-  const saveCwd: string = process.cwd() // save process.cwd()
-  process.chdir(cwd) // make process.cwd() return cwd
-
   const thisHuskyVersion: string = require('../../package.json').version
-
-  const cwdModulePaths: string[] = JSON.parse(
-    execSync('node -p "JSON.stringify(module.paths)"').toString()
-  )
-
-  module.paths = cwdModulePaths || []
 
   let huskyVersion: string | undefined
   let err: NodeJS.ErrnoException | undefined
   try {
-    huskyVersion = require('husky/package.json').version
+    const pathToHusky = resolve.sync('husky/package.json', { basedir: cwd })
+    huskyVersion = require(pathToHusky).version
   } catch (error) {
     err = error
   }
-
-  module.paths = modulePaths // restore module.paths
-  process.chdir(saveCwd) // restore process.cwd()
 
   if (err) {
     if (err.code === 'MODULE_NOT_FOUND') {
