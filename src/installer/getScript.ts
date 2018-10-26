@@ -35,7 +35,7 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
-  ${node} $scriptPath $hookName "$gitParams"
+  ${node} $scriptPath $hookName "$gitParams" < /dev/tty
 else
   echo "Can't find Husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
