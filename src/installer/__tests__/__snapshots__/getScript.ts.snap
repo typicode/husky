@@ -18,7 +18,7 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 
 if [ -f $scriptPath ]; then
-  node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\"
+  node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\" < /dev/tty
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
@@ -40,7 +40,7 @@ if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ]; then
 fi
 
 if [ -f $scriptPath ]; then
-  node $scriptPath $hookName \\"$gitParams\\"
+  node $scriptPath $hookName \\"$gitParams\\" < /dev/tty
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
