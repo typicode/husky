@@ -18,6 +18,7 @@ const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
 ${huskyIdentifier}
 # v${version} ${platform}
 
+configPath="package.json"
 scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
@@ -34,6 +35,9 @@ fi
 `
     : ''
 }
+if [ -f $scriptPath ]; then
+  exit 0
+fi
 if [ -f $scriptPath ]; then
   ${node} $scriptPath $hookName "$gitParams"
 else
