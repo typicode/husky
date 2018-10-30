@@ -5,6 +5,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # husky
 # v1.1.2 darwin
 
+configPath=\\"package.json\\"
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
@@ -15,6 +16,10 @@ fi
 
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
+fi
+
+if [ -f $scriptPath ]; then
+  exit 0
 fi
 
 if [ -f $scriptPath ]; then
@@ -31,12 +36,17 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # husky
 # v1.1.2 win32
 
+configPath=\\"package.json\\"
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
 
 if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ]; then
   echo \\"husky:debug $hookName hook started...\\"
+fi
+
+if [ -f $scriptPath ]; then
+  exit 0
 fi
 
 if [ -f $scriptPath ]; then

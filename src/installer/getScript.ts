@@ -38,6 +38,7 @@ fi
 if [ -f $scriptPath ]; then
   exit 0
 fi
+
 if [ -f $scriptPath ]; then
   ${node} $scriptPath $hookName "$gitParams"
 else
