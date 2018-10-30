@@ -18,7 +18,7 @@ if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
 
-if [ -f $configPath ]; then
+if [ ! -f $configPath ]; then
   exit 0
 fi
 
@@ -45,7 +45,7 @@ if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ]; then
   echo \\"husky:debug $hookName hook started...\\"
 fi
 
-if [ -f $configPath ]; then
+if [ ! -f $configPath ]; then
   exit 0
 fi
 
