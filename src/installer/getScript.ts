@@ -35,7 +35,7 @@ fi
 `
     : ''
 }
-if [ -f $scriptPath ]; then
+if [ -f $configPath ]; then
   exit 0
 fi
 
