@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3
+
+* Don't fail if `package.json` doesn't exist
+
 ## 1.1.2
 
 * Add debug message
