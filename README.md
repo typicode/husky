@@ -4,9 +4,9 @@
 
 [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
 
-Husky can prevent bad `git commit`, `git push` and more 🐶 ❤️ _woof!_
+Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
-_To all the amazing people who have answered the Husky survey, thanks so much <3 !_
+Do you ❤️ husky? You can support its development on Patreon! 😉
 
 <a href="https://www.patreon.com/typicode">
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
