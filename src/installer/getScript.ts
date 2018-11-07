@@ -13,6 +13,9 @@ interface IContext {
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
 
+// Experimental
+const huskyrc = '~/.huskyrc'
+
 // Render script
 const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
 ${huskyIdentifier}
@@ -35,6 +38,7 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
+  test -f ${huskyrc} && source ${huskyrc}
   ${node} $scriptPath $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
