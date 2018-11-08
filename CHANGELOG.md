@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Upgrade `execa` dependency
+
 ## 1.1.3
 
 * Don't fail if `package.json` doesn't exist
