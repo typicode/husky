@@ -1,3 +1,4 @@
+declare module 'execa'
 declare module 'is-ci'
 declare module 'pkg-dir'
 declare module 'slash'
