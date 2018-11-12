@@ -18,6 +18,7 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 
 if [ -f $scriptPath ]; then
+  test -f ~/.huskyrc && source ~/.huskyrc
   node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
@@ -40,6 +41,7 @@ if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ]; then
 fi
 
 if [ -f $scriptPath ]; then
+  test -f ~/.huskyrc && source ~/.huskyrc
   node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
