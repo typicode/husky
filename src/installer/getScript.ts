@@ -38,7 +38,7 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
-  test -f ${huskyrc} && source ${huskyrc}
+  [ -f ${huskyrc} ] && source ${huskyrc}
   ${node} $scriptPath $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
