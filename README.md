@@ -8,15 +8,13 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
 ## Supporting
 
-Do you ❤️ husky? You can support its development on Patreon! 😉
+Do you ❤️ husky? You can support its development on Patreon!
 
 <p>
   <a href="https://www.patreon.com/typicode">
     <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
   </a>
 </p>
-
-Click [here](https://thanks.typicode.com) to view the list of Supporters.
 
 ## Install
 
