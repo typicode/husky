@@ -25,9 +25,11 @@ scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
 
-if [ "$\{HUSKY_DEBUG\}" = "true" ]; then
-  echo "husky:debug $hookName hook started..."
-fi
+debug() {
+  [ "$\{HUSKY_DEBUG\}" = "true" ] && echo "husky:debug $1"
+}
+
+debug "$hookName hook started..."
 ${
   platform !== 'win32'
     ? `
@@ -38,7 +40,10 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
-  [ -f ${huskyrc} ] && source ${huskyrc}
+  if [ -f ${huskyrc} ];
+    debug "source ${huskyrc}"
+    source ${huskyrc}
+  fi
   ${node} $scriptPath $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
