@@ -7,6 +7,14 @@ const huskyDir = '/home/typicode/project/node_modules/husky'
 // In order to make the test deterministic on AppVeyor, the value is hardcoded
 const runNodePath = '/home/typicode/project/node_modules/run-node/run-node'
 
+// Faking env variable
+process.env = {
+  ...process.env,
+  PWD: '/home/typicode/projects/foo-package',
+  npm_package_homepage: 'https://github.com/foo/foo-package',
+  npm_package_name: 'foo-package'
+}
+
 describe('hookScript', () => {
   it('should match snapshot (OS X/Linux)', () => {
     const script = getScript(rootDir, huskyDir, runNodePath, 'darwin')

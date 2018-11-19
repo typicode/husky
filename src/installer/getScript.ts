@@ -4,9 +4,15 @@ import * as path from 'path'
 import * as slash from 'slash'
 
 interface IContext {
+  homepage: string
   node: string
   platform: string
   script: string
+  version: string
+}
+
+interface IInfoContext {
+  homepage: string
   version: string
 }
 
@@ -16,11 +22,36 @@ export const huskyIdentifier = '# husky'
 // Experimental
 const huskyrc = '~/.huskyrc'
 
-// Render script
-const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
-${huskyIdentifier}
-# v${version} ${platform}
+// Info message to make debugging easier
+function getInfo({ homepage, version }: IInfoContext): string {
+  const now = new Date().toLocaleString()
+  const pkgName = process && process.env && process.env.npm_package_name
+  const pkgHomepage = process && process.env && process.env.npm_package_homepage
+  const PWD = process.env.PWD
 
+  return `
+# Hook created by Husky
+#   Version: ${version}
+#   At: ${now}
+#   See: ${homepage}
+#
+# From npm package
+#   Name: ${pkgName}
+#   Directory: ${PWD}
+#   Homepage: ${pkgHomepage}
+`
+}
+
+// Render script
+const render = ({
+  homepage,
+  node,
+  platform,
+  script,
+  version
+}: IContext) => `#!/bin/sh
+${huskyIdentifier}
+${getInfo({ homepage, version })}
 scriptPath="${script}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
@@ -64,11 +95,11 @@ export default function(
   // On Windows do not rely on run-node
   const node = platform === 'win32' ? 'node' : runNodePath
 
-  const { version } = JSON.parse(
+  const { homepage, version } = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
   )
 
   const script = slash(path.join(path.relative(rootDir, huskyDir), 'run'))
 
-  return render({ node, platform, script, version })
+  return render({ homepage, node, platform, script, version })
 }
