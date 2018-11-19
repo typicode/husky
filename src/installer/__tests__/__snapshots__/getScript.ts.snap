@@ -6,14 +6,13 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 
 # Hook created by Husky
 #   Version: 1.1.4
-#   At: 2018-11-19
+#   At: 8/19/1975, 5:15:30 PM
 #   See: https://github.com/typicode/husky#readme
 #
 # From npm package
 #   Name: foo-package
 #   Directory: /home/typicode/projects/foo-package
 #   Homepage: https://github.com/foo/foo-package
-
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
@@ -43,14 +42,13 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 
 # Hook created by Husky
 #   Version: 1.1.4
-#   At: 2018-11-19
+#   At: 8/19/1975, 5:15:30 PM
 #   See: https://github.com/typicode/husky#readme
 #
 # From npm package
 #   Name: foo-package
 #   Directory: /home/typicode/projects/foo-package
 #   Homepage: https://github.com/foo/foo-package
-
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`

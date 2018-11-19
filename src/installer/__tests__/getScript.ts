@@ -1,5 +1,14 @@
 import getScript from '../getScript'
 
+// Mock Date to be always constant
+const constantDate = new Date('August 19, 1975 23:15:30 GMT+07:00')
+global.Date = class extends Date {
+  constructor() {
+    super()
+    return constantDate
+  }
+} as DateConstructor
+
 const rootDir = '/home/typicode/project'
 const huskyDir = '/home/typicode/project/node_modules/husky'
 
