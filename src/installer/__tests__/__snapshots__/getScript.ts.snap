@@ -20,7 +20,7 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 
 if [ -f $scriptPath ]; then
-  if [ -f ~/.huskyrc ];
+  if [ -f ~/.huskyrc ]; then
     debug \\"source ~/.huskyrc\\"
     source ~/.huskyrc
   fi
@@ -48,7 +48,7 @@ debug() {
 debug \\"$hookName hook started...\\"
 
 if [ -f $scriptPath ]; then
-  if [ -f ~/.huskyrc ];
+  if [ -f ~/.huskyrc ]; then
     debug \\"source ~/.huskyrc\\"
     source ~/.huskyrc
   fi

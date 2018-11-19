@@ -40,7 +40,7 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
-  if [ -f ${huskyrc} ];
+  if [ -f ${huskyrc} ]; then
     debug "source ${huskyrc}"
     source ${huskyrc}
   fi
