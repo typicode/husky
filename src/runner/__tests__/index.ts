@@ -38,7 +38,9 @@ describe('run', () => {
     const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
-      env: {},
+      env: {
+        HUSKY_GIT_HOOK: 'pre-commit'
+      },
       stdio: 'inherit'
     })
     expect(status).toBe(0)
@@ -63,7 +65,9 @@ describe('run', () => {
     const status = await index(['', getScriptPath(subDir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: subDir,
-      env: {},
+      env: {
+        HUSKY_GIT_HOOK: 'pre-commit'
+      },
       stdio: 'inherit'
     })
     expect(status).toBe(0)
@@ -103,7 +107,9 @@ describe('run', () => {
     const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 2', {
       cwd: dir,
-      env: {},
+      env: {
+        HUSKY_GIT_HOOK: 'pre-commit'
+      },
       stdio: 'inherit'
     })
     expect(status).toBe(2)
@@ -124,7 +130,36 @@ describe('run', () => {
     const status = await index(['', getScriptPath(dir), 'pre-commit'])
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
-      env: {},
+      env: {
+        HUSKY_GIT_HOOK: 'pre-commit'
+      },
+      stdio: 'inherit'
+    })
+    expect(status).toBe(0)
+  })
+
+  it('should set HUSKY_GIT_HOOK', async () => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo success'
+          }
+        }
+      })
+    )
+
+    const status = await index(['', getScriptPath(dir), 'pre-commit'], () =>
+      Promise.resolve('foo')
+    )
+    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
+      cwd: dir,
+      env: {
+        HUSKY_GIT_HOOK: 'pre-commit'
+      },
       stdio: 'inherit'
     })
     expect(status).toBe(0)
@@ -150,6 +185,7 @@ describe('run', () => {
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {
+        HUSKY_GIT_HOOK: 'pre-push',
         HUSKY_GIT_STDIN: 'foo'
       },
       stdio: 'inherit'
@@ -181,6 +217,7 @@ describe('run', () => {
     expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
       cwd: dir,
       env: {
+        HUSKY_GIT_HOOK: 'commit-msg',
         HUSKY_GIT_PARAMS: 'git fake param'
       },
       stdio: 'inherit'
