@@ -39,7 +39,7 @@ ${huskyIdentifier}
 #   Version: ${version}
 #   At: ${createdAt}
 #   See: ${homepage}
-#
+
 # From npm package
 #   Name: ${pkgName}
 #   Directory: ${pkgDirectory}

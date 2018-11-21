@@ -8,7 +8,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 #   Version: 1.1.4
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
-#
+
 # From npm package
 #   Name: foo-package
 #   Directory: /home/typicode/projects/foo-package
@@ -44,7 +44,7 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 #   Version: 1.1.4
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
-#
+
 # From npm package
 #   Name: foo-package
 #   Directory: /home/typicode/projects/foo-package
