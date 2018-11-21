@@ -3,7 +3,16 @@
 exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 "#!/bin/sh
 # husky
-# v1.1.4 darwin
+
+# Hook created by Husky
+#   Version: 1.1.4
+#   At: <locale date string>
+#   See: https://github.com/typicode/husky#readme
+
+# From npm package
+#   Name: foo-package
+#   Directory: /home/typicode/projects/foo-package
+#   Homepage: https://github.com/foo/foo-package
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
@@ -30,7 +39,16 @@ fi
 exports[`hookScript should match snapshot (Windows) 1`] = `
 "#!/bin/sh
 # husky
-# v1.1.4 win32
+
+# Hook created by Husky
+#   Version: 1.1.4
+#   At: <locale date string>
+#   See: https://github.com/typicode/husky#readme
+
+# From npm package
+#   Name: foo-package
+#   Directory: /home/typicode/projects/foo-package
+#   Homepage: https://github.com/foo/foo-package
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
