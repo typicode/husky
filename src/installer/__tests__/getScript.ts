@@ -18,6 +18,17 @@ process.env = {
   npm_package_name: 'foo-package'
 }
 
+// Mock Date.toLocaleString
+global.Date = class extends Date {
+  constructor() {
+    super()
+  }
+
+  public toLocaleString() {
+    return '<locale date string>'
+  }
+} as DateConstructor
+
 describe('hookScript', () => {
   it('should match snapshot (OS X/Linux)', () => {
     const script = getScript(rootDir, huskyDir, runNodePath, 'darwin')

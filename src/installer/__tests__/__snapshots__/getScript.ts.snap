@@ -6,7 +6,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 
 # Hook created by Husky
 #   Version: 1.1.4
-#   At: 12/22/2016, 12:36:07 AM
+#   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 #
 # From npm package
@@ -42,7 +42,7 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 
 # Hook created by Husky
 #   Version: 1.1.4
-#   At: 12/22/2016, 12:36:07 AM
+#   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 #
 # From npm package

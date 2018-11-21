@@ -104,8 +104,7 @@ export default function(
   )
 
   // created at
-  const now = Date.now()
-  const createdAt = new Date(now).toLocaleString()
+  const createdAt = new Date().toLocaleString()
 
   // Render script
   return render({
