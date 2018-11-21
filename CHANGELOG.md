@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.0
+
+* Add comments to generated hooks to specify which package has installed husky and when
+
 ## 1.1.4
 
 * Upgrade `execa` dependency
