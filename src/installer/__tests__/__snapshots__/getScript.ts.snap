@@ -18,16 +18,21 @@ scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
 
-if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ]; then
-  echo \\"husky:debug $hookName hook started...\\"
-fi
+debug() {
+  [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ] && echo \\"husky:debug $1\\"
+}
+
+debug \\"$hookName hook started...\\"
 
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
 
 if [ -f $scriptPath ]; then
-  [ -f ~/.huskyrc ] && source ~/.huskyrc
+  if [ -f ~/.huskyrc ]; then
+    debug \\"source ~/.huskyrc\\"
+    source ~/.huskyrc
+  fi
   node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
@@ -54,12 +59,17 @@ scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
 
-if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ]; then
-  echo \\"husky:debug $hookName hook started...\\"
-fi
+debug() {
+  [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ] && echo \\"husky:debug $1\\"
+}
+
+debug \\"$hookName hook started...\\"
 
 if [ -f $scriptPath ]; then
-  [ -f ~/.huskyrc ] && source ~/.huskyrc
+  if [ -f ~/.huskyrc ]; then
+    debug \\"source ~/.huskyrc\\"
+    source ~/.huskyrc
+  fi
   node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
