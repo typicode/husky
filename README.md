@@ -28,7 +28,10 @@ npm install husky --save-dev
   "husky": {
     "hooks": {
       "pre-commit": "npm test",
-      "pre-push": "npm test",
+      "pre-push": [
+        "npm lint",
+        "npm test"
+      ],
       "...": "..."
     }
   }

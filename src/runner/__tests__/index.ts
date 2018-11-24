@@ -44,6 +44,34 @@ describe('run', () => {
     expect(status).toBe(0)
   })
 
+  it('should run working commands and return 0 status', async () => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': ['echo success', 'echo success2']
+          }
+        }
+      })
+    )
+
+    const status = await index(['', getScriptPath(dir), 'pre-commit'])
+    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
+      cwd: dir,
+      env: {},
+      stdio: 'inherit'
+    })
+    expect(execa.shellSync).toHaveBeenCalledWith('echo success2', {
+      cwd: dir,
+      env: {},
+      stdio: 'inherit'
+    })
+    expect(status).toBe(0)
+  })
+
   it('should run working command and return 0 status when husky is installed in a sub directory', async () => {
     const dir = tempy.directory()
     const subDir = path.join(dir, 'A/B')

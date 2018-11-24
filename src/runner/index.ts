@@ -29,13 +29,13 @@ export default async function run(
   }
   const config = getConf(cwd)
 
-  const command: string | undefined =
+  let commands: string | string[] | undefined =
     config && config.hooks && config.hooks[hookName]
 
   const oldCommand: string | undefined =
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
-  // Run command
+  // Run commands
   try {
     const env: IEnv = {}
 
@@ -51,9 +51,18 @@ export default async function run(
       env.HUSKY_GIT_STDIN = await getStdinFn()
     }
 
-    if (command) {
-      console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(command, { cwd, env, stdio: 'inherit' })
+    if (commands) {
+      if (!Array.isArray(commands)) {
+        commands = [commands]
+      }
+
+      commands.forEach((command: string) => {
+        console.log(
+          `husky > ${hookName} > ${command} (node ${process.version})`
+        )
+        execa.shellSync(command, { cwd, env, stdio: 'inherit' })
+      })
+
       return 0
     }
 
