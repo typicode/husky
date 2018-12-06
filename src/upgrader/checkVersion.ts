@@ -1,8 +1,7 @@
 import * as resolve from 'resolve'
+import { version as thisHuskyVersion } from '../../package.json'
 
 export default function checkVersion(cwd: string) {
-  const thisHuskyVersion: string = require('../../package.json').version
-
   let huskyVersion: string | undefined
   let err: NodeJS.ErrnoException | undefined
   try {
@@ -15,9 +14,8 @@ export default function checkVersion(cwd: string) {
   if (err) {
     if (err.code === 'MODULE_NOT_FOUND') {
       throw new Error('husky is not currently installed in this repository.')
-    } else {
-      throw err
     }
+    throw err
   }
 
   if (thisHuskyVersion !== huskyVersion) {
