@@ -10,12 +10,8 @@ export default function checkVersion(cwd: string) {
   let huskyVersion: string | undefined
   let err: NodeJS.ErrnoException | undefined
   try {
-    const pathToHusky = resolve.sync(
-      'husky/package.json',
-      { basedir: cwd },
-      'utf-8'
-    )
-    huskyVersion = JSON.parse(fs.readFileSync(pathToHusky)).version
+    const pathToHusky = resolve.sync('husky/package.json', { basedir: cwd })
+    huskyVersion = JSON.parse(fs.readFileSync(pathToHusky, 'utf-8')).version
   } catch (error) {
     err = error
   }
