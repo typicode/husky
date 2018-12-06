@@ -10,7 +10,8 @@ const packageJson = JSON.parse(
 const createTmpDir = () => {
   const dir = tempy.directory()
   const filename = path.join(dir, 'package.json')
-  const huskyModule = path.join(dir, 'node_modules/husky')
+  const nodeModules = path.join(dir, 'node_modules')
+  const huskyModule = path.join(nodeModules, 'husky')
   const huskyModulePackageJson = path.join(huskyModule, 'package.json')
 
   fs.writeFileSync(
@@ -23,6 +24,8 @@ const createTmpDir = () => {
     }),
     'utf-8'
   )
+
+  fs.mkdirSync(nodeModules)
 
   return {
     dir,
@@ -47,7 +50,7 @@ describe('upgrade', () => {
 
     const { dir, huskyModule, huskyModulePackageJson } = createTmpDir()
 
-    fs.mkdirSync(huskyModule, { recursive: true })
+    fs.mkdirSync(huskyModule)
 
     fs.writeFileSync(
       huskyModulePackageJson,
@@ -69,7 +72,7 @@ describe('upgrade', () => {
       huskyModulePackageJson
     } = createTmpDir()
 
-    fs.mkdirSync(huskyModule, { recursive: true })
+    fs.mkdirSync(huskyModule)
 
     fs.writeFileSync(
       huskyModulePackageJson,
