@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.2.0
+
+* Add comments to generated hooks to specify which package has installed husky and when
+
+## 1.1.4
+
+* Upgrade `execa` dependency
+
+## 1.1.3
+
+* Don't fail if `package.json` doesn't exist
+
+## 1.1.2
+
+* Add debug message
+
 ## 1.1.1
 
 * Check `HUSKY_SKIP_INSTALL` value first before checking if `.git` exists

@@ -2,15 +2,19 @@
 
 > Git hooks made easy
 
-[![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky/dev)
+[![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
 
-Husky can prevent bad `git commit`, `git push` and more 🐶 ❤️ _woof!_
+Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
-_To all the amazing people who have answered the Husky survey, thanks so much <3 !_
+## Support
 
-<a href="https://www.patreon.com/typicode">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
+If Husky is saving you time, please consider supporting its development on Patreon 🙏 thank you!
+
+<p>
+  <a href="https://www.patreon.com/bePatron?c=784328">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+  </a>
+</p>
 
 ## Install
 
@@ -97,13 +101,13 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 25k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories)
+* ... and 28k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories)
 
 ## See also
 
 * [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
 * [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
-* [react-fake-props](https://github.com/typicode/react-fake-props) - Fake props for your React tests
+* [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
 
 ## License
 

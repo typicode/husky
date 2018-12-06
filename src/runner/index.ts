@@ -17,7 +17,16 @@ export default async function run(
   getStdinFn: () => Promise<string> = getStdin // Used for mocking
 ): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
-  const pkg = readPkg.sync({ cwd, normalize: false })
+  // In some cases, package.json may not exist
+  // For example, when switching to gh-page branch
+  let pkg
+  try {
+    pkg = readPkg.sync({ cwd, normalize: false })
+  } catch (err) {
+    if (err.code !== 'ENOENT') {
+      throw err
+    }
+  }
   const config = getConf(cwd)
 
   const command: string | undefined =
@@ -26,6 +35,7 @@ export default async function run(
   const oldCommand: string | undefined =
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
+  // Run command
   try {
     const env: IEnv = {}
 

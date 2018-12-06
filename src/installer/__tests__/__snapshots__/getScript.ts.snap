@@ -3,17 +3,36 @@
 exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 "#!/bin/sh
 # husky
-# v1.1.1 darwin
+
+# Hook created by Husky
+#   Version: 1.2.0
+#   At: <locale date string>
+#   See: https://github.com/typicode/husky#readme
+
+# From npm package
+#   Name: foo-package
+#   Directory: /home/typicode/projects/foo-package
+#   Homepage: https://github.com/foo/foo-package
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
+
+debug() {
+  [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ] && echo \\"husky:debug $1\\"
+}
+
+debug \\"$hookName hook started...\\"
 
 if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
 
 if [ -f $scriptPath ]; then
+  if [ -f ~/.huskyrc ]; then
+    debug \\"source ~/.huskyrc\\"
+    source ~/.huskyrc
+  fi
   node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
@@ -25,13 +44,32 @@ fi
 exports[`hookScript should match snapshot (Windows) 1`] = `
 "#!/bin/sh
 # husky
-# v1.1.1 win32
+
+# Hook created by Husky
+#   Version: 1.2.0
+#   At: <locale date string>
+#   See: https://github.com/typicode/husky#readme
+
+# From npm package
+#   Name: foo-package
+#   Directory: /home/typicode/projects/foo-package
+#   Homepage: https://github.com/foo/foo-package
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
 gitParams=\\"$*\\"
 
+debug() {
+  [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ] && echo \\"husky:debug $1\\"
+}
+
+debug \\"$hookName hook started...\\"
+
 if [ -f $scriptPath ]; then
+  if [ -f ~/.huskyrc ]; then
+    debug \\"source ~/.huskyrc\\"
+    source ~/.huskyrc
+  fi
   node $scriptPath $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"

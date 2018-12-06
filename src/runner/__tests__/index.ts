@@ -187,4 +187,9 @@ describe('run', () => {
     })
     expect(status).toBe(0)
   })
+
+  it("should not throw if there's no package.json", async () => {
+    const dir = tempy.directory()
+    await index(['', getScriptPath(dir), 'pre-push'])
+  })
 })

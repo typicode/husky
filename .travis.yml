@@ -8,6 +8,8 @@ node_js:
 cache:
   directories:
     - "node_modules"
+env:
+  - HUSKY_DEBUG=true
 script:
   - npm test
   # Test post-checkout

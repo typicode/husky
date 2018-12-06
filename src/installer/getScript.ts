@@ -4,23 +4,56 @@ import * as path from 'path'
 import * as slash from 'slash'
 
 interface IContext {
+  createdAt: string
+  homepage: string
   node: string
+  pkgDirectory?: string
+  pkgHomepage?: string
+  pkgName?: string
   platform: string
-  script: string
+  runScriptPath: string
   version: string
 }
 
 // Used to identify scripts created by Husky
 export const huskyIdentifier = '# husky'
 
-// Render script
-const render = ({ node, platform, script, version }: IContext) => `#!/bin/sh
-${huskyIdentifier}
-# v${version} ${platform}
+// Experimental
+const huskyrc = '~/.huskyrc'
 
-scriptPath="${script}.js"
+// Render script
+const render = ({
+  createdAt,
+  homepage,
+  node,
+  pkgDirectory,
+  pkgHomepage,
+  pkgName,
+  platform,
+  runScriptPath,
+  version
+}: IContext) => `#!/bin/sh
+${huskyIdentifier}
+
+# Hook created by Husky
+#   Version: ${version}
+#   At: ${createdAt}
+#   See: ${homepage}
+
+# From npm package
+#   Name: ${pkgName}
+#   Directory: ${pkgDirectory}
+#   Homepage: ${pkgHomepage}
+
+scriptPath="${runScriptPath}.js"
 hookName=\`basename "$0"\`
 gitParams="$*"
+
+debug() {
+  [ "$\{HUSKY_DEBUG\}" = "true" ] && echo "husky:debug $1"
+}
+
+debug "$hookName hook started..."
 ${
   platform !== 'win32'
     ? `
@@ -31,6 +64,10 @@ fi
     : ''
 }
 if [ -f $scriptPath ]; then
+  if [ -f ${huskyrc} ]; then
+    debug "source ${huskyrc}"
+    source ${huskyrc}
+  fi
   ${node} $scriptPath $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
@@ -56,11 +93,34 @@ export default function(
   // On Windows do not rely on run-node
   const node = platform === 'win32' ? 'node' : runNodePath
 
-  const { version } = JSON.parse(
+  // Env variable
+  const pkgName = process && process.env && process.env.npm_package_name
+  const pkgHomepage = process && process.env && process.env.npm_package_homepage
+  const pkgDirectory = process && process.env && process.env.PWD
+
+  // Husky package.json
+  const { homepage, version } = JSON.parse(
     fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
   )
 
-  const script = slash(path.join(path.relative(rootDir, huskyDir), 'run'))
+  // Path to run.js
+  const runScriptPath = slash(
+    path.join(path.relative(rootDir, huskyDir), 'run')
+  )
 
-  return render({ node, platform, script, version })
+  // created at
+  const createdAt = new Date().toLocaleString()
+
+  // Render script
+  return render({
+    createdAt,
+    homepage,
+    node,
+    pkgDirectory,
+    pkgHomepage,
+    pkgName,
+    platform,
+    runScriptPath,
+    version
+  })
 }
