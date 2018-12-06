@@ -61,7 +61,9 @@ describe('upgrade', () => {
       'utf-8'
     )
 
-    expect(() => index(dir)).toThrow()
+    expect(() => index(dir)).toThrow(
+      `This version of husky is not compatible with your current version, use npx husky@${fakeVersion} husky-upgrade instead.`
+    )
   })
 
   it('should run working command and return 0 status', () => {
