@@ -1,5 +1,10 @@
+import * as fs from 'fs'
+import * as path from 'path'
 import * as resolve from 'resolve'
-import { version as thisHuskyVersion } from '../../package.json'
+
+const { version: thisHuskyVersion } = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
+)
 
 export default function checkVersion(cwd: string) {
   let huskyVersion: string | undefined
