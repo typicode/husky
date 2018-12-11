@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Husky configuration.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type": "string"},
+    "skipCI": {
+      "title": "Skipping Git hooks installation.",
+      "type": "boolean",
+      "default": false
+    },
+    "hooks": {
+      "title": "Git hooks.",
+      "type": "object",
+      "properties": {
+        "applypatch-msg": {"type": "string"},
+        "pre-applypatch": {"type": "string"},
+        "post-applypatch": {"type": "string"},
+        "pre-commit": {"type": "string"},
+        "prepare-commit-msg": {"type": "string"},
+        "commit-msg": {"type": "string"},
+        "post-commit": {"type": "string"},
+        "pre-rebase": {"type": "string"},
+        "post-checkout": {"type": "string"},
+        "post-merge": {"type": "string"},
+        "pre-push": {"type": "string"},
+        "post-update": {"type": "string"},
+        "push-to-checkout": {"type": "string"},
+        "pre-auto-gc": {"type": "string"},
+        "post-rewrite": {"type": "string"},
+        "sendemail-validate": {"type": "string"},
+        "fsmonitor-watchman": {"type": "string"},
+        "p4-pre-submit": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["hooks"]
+}
