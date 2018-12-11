@@ -77,6 +77,7 @@ Starting with `1.0.0`, you can also configure hooks using `.huskyrc`, `.huskyrc.
 ```js
 // .huskyrc
 {
+  "$schema": "./node_modules/husky/schema.json",
   "hooks": {
     "pre-commit": "npm test"
   }
