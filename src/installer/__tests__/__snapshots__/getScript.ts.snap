@@ -28,12 +28,12 @@ if ! command -v node >/dev/null 2>&1; then
   echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
 fi
 
-if [ -f $scriptPath ]; then
+if [ -f \\"$scriptPath\\" ]; then
   if [ -f ~/.huskyrc ]; then
     debug \\"source ~/.huskyrc\\"
     source ~/.huskyrc
   fi
-  node_modules/run-node/run-node $scriptPath $hookName \\"$gitParams\\"
+  node_modules/run-node/run-node \\"$scriptPath\\" $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
@@ -65,12 +65,12 @@ debug() {
 
 debug \\"$hookName hook started...\\"
 
-if [ -f $scriptPath ]; then
+if [ -f \\"$scriptPath\\" ]; then
   if [ -f ~/.huskyrc ]; then
     debug \\"source ~/.huskyrc\\"
     source ~/.huskyrc
   fi
-  node $scriptPath $hookName \\"$gitParams\\"
+  node \\"$scriptPath\\" $hookName \\"$gitParams\\"
 else
   echo \\"Can't find Husky, skipping $hookName hook\\"
   echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
