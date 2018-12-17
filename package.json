@@ -52,7 +52,7 @@
     "execa": "^1.0.0",
     "find-up": "^3.0.0",
     "get-stdin": "^6.0.0",
-    "is-ci": "^1.2.1",
+    "is-ci": "^2.0.0",
     "pkg-dir": "^3.0.0",
     "please-upgrade-node": "^3.1.1",
     "read-pkg": "^4.0.1",
