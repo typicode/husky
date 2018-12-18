@@ -64,6 +64,9 @@ fi
     : ''
 }
 if [ -f "$scriptPath" ]; then
+  if [ -t 1 ]; then
+    exec < /dev/tty
+  fi
   if [ -f ${huskyrc} ]; then
     debug "source ${huskyrc}"
     source ${huskyrc}
