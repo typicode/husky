@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Enable `stdin` if hook is running in a terminal 
+
 ## 1.2.1
 
 * Fix don't fail if directory in project contains whitespace
