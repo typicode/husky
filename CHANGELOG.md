@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.3.0
 
 * Enable `stdin` if hook is running in a terminal 
 
