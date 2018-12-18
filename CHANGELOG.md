@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.1
+
+* Fix don't fail if directory in project contains whitespace
+
 ## 1.2.0
 
 * Add comments to generated hooks to specify which package has installed husky and when
@@ -10,7 +14,7 @@
 
 ## 1.1.3
 
-* Don't fail if `package.json` doesn't exist
+* Fix don't fail if `package.json` doesn't exist
 
 ## 1.1.2
 
