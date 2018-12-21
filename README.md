@@ -108,6 +108,9 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 * [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
 * [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
 * [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
+* [husky-check-email](https://github.com/jehy/husky-check-email) - check if commiter email belongs to a certain domain
+* [husky-add-issue-tracker](https://github.com/jehy/husky-add-issue-tracker) - add issue tracker project id to commit
+* [checkExact](https://github.com/jehy/checkExact) - check if all of your dependencies are strict
 
 ## License
 
