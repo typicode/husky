@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.3.1
+
+* Disable previous change due to a bug on Windows
+
 ## 1.3.0
 
 * Enable `stdin` if hook is running in a terminal 
