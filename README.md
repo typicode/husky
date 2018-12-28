@@ -8,7 +8,7 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
 ## Support
 
-__If Husky is saving you or your team time, please consider supporting it on Patreon 🙏 thank you!__
+__If Husky is saving you (or your team) time, please consider supporting it on Patreon 👍 thank you!__
 
 <p>
   <a href="https://www.patreon.com/bePatron?c=784328">
