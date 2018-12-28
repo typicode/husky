@@ -2,7 +2,9 @@
 
 ## 1.3.1
 
-* Disable previous change due to a bug on Windows
+* Update docs
+* Upgrade `is-ci` and support more CIs
+* Disable `1.3.0` change related to `stdin` due to a bug on Windows
 
 ## 1.3.0
 
