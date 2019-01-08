@@ -68,22 +68,18 @@ Generally speaking, you should AVOID defining `husky` in multiple `package.json`
 If you're on Windows, husky will simply use the version installed globally on your system.
 
 For macOS and Linux users:
-- if you're running `git` commands in the terminal, husky will use the version defined in your shell `PATH`. So if you're a `nvm` user, husky will use the version that you've set with `nvm`.
+- if you're running `git` commands in the terminal, `husky` will use the version defined in your shell `PATH`. In other words, if you're a `nvm` user, husky will use the version that you've set with `nvm`.
 - if you're using a GUI client and `nvm`, it may have a different `PATH` and not load `nvm`, in this case the highest `node` version installed by `nvm` will usually be picked. You can also check `~/.node_path` to see which version is used by GUIs and edit if you want to use something else.
 
-## `~/.huskyrc`
+## ~/.huskyrc
 
-`husky` will source `~/.huskyrc` file if it exists before running hook scripts. 
-
-You can use it, for example, to load a node version manager. 
-
-Please note, this is only useful when working with a GUI and your version manager isn't already loaded.
-
-Also, unlike `project/.huskyrc` which should contain JSON, `~/.huskyrc` should contain `sh` commands.
+`husky` will source `~/.huskyrc` file if it exists before running hook scripts.
+You can use it, for example, to load a node version manager or run some `shell` commands before hooks.
 
 ```sh
 # ~/.huskyrc
-echo "example"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
 _This feature is experimental 🧪. Feedbacks are welcome._
