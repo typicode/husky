@@ -40,8 +40,7 @@ ${huskyIdentifier}
 #   At: ${createdAt}
 #   See: ${homepage}
 
-# From npm package
-#   Name: ${pkgName}
+# From
 #   Directory: ${pkgDirectory}
 #   Homepage: ${pkgHomepage}
 
