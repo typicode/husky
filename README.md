@@ -72,7 +72,7 @@ Alternatively, you can run the following command which will do the same automati
 ./node_modules/.bin/husky-upgrade
 ```
 
-Starting with `1.0.0`, you can also configure hooks using `.huskyrc`, `.huskyrc.json` or `.huskyrc.js` file.
+Starting with `1.0.0`, you can also configure hooks using `.huskyrc`, `.huskyrc.json`, `.huskyrc.js` or `husky.config.js` file.
 
 ```js
 // .huskyrc
