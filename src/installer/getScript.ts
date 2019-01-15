@@ -55,7 +55,7 @@ ${
   platform !== 'win32'
     ? `
 if ! command -v node >/dev/null 2>&1; then
-  echo "Can't find node in PATH, trying to find a node binary on your system"
+  echo "Info: Can't find node in PATH, trying to find a node binary on your system"
 fi
 `
     : ''
