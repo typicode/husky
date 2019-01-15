@@ -9,8 +9,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 
-# From npm package
-#   Name: foo-package
+# From
 #   Directory: /home/typicode/projects/foo-package
 #   Homepage: https://github.com/foo/foo-package
 
@@ -53,8 +52,7 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 
-# From npm package
-#   Name: foo-package
+# From
 #   Directory: /home/typicode/projects/foo-package
 #   Homepage: https://github.com/foo/foo-package
 

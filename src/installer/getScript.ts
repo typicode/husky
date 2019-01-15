@@ -9,7 +9,6 @@ interface IContext {
   node: string
   pkgDirectory?: string
   pkgHomepage?: string
-  pkgName?: string
   platform: string
   runScriptPath: string
   version: string
@@ -28,7 +27,6 @@ const render = ({
   node,
   pkgDirectory,
   pkgHomepage,
-  pkgName,
   platform,
   runScriptPath,
   version
@@ -96,7 +94,6 @@ export default function(
   const node = platform === 'win32' ? 'node' : runNodePath
 
   // Env variable
-  const pkgName = process && process.env && process.env.npm_package_name
   const pkgHomepage = process && process.env && process.env.npm_package_homepage
   const pkgDirectory = process && process.env && process.env.PWD
 
@@ -120,7 +117,6 @@ export default function(
     node,
     pkgDirectory,
     pkgHomepage,
-    pkgName,
     platform,
     runScriptPath,
     version
