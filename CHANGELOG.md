@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.15.4
+
+* Don't execute shell as a program explicitly (#10)
+
 ## 0.15.3
 
 * Show output from hooks (#8)

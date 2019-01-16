@@ -2,11 +2,10 @@
 
 > Git / Mercurial hooks made easy.
 >
-> `husky-hg` is a fork of `husky`. 
-> The only difference is, that Mercurial is 
-> supported as an alternative to git. 
+> `husky-hg` is a fork of `husky`.
+> The only difference is, that Mercurial is
+> supported as an alternative to git.
 >
-> *This fork will be kept up-to-date as much as possible.*
 
 Husky can prevent bad commit, push and more :dog: _woof!_
 
@@ -122,4 +121,4 @@ Please use `yarn` `v0.24+`
 
 ## License
 
-MIT 
+MIT
