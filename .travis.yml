@@ -4,7 +4,7 @@ os:
 language: node_js
 node_js:
   - "stable"
-  - "4"
+  - "6"
 script:
   - npm test
   - HUSKY_IGNORE_CI=true node bin/install
