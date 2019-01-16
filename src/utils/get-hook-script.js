@@ -183,9 +183,9 @@ function createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage)
           try:
             FNULL = os.open(os.devnull, os.O_WRONLY)
             if show_output:
-              return subprocess.check_call(cmd, stdin=FNULL, shell=True) == 0
+              return subprocess.check_call(cmd, stdin=FNULL) == 0
             else:
-              return subprocess.check_call(cmd, stdin=FNULL, stdout=FNULL, stderr=FNULL, shell=True) == 0
+              return subprocess.check_call(cmd, stdin=FNULL, stdout=FNULL, stderr=FNULL) == 0
           except (OSError, subprocess.CalledProcessError) as e:
             print_error_msg(str(e))
             return False
