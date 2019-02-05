@@ -110,7 +110,7 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 ## See also
 
 * [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
-* [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
+* [please-upgrade-node-fork](https://github.com/aladdin-add/please-upgrade-node-fork) - Show a message to upgrade Node instead of a stacktrace in your CLIs
 * [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
 
 ## License
