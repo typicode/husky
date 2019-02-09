@@ -35,6 +35,17 @@ export default async function run(
   const oldCommand: string | undefined =
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
+  const targetBranch: string | undefined =
+    config && config.hooks && config.hooks['target-branch']
+
+  const currentBranch = execa.shellSync(
+    'env -i git rev-parse --abbrev-ref HEAD'
+  ).stdout
+
+  if (targetBranch && targetBranch !== currentBranch) {
+    return 0
+  }
+
   // Run command
   try {
     const env: IEnv = {}
