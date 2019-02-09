@@ -22,7 +22,7 @@ describe('run', () => {
     spy.mockRestore()
   })
 
-  describe('with no specified target branch', () => {
+  describe('with no specified active branch', () => {
     it('should run working command and return 0 status', async () => {
       const dir = tempy.directory()
 
@@ -196,12 +196,12 @@ describe('run', () => {
     })
   })
 
-  describe('with a specified target branch', () => {
+  describe('with specified active branches', () => {
     beforeEach(() => {
       jest.mock('execa')
     })
 
-    it('should run command if target and current branches match', async () => {
+    it('should run command if current branch is active', async () => {
       const dir = tempy.directory()
 
       fs.writeFileSync(
@@ -209,15 +209,15 @@ describe('run', () => {
         JSON.stringify({
           husky: {
             hooks: {
-              'pre-commit': 'echo success',
-              'target-branch': 'target-branch'
+              'active-branches': ['active-branch'],
+              'pre-commit': 'echo success'
             }
           }
         })
       )
 
       execa.shellSync = jest.fn(() => ({
-        stdout: 'target-branch'
+        stdout: 'active-branch'
       }))
 
       const status = await index(['', getScriptPath(dir), 'pre-commit'])
@@ -237,7 +237,7 @@ describe('run', () => {
       expect(status).toBe(0)
     })
 
-    it("should not run command if target and current branches don't match", async () => {
+    it('should not run command if current branch is not active', async () => {
       const dir = tempy.directory()
 
       fs.writeFileSync(
@@ -245,15 +245,15 @@ describe('run', () => {
         JSON.stringify({
           husky: {
             hooks: {
-              'pre-commit': 'echo success',
-              'target-branch': 'target-branch'
+              'active-branches': ['mismatching-branch'],
+              'pre-commit': 'echo success'
             }
           }
         })
       )
 
       execa.shellSync = jest.fn(() => ({
-        stdout: 'mismatching-branch'
+        stdout: 'active-branch'
       }))
 
       const status = await index(['', getScriptPath(dir), 'pre-commit'])
