@@ -35,7 +35,7 @@ export default async function run(
   const oldCommand: string | undefined =
     pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
-  const activeBranches: string | undefined =
+  const activeBranches: Array<string> | undefined =
     config && config.hooks && config.hooks['active-branches']
 
   const currentBranch = execa.shellSync(
