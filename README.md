@@ -18,14 +18,8 @@ If Husky is saving you (or your team) time, please consider supporting it on Pat
 
 ## Sponsors
 
-<p align="center">
-  <a href="https://tryretool.com/?utm_source=sponsor&utm_campaign=typicode_husky" target="_blank">
-    <img src="https://i.imgur.com/IBItATn.png" height="60px">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://patreon.com/typicode">Support Husky and have your company logo here</a>
+<p>
+  <a href="https://patreon.com/typicode">Support Husky and be the first to have your company logo here ;)</a>
 </p>
 
 ## Install
