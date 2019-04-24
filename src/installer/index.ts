@@ -121,6 +121,15 @@ export function install(
 
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+  
+  if (userPkgDir === undefined) {
+    console.log("Can't find package.json, skipping Git hooks installation.")
+    console.log(
+      'Please check that your project has a package.json or create it and reinstall husky.'
+    )
+    return
+  }
+
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
   // Get directory containing .git directory or in the case of Git submodules, the .git file
@@ -155,14 +164,6 @@ export function install(
 
   if (isCI && conf.skipCI) {
     console.log('CI detected, skipping Git hooks installation.')
-    return
-  }
-
-  if (userPkgDir === null) {
-    console.log("Can't find package.json, skipping Git hooks installation.")
-    console.log(
-      'Please check that your project has a package.json or create it and reinstall husky.'
-    )
     return
   }
 
