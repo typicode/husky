@@ -66,7 +66,7 @@ if [ -f "$scriptPath" ]; then
   # fi
   if [ -f ${huskyrc} ]; then
     debug "source ${huskyrc}"
-    source ${huskyrc}
+    . ${huskyrc}
   fi
   ${node} "$scriptPath" $hookName "$gitParams"
 else
