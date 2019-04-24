@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 2.1.0
 
 * Improve shell script portability by using `.` rather than `source`
 
