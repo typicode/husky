@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Improve shell script portability by using `.` rather than `source`
+
 ## 2.0.0
 
 * Update dependencies
