@@ -60,9 +60,11 @@
     "slash": "^2.0.0"
   },
   "devDependencies": {
+    "@types/find-up": "^2.1.1",
     "@types/jest": "^24.0.11",
     "@types/mkdirp": "^0.5.2",
     "@types/node": "^11.13.7",
+    "@types/read-pkg": "^4.0.0",
     "del": "^4.1.0",
     "del-cli": "^1.1.0",
     "formatree": "^1.0.2",
