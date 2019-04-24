@@ -60,6 +60,7 @@
     "slash": "^2.0.0"
   },
   "devDependencies": {
+    "@types/cosmiconfig": "^5.0.3",
     "@types/find-up": "^2.1.1",
     "@types/jest": "^24.0.11",
     "@types/mkdirp": "^0.5.2",
