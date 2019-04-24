@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Upgrade dependencies
+* Drop `Node 6` support
+
 ## 1.2.1
 
 * Fix don't fail if directory in project contains whitespace
