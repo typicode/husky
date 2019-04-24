@@ -121,7 +121,7 @@ export function install(
 
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
-  
+
   if (userPkgDir === undefined) {
     console.log("Can't find package.json, skipping Git hooks installation.")
     console.log(
