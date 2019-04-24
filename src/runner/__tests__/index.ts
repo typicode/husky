@@ -190,6 +190,8 @@ describe('run', () => {
 
   it("should not throw if there's no package.json", async () => {
     const dir = tempy.directory()
-    await index(['', getScriptPath(dir), 'pre-push'])
+    await index(['', getScriptPath(dir), 'pre-push'], () =>
+      Promise.resolve('foo')
+    )
   })
 })
