@@ -1,8 +1,8 @@
-import * as execa from 'execa'
-import * as fs from 'fs'
-import * as mkdirp from 'mkdirp'
-import * as path from 'path'
-import * as tempy from 'tempy'
+import execa from 'execa'
+import fs from 'fs'
+import mkdirp from 'mkdirp'
+import path from 'path'
+import tempy from 'tempy'
 import index from '../'
 
 let spy: jest.SpyInstance
@@ -190,6 +190,8 @@ describe('run', () => {
 
   it("should not throw if there's no package.json", async () => {
     const dir = tempy.directory()
-    await index(['', getScriptPath(dir), 'pre-push'])
+    await index(['', getScriptPath(dir), 'pre-push'], () =>
+      Promise.resolve('foo')
+    )
   })
 })

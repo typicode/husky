@@ -6,7 +6,7 @@
     "husky-upgrade": "./lib/upgrader/bin.js"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "test": "npm run lint && jest",
@@ -48,38 +48,37 @@
   },
   "homepage": "https://github.com/typicode/husky#readme",
   "dependencies": {
-    "cosmiconfig": "^5.0.7",
+    "cosmiconfig": "^5.2.0",
     "execa": "^1.0.0",
     "find-up": "^3.0.0",
-    "get-stdin": "^6.0.0",
+    "get-stdin": "^7.0.0",
     "is-ci": "^2.0.0",
-    "pkg-dir": "^3.0.0",
+    "pkg-dir": "^4.1.0",
     "please-upgrade-node": "^3.1.1",
-    "read-pkg": "^4.0.1",
+    "read-pkg": "^5.0.0",
     "run-node": "^1.0.0",
     "slash": "^2.0.0"
   },
   "devDependencies": {
-    "@types/del": "^3.0.1",
     "@types/find-up": "^2.1.1",
-    "@types/get-stdin": "^5.0.1",
-    "@types/jest": "^23.3.9",
+    "@types/jest": "^24.0.11",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^10.12.9",
-    "del": "^3.0.0",
+    "@types/node": "^11.13.7",
+    "@types/read-pkg": "^4.0.0",
+    "del": "^4.1.0",
     "del-cli": "^1.1.0",
     "formatree": "^1.0.2",
-    "jest": "^23.6.0",
+    "jest": "^24.7.1",
     "mkdirp": "^0.5.1",
     "pinst": "^1.1.1",
     "pkg-ok": "^2.3.1",
-    "prettier": "^1.15.2",
-    "tempy": "^0.2.1",
-    "ts-jest": "^23.10.4",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.16.0",
+    "prettier": "^1.17.0",
+    "tempy": "^0.3.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.1.6"
+    "typescript": "^3.4.5"
   },
   "jest": {
     "transform": {

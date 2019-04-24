@@ -1,5 +1,5 @@
-import * as isCI from 'is-ci'
-import * as path from 'path'
+import isCI from 'is-ci'
+import path from 'path'
 import { install, uninstall } from './'
 
 // Just for testing

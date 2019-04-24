@@ -1,7 +1,7 @@
-import * as execa from 'execa'
-import * as getStdin from 'get-stdin'
-import * as path from 'path'
-import * as readPkg from 'read-pkg'
+import execa from 'execa'
+import getStdin from 'get-stdin'
+import path from 'path'
+import readPkg from 'read-pkg'
 import getConf from '../getConf'
 
 export interface IEnv extends NodeJS.ProcessEnv {

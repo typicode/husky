@@ -1,8 +1,8 @@
-import * as findUp from 'find-up'
-import * as fs from 'fs'
-import * as path from 'path'
+import findUp from 'find-up'
+import fs from 'fs'
+import path from 'path'
 
-export default function(cwd: string): string | null {
+export default function(cwd: string | undefined): string | null {
   const foundPath = findUp.sync('.git', { cwd })
 
   if (foundPath) {

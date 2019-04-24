@@ -1,6 +1,6 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as tempy from 'tempy'
+import fs from 'fs'
+import path from 'path'
+import tempy from 'tempy'
 import getConf from '../getConf'
 
 const testConf = { husky: { foo: 'bar' } }

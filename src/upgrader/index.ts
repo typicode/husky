@@ -1,6 +1,6 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as readPkg from 'read-pkg'
+import fs from 'fs'
+import path from 'path'
+import readPkg from 'read-pkg'
 
 interface IHookMap {
   [key: string]: string
