@@ -2,7 +2,9 @@
 
 ## Unreleased
 
+* Update dependencies
 * Update messages
+* Drop `Node 6` support
 
 ## 1.3.1
 
