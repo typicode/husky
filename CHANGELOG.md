@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 2.0.0
 
 * Update dependencies
 * Update messages
