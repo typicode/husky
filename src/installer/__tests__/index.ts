@@ -218,6 +218,31 @@ describe('install', () => {
     expect(exists('.git/worktrees/B/hooks/pre-commit')).toBeFalsy()
   })
 
+  it('should support git worktrees with worktree outside', () => {
+    mkdir('project/B/node_modules/husky')
+    writeFile('project/B/package.json', pkg)
+    mkdir('project/A/.git/worktrees/B')
+    // Git path for worktrees is absolute
+    const absolutePath = path.join(tempDir, 'project/A/.git/worktrees/B')
+    writeFile('project/B/.git', `gitdir: ${absolutePath}`)
+    writeFile('project/A/.git/worktrees/B/commondir', '../..')
+
+    installFrom(
+      'project/B/node_modules/husky',
+      'project/B/node_modules/.bin/run-node'
+    )
+
+    const hook = readFile('project/A/.git/hooks/pre-commit')
+
+    const node =
+      os.platform() !== 'win32' ? 'node_modules/.bin/run-node' : 'node'
+    expect(hook).toMatch(node)
+    expect(hook).toMatch('node_modules/husky/run.js')
+
+    uninstallFrom('project/B/node_modules/husky')
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+  })
+
   it('should not install from /node_modules/A/node_modules', () => {
     mkdir('.git/hooks')
     mkdir('node_modules/A/node_modules/husky')
