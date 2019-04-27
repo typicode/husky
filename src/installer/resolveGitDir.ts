@@ -14,12 +14,22 @@ export default function(cwd: string | undefined): string | null {
       // git: pathToGit
       // On Windows pathToGit can contain ':' (example "gitdir: C:/Some/Path")
       const gitFileData = fs.readFileSync(foundPath, 'utf-8')
-      const resolvedGitDir = gitFileData
+      const gitDir = gitFileData
         .split(':')
         .slice(1)
         .join(':')
         .trim()
-      return path.resolve(path.dirname(foundPath), resolvedGitDir)
+      const resolvedGitDir = path.resolve(path.dirname(foundPath), gitDir)
+
+      // Fix: For git-worktree check if commondir file exists and return that path
+      const pathCommonDir = path.join(resolvedGitDir, 'commondir')
+      if (fs.existsSync(pathCommonDir)) {
+        const commondir = fs.readFileSync(pathCommonDir, 'utf-8').trim()
+        const resolvedCommonGitDir = path.join(resolvedGitDir, commondir)
+        return resolvedCommonGitDir
+      }
+      //
+      return resolvedGitDir
     }
 
     // Else return path to .git directory
