@@ -12,7 +12,7 @@
 
 * Update dependencies
 * Update messages
-* Drop `Node 6` support
+* __Breaking change__ Drop `Node 6` support
 
 ## 1.3.1
 
