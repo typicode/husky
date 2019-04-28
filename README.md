@@ -45,6 +45,8 @@ npm install husky --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
+__Note__ there's a known issue with Node 12.0.0, see [core dumped issue](https://github.com/typicode/husky/issues/479)
+
 To go further, see the docs [here](https://github.com/typicode/husky/blob/master/DOCS.md).
 
 ## Uninstall
