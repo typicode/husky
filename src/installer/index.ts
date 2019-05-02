@@ -117,7 +117,7 @@ export function install(
   requireRunNodePath: string = require.resolve('.bin/run-node'),
   isCI: boolean
 ) {
-  console.log('husky > setting up git hooks')
+  console.log('husky > Setting up git hooks')
 
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
@@ -187,11 +187,13 @@ export function install(
   const script = getScript(rootDir, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
-  console.log(`husky > done`)
+  console.log(`husky > Done`)
+  console.log('husky > Like husky? You can support the project on Patreon:')
+  console.log('husky > https://patreon.com/typicode ❤')
 }
 
 export function uninstall(huskyDir: string) {
-  console.log('husky > uninstalling git hooks')
+  console.log('husky > Uninstalling git hooks')
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
   const resolvedGitDir = resolveGitDir(userPkgDir)
 
@@ -213,5 +215,5 @@ export function uninstall(huskyDir: string) {
   const hooks = getHooks(resolvedGitDir)
   removeHooks(hooks)
 
-  console.log('husky > done')
+  console.log('husky > Done')
 }
