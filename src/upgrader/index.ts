@@ -2,11 +2,11 @@ import fs from 'fs'
 import path from 'path'
 import readPkg from 'read-pkg'
 
-interface IHookMap {
+interface HookMap {
   [key: string]: string
 }
 
-const hookList: IHookMap = {
+const hookList: HookMap = {
   applypatchmsg: 'applypatch-msg',
   commitmsg: 'commit-msg',
   postapplypatch: 'post-applypatch',
@@ -28,7 +28,7 @@ const hookList: IHookMap = {
   update: 'update'
 }
 
-export default function upgrade(cwd: string) {
+export default function upgrade(cwd: string): void {
   const pkgFile = path.join(cwd, 'package.json')
   if (fs.existsSync(pkgFile)) {
     const pkg = readPkg.sync({ cwd, normalize: false })
@@ -42,18 +42,20 @@ export default function upgrade(cwd: string) {
       )
     }
 
-    const hooks: IHookMap = {}
+    const hooks: HookMap = {}
 
     // Loop trhough hooks and move them to husky.hooks
-    Object.keys(hookList).forEach(name => {
-      const script = pkg.scripts[name]
-      if (script) {
-        delete pkg.scripts[name]
-        const newName = hookList[name]
-        hooks[newName] = script.replace(/\bGIT_PARAMS\b/g, 'HUSKY_GIT_PARAMS')
-        console.log(`moved scripts.${name} to husky.hooks.${newName}`)
+    Object.keys(hookList).forEach(
+      (name: string): void => {
+        const script = pkg.scripts[name]
+        if (script) {
+          delete pkg.scripts[name]
+          const newName = hookList[name]
+          hooks[newName] = script.replace(/\bGIT_PARAMS\b/g, 'HUSKY_GIT_PARAMS')
+          console.log(`moved scripts.${name} to husky.hooks.${newName}`)
+        }
       }
-    })
+    )
 
     if (Object.keys(hooks).length) {
       pkg.husky = { hooks }

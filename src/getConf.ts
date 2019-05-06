@@ -1,15 +1,15 @@
 import cosmiconfig from 'cosmiconfig'
 
-interface IConf {
+interface Conf {
   skipCI: boolean
-  hooks?: any
+  hooks?: { [key: string]: string }
 }
 
-export default function getConf(dir: string): IConf {
+export default function getConf(dir: string): Conf {
   const explorer = cosmiconfig('husky')
   const { config = {} } = explorer.searchSync(dir) || {}
 
-  const defaults: IConf = {
+  const defaults: Conf = {
     skipCI: true
   }
 
