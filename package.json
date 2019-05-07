@@ -19,7 +19,7 @@
     "postversion": "git push && git push --tags",
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
-    "lint": "tslint 'src/**/*.ts'",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
     "fix": "npm run lint -- --fix"
   },
   "repository": {
@@ -66,8 +66,14 @@
     "@types/mkdirp": "^0.5.2",
     "@types/node": "^11.13.7",
     "@types/read-pkg": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
     "del": "^4.1.0",
     "del-cli": "^1.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-config-xo-space": "^0.21.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "formatree": "^1.0.2",
     "jest": "^24.7.1",
     "mkdirp": "^0.5.1",
@@ -76,9 +82,6 @@
     "prettier": "^1.17.0",
     "tempy": "^0.3.0",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.16.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.4.5"
   },
   "jest": {
