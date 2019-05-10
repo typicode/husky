@@ -1,12 +1,12 @@
 {
   "name": "husky",
-  "version": "1.3.0",
+  "version": "2.2.0",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-upgrade": "./lib/upgrader/bin.js"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "test": "npm run lint && jest",
@@ -19,7 +19,7 @@
     "postversion": "git push && git push --tags",
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
-    "lint": "tslint 'src/**/*.ts'",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
     "fix": "npm run lint -- --fix"
   },
   "repository": {
@@ -48,38 +48,41 @@
   },
   "homepage": "https://github.com/typicode/husky#readme",
   "dependencies": {
-    "cosmiconfig": "^5.0.7",
+    "cosmiconfig": "^5.2.0",
     "execa": "^1.0.0",
     "find-up": "^3.0.0",
-    "get-stdin": "^6.0.0",
-    "is-ci": "^1.2.1",
-    "pkg-dir": "^3.0.0",
+    "get-stdin": "^7.0.0",
+    "is-ci": "^2.0.0",
+    "pkg-dir": "^4.1.0",
     "please-upgrade-node": "^3.1.1",
-    "read-pkg": "^4.0.1",
+    "read-pkg": "^5.1.1",
     "run-node": "^1.0.0",
-    "slash": "^2.0.0"
+    "slash": "^3.0.0"
   },
   "devDependencies": {
-    "@types/del": "^3.0.1",
+    "@types/cosmiconfig": "^5.0.3",
     "@types/find-up": "^2.1.1",
-    "@types/get-stdin": "^5.0.1",
-    "@types/jest": "^23.3.9",
+    "@types/jest": "^24.0.12",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^10.12.9",
-    "del": "^3.0.0",
+    "@types/node": "^11.13.10",
+    "@types/read-pkg": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "del": "^4.1.1",
     "del-cli": "^1.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-config-xo-space": "^0.21.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "formatree": "^1.0.2",
-    "jest": "^23.6.0",
+    "jest": "^24.8.0",
     "mkdirp": "^0.5.1",
     "pinst": "^1.1.1",
     "pkg-ok": "^2.3.1",
-    "prettier": "^1.15.2",
-    "tempy": "^0.2.1",
-    "ts-jest": "^23.10.4",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.16.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.1.6"
+    "prettier": "^1.17.0",
+    "tempy": "^0.3.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
   },
   "jest": {
     "transform": {

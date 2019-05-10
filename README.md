@@ -8,12 +8,18 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
 ## Support
 
-If Husky is saving you time, please consider supporting its development on Patreon 🙏 thank you!
+If Husky is saving you (or your team) time, please consider supporting it on Patreon 👍 thank you!
 
 <p>
   <a href="https://www.patreon.com/bePatron?c=784328">
     <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
   </a>
+</p>
+
+## Sponsors
+
+<p>
+  <a href="https://patreon.com/typicode">Support Husky and be the first to have your company logo here ;)</a>
 </p>
 
 ## Install
@@ -40,6 +46,8 @@ git commit -m 'Keep calm and commit'
 ```
 
 To go further, see the docs [here](https://github.com/typicode/husky/blob/master/DOCS.md).
+
+__Note__: there's a known issue with Node `v12.0`, please use `v12.1` or higher. 
 
 ## Uninstall
 

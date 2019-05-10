@@ -5,12 +5,11 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # husky
 
 # Hook created by Husky
-#   Version: 1.3.0
+#   Version: 2.2.0
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 
-# From npm package
-#   Name: foo-package
+# From
 #   Directory: /home/typicode/projects/foo-package
 #   Homepage: https://github.com/foo/foo-package
 
@@ -25,16 +24,16 @@ debug() {
 debug \\"$hookName hook started...\\"
 
 if ! command -v node >/dev/null 2>&1; then
-  echo \\"Can't find node in PATH, trying to find a node binary on your system\\"
+  echo \\"Info: Can't find node in PATH, trying to find a node binary on your system\\"
 fi
 
 if [ -f \\"$scriptPath\\" ]; then
-  if [ -t 1 ]; then
-    exec < /dev/tty
-  fi
+  # if [ -t 1 ]; then
+  #   exec < /dev/tty
+  # fi
   if [ -f ~/.huskyrc ]; then
     debug \\"source ~/.huskyrc\\"
-    source ~/.huskyrc
+    . ~/.huskyrc
   fi
   node_modules/run-node/run-node \\"$scriptPath\\" $hookName \\"$gitParams\\"
 else
@@ -49,12 +48,11 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # husky
 
 # Hook created by Husky
-#   Version: 1.3.0
+#   Version: 2.2.0
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 
-# From npm package
-#   Name: foo-package
+# From
 #   Directory: /home/typicode/projects/foo-package
 #   Homepage: https://github.com/foo/foo-package
 
@@ -69,12 +67,12 @@ debug() {
 debug \\"$hookName hook started...\\"
 
 if [ -f \\"$scriptPath\\" ]; then
-  if [ -t 1 ]; then
-    exec < /dev/tty
-  fi
+  # if [ -t 1 ]; then
+  #   exec < /dev/tty
+  # fi
   if [ -f ~/.huskyrc ]; then
     debug \\"source ~/.huskyrc\\"
-    source ~/.huskyrc
+    . ~/.huskyrc
   fi
   node \\"$scriptPath\\" $hookName \\"$gitParams\\"
 else

@@ -1,15 +1,14 @@
-import * as fs from 'fs'
-import * as os from 'os'
-import * as path from 'path'
-import * as slash from 'slash'
+import fs from 'fs'
+import os from 'os'
+import path from 'path'
+import slash from 'slash'
 
-interface IContext {
+interface Context {
   createdAt: string
   homepage: string
   node: string
   pkgDirectory?: string
   pkgHomepage?: string
-  pkgName?: string
   platform: string
   runScriptPath: string
   version: string
@@ -28,11 +27,10 @@ const render = ({
   node,
   pkgDirectory,
   pkgHomepage,
-  pkgName,
   platform,
   runScriptPath,
   version
-}: IContext) => `#!/bin/sh
+}: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
 # Hook created by Husky
@@ -40,8 +38,7 @@ ${huskyIdentifier}
 #   At: ${createdAt}
 #   See: ${homepage}
 
-# From npm package
-#   Name: ${pkgName}
+# From
 #   Directory: ${pkgDirectory}
 #   Homepage: ${pkgHomepage}
 
@@ -50,26 +47,26 @@ hookName=\`basename "$0"\`
 gitParams="$*"
 
 debug() {
-  [ "$\{HUSKY_DEBUG\}" = "true" ] || [ "$\{HUSKY_DEBUG\}" = "1" ] && echo "husky:debug $1"
+  [ "$\{HUSKY_DEBUG}" = "true" ] || [ "$\{HUSKY_DEBUG}" = "1" ] && echo "husky:debug $1"
 }
 
 debug "$hookName hook started..."
 ${
-  platform !== 'win32'
-    ? `
+  platform === 'win32'
+    ? ''
+    : `
 if ! command -v node >/dev/null 2>&1; then
-  echo "Can't find node in PATH, trying to find a node binary on your system"
+  echo "Info: Can't find node in PATH, trying to find a node binary on your system"
 fi
 `
-    : ''
 }
 if [ -f "$scriptPath" ]; then
-  if [ -t 1 ]; then
-    exec < /dev/tty
-  fi
+  # if [ -t 1 ]; then
+  #   exec < /dev/tty
+  # fi
   if [ -f ${huskyrc} ]; then
     debug "source ${huskyrc}"
-    source ${huskyrc}
+    . ${huskyrc}
   fi
   ${node} "$scriptPath" $hookName "$gitParams"
 else
@@ -79,10 +76,11 @@ fi
 `
 
 /**
- * @param rootDir - e.g. /home/typicode/project/
- * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
- * @param platform - platform husky installer is running on (used to produce win32 specific script)
+ * @param {string} rootDir - e.g. /home/typicode/project/
+ * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
+ * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
+ * @param {string} platform - platform husky installer is running on (used to produce win32 specific script)
+ * @returns {string} script
  */
 export default function(
   rootDir: string,
@@ -90,14 +88,13 @@ export default function(
   requireRunNodePath: string,
   // Additional param used for testing only
   platform: string = os.platform()
-) {
+): string {
   const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
 
   // On Windows do not rely on run-node
   const node = platform === 'win32' ? 'node' : runNodePath
 
   // Env variable
-  const pkgName = process && process.env && process.env.npm_package_name
   const pkgHomepage = process && process.env && process.env.npm_package_homepage
   const pkgDirectory = process && process.env && process.env.PWD
 
@@ -111,7 +108,7 @@ export default function(
     path.join(path.relative(rootDir, huskyDir), 'run')
   )
 
-  // created at
+  // Created at
   const createdAt = new Date().toLocaleString()
 
   // Render script
@@ -121,7 +118,6 @@ export default function(
     node,
     pkgDirectory,
     pkgHomepage,
-    pkgName,
     platform,
     runScriptPath,
     version

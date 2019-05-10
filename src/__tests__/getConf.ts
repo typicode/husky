@@ -1,12 +1,12 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as tempy from 'tempy'
+import fs from 'fs'
+import path from 'path'
+import tempy from 'tempy'
 import getConf from '../getConf'
 
 const testConf = { husky: { foo: 'bar' } }
 
-describe('getConf', () => {
-  it('should return default conf', () => {
+describe('getConf', (): void => {
+  it('should return default conf', (): void => {
     const tempDir = tempy.directory()
     fs.writeFileSync(
       path.join(tempDir, 'package.json'),
@@ -16,7 +16,7 @@ describe('getConf', () => {
     expect(getConf(tempDir)).toEqual({ skipCI: true, foo: 'bar' })
   })
 
-  it('should allow overriding default conf', () => {
+  it('should allow overriding default conf', (): void => {
     const tempDir = tempy.directory()
     fs.writeFileSync(
       path.join(tempDir, 'package.json'),
@@ -26,7 +26,7 @@ describe('getConf', () => {
     expect(getConf(tempDir)).toEqual({ skipCI: true, foo: 'bar' })
   })
 
-  it('should support .huskyrc', () => {
+  it('should support .huskyrc', (): void => {
     const tempDir = tempy.directory()
     fs.writeFileSync(
       path.join(tempDir, '.huskyrc'),

@@ -1,7 +1,7 @@
-import * as findUp from 'find-up'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as pkgDir from 'pkg-dir'
+import findUp from 'find-up'
+import fs from 'fs'
+import path from 'path'
+import pkgDir from 'pkg-dir'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
@@ -29,12 +29,12 @@ const hookList = [
   'sendemail-validate'
 ]
 
-function writeHook(filename: string, script: string) {
+function writeHook(filename: string, script: string): void {
   fs.writeFileSync(filename, script, 'utf-8')
-  fs.chmodSync(filename, parseInt('0755', 8))
+  fs.chmodSync(filename, 0o0755)
 }
 
-function createHook(filename: string, script: string) {
+function createHook(filename: string, script: string): void {
   // Get name, used for logging
   const name = path.basename(filename)
 
@@ -68,8 +68,8 @@ function createHook(filename: string, script: string) {
   writeHook(filename, script)
 }
 
-function createHooks(filenames: string[], script: string) {
-  filenames.forEach(filename => createHook(filename, script))
+function createHooks(filenames: string[], script: string): void {
+  filenames.forEach((filename: string): void => createHook(filename, script))
 }
 
 function canRemove(filename: string): boolean {
@@ -81,17 +81,17 @@ function canRemove(filename: string): boolean {
   return false
 }
 
-function removeHook(filename: string) {
+function removeHook(filename: string): void {
   fs.unlinkSync(filename)
 }
 
-function removeHooks(filenames: string[]) {
+function removeHooks(filenames: string[]): void {
   filenames.filter(canRemove).forEach(removeHook)
 }
 
 // This prevents the case where someone would want to debug a node_module that has
 // husky as devDependency and run npm install from node_modules directory
-function isInNodeModules(dir: string) {
+function isInNodeModules(dir: string): boolean {
   // INIT_CWD holds the full path you were in when you ran npm install (supported also by yarn and pnpm)
   // See https://docs.npmjs.com/cli/run-script
   if (process.env.INIT_CWD) {
@@ -104,23 +104,34 @@ function isInNodeModules(dir: string) {
 
 function getHooks(gitDir: string): string[] {
   const gitHooksDir = path.join(gitDir, 'hooks')
-  return hookList.map(hookName => path.join(gitHooksDir, hookName))
+  return hookList.map(
+    (hookName: string): string => path.join(gitHooksDir, hookName)
+  )
 }
 
 /**
- * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
- * @param isCI - true if running in CI
+ * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
+ * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
+ * @param {string} isCI - true if running in CI
  */
 export function install(
   huskyDir: string,
   requireRunNodePath: string = require.resolve('.bin/run-node'),
   isCI: boolean
-) {
-  console.log('husky > setting up git hooks')
+): void {
+  console.log('husky > Setting up git hooks')
 
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+
+  if (userPkgDir === undefined) {
+    console.log("Can't find package.json, skipping Git hooks installation.")
+    console.log(
+      'Please check that your project has a package.json or create it and reinstall husky.'
+    )
+    return
+  }
+
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
   // Get directory containing .git directory or in the case of Git submodules, the .git file
@@ -158,14 +169,6 @@ export function install(
     return
   }
 
-  if (userPkgDir === null) {
-    console.log("Can't find package.json, skipping Git hooks installation.")
-    console.log(
-      'Please check that your project has a package.json or create it and reinstall husky.'
-    )
-    return
-  }
-
   if (isInNodeModules(huskyDir)) {
     console.log(
       'Trying to install from node_modules directory, skipping Git hooks installation.'
@@ -186,11 +189,13 @@ export function install(
   const script = getScript(rootDir, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
-  console.log(`husky > done`)
+  console.log(`husky > Done`)
+  console.log('husky > Like husky? You can support the project on Patreon:')
+  console.log('husky > https://patreon.com/typicode ❤')
 }
 
-export function uninstall(huskyDir: string) {
-  console.log('husky > uninstalling git hooks')
+export function uninstall(huskyDir: string): void {
+  console.log('husky > Uninstalling git hooks')
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
   const resolvedGitDir = resolveGitDir(userPkgDir)
 
@@ -212,5 +217,5 @@ export function uninstall(huskyDir: string) {
   const hooks = getHooks(resolvedGitDir)
   removeHooks(hooks)
 
-  console.log('husky > done')
+  console.log('husky > Done')
 }

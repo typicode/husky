@@ -1,10 +1,10 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as tempy from 'tempy'
+import fs from 'fs'
+import path from 'path'
+import tempy from 'tempy'
 import index from '../'
 
-describe('upgrade', () => {
-  it('should run working command and return 0 status', () => {
+describe('upgrade', (): void => {
+  it('should run working command and return 0 status', (): void => {
     const dir = tempy.directory()
     const filename = path.join(dir, 'package.json')
 

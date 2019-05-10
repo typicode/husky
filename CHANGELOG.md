@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.2.0
+
+* Improve Git worktree support
+
+## 2.1.0
+
+* Improve shell script portability by using `.` rather than `source`
+
+## 2.0.0
+
+* Update dependencies
+* Update messages
+* __Breaking change__ drop `Node 6` support
+
+## 1.3.1
+
+* Update docs
+* Upgrade `is-ci` and support more CIs
+* Disable `1.3.0` change related to `stdin` due to a bug on Windows
+
 ## 1.3.0
 
 * Enable `stdin` if hook is running in a terminal 
