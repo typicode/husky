@@ -111,12 +111,12 @@ function getHooks(gitDir: string): string[] {
 
 /**
  * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
+ * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
  * @param {string} isCI - true if running in CI
  */
 export function install(
   huskyDir: string,
-  requireRunNodePath: string = require.resolve('.bin/run-node'),
+  requireRunNodePath: string = require.resolve('run-node/run-node'),
   isCI: boolean
 ): void {
   console.log('husky > Setting up git hooks')
