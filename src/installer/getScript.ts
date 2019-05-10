@@ -47,7 +47,7 @@ hookName=\`basename "$0"\`
 gitParams="$*"
 
 debug() {
-  [ "$\{HUSKY_DEBUG}" = "true" ] && echo "husky:debug $1"
+  [ "$\{HUSKY_DEBUG}" = "true" ] || [ "$\{HUSKY_DEBUG}" = "1" ] && echo "husky:debug $1"
 }
 
 debug "$hookName hook started..."

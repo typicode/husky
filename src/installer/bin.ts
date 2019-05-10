@@ -3,7 +3,7 @@ import path from 'path'
 import { install, uninstall } from './'
 
 // Just for testing
-if (process.env.HUSKY_DEBUG === 'true') {
+if (process.env.HUSKY_DEBUG === 'true' || process.env.HUSKY_DEBUG === '1') {
   console.log(`husky:debug INIT_CWD=${process.env.INIT_CWD}`)
 }
 
