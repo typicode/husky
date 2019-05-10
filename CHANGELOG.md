@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Make `HUSKY_DEBUG=1` effective like `HUSKY_DEBUG=true`
+
 ## 2.2.0
 
 * Improve Git worktree support
