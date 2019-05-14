@@ -78,7 +78,7 @@ fi
 /**
  * @param {string} rootDir - e.g. /home/typicode/project/
  * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/.bin/run-node
+ * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
  * @param {string} platform - platform husky installer is running on (used to produce win32 specific script)
  * @returns {string} script
  */

@@ -151,11 +151,11 @@ describe('install', (): void => {
     mkdir('A/B/node_modules/husky')
     writeFile('A/B/package.json', pkg)
 
-    installFrom('A/B/node_modules/husky', 'A/B/node_modules/.bin/run-node')
+    installFrom('A/B/node_modules/husky', 'A/B/node_modules/run-node/run-node')
     const hook = readFile('.git/hooks/pre-commit')
 
     const node =
-      os.platform() === 'win32' ? 'node' : 'node_modules/.bin/run-node'
+      os.platform() === 'win32' ? 'node' : 'node_modules/run-node/run-node'
     expect(hook).toMatch(node)
     expect(hook).toMatch('A/B/node_modules/husky/run.js')
 
@@ -169,11 +169,11 @@ describe('install', (): void => {
     writeFile('A/B/package.json', pkg)
     writeFile('A/B/.git', 'git: ../../.git/modules/A/B')
 
-    installFrom('A/B/node_modules/husky', 'A/B/node_modules/.bin/run-node')
+    installFrom('A/B/node_modules/husky', 'A/B/node_modules/run-node/run-node')
     const hook = readFile('.git/modules/A/B/hooks/pre-commit')
 
     const node =
-      os.platform() === 'win32' ? 'node' : 'node_modules/.bin/run-node'
+      os.platform() === 'win32' ? 'node' : 'node_modules/run-node/run-node'
     expect(hook).toMatch(node)
     expect(hook).toMatch('node_modules/husky/run.js')
 
@@ -187,11 +187,14 @@ describe('install', (): void => {
     writeFile('A/B/C/package.json', pkg)
     writeFile('A/B/.git', 'git: ../../.git/modules/A/B')
 
-    installFrom('A/B/C/node_modules/husky', 'A/B/C/node_modules/.bin/run-node')
+    installFrom(
+      'A/B/C/node_modules/husky',
+      'A/B/C/node_modules/run-node/run-node'
+    )
     const hook = readFile('.git/modules/A/B/hooks/pre-commit')
 
     const node =
-      os.platform() === 'win32' ? 'node' : 'node_modules/.bin/run-node'
+      os.platform() === 'win32' ? 'node' : 'node_modules/run-node/run-node'
     expect(hook).toMatch(node)
     expect(hook).toMatch('C/node_modules/husky/run.js')
 
@@ -207,12 +210,12 @@ describe('install', (): void => {
     const absolutePath = path.join(tempDir, '.git/worktrees/B')
     writeFile('A/B/.git', `git: ${absolutePath}`)
 
-    installFrom('A/B/node_modules/husky', 'A/B/node_modules/.bin/run-node')
+    installFrom('A/B/node_modules/husky', 'A/B/node_modules/run-node/run-node')
 
     const hook = readFile('.git/worktrees/B/hooks/pre-commit')
 
     const node =
-      os.platform() === 'win32' ? 'node' : 'node_modules/.bin/run-node'
+      os.platform() === 'win32' ? 'node' : 'node_modules/run-node/run-node'
     expect(hook).toMatch(node)
     expect(hook).toMatch('node_modules/husky/run.js')
 
@@ -231,13 +234,13 @@ describe('install', (): void => {
 
     installFrom(
       'project/B/node_modules/husky',
-      'project/B/node_modules/.bin/run-node'
+      'project/B/node_modules/run-node/run-node'
     )
 
     const hook = readFile('project/A/.git/hooks/pre-commit')
 
     const node =
-      os.platform() === 'win32' ? 'node' : 'node_modules/.bin/run-node'
+      os.platform() === 'win32' ? 'node' : 'node_modules/run-node/run-node'
     expect(hook).toMatch(node)
     expect(hook).toMatch('node_modules/husky/run.js')
 
