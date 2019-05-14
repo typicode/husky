@@ -22,10 +22,10 @@ Git hooks can get parameters via command-line arguments and stdin. `husky` makes
 
 ## Disable auto-install
 
-If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_SKIP_INSTALL` environment variable to `true`.
+If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_SKIP_INSTALL` environment variable to `1`.
 
 ```sh
-HUSKY_SKIP_INSTALL=true npm install
+HUSKY_SKIP_INSTALL=1 npm install
 ```
 
 ## Multi-package repository (monorepo)
@@ -86,7 +86,7 @@ _This feature is experimental 🧪. Feedbacks are welcome._
 
 ## Debug
 
-It's basic for the moment, but you can use `HUSKY_DEBUG=true` to log debug messages.
+It's basic for the moment, but you can use `HUSKY_DEBUG=1` to log debug messages.
 
 ## Multiple commands
 
