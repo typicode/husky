@@ -148,7 +148,7 @@ export function install(
     return
   }
 
-  if (gitDirOrFile === null) {
+  if (gitDirOrFile === null || gitDirOrFile === undefined) {
     console.log("Can't find .git, skipping Git hooks installation.")
     console.log(
       "Please check that you're in a cloned repository",
