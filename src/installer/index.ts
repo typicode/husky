@@ -192,7 +192,7 @@ export function install(
   console.log(`husky > Done`)
   console.log('husky > Like husky? You can support the project on Patreon:')
   console.log(
-    'husky > \x1b[4;36m%s\x1b[0m ❤',
+    'husky > \x1b[36m%s\x1b[0m 🐕',
     'https://www.patreon.com/typicode'
   )
 }
