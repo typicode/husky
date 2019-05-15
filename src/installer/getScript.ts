@@ -65,9 +65,9 @@ fi
 # stores the original location of where the hook was executed from. This allows
 # us to work out the original PWD.
 gitCwd="$GIT_PREFIX"
-if [ ! -z "$gitCwd" ] then
-  $gitCwd="$PWD/$gitCwd"
-  debug "Updating PWD: $gitCwd"
+if [ ! -z "$gitCwd" ]; then
+  gitCwd="$(pwd)/$gitCwd"
+  debug "Updating pwd: $gitCwd"
 fi
 
 if [ -f "$scriptPath" ]; then
