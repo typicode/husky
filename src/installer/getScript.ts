@@ -60,6 +60,16 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 `
 }
+
+# Git hooks change the PWD to be the dir where the .git folder lives. GIT_PREFIX
+# stores the original location of where the hook was executed from. This allows
+# us to work out the original PWD.
+gitCwd="$GIT_PREFIX"
+if [ ! -z "$gitCwd" ] then
+  $gitCwd="$PWD/$gitCwd"
+  debug "Updating PWD: $gitCwd"
+fi
+
 if [ -f "$scriptPath" ]; then
   # if [ -t 1 ]; then
   #   exec < /dev/tty
@@ -68,7 +78,7 @@ if [ -f "$scriptPath" ]; then
     debug "source ${huskyrc}"
     . ${huskyrc}
   fi
-  ${node} "$scriptPath" $hookName "$gitParams"
+  ${node} "$scriptPath" $hookName "$gitParams" "$gitCwd"
 else
   echo "Can't find Husky, skipping $hookName hook"
   echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"

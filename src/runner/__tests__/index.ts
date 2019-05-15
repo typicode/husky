@@ -212,4 +212,98 @@ describe('run', (): void => {
       (): Promise<string> => Promise.resolve('foo')
     )
   })
+
+  it("should use the root package.json for hooks", async (): Promise<void> => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo root package'
+          }
+        }
+      })
+    )
+    fs.mkdirSync(path.join(dir, 'child'))
+    fs.writeFileSync(
+      path.join(dir, 'child', 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo child package'
+          }
+        }
+      })
+    )
+
+    const status = await index(['', getScriptPath(dir), 'pre-commit', '', dir])
+    expect(execa.shellSync).toHaveBeenCalledWith('echo root package', {
+      cwd: dir,
+      env: {},
+      stdio: 'inherit'
+    })
+    expect(status).toBe(0)
+  })
+
+  it("should use the child package.json for hooks", async (): Promise<void> => {
+    const dir = tempy.directory()
+    const childDir = path.join(dir, 'child')
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo root package'
+          }
+        }
+      })
+    )
+    fs.mkdirSync(childDir)
+    fs.writeFileSync(
+      path.join(childDir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo child package'
+          }
+        }
+      })
+    )
+
+    const status = await index(['', getScriptPath(dir), 'pre-commit', '', childDir])
+    expect(execa.shellSync).toHaveBeenCalledWith('echo child package', {
+      cwd: childDir,
+      env: {},
+      stdio: 'inherit'
+    })
+    expect(status).toBe(0)
+  })
+
+  it("should use the root package.json for hooks when no child package.json", async (): Promise<void> => {
+    const dir = tempy.directory()
+    const childDir = path.join(dir, 'child')
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'echo root package'
+          }
+        }
+      })
+    )
+    fs.mkdirSync(childDir)
+
+    const status = await index(['', getScriptPath(dir), 'pre-commit', '', childDir])
+    expect(execa.shellSync).toHaveBeenCalledWith('echo root package', {
+      cwd: childDir,
+      env: {},
+      stdio: 'inherit'
+    })
+    expect(status).toBe(0)
+  })
 })

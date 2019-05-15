@@ -14,10 +14,17 @@ export interface Env extends NodeJS.ProcessEnv {
  * @param {promise} getStdinFn - used for mocking only
  */
 export default async function run(
-  [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
+  [, scriptPath, hookName = '', HUSKY_GIT_PARAMS, HUSKY_GIT_CWD = '']: string[],
   getStdinFn: () => Promise<string> = getStdin
 ): Promise<number> {
-  const cwd = path.resolve(scriptPath.split('node_modules')[0])
+
+  let cwd
+  if (HUSKY_GIT_CWD) {
+    cwd = path.resolve(HUSKY_GIT_CWD)
+  } else {
+    cwd = path.resolve(scriptPath.split('node_modules')[0])
+  }
+
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch
   let pkg
