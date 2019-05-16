@@ -17,7 +17,6 @@ export default async function run(
   [, scriptPath, hookName = '', HUSKY_GIT_PARAMS, HUSKY_GIT_CWD = '']: string[],
   getStdinFn: () => Promise<string> = getStdin
 ): Promise<number> {
-
   let cwd
   if (HUSKY_GIT_CWD) {
     cwd = path.resolve(HUSKY_GIT_CWD)

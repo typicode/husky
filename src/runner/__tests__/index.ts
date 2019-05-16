@@ -213,7 +213,7 @@ describe('run', (): void => {
     )
   })
 
-  it("should use the root package.json for hooks", async (): Promise<void> => {
+  it('should use the root package.json for hooks', async (): Promise<void> => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -247,7 +247,7 @@ describe('run', (): void => {
     expect(status).toBe(0)
   })
 
-  it("should use the child package.json for hooks", async (): Promise<void> => {
+  it('should use the child package.json for hooks', async (): Promise<void> => {
     const dir = tempy.directory()
     const childDir = path.join(dir, 'child')
 
@@ -273,7 +273,13 @@ describe('run', (): void => {
       })
     )
 
-    const status = await index(['', getScriptPath(dir), 'pre-commit', '', childDir])
+    const status = await index([
+      '',
+      getScriptPath(dir),
+      'pre-commit',
+      '',
+      childDir
+    ])
     expect(execa.shellSync).toHaveBeenCalledWith('echo child package', {
       cwd: childDir,
       env: {},
@@ -282,7 +288,9 @@ describe('run', (): void => {
     expect(status).toBe(0)
   })
 
-  it("should use the root package.json for hooks when no child package.json", async (): Promise<void> => {
+  it('should use the root package.json for hooks when no child package.json', async (): Promise<
+    void
+  > => {
     const dir = tempy.directory()
     const childDir = path.join(dir, 'child')
 
@@ -298,7 +306,13 @@ describe('run', (): void => {
     )
     fs.mkdirSync(childDir)
 
-    const status = await index(['', getScriptPath(dir), 'pre-commit', '', childDir])
+    const status = await index([
+      '',
+      getScriptPath(dir),
+      'pre-commit',
+      '',
+      childDir
+    ])
     expect(execa.shellSync).toHaveBeenCalledWith('echo root package', {
       cwd: childDir,
       env: {},
