@@ -7,6 +7,7 @@ interface Context {
   createdAt: string
   homepage: string
   node: string
+  nodeOptions: string
   pkgDirectory?: string
   pkgHomepage?: string
   platform: string
@@ -20,11 +21,21 @@ export const huskyIdentifier = '# husky'
 // Experimental
 const huskyrc = '~/.huskyrc'
 
+const getYarnPnpPath = (): string => {
+  try {
+    return require.resolve('pnpapi')
+  } catch (error) {
+    console.log(error)
+    return ''
+  }
+}
+
 // Render script
 const render = ({
   createdAt,
   homepage,
   node,
+  nodeOptions,
   pkgDirectory,
   pkgHomepage,
   platform,
@@ -68,6 +79,7 @@ if [ -f "$scriptPath" ]; then
     debug "source ${huskyrc}"
     . ${huskyrc}
   fi
+  ${nodeOptions ? `export NODE_OPTIONS='${nodeOptions} $NODE_OPTIONS'` : ''}
   ${node} "$scriptPath" $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
@@ -111,11 +123,16 @@ export default function(
   // Created at
   const createdAt = new Date().toLocaleString()
 
+  // Create Node Options
+  const yarnPnpPath = getYarnPnpPath()
+  const nodeOptions = yarnPnpPath ? `--require ${yarnPnpPath}` : ''
+
   // Render script
   return render({
     createdAt,
     homepage,
     node,
+    nodeOptions,
     pkgDirectory,
     pkgHomepage,
     platform,
