@@ -17,6 +17,10 @@ script:
   - cat .git/hooks/post-checkout
   - time git checkout
   - node scripts/ci-post-checkout-check
+  # Test HUSKY_SKIP_HOOKS
+  - cat .git/hooks/post-checkout
+  - HUSKY_SKIP_HOOKS=1 time git checkout
+  - node scripts/ci-husky-skip-hooks
   # Should not fail due to missing script
   - node scripts/ci-break-path.js
   - cat .git/hooks/post-checkout
