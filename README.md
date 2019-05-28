@@ -19,12 +19,6 @@ If Husky is saving you (or your team) time, please consider supporting it on Pat
 ## Sponsors
 
 <p>
-  <a href="https://www.kickstarter.com/projects/leotrieu/build-your-on-demand-startup-for-jobs-and-freelanc?utm_source=typicode&utm_medium=github-husky" target="_blank">
-    <img src="https://i.imgur.com/tBU7RZj.png" height="60px">
-  </a>
-</p>
-
-<p>
   <a href="https://patreon.com/typicode">Support Husky and have your company logo here ;)</a>
 </p>
 
