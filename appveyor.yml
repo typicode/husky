@@ -27,8 +27,7 @@ test_script:
   - cat .git/hooks/post-checkout
 
   # Test HUSKY_SKIP_HOOKS
-  - set HUSKY_SKIP_HOOKS="1"
-  - git checkout
+  - cmd /C "set HUSKY_SKIP_HOOKS=1 && git checkout"
   - node scripts/ci-husky-skip-hooks-check
 
   # Test post-checkout hook
