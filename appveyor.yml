@@ -1,6 +1,7 @@
 # Test against the latest version of this Node.js version
 environment:
   nodejs_version: "10"
+  HUSKY_DEBUG: 1
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -27,8 +28,9 @@ test_script:
   - cat .git/hooks/post-checkout
 
   # Test HUSKY_SKIP_HOOKS
-  - $env:HUSKY_SKIP_HOOKS=1 git checkout
+  - ps: $env:HUSKY_SKIP_HOOKS=1
   - node scripts/ci-husky-skip-hooks-check
+  - ps: $env:HUSKY_SKIP_HOOKS=0
 
   # Test post-checkout hook
   - git checkout
