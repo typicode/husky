@@ -9,7 +9,7 @@ cache:
   directories:
     - "node_modules"
 env:
-  - HUSKY_DEBUG=true
+  - HUSKY_DEBUG=1
 script:
   - npm test
 
