@@ -55,7 +55,7 @@ debug() {
 debug "$hookName hook started"
 
 if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
-  debug "HUSKY_SKIP_HOOKS is set to $\{HUSKY_SKIP_HOOKS} skipping hook"
+  debug "HUSKY_SKIP_HOOKS is set to $\{HUSKY_SKIP_HOOKS}, skipping hook"
   exit 0
 fi
 
