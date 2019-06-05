@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Add `HUSKY_SKIP_HOOKS` to skip all hooks
+
 ## 2.3.0
 
 * Make `HUSKY_DEBUG=1` effective like `HUSKY_DEBUG=true`
