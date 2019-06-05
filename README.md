@@ -12,7 +12,7 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
   <a href="https://patreon.com/typicode">Support Husky and have your company logo here ;)</a>
 </p>
 
-Click [here](https://thanks.typicode.com) to view all the people supporting husky.
+Visit [thanks.typicode.com](https://thanks.typicode.com) 🌵 to view all the people supporting husky.
 
 ## Install
 
