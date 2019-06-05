@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 2.4.0
 
 * Add `HUSKY_SKIP_HOOKS` to skip all hooks
 
