@@ -7,7 +7,6 @@ import getConf from '../getConf'
 export interface Env extends NodeJS.ProcessEnv {
   HUSKY_GIT_STDIN?: string
   HUSKY_GIT_PARAMS?: string
-  HUSKY_SKIP_HOOKS?: string
 }
 
 /**
@@ -18,17 +17,6 @@ export default async function run(
   [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
   getStdinFn: () => Promise<string> = getStdin
 ): Promise<number> {
-  if (
-    process.env.HUSKY_SKIP_HOOKS === 'true' ||
-    process.env.HUSKY_SKIP_HOOKS === '1'
-  ) {
-    console.log(
-      "HUSKY_SKIP_HOOKS environment variable is set to 'true',",
-      'skipping running Git hooks.'
-    )
-    return 0
-  }
-
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch
