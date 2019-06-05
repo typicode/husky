@@ -12,18 +12,22 @@ env:
   - HUSKY_DEBUG=true
 script:
   - npm test
-  # Test post-checkout
+
+  # Install hooks locally
   - npm run devinstall
   - cat .git/hooks/post-checkout
+
+  # Test HUSKY_SKIP_HOOKS
+  - HUSKY_SKIP_HOOKS=1 time git checkout
+  - node scripts/ci-husky-skip-hooks-check
+
+  # Test post-checkout hook
   - time git checkout
   - node scripts/ci-post-checkout-check
-  # Test HUSKY_SKIP_HOOKS
-  - cat .git/hooks/post-checkout
-  - HUSKY_SKIP_HOOKS=1 time git checkout
-  - node scripts/ci-husky-skip-hooks
+
   # Should not fail due to missing script
   - node scripts/ci-break-path.js
-  - cat .git/hooks/post-checkout
   - time git checkout
+
   # Test uninstall
   - npm run devuninstall

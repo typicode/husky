@@ -1,6 +1,6 @@
 # Test against the latest version of this Node.js version
 environment:
-  nodejs_version: "10"
+  nodejs_version: "12"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -18,17 +18,26 @@ test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
+
   # Run tests
   - npm test
-  # Run post-checkout hook test
+
+  # Install hooks locally
   - npm run devinstall
   - cat .git/hooks/post-checkout
+
+  # Test HUSKY_SKIP_HOOKS
+  - HUSKY_SKIP_HOOKS=1 git checkout
+  - node scripts/ci-husky-skip-hooks-check
+
+  # Test post-checkout hook
   - git checkout
   - node scripts/ci-post-checkout-check
+
   # Should not fail due to missing script
   - node scripts/ci-break-path.js
-  - cat .git/hooks/post-checkout
-  - git checkout 
+  - git checkout
+
   # Test uninstall
   - npm run devuninstall
 
