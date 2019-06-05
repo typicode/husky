@@ -28,6 +28,14 @@ If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_
 HUSKY_SKIP_INSTALL=1 npm install
 ```
 
+## Skip running hooks
+
+If you don't want `husky` to run your hooks, simply set `HUSKY_SKIP_HOOKS` environment variable to `1`.
+
+```sh
+HUSKY_SKIP_HOOKS=1 git checkout
+```
+
 ## Multi-package repository (monorepo)
 
 If you have a multi-package repository, it's __recommended__ to use tools like [lerna](https://github.com/lerna/lerna) and have `husky` installed ONLY in the root `package.json` to act as the source of truth.
