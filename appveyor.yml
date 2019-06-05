@@ -27,7 +27,7 @@ test_script:
   - cat .git/hooks/post-checkout
 
   # Test HUSKY_SKIP_HOOKS
-  - ps: $env:HUSKY_DEBUG=1
+  - ps: $env:HUSKY_SKIP_HOOKS=1
   - node scripts/ci-husky-skip-hooks-check
 
   # Test post-checkout hook
