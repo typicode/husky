@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.4.1
+
+* Fix husky crash on install/uninstall with very old Node versions
+
 ## 2.4.0
 
 * Add `HUSKY_SKIP_HOOKS` to skip all hooks
