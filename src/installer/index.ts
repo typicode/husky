@@ -109,6 +109,19 @@ function getHooks(gitDir: string): string[] {
   )
 }
 
+function findGitDirOrFile(
+  cwd: string,
+  searchParentDirs: boolean
+): string | null {
+  if (searchParentDirs) {
+    return findUp.sync('.git', { cwd })
+  } // Look in each parent directory successively until we find a .git
+
+  const cwdGitPath = path.join(cwd, '.git')
+
+  return fs.existsSync(cwdGitPath) ? cwdGitPath : null
+}
+
 /**
  * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
  * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
@@ -135,7 +148,7 @@ export function install(
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
   // Get directory containing .git directory or in the case of Git submodules, the .git file
-  const gitDirOrFile = findUp.sync('.git', { cwd: userPkgDir })
+  const gitDirOrFile = findGitDirOrFile(userPkgDir, conf.searchParentDirs)
   // Resolve git directory (e.g. .git/ or .git/modules/path/to/submodule)
   const resolvedGitDir = resolveGitDir(userPkgDir)
 
@@ -154,6 +167,13 @@ export function install(
       "Please check that you're in a cloned repository",
       "or run 'git init' to create an empty Git repository and reinstall husky."
     )
+
+    if (conf.searchParentDirs) {
+      console.log(
+        "Note that 'searchParentDirs' is false, so husky won't search parent directories successive for .git"
+      )
+    }
+
     return
   }
 
