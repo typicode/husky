@@ -42,6 +42,9 @@ If you have a multi-package repository, it's __recommended__ to use tools like [
 
 Generally speaking, you should AVOID defining `husky` in multiple `package.json`, as each package would overwrite previous `husky` installations.
 
+Alternatively, you can disable this functionality by setting the `searchParentDirs` to `false`, which will cause `husky` to only for `.git` in the directory that the installing `package.json` is in,
+rather then searching each upwards, through each successive parent directory.
+
 ```sh
 .
 └── root
