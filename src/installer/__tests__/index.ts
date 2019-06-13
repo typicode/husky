@@ -318,6 +318,37 @@ describe('install', (): void => {
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
+  it('should not install hooks if searchParentDirs is false & cwd is git-less', (): void => {
+    mkdir('.git/hooks')
+    mkdir('A/B/node_modules/husky')
+    writeFile(
+      'A/B/package.json',
+      JSON.stringify({ husky: { searchParentDirs: false } })
+    )
+
+    installFrom('A/B/node_modules/husky', 'A/B/node_modules/run-node/run-node')
+
+    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+  })
+
+  it('should install hooks if searchParentDirs is false & cwd is a git directory', (): void => {
+    const huskyDir = 'node_modules/husky'
+    const hookFilename = '.git/hooks/pre-commit'
+
+    mkdir('.git/hooks')
+    mkdir(huskyDir)
+    writeFile(
+      'package.json',
+      JSON.stringify({ husky: { searchParentDirs: false } })
+    )
+
+    installFrom(huskyDir)
+    expectHookToExist(hookFilename)
+
+    uninstallFrom(huskyDir)
+    expect(exists(hookFilename)).toBeFalsy()
+  })
+
   it('should install in CI server if skipCI is set to false', (): void => {
     mkdir('.git/hooks')
     mkdir('node_modules/husky')
