@@ -168,7 +168,7 @@ export function install(
       "or run 'git init' to create an empty Git repository and reinstall husky."
     )
 
-    if (conf.searchParentDirs) {
+    if (!conf.searchParentDirs) {
       console.log(
         "Note that 'searchParentDirs' is false, so husky won't search parent directories successive for .git"
       )
