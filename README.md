@@ -8,7 +8,7 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
 ## Sponsors
 
-[__Support Husky and have your company logo here__](https://www.patreon.com/typicode)
+[__Support Husky and have your company logo here (starting from $100/m)__](https://www.patreon.com/typicode)
 
 Visit [thanks.typicode.com](https://thanks.typicode.com) 🌵 to view all the people supporting husky.
 
