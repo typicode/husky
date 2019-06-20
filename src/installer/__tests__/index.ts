@@ -49,10 +49,12 @@ function expectHookToExist(filename: string): void {
 }
 
 describe('install', (): void => {
-  beforeEach((): void => {
-    delete process.env.INIT_CWD
-    tempDir = tempy.directory()
-  })
+  beforeEach(
+    (): void => {
+      delete process.env.INIT_CWD
+      tempDir = tempy.directory()
+    }
+  )
   afterEach((): Promise<string[]> => del(tempDir, { force: true }))
 
   it('should install and uninstall', (): void => {

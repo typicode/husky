@@ -105,8 +105,8 @@ function isInNodeModules(dir: string): boolean {
 
 function getHooks(resolvedGitDir: string, userPkgDir: string): string[] {
   const gitHooksDir = getHooksFolder(resolvedGitDir, userPkgDir)
-  return hookList.map((hookName: string): string =>
-    path.join(gitHooksDir, hookName)
+  return hookList.map(
+    (hookName: string): string => path.join(gitHooksDir, hookName)
   )
 }
 
