@@ -6,6 +6,7 @@ import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
 import resolveGitDir from './resolveGitDir'
+import getHooksFolder from './getHooksFolder'
 
 const hookList = [
   'applypatch-msg',
@@ -102,10 +103,10 @@ function isInNodeModules(dir: string): boolean {
   return (dir.match(/node_modules/g) || []).length > 1
 }
 
-function getHooks(gitDir: string): string[] {
-  const gitHooksDir = path.join(gitDir, 'hooks')
-  return hookList.map(
-    (hookName: string): string => path.join(gitHooksDir, hookName)
+function getHooks(resolvedGitDir: string, userPkgDir: string): string[] {
+  const gitHooksDir = getHooksFolder(resolvedGitDir, userPkgDir)
+  return hookList.map((hookName: string): string =>
+    path.join(gitHooksDir, hookName)
   )
 }
 
@@ -185,7 +186,7 @@ export function install(
   // Get root dir based on the first .git directory of file found
   const rootDir = path.dirname(gitDirOrFile)
 
-  const hooks = getHooks(resolvedGitDir)
+  const hooks = getHooks(resolvedGitDir, userPkgDir)
   const script = getScript(rootDir, huskyDir, requireRunNodePath)
   createHooks(hooks, script)
 
@@ -209,6 +210,13 @@ export function uninstall(huskyDir: string): void {
     return
   }
 
+  if (userPkgDir === undefined) {
+    console.log(
+      "Can't find resolved user package directory, skipping Git hooks uninstallation."
+    )
+    return
+  }
+
   if (isInNodeModules(huskyDir)) {
     console.log(
       'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'
@@ -217,7 +225,7 @@ export function uninstall(huskyDir: string): void {
   }
 
   // Remove hooks
-  const hooks = getHooks(resolvedGitDir)
+  const hooks = getHooks(resolvedGitDir, userPkgDir)
   removeHooks(hooks)
 
   console.log('husky > Done')
