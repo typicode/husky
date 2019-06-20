@@ -12,18 +12,14 @@ function getScriptPath(dir: string): string {
 }
 
 describe('run', (): void => {
-  beforeEach(
-    (): void => {
-      spy = jest.spyOn(execa, 'shellSync')
-    }
-  )
+  beforeEach((): void => {
+    spy = jest.spyOn(execa, 'shellSync')
+  })
 
-  afterEach(
-    (): void => {
-      spy.mockReset()
-      spy.mockRestore()
-    }
-  )
+  afterEach((): void => {
+    spy.mockReset()
+    spy.mockRestore()
+  })
 
   it('should run working command and return 0 status', async (): Promise<
     void

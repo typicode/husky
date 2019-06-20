@@ -2,11 +2,14 @@ import fs from 'fs'
 import path from 'path'
 
 export default function(resolvedGitDir: string, userPkgDir: string): string {
-  const config = fs.readFileSync(path.join(resolvedGitDir, 'config'), 'utf-8')
+  try {
+    const config = fs.readFileSync(path.join(resolvedGitDir, 'config'), 'utf-8')
+    const hookPathMath = config.match(/hooksPath = (.+)\n?/)
 
-  const hookPathMath = config.match(/hooksPath = (.+)\n?/)
-
-  return hookPathMath === null
-    ? path.resolve(resolvedGitDir, 'hooks')
-    : path.resolve(userPkgDir, hookPathMath[1])
+    return hookPathMath === null
+      ? path.resolve(resolvedGitDir, 'hooks')
+      : path.resolve(userPkgDir, hookPathMath[1])
+  } catch (e) {
+    return path.resolve(resolvedGitDir, 'hooks')
+  }
 }
