@@ -147,13 +147,6 @@ export function install(
     return
   }
 
-  if (gitDir === null) {
-    console.log(
-      "Can't find resolved .git directory, skipping Git hooks installation."
-    )
-    return
-  }
-
   if (isCI && conf.skipCI) {
     console.log('CI detected, skipping Git hooks installation.')
     return

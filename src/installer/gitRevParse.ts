@@ -21,7 +21,6 @@ export default function(): {
       .map(slash)
     return { topLevel, gitDir }
   } catch (error) {
-    console.log(error)
-    throw new Error(error)
+    throw new Error(error.stderr)
   }
 }

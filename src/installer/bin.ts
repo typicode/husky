@@ -14,15 +14,19 @@ const [, , action, huskyDir = path.join(__dirname, '../..')] = process.argv
 
 // Find Git dir
 try {
+  console.log(
+    'husky > %s git hooks',
+    action === 'install' ? 'Setting up' : 'Uninstalling'
+  )
+
   const { topLevel, gitDir } = gitRevParse()
 
-  // Run un/installer
   if (action === 'install') {
     install(topLevel, gitDir, huskyDir, isCI)
   } else {
     uninstall(gitDir, huskyDir)
   }
 } catch (error) {
-  console.log(`husky > failed to ${action}`)
-  console.log(error.message)
+  console.log(error.message.trim())
+  console.log(`husky > Failed to ${action}`)
 }
