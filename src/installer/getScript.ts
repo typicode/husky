@@ -99,7 +99,6 @@ export default function(
 ): string {
   const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
 
-  console.log(runNodePath, rootDir, requireRunNodePath)
   // On Windows do not rely on run-node
   const node = platform === 'win32' ? 'node' : runNodePath
 
