@@ -1,6 +1,7 @@
 import isCI from 'is-ci'
 import path from 'path'
 import { install, uninstall } from './'
+import gitRevParse from './gitRevParse'
 
 // Just for testing
 if (process.env.HUSKY_DEBUG === 'true' || process.env.HUSKY_DEBUG === '1') {
@@ -13,11 +14,13 @@ const [, , action, huskyDir = path.join(__dirname, '../..')] = process.argv
 
 // Find Git dir
 try {
-  // Run installer
+  const { topLevel, gitDir } = gitRevParse()
+
+  // Run un/installer
   if (action === 'install') {
-    install(huskyDir, undefined, isCI)
+    install(topLevel, gitDir, huskyDir, isCI)
   } else {
-    uninstall(huskyDir)
+    uninstall(gitDir, huskyDir)
   }
 } catch (error) {
   console.log(`husky > failed to ${action}`)
