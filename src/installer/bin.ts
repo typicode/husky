@@ -1,11 +1,11 @@
 import isCI from 'is-ci'
 import path from 'path'
+import debug from '../debug'
 import { install, uninstall } from './'
 
-// Just for testing
-if (process.env.HUSKY_DEBUG === 'true' || process.env.HUSKY_DEBUG === '1') {
-  console.log(`husky:debug INIT_CWD=${process.env.INIT_CWD}`)
-}
+// Debug
+debug(`CWD=${process.env.CWD}`)
+debug(`INIT_CWD=${process.env.INIT_CWD}`)
 
 // Action can be "install" or "uninstall"
 // huskyDir is ONLY used in dev, don't use this arguments
