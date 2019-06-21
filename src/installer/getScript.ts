@@ -47,16 +47,24 @@ hookName=\`basename "$0"\`
 gitParams="$*"
 
 debug() {
-  [ "$\{HUSKY_DEBUG}" = "true" ] || [ "$\{HUSKY_DEBUG}" = "1" ] && echo "husky:debug $1"
+  if [ "$\{HUSKY_DEBUG}" = "true" ] || [ "$\{HUSKY_DEBUG}" = "1" ]; then
+    echo "husky:debug $1"
+  fi
 }
 
-debug "$hookName hook started..."
+debug "$hookName hook started"
+
+if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
+  debug "HUSKY_SKIP_HOOKS is set to $\{HUSKY_SKIP_HOOKS}, skipping hook"
+  exit 0
+fi
+
 ${
   platform === 'win32'
     ? ''
     : `
 if ! command -v node >/dev/null 2>&1; then
-  echo "Info: Can't find node in PATH, trying to find a node binary on your system"
+  echo "Info: can't find node in PATH, trying to find a node binary on your system"
 fi
 `
 }

@@ -6,21 +6,11 @@
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
-## Support
-
-If Husky is saving you (or your team) time, please consider supporting it on Patreon 👍 thank you!
-
-<p>
-  <a href="https://www.patreon.com/bePatron?c=784328">
-    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-  </a>
-</p>
-
 ## Sponsors
 
-<p>
-  <a href="https://patreon.com/typicode">Support Husky and be the first to have your company logo here ;)</a>
-</p>
+[__Support Husky and have your company logo here (starting from $100/m)__](https://www.patreon.com/typicode)
+
+Visit [thanks.typicode.com](https://thanks.typicode.com) 🌵 to view all the people supporting husky.
 
 ## Install
 
@@ -109,7 +99,7 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
 * [Hotel](https://github.com/typicode/hotel)
-* ... and 28k+ [other awesome repos](https://libraries.io/npm/husky/dependent-repositories)
+* ... and many other awesome projects
 
 ## See also
 
@@ -120,5 +110,3 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 ## License
 
 MIT
-
-[Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com) ✨
