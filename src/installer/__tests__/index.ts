@@ -51,7 +51,7 @@ function uninstall({
 }
 
 function mkdir(...dirs: string[]): void {
-  dirs.forEach(dir => mkdirp.sync(path.join(tempDir, dir)))
+  dirs.forEach((dir): void => mkdirp.sync(path.join(tempDir, dir)))
 }
 
 function writeFile(filename: string, data: string): void {
