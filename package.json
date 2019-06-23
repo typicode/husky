@@ -50,7 +50,6 @@
   "dependencies": {
     "cosmiconfig": "^5.2.0",
     "execa": "^1.0.0",
-    "find-up": "^3.0.0",
     "get-stdin": "^7.0.0",
     "is-ci": "^2.0.0",
     "pkg-dir": "^4.1.0",
@@ -61,7 +60,6 @@
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",
-    "@types/find-up": "^2.1.1",
     "@types/jest": "^24.0.13",
     "@types/mkdirp": "^0.5.2",
     "@types/node": "^12.0.1",
