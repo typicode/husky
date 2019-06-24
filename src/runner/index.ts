@@ -2,6 +2,7 @@ import execa from 'execa'
 import getStdin from 'get-stdin'
 import path from 'path'
 import readPkg from 'read-pkg'
+import debug from '../debug'
 import getConf from '../getConf'
 
 export interface Env extends NodeJS.ProcessEnv {
@@ -18,6 +19,10 @@ export default async function run(
   getStdinFn: () => Promise<string> = getStdin
 ): Promise<number> {
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
+
+  // Debug
+  debug(`CWD=${cwd}`)
+
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch
   let pkg

@@ -1,8 +1,4 @@
 import index from './'
-import debug from '../debug'
-
-// Debug
-debug(`CWD=${process.env.CWD}`)
 
 // Run hook
 index(process.argv)
