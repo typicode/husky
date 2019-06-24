@@ -45,22 +45,17 @@ export default function upgrade(cwd: string): void {
     const hooks: HookMap = {}
 
     // Find hooks in package.json 'scripts' field
-    Object.keys(hookList).forEach(
-      (name: string): void => {
-        if (pkg.scripts) {
-          const script = pkg.scripts[name]
-          if (script) {
-            delete pkg.scripts[name]
-            const newName = hookList[name]
-            hooks[newName] = script.replace(
-              /\bGIT_PARAMS\b/g,
-              'HUSKY_GIT_PARAMS'
-            )
-            console.log(`moved scripts.${name} to husky.hooks.${newName}`)
-          }
+    Object.keys(hookList).forEach((name: string): void => {
+      if (pkg.scripts) {
+        const script = pkg.scripts[name]
+        if (script) {
+          delete pkg.scripts[name]
+          const newName = hookList[name]
+          hooks[newName] = script.replace(/\bGIT_PARAMS\b/g, 'HUSKY_GIT_PARAMS')
+          console.log(`moved scripts.${name} to husky.hooks.${newName}`)
         }
       }
-    )
+    })
 
     // Move found hooks to 'husky.hooks' field
     if (Object.keys(hooks).length) {

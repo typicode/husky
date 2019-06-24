@@ -102,8 +102,8 @@ function isInNodeModules(dir: string): boolean {
 
 function getHooks(gitDir: string): string[] {
   const gitHooksDir = path.join(gitDir, 'hooks')
-  return hookList.map(
-    (hookName: string): string => path.join(gitHooksDir, hookName)
+  return hookList.map((hookName: string): string =>
+    path.join(gitHooksDir, hookName)
   )
 }
 
