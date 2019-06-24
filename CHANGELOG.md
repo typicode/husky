@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.5.0
+
+* Use more accurate git hooks directory resolution
+* Add `CWD` in debug messages
+* Reduce package size
+
 ## 2.4.1
 
 * Fix husky crash on install/uninstall with very old Node versions
