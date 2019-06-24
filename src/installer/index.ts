@@ -168,10 +168,10 @@ export function install(
   createHooks(hooks, script)
 
   console.log(`husky > Done`)
-  console.log('husky > Like husky? You can support the project on Patreon:')
+  console.log('husky > Like husky? You can support the project on Open Collective:')
   console.log(
     'husky > \x1b[36m%s\x1b[0m 🐕',
-    'https://www.patreon.com/typicode'
+    'https://www.opencollective.com/husky'
   )
 }
 
