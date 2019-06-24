@@ -122,8 +122,6 @@ export function install(
   isCI: boolean,
   requireRunNodePath = require.resolve('run-node/run-node')
 ): void {
-  console.log('husky > Setting up git hooks')
-
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
 
@@ -178,8 +176,6 @@ export function install(
 }
 
 export function uninstall(gitDir: string, huskyDir: string): void {
-  console.log('husky > Uninstalling git hooks')
-
   if (gitDir === null) {
     console.log(
       "Can't find resolved .git directory, skipping Git hooks uninstallation."
