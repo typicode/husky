@@ -4,7 +4,6 @@
 
 * Use more accurate git hooks directory resolution
 * Add `CWD` in debug messages
-* Reduce package size
 
 ## 2.4.1
 
