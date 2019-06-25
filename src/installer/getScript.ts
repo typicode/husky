@@ -18,7 +18,7 @@ interface Context {
 export const huskyIdentifier = '# husky'
 
 // Experimental
-const huskyrc = '~/.huskyrc'
+const huskyrc = '.huskyrc'
 
 // Render script
 const render = ({
@@ -44,6 +44,8 @@ ${huskyIdentifier}
 
 scriptPath="${runScriptPath}.js"
 hookName=\`basename "$0"\`
+
+gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
 
 debug() {
@@ -51,6 +53,15 @@ debug() {
     echo "husky:debug $1"
   fi
 }
+
+if [ -f ~/${huskyrc} ]; then
+  debug "source ~/${huskyrc}"
+  . ~/${huskyrc}
+fi
+ if [ -f "$\{gitRoot}"/${huskyrc} ]; then
+  debug "source $\{gitRoot}/${huskyrc}"
+  . "$\{gitRoot}"/${huskyrc}
+fi
 
 debug "$hookName hook started"
 
@@ -72,10 +83,6 @@ if [ -f "$scriptPath" ]; then
   # if [ -t 1 ]; then
   #   exec < /dev/tty
   # fi
-  if [ -f ${huskyrc} ]; then
-    debug "source ${huskyrc}"
-    . ${huskyrc}
-  fi
   ${node} "$scriptPath" $hookName "$gitParams"
 else
   echo "Can't find Husky, skipping $hookName hook"
