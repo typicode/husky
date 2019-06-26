@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## Unreleased
+## 2.6.0
 
+* Optional `HUSKY_USE_YARN` setting to use Yarn to run Husky
 * Add more debug information
 * Show a warning for Node `<= 8.6.0`
 
