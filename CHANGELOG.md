@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Add more debug information
 * Show a warning for Node `<= 8.6.0`
 
 ## 2.5.0

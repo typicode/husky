@@ -5,8 +5,8 @@ import { install, uninstall } from './'
 import gitRevParse from './gitRevParse'
 
 // Debug
-debug(`CWD=${process.env.CWD}`)
-debug(`INIT_CWD=${process.env.INIT_CWD}`)
+debug(`cwd: ${process.cwd()}`)
+debug(`INIT_CWD: ${process.env.INIT_CWD}`)
 
 // Action can be "install" or "uninstall"
 // huskyDir is ONLY used in dev, don't use this arguments
@@ -22,6 +22,10 @@ try {
 
   // Get top level and git dir
   const { topLevel, gitDir } = gitRevParse()
+
+  // Debug
+  debug(`topLevel: ${topLevel}`)
+  debug(`gitDir: ${gitDir}`)
 
   // Install or uninstall
   if (action === 'install') {
