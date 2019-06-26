@@ -1,12 +1,12 @@
-# husky
+# Announcement: Husky is on [Open Collective](https://opencollective.com/husky) 🎉
+
+## husky
 
 > Git hooks made easy
 
 [![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
-
-Visit [thanks.typicode.com](https://thanks.typicode.com) to view all the people supporting husky.
 
 ## Install
 
