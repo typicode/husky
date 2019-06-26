@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Show a warning for Node `<= 8.6.0`
+
 ## 2.5.0
 
 * Use more accurate git hooks directory resolution
