@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-run": "./run.js",
