@@ -1,6 +1,6 @@
 # Announcement: Husky is on [Open Collective](https://opencollective.com/husky) 🎉
 
-## husky
+## Husky
 
 > Git hooks made easy
 
