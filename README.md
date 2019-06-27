@@ -10,6 +10,8 @@
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
+Help test [husky v3](https://github.com/typicode/husky/issues/520)
+
 ## Install
 
 ```sh
