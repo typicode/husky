@@ -4,13 +4,13 @@
 
 # Husky
 
-> Git hooks made easy
-
 [![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
+
+> Git hooks made easy
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
-Help test [husky v3](https://github.com/typicode/husky/issues/520)
+_[Help test husky v3](https://github.com/typicode/husky/issues/520)_
 
 ## Install
 
