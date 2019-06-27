@@ -1,15 +1,23 @@
 # CHANGELOG
 
+## 2.7.0
+
+Due to issues with Git `< 2.13.2`, this version is a rollback and is the same as husky `v2.4.1`. Changes introduced in `v2.5.0` and `v2.6.0` will be published in `v3.0.0`.
+
 ## 2.6.0
 
 * Optional `HUSKY_USE_YARN` setting to use Yarn to run Husky
 * Add more debug information
 * Show a warning for Node `<= 8.6.0`
 
+__Deprecated__
+
 ## 2.5.0
 
 * Use more accurate git hooks directory resolution
 * Add `CWD` in debug messages
+
+__Deprecated__
 
 ## 2.4.1
 
