@@ -21,17 +21,17 @@ try {
   )
 
   // Get top level and git dir
-  const { topLevel, gitDir } = gitRevParse()
+  const { topLevel, absoluteGitDir } = gitRevParse()
 
   // Debug
   debug(`topLevel: ${topLevel}`)
-  debug(`gitDir: ${gitDir}`)
+  debug(`gitDir: ${absoluteGitDir}`)
 
   // Install or uninstall
   if (action === 'install') {
-    install(topLevel, gitDir, huskyDir, isCI)
+    install(topLevel, absoluteGitDir, huskyDir, isCI)
   } else {
-    uninstall(gitDir, huskyDir)
+    uninstall(absoluteGitDir, huskyDir)
   }
 } catch (error) {
   console.log(error.message.trim())
