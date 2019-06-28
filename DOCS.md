@@ -75,16 +75,16 @@ Alternatively, you can use the `root` property to tell `husky` to only install i
 
 ```sh
 .
-└── root 🐶 # git toplevel points here
+└── root # git toplevel points here
     ├── .git
-    ├── package.json # husky will be installed as a depenceny *and* hooks will be installed
+    ├── package.json 🐶 # husky will be installed as a depenceny *and* hooks will be installed
     └── packages
         ├── A
-        │   └── package.json # husky will be installed as a depenceny *only* (i.e hooks will not installed)
+        │   └── package.json # 🐕 husky will be installed as a depenceny *only* (i.e hooks will not installed)
         ├── B
-        │   └── package.json # husky will be installed as a depenceny *only* (i.e hooks will not installed)
+        │   └── package.json # 🐕 husky will be installed as a depenceny *only* (i.e hooks will not installed)
         └── C
-            └── package.json # husky will be installed as a depenceny *only* (i.e hooks will not installed)
+            └── package.json # 🐕 husky will be installed as a depenceny *only* (i.e hooks will not installed)
 ```
 
 ```js
