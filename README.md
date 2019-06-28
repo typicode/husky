@@ -45,6 +45,32 @@ __Note__: there's a known issue with Node `v12.0`, please use `v12.1` or higher.
 npm uninstall husky
 ```
 
+Git hooks installed by husky will be removed.
+
+## Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/husky/contribute)]
+
+### Individuals
+
+<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890"></a>
+
+### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/husky/contribute)]
+
+<a href="https://opencollective.com/husky/organization/0/website"><img src="https://opencollective.com/husky/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/1/website"><img src="https://opencollective.com/husky/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/2/website"><img src="https://opencollective.com/husky/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/3/website"><img src="https://opencollective.com/husky/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/4/website"><img src="https://opencollective.com/husky/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/5/website"><img src="https://opencollective.com/husky/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/6/website"><img src="https://opencollective.com/husky/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/7/website"><img src="https://opencollective.com/husky/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/8/website"><img src="https://opencollective.com/husky/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/husky/organization/9/website"><img src="https://opencollective.com/husky/organization/9/avatar.svg"></a>
+
+
 ## Upgrading from 0.14
 
 Simply move your existing hooks to `husky.hooks` field and use raw Git hooks names. Also, if you're using the `GIT_PARAMS` env variable, rename it to `HUSKY_GIT_PARAMS`.
@@ -106,29 +132,6 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 * [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
 * [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
 * [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
-
-## Financial Contributors
-
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/husky/contribute)]
-
-### Individuals
-
-<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890"></a>
-
-### Organizations
-
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/husky/contribute)]
-
-<a href="https://opencollective.com/husky/organization/0/website"><img src="https://opencollective.com/husky/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/1/website"><img src="https://opencollective.com/husky/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/2/website"><img src="https://opencollective.com/husky/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/3/website"><img src="https://opencollective.com/husky/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/4/website"><img src="https://opencollective.com/husky/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/5/website"><img src="https://opencollective.com/husky/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/6/website"><img src="https://opencollective.com/husky/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/7/website"><img src="https://opencollective.com/husky/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/8/website"><img src="https://opencollective.com/husky/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/husky/organization/9/website"><img src="https://opencollective.com/husky/organization/9/avatar.svg"></a>
 
 ### Patreon
 
