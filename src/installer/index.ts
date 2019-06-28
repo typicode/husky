@@ -145,6 +145,13 @@ export function install(
     return
   }
 
+  if (conf.root && !userPkgDir.endsWith(path.join(topLevel))) {
+    console.log(
+      "Can't find .git in root directory, skipping Git hooks installation."
+    )
+    return
+  }
+
   if (isCI && conf.skipCI) {
     console.log('CI detected, skipping Git hooks installation.')
     return
