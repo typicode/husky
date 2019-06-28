@@ -71,6 +71,38 @@ Generally speaking, you should AVOID defining `husky` in multiple `package.json`
 }
 ```
 
+Alternatively, you can use the `root` property to tell `husky` to only install if the [git `toplevel`](https://git-scm.com/docs/git-rev-parse#Documentation/git-rev-parse.txt---show-toplevel) directory is the same as the one with the installing `package.json`:
+
+```sh
+.
+└── root 🐶 # git toplevel points here
+    ├── .git
+    ├── package.json # husky will be installed as a depenceny *and* hooks will be installed
+    └── packages
+        ├── A
+        │   └── package.json # husky will be installed as a depenceny *only* (i.e hooks will not installed)
+        ├── B
+        │   └── package.json # husky will be installed as a depenceny *only* (i.e hooks will not installed)
+        └── C
+            └── package.json # husky will be installed as a depenceny *only* (i.e hooks will not installed)
+```
+
+```js
+// any package.json
+{
+  "private": true,
+  "devDependencies": {
+    "husky": "..."
+  },
+  "husky": {
+    "root": true,
+    "hooks": {
+      "pre-commit": "..."
+    }
+  }
+}
+```
+
 ## Node version management
 
 If you're on Windows, husky will simply use the version installed globally on your system.
