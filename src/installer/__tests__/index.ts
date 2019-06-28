@@ -346,4 +346,90 @@ describe('install', (): void => {
     expect(exists(defaultHookFilename)).toBeTruthy()
     expectHookToExist(defaultHookFilename)
   })
+  describe('when root is true', (): void => {
+    const pkg = JSON.stringify({ husky: { root: true } })
+
+    it('should install when directory is a git submodule', (): void => {
+      const topLevel = 'A/B'
+      const gitDir = '.git/modules/A/B'
+      const huskyDir = 'A/B/node_modules/husky'
+      const requireRunNodePath = 'A/B/node_modules/run-node/run-node'
+
+      mkdir('.git/modules/A/B/hooks', huskyDir)
+      writeFile('A/B/package.json', pkg)
+
+      install({
+        topLevel,
+        gitDir,
+        huskyDir,
+        requireRunNodePath
+      })
+      const hook = readFile('.git/modules/A/B/hooks/pre-commit')
+
+      expect(hook).toMatch('node_modules/husky/run.js')
+
+      uninstall({ gitDir, huskyDir })
+      expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
+    })
+
+    it('should install in current git directory', (): void => {
+      mkdir(defaultGitHooksDir, defaultHuskyDir)
+      writeFile('package.json', pkg)
+
+      install()
+      expectHookToExist(defaultHookFilename)
+
+      const hook = readFile(defaultHookFilename)
+      const node =
+        os.platform() === 'win32' ? 'node' : 'node_modules/run-node/run-node'
+      expect(hook).toMatch(node)
+
+      uninstall()
+      expect(exists(defaultHookFilename)).toBeFalsy()
+    })
+
+    it('should not install when in sub directory of git submodule', (): void => {
+      const topLevel = 'A/B'
+      const gitDir = '.git/modules/A/B'
+      const huskyDir = 'A/B/C/node_modules/husky'
+      const requireRunNodePath = 'A/B/C/node_modules/run-node/run-node'
+
+      mkdir('.git/modules/A/B/hooks', huskyDir)
+      writeFile('A/B/C/package.json', pkg)
+
+      install({ topLevel, gitDir, huskyDir, requireRunNodePath })
+
+      expect(exists('.git/hooks/pre-push')).toBeFalsy()
+    })
+
+    it('should not install when in sub directory of .git', (): void => {
+      const huskyDir = 'A/B/node_modules/husky'
+      const requireRunNodePath = 'A/B/node_modules/run-node/run-node'
+      mkdir(defaultGitHooksDir, huskyDir)
+      mkdir('A/B/node_modules/husky')
+      writeFile('A/B/package.json', pkg)
+
+      install({
+        huskyDir,
+        requireRunNodePath
+      })
+
+      expect(exists('.git/hooks/pre-commit')).toBeFalsy()
+    })
+  })
+
+  it('should install in parent git directory if root is false', (): void => {
+    const huskyDir = 'A/B/node_modules/husky'
+    const requireRunNodePath = 'A/B/node_modules/run-node/run-node'
+    mkdir(defaultGitHooksDir, huskyDir)
+    mkdir('A/B/node_modules/husky')
+    writeFile('A/B/package.json', JSON.stringify({ husky: { root: false } }))
+
+    install({
+      huskyDir,
+      requireRunNodePath
+    })
+
+    expect(exists('.git/hooks/pre-commit')).toBeTruthy()
+  })
 })
