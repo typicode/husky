@@ -26,7 +26,7 @@ export default function(): {
   // If we get --absolute-git-dir in the output,
   // it probably means that an older version of Git has been used.
   if (absoluteGitDir === '--absolute-git-dir') {
-    throw new Error('Husky requires Git >= 2.13.2, please updade Git')
+    throw new Error('Husky requires Git >= 2.13.2, please update Git')
   }
 
   return { topLevel, absoluteGitDir }
