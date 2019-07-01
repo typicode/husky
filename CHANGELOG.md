@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 3.0.0
 
 * Fix HUSKY_SKIP_INSTALL=1 not skipping install
 * __Breaking change__ husky requires now Git `>= 2.13.2`. If you're already using husky `v2` and don't use an old version of Git, you can safely upgrade.
