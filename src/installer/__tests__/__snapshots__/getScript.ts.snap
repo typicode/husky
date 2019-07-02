@@ -29,7 +29,7 @@ if [ -f ~/.huskyrc ]; then
   debug \\"source ~/.huskyrc\\"
   . ~/.huskyrc
 fi
- if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
+if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
   debug \\"source \${gitRoot}/.huskyrc.local\\"
   . \\"\${gitRoot}\\"/.huskyrc.local
 fi
@@ -54,9 +54,9 @@ else
     # if [ -t 1 ]; then
     #   exec < /dev/tty
     # fi
-    if [ -f ~/.huskyrc ]; then
-      debug \\"source ~/.huskyrc\\"
-      . ~/.huskyrc
+    if [ -f .huskyrc ]; then
+      debug \\"source .huskyrc\\"
+      . .huskyrc
     fi
     node_modules/run-node/run-node \\"$scriptPath\\" $hookName \\"$gitParams\\"
   else
@@ -96,7 +96,7 @@ if [ -f ~/.huskyrc ]; then
   debug \\"source ~/.huskyrc\\"
   . ~/.huskyrc
 fi
- if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
+if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
   debug \\"source \${gitRoot}/.huskyrc.local\\"
   . \\"\${gitRoot}\\"/.huskyrc.local
 fi
@@ -111,14 +111,15 @@ fi
 if [ \\"\${HUSKY_USE_YARN}\\" = \\"true\\" ] || [ \\"\${HUSKY_USE_YARN}\\" = \\"1\\" ]; then
   debug \\"calling husky through Yarn\\"
   yarn husky-run $hookName \\"$gitParams\\"
-else 
+else
+  
   if [ -f \\"$scriptPath\\" ]; then
     # if [ -t 1 ]; then
     #   exec < /dev/tty
     # fi
-    if [ -f ~/.huskyrc ]; then
-      debug \\"source ~/.huskyrc\\"
-      . ~/.huskyrc
+    if [ -f .huskyrc ]; then
+      debug \\"source .huskyrc\\"
+      . .huskyrc
     fi
     node \\"$scriptPath\\" $hookName \\"$gitParams\\"
   else
