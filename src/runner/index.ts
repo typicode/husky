@@ -18,10 +18,11 @@ export default async function run(
   [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
   getStdinFn: () => Promise<string> = getStdin
 ): Promise<number> {
+  // Update CWD
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
 
   // Debug
-  debug(`CWD=${cwd}`)
+  debug(`cwd: ${cwd} (updated)`)
 
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch

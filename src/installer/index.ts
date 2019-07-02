@@ -137,7 +137,7 @@ export function install(
   const conf = getConf(userPkgDir)
 
   // Checks
-  if (process.env.HUSKY_SKIP_INSTALL === 'true') {
+  if (['1', 'true'].includes(process.env.HUSKY_SKIP_INSTALL || '')) {
     console.log(
       "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
       'skipping Git hooks installation.'
@@ -168,13 +168,6 @@ export function install(
   createHooks(hooks, script)
 
   console.log(`husky > Done`)
-  console.log(
-    'husky > Like husky? You can support the project on Open Collective:'
-  )
-  console.log(
-    'husky > \x1b[36m%s\x1b[0m 🐕',
-    'https://www.opencollective.com/husky'
-  )
 }
 
 export function uninstall(gitDir: string, huskyDir: string): void {

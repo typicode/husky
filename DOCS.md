@@ -90,7 +90,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
-_This feature is experimental 🧪. Feedbacks are welcome._
+_This feature is experimental 🧪. Feedback is welcome._
 
 ## Debug
 

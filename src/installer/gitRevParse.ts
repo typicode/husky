@@ -2,25 +2,32 @@ import slash from 'slash'
 import execa from 'execa'
 
 export default function(): {
-  // Show the absolute path of the top-level directory.
   topLevel: string
-  // Show $GIT_COMMON_DIR if defined, else $GIT_DIR.
-  gitDir: string
+  absoluteGitDir: string
 } {
+  let result
   try {
-    const { stdout } = execa.sync('git', [
+    result = execa.sync('git', [
       'rev-parse',
       '--show-toplevel',
-      '--git-common-dir'
+      '--absolute-git-dir'
     ])
-
-    const [topLevel, gitDir] = stdout
-      .trim()
-      .split('\n')
-      // Normalize for Windows
-      .map(slash)
-    return { topLevel, gitDir }
   } catch (error) {
     throw new Error(error.stderr)
   }
+
+  const [topLevel, absoluteGitDir] = result.stdout
+    .trim()
+    .split('\n')
+    // Normalize for Windows
+    .map(slash)
+
+  // Git rev-parse returns unknown options as is.
+  // If we get --absolute-git-dir in the output,
+  // it probably means that an older version of Git has been used.
+  if (absoluteGitDir === '--absolute-git-dir') {
+    throw new Error('Husky requires Git >= 2.13.2, please update Git')
+  }
+
+  return { topLevel, absoluteGitDir }
 }

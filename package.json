@@ -1,12 +1,13 @@
 {
   "name": "husky",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
+    "husky-run": "./run.js",
     "husky-upgrade": "./lib/upgrader/bin.js"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=8.6.0"
   },
   "scripts": {
     "test": "npm run lint && jest",
@@ -20,7 +21,8 @@
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
-    "fix": "npm run lint -- --fix"
+    "fix": "npm run lint -- --fix",
+    "postinstall": "opencollective-postinstall || true"
   },
   "repository": {
     "type": "git",
@@ -56,7 +58,8 @@
     "please-upgrade-node": "^3.1.1",
     "read-pkg": "^5.1.1",
     "run-node": "^1.0.0",
-    "slash": "^3.0.0"
+    "slash": "^3.0.0",
+    "opencollective-postinstall": "^2.0.2"
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",
@@ -95,5 +98,9 @@
       "json",
       "node"
     ]
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/husky"
   }
 }
