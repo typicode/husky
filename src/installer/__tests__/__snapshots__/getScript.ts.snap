@@ -29,9 +29,9 @@ if [ -f ~/.huskyrc ]; then
   debug \\"source ~/.huskyrc\\"
   . ~/.huskyrc
 fi
- if [ -f \\"\${gitRoot}\\"/.huskyrc ]; then
-  debug \\"source \${gitRoot}/.huskyrc\\"
-  . \\"\${gitRoot}\\"/.huskyrc
+ if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
+  debug \\"source \${gitRoot}/.huskyrc.local\\"
+  . \\"\${gitRoot}\\"/.huskyrc.local
 fi
 
 debug \\"$hookName hook started\\"
@@ -96,9 +96,9 @@ if [ -f ~/.huskyrc ]; then
   debug \\"source ~/.huskyrc\\"
   . ~/.huskyrc
 fi
- if [ -f \\"\${gitRoot}\\"/.huskyrc ]; then
-  debug \\"source \${gitRoot}/.huskyrc\\"
-  . \\"\${gitRoot}\\"/.huskyrc
+ if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
+  debug \\"source \${gitRoot}/.huskyrc.local\\"
+  . \\"\${gitRoot}\\"/.huskyrc.local
 fi
 
 debug \\"$hookName hook started\\"
