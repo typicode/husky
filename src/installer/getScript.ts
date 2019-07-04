@@ -87,10 +87,6 @@ else
     # if [ -t 1 ]; then
     #   exec < /dev/tty
     # fi
-    if [ -f ${huskyrc} ]; then
-      debug "source ${huskyrc}"
-      . ${huskyrc}
-    fi
     ${node} "$scriptPath" $hookName "$gitParams"
   else
     echo "Can't find Husky, skipping $hookName hook"
