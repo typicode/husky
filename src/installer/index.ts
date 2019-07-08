@@ -32,13 +32,23 @@ function writeHook(filename: string, script: string): void {
   fs.chmodSync(filename, 0o0755)
 }
 
-function createHook(filename: string, script: string): void {
+function createHook(
+  filename: string,
+  script: string,
+  overwriteExisting: boolean
+): void {
   // Get name, used for logging
   const name = path.basename(filename)
 
   // Check if hook exist
   if (fs.existsSync(filename)) {
     const hook = fs.readFileSync(filename, 'utf-8')
+
+    // Overwrite
+    if (overwriteExisting) {
+      console.log(`overwriting existing ghooks script: ${name}`)
+      return writeHook(filename, script)
+    }
 
     // Migrate
     if (isGhooks(hook)) {
@@ -66,8 +76,14 @@ function createHook(filename: string, script: string): void {
   writeHook(filename, script)
 }
 
-function createHooks(filenames: string[], script: string): void {
-  filenames.forEach((filename: string): void => createHook(filename, script))
+function createHooks(
+  filenames: string[],
+  script: string,
+  overwriteExisting: boolean
+): void {
+  filenames.forEach((filename: string): void =>
+    createHook(filename, script, overwriteExisting)
+  )
 }
 
 function canRemove(filename: string): boolean {
@@ -169,7 +185,7 @@ export function install(
 
   const hooks = getHooks(gitDir)
   const script = getScript(topLevel, huskyDir, requireRunNodePath)
-  createHooks(hooks, script)
+  createHooks(hooks, script, conf.overwriteExisting)
 
   console.log(`husky > Done`)
 }

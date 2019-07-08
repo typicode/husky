@@ -141,7 +141,7 @@ describe('install', (): void => {
     expect(hook).not.toContain('foo')
   })
 
-  it('should not modify user hooks', (): void => {
+  it('should, by default, not modify user hooks', (): void => {
     mkdir(defaultGitHooksDir, defaultHuskyDir)
     writeFile('package.json', pkg)
     writeFile(defaultHookFilename, 'foo')
@@ -154,6 +154,24 @@ describe('install', (): void => {
     // Verify that it's not deleted
     uninstall()
     expect(exists(defaultHookFilename)).toBeTruthy()
+  })
+
+  it('should modify user hooks when overwriteExisting is true', (): void => {
+    mkdir(defaultGitHooksDir, defaultHuskyDir)
+    writeFile(
+      'package.json',
+      JSON.stringify({ husky: { overwriteExisting: true } })
+    )
+    writeFile(defaultHookFilename, 'foo')
+
+    // Verify that it's overwritten
+    install()
+    const hook = readFile(defaultHookFilename)
+    expect(hook).toMatch('node_modules/husky/run.js')
+
+    // Verify that it's deleted
+    uninstall()
+    expect(exists(defaultHookFilename)).toBeFalsy()
   })
 
   it('should support package.json installed in sub directory', (): void => {
