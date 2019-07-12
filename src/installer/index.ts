@@ -171,6 +171,14 @@ export function install(
 }
 
 export function uninstall(gitDir: string, huskyDir: string): void {
+  if (['1', 'true'].includes(process.env.HUSKY_SKIP_UNINSTALL || '')) {
+    console.log(
+      "HUSKY_SKIP_UNINSTALL environment variable is set to 'true',",
+      'skipping Git hooks uninstallation.'
+    )
+    return
+  }
+
   if (gitDir === null) {
     console.log(
       "Can't find resolved .git directory, skipping Git hooks uninstallation."

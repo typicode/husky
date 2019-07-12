@@ -28,6 +28,12 @@ If you don't want `husky` to automatically install Git hooks, simply set `HUSKY_
 HUSKY_SKIP_INSTALL=1 npm install
 ```
 
+Likewise, if you don't want `husky` to automatically uninstall the hooks it has previously installed, set `HUSKY_SKIP_UNINSTALL` environment variable to `1`.
+
+```sh
+HUSKY_SKIP_UNINSTALL=1 npm install
+```
+
 ## Skip all hooks
 
 During a rebase you may want to skip all hooks, you can set `HUSKY_SKIP_HOOKS` environment variable to `1`.

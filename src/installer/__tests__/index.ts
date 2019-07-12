@@ -303,7 +303,29 @@ describe('install', (): void => {
     expect(hook).toMatch(huskyIdentifier)
   })
 
-  it('should not install hooks if HUSKY_SKIP_INSTALL=1', (): void => {
+  it('should not install hooks if HUSKY_SKIP_UNINSTALL=1', (): void => {
+    mkdir(defaultGitDir, defaultHuskyDir)
+    writeFile('package.json', pkg)
+
+    process.env.HUSKY_SKIP_UNINSTALL = '1'
+    install()
+    expect(exists(defaultHookFilename)).toBeTruthy()
+    uninstall()
+    expect(exists(defaultHookFilename)).toBeTruthy()
+  })
+
+  it('should not install hooks if HUSKY_SKIP_UNINSTALL=true', (): void => {
+    mkdir(defaultGitDir, defaultHuskyDir)
+    writeFile('package.json', pkg)
+
+    process.env.HUSKY_SKIP_UNINSTALL = 'true'
+    install()
+    expect(exists(defaultHookFilename)).toBeTruthy()
+    uninstall()
+    expect(exists(defaultHookFilename)).toBeTruthy()
+  })
+
+  it('should not uninstall hooks if HUSKY_SKIP_INSTALL=1', (): void => {
     mkdir(defaultGitDir, defaultHuskyDir)
     writeFile('package.json', pkg)
 
@@ -312,7 +334,7 @@ describe('install', (): void => {
     expect(exists(defaultHookFilename)).toBeFalsy()
   })
 
-  it('should not install hooks if HUSKY_SKIP_INSTALL=true', (): void => {
+  it('should not uninstall hooks if HUSKY_SKIP_INSTALL=true', (): void => {
     mkdir(defaultGitDir, defaultHuskyDir)
     writeFile('package.json', pkg)
 
