@@ -5,16 +5,11 @@ export default function(): {
   topLevel: string
   absoluteGitDir: string
 } {
-  let result
-  try {
-    result = execa.sync('git', [
-      'rev-parse',
-      '--show-toplevel',
-      '--absolute-git-dir'
-    ])
-  } catch (error) {
-    throw new Error(error.stderr)
-  }
+  const result = execa.sync('git', [
+    'rev-parse',
+    '--show-toplevel',
+    '--absolute-git-dir'
+  ])
 
   const [topLevel, absoluteGitDir] = result.stdout
     .trim()

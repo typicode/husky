@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import isCI from 'is-ci'
 import path from 'path'
 import debug from '../debug'
@@ -34,6 +35,6 @@ try {
     uninstall(absoluteGitDir, huskyDir)
   }
 } catch (error) {
-  console.log(error.message.trim())
-  console.log(`husky > Failed to ${action}`)
+  console.log(chalk.red(error.message.trim()))
+  console.log(chalk.red(`husky > Failed to ${action}`))
 }
