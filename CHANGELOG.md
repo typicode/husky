@@ -1,5 +1,7 @@
 # CHANGELOG
 
+Changes for 3.0.0+ can now be found in https://github.com/typicode/husky/releases
+
 ## 3.0.0
 
 * Fix HUSKY_SKIP_INSTALL=1 not skipping install
