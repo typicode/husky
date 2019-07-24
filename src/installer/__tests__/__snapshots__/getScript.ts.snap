@@ -15,6 +15,8 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
+
+gitRoot=\\"$(git rev-parse --show-toplevel)\\"
 gitParams=\\"$*\\"
 
 debug() {
@@ -22,6 +24,15 @@ debug() {
     echo \\"husky:debug $1\\"
   fi
 }
+
+if [ -f ~/.huskyrc ]; then
+  debug \\"source ~/.huskyrc\\"
+  . ~/.huskyrc
+fi
+if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
+  debug \\"source \${gitRoot}/.huskyrc.local\\"
+  . \\"\${gitRoot}\\"/.huskyrc.local
+fi
 
 debug \\"$hookName hook started\\"
 
@@ -43,10 +54,6 @@ else
     # if [ -t 1 ]; then
     #   exec < /dev/tty
     # fi
-    if [ -f ~/.huskyrc ]; then
-      debug \\"source ~/.huskyrc\\"
-      . ~/.huskyrc
-    fi
     node_modules/run-node/run-node \\"$scriptPath\\" $hookName \\"$gitParams\\"
   else
     echo \\"Can't find Husky, skipping $hookName hook\\"
@@ -71,6 +78,8 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 
 scriptPath=\\"node_modules/husky/run.js\\"
 hookName=\`basename \\"$0\\"\`
+
+gitRoot=\\"$(git rev-parse --show-toplevel)\\"
 gitParams=\\"$*\\"
 
 debug() {
@@ -78,6 +87,15 @@ debug() {
     echo \\"husky:debug $1\\"
   fi
 }
+
+if [ -f ~/.huskyrc ]; then
+  debug \\"source ~/.huskyrc\\"
+  . ~/.huskyrc
+fi
+if [ -f \\"\${gitRoot}\\"/.huskyrc.local ]; then
+  debug \\"source \${gitRoot}/.huskyrc.local\\"
+  . \\"\${gitRoot}\\"/.huskyrc.local
+fi
 
 debug \\"$hookName hook started\\"
 
@@ -95,10 +113,6 @@ else
     # if [ -t 1 ]; then
     #   exec < /dev/tty
     # fi
-    if [ -f ~/.huskyrc ]; then
-      debug \\"source ~/.huskyrc\\"
-      . ~/.huskyrc
-    fi
     node \\"$scriptPath\\" $hookName \\"$gitParams\\"
   else
     echo \\"Can't find Husky, skipping $hookName hook\\"
