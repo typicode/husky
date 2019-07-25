@@ -100,8 +100,12 @@ function isInNodeModules(dir: string): boolean {
   return (dir.match(/node_modules/g) || []).length > 1
 }
 
+function getGitHooksDir(gitDir: string): string {
+  return path.join(gitDir, 'hooks')
+}
+
 function getHooks(gitDir: string): string[] {
-  const gitHooksDir = path.join(gitDir, 'hooks')
+  const gitHooksDir = getGitHooksDir(gitDir)
   return hookList.map((hookName: string): string =>
     path.join(gitHooksDir, hookName)
   )
@@ -158,7 +162,7 @@ export function install(
   }
 
   // Create hooks directory if it doesn't exist
-  const gitHooksDir = path.join(gitDir, 'hooks')
+  const gitHooksDir = getGitHooksDir(gitDir)
   if (!fs.existsSync(gitHooksDir)) {
     fs.mkdirSync(gitHooksDir)
   }
