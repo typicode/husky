@@ -11,9 +11,9 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "_install": "node husky install",
+    "install": "node husky install",
     "preuninstall": "node husky uninstall",
-    "devinstall": "npm run build && npm run _install -- node_modules/husky && node scripts/dev-fix-path",
+    "devinstall": "npm run build && npm run _install -- node_modules/husky",
     "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
@@ -60,7 +60,8 @@
     "please-upgrade-node": "^3.2.0",
     "read-pkg": "^5.1.1",
     "run-node": "^1.0.0",
-    "slash": "^3.0.0"
+    "slash": "^3.0.0",
+    "which-pm-runs": "^1.0.0"
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",

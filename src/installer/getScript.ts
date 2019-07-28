@@ -1,16 +1,19 @@
 import fs from 'fs'
-import os from 'os'
 import path from 'path'
-import slash from 'slash'
+
+enum RunCommand {
+  NPX = 'npx --no-install',
+  PNPX = 'pnpx --no-install',
+  YARN = 'yarn run'
+}
 
 interface Context {
   createdAt: string
   homepage: string
-  node: string
+  pathToUserPkgDir: string
   pkgDirectory?: string
   pkgHomepage?: string
-  platform: string
-  runScriptPath: string
+  runCommand: RunCommand
   version: string
 }
 
@@ -24,27 +27,20 @@ const huskyrc = '.huskyrc'
 const render = ({
   createdAt,
   homepage,
-  node,
+  pathToUserPkgDir,
   pkgDirectory,
   pkgHomepage,
-  platform,
-  runScriptPath,
+  runCommand,
   version
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
-# Hook created by Husky
+# Hook created by Husky (${homepage})
 #   Version: ${version}
 #   At: ${createdAt}
-#   See: ${homepage}
+#   From: ${pkgDirectory} (${pkgHomepage})
 
-# From
-#   Directory: ${pkgDirectory}
-#   Homepage: ${pkgHomepage}
-
-scriptPath="${runScriptPath}.js"
 hookName=\`basename "$0"\`
-
 gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
 
@@ -58,6 +54,7 @@ if [ -f ~/${huskyrc} ]; then
   debug "source ~/${huskyrc}"
   . ~/${huskyrc}
 fi
+
 if [ -f "$\{gitRoot}"/${huskyrc}.local ]; then
   debug "source $\{gitRoot}/${huskyrc}.local"
   . "$\{gitRoot}"/${huskyrc}.local
@@ -70,50 +67,16 @@ if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
   exit 0
 fi
 
-if [ "$\{HUSKY_USE_YARN}" = "true" ] || [ "$\{HUSKY_USE_YARN}" = "1" ]; then
-  debug "calling husky through Yarn"
-  yarn husky-run $hookName "$gitParams"
-else
-  ${
-    platform === 'win32'
-      ? ''
-      : `
-  if ! command -v node >/dev/null 2>&1; then
-    echo "Info: can't find node in PATH, trying to find a node binary on your system"
-  fi
-  `
-  }
-  if [ -f "$scriptPath" ]; then
-    # if [ -t 1 ]; then
-    #   exec < /dev/tty
-    # fi
-    ${node} "$scriptPath" $hookName "$gitParams"
-  else
-    echo "Can't find Husky, skipping $hookName hook"
-    echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
-  fi
-fi
+cd "${pathToUserPkgDir}"
+${runCommand} husky-run $hookName "$gitParams"
 `
 
 /**
- * @param {string} rootDir - e.g. /home/typicode/project/
- * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
- * @param {string} platform - platform husky installer is running on (used to produce win32 specific script)
+ * @param {string} pathToUserPkgDir - relative path from git dir to dir containing package.json
+ * @param {string} pmName - e.g. npm, pnpm or yarn
  * @returns {string} script
  */
-export default function(
-  rootDir: string,
-  huskyDir: string,
-  requireRunNodePath: string,
-  // Additional param used for testing only
-  platform: string = os.platform()
-): string {
-  const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
-
-  // On Windows do not rely on run-node
-  const node = platform === 'win32' ? 'node' : runNodePath
-
+export default function(pathToUserPkgDir: string, pmName: string): string {
   // Env variable
   const pkgHomepage = process && process.env && process.env.npm_package_homepage
   const pkgDirectory = process && process.env && process.env.PWD
@@ -123,23 +86,33 @@ export default function(
     fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
   )
 
-  // Path to run.js
-  const runScriptPath = slash(
-    path.join(path.relative(rootDir, huskyDir), 'run')
-  )
-
   // Created at
   const createdAt = new Date().toLocaleString()
+
+  // Script runner command
+  let runCommand
+  switch (pmName) {
+    case 'npm':
+      runCommand = RunCommand.NPX
+      break
+    case 'pnpm':
+      runCommand = RunCommand.PNPX
+      break
+    case 'yarn':
+      runCommand = RunCommand.YARN
+      break
+    default:
+      throw new Error(`Unknow package manager: ${pmName}`)
+  }
 
   // Render script
   return render({
     createdAt,
     homepage,
-    node,
+    pathToUserPkgDir,
     pkgDirectory,
     pkgHomepage,
-    platform,
-    runScriptPath,
+    runCommand,
     version
   })
 }
