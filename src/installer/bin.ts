@@ -32,7 +32,7 @@ try {
   if (action === 'install') {
     const pm = whichPMRuns()
     debug(`package manager: ${pm.name}`)
-    install(absoluteGitDir, huskyDir, pm.name, isCI)
+    install(topLevel, absoluteGitDir, huskyDir, pm.name, isCI)
   } else {
     uninstall(absoluteGitDir, huskyDir)
   }

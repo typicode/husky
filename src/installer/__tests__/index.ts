@@ -7,6 +7,9 @@ import './__env__'
 import * as installer from '../'
 import { huskyIdentifier } from '../getScript'
 
+// RandomId to verify that scripts get updated
+const randomId = Math.random().toString()
+
 // Temporary dir updated for each test
 let tempDir: string
 
@@ -19,16 +22,18 @@ const pkg = JSON.stringify({})
 
 // Helpers
 function install({
-  topLevel,
+  topLevel = '',
   gitDir = defaultGitDir,
   huskyDir = defaultHuskyDir,
   isCI = false
 }: {
+  topLevel?: string
   gitDir?: string
   huskyDir?: string
   isCI?: boolean
 } = {}): void {
   installer.install(
+    path.join(tempDir, topLevel),
     path.join(tempDir, gitDir),
     path.join(tempDir, huskyDir),
     'npm',
@@ -84,7 +89,7 @@ describe('install', (): void => {
     expectHookToExist(defaultHookFilename)
 
     const hook = readFile(defaultHookFilename)
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
 
     uninstall()
     expect(exists(defaultHookFilename)).toBeFalsy()
@@ -112,13 +117,13 @@ describe('install', (): void => {
     writeFile('package.json', pkg)
 
     // Create an existing husky hook
-    writeFile(defaultHookFilename, '# husky\nfoo')
+    writeFile(defaultHookFilename, `# husky\n${randomId}`)
 
     // Verify that it has been updated
     install()
     const hook = readFile(defaultHookFilename)
     expect(hook).toContain('# husky')
-    expect(hook).not.toContain('foo')
+    expect(hook).not.toContain(randomId)
   })
 
   it('should update existing husky hooks (v0.14 and earlier)', (): void => {
@@ -126,13 +131,13 @@ describe('install', (): void => {
     writeFile('package.json', pkg)
 
     // Create an existing husky hook
-    writeFile(defaultHookFilename, '#!/bin/sh\n#husky 0.14.3\nfoo')
+    writeFile(defaultHookFilename, `#!/bin/sh\n#husky 0.14.3\n${randomId}`)
 
     // Verify that it has been updated
     install()
     const hook = readFile(defaultHookFilename)
     expect(hook).toContain('# husky')
-    expect(hook).not.toContain('foo')
+    expect(hook).not.toContain(randomId)
   })
 
   it('should not modify user hooks', (): void => {
@@ -158,7 +163,7 @@ describe('install', (): void => {
     install({ huskyDir })
     const hook = readFile('.git/hooks/pre-commit')
 
-    expect(hook).toMatch('cd A/B')
+    expect(hook).toMatch('cd "A/B"')
 
     uninstall({ huskyDir })
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
@@ -179,7 +184,7 @@ describe('install', (): void => {
     })
     const hook = readFile('.git/modules/A/B/hooks/pre-commit')
 
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
 
     uninstall({ gitDir, huskyDir })
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
@@ -196,25 +201,25 @@ describe('install', (): void => {
     install({ topLevel, gitDir, huskyDir })
     const hook = readFile('.git/modules/A/B/hooks/pre-commit')
 
-    expect(hook).toMatch('cd C')
+    expect(hook).toMatch('cd "C"')
 
     uninstall({ gitDir, huskyDir })
     expect(exists('.git/hooks/pre-push')).toBeFalsy()
   })
 
   it('should support git worktrees', (): void => {
-    // TopLevel  A/B
+    const topLevel = 'A/B'
     const gitDir = '.git/worktrees/B'
     const huskyDir = 'A/B/node_modules/husky'
 
     mkdir(`${gitDir}/hooks`, huskyDir)
     writeFile('A/B/package.json', pkg)
 
-    install({ gitDir, huskyDir })
+    install({ topLevel, gitDir, huskyDir })
 
     const hook = readFile(`${gitDir}/hooks/pre-commit`)
 
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
 
     uninstall({ gitDir, huskyDir })
     expect(exists('.git/worktrees/B/hooks/pre-commit')).toBeFalsy()
@@ -236,7 +241,7 @@ describe('install', (): void => {
 
     const hook = readFile('project/A/.git/worktrees/B/hooks/pre-commit')
 
-    expect(hook).toMatch('cd .')
+    expect(hook).toMatch('cd "."')
 
     uninstall({ gitDir, huskyDir })
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
