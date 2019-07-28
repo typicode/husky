@@ -102,7 +102,9 @@ export default function(pathToUserPkgDir: string, pmName: string): string {
       runCommand = RunCommand.YARN
       break
     default:
-      throw new Error(`Unknow package manager: ${pmName}`)
+      throw new Error(
+        `Unknown package manager: ${pmName}\nnpm_config_user_agent: ${process.env.npm_config_user_agent}`
+      )
   }
 
   // Render script
