@@ -167,7 +167,7 @@ export function install(
 
   const hooks = getHooks(gitDir)
   const pathToUserPkgDir = path.relative(gitDir, userPkgDir)
-  const script = getScript(pthToUserPkgDir, pmName)
+  const script = getScript(pathToUserPkgDir, pmName)
   createHooks(hooks, script)
 
   console.log(`husky > Done`)
