@@ -1,3 +1,6 @@
+# Exit on error
+set -e
+
 projectPath=/tmp/husky-project
 
 # Reset dir
@@ -22,8 +25,8 @@ npm install husky-*.tgz
 cat .git/hooks/post-checkout
 
 # Test HUSKY_SKIP_HOOKS
-HUSKY_SKIP_HOOKS=1 time git checkout
-if [-f ci-post-checkout] then;
+(export HUSKY_SKIP_HOOKS=1; time git checkout)
+if [ -f ci-post-checkout ]; then
   echo ".git/hooks/post-checkout script has run, hooks were not skipped."
   exit 1
 fi
