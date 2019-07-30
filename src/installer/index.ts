@@ -171,7 +171,6 @@ export function install(
 
   // Path.relative can return '' if both paths are the same, so '.' is used as a default value
   const pathToUserPkgDir = path.relative(topLevel, userPkgDir) || '.'
-  console.log({ pathToUserPkgDir, topLevel, userPkgDir })
   const script = getScript(pathToUserPkgDir, pmName)
   createHooks(hooks, script)
 

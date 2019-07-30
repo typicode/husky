@@ -1,6 +1,6 @@
 {
   "skipCI": false,
   "hooks": {
-    "pre-commit": "echo \"pre-commit message from Husky\" && exit 1"
+    "post-checkout": "echo \"running CI post-checkout test\" && node scripts/ci-post-checkout-script"
   }
 }

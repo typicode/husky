@@ -22,7 +22,7 @@ npm init -y
 npm install husky-*.tgz
 
 # Show post-checkout hook content
-cat .git/hooks/post-checkout
+# cat .git/hooks/post-checkout
 
 # Test HUSKY_SKIP_HOOKS
 (export HUSKY_SKIP_HOOKS=1; time git checkout -b master)
