@@ -1,4 +1,5 @@
 {
+  "skipCI": false,
   "hooks": {
     "pre-commit": "echo \"pre-commit message from Husky\" && exit 1"
   }
