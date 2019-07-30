@@ -69,6 +69,15 @@ fi
 
 cd "${pathToUserPkgDir}"
 ${runCommand} husky-run $hookName "$gitParams"
+
+exitCode=$?
+debug "${runCommand} husky-run exited with $exitCode exit code"
+if [ $exitCode -eq 127 ]; then
+  echo "Can't find Husky, skipping $hookName hook"
+  echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
+else
+  exit $exitCode
+fi
 `
 
 /**

@@ -13,7 +13,6 @@ if (fs.existsSync(filename)) {
     process.exit(1)
   }
 
-  fs.unlinkSync(filename)
   console.log('.git/hooks/post-checkout script has run successfully on CI')
 } else {
   console.log('.git/hooks/post-checkout script has failed running on CI')

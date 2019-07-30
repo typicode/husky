@@ -1,6 +1,6 @@
 {
   "skipCI": false,
   "hooks": {
-    "post-checkout": "echo \"running CI post-checkout test\" && node scripts/ci-post-checkout-script"
+    "commit-msg": "echo \"running CI hook test\" && echo $HUSKY_GIT_PARAMS > hook-params"
   }
 }
