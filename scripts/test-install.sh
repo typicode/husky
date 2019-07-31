@@ -6,21 +6,24 @@ HUSKY_DEBUG=1
 
 # Test directory and files
 projectDir=/tmp/husky-project
-filename=index.js
-hookParams=hook-params
+hookParamsFile=hook-params
 
-# sep function
+# Separator function for readability
 sep() {
   echo
   echo '------'
   echo
 }
 
+# Commit function
+commit() {
+  touch $1
+  git add $1
+  time HUSKY_SKIP_HOOKS=$2 git commit -m "$1 msg"
+}
+
 # Reset dir
 rm -rf $projectDir && mkdir $projectDir
-
-# Copy test config
-cp scripts/.huskyrc $projectDir
 
 # Husky needs to be packed to be closer to a real install
 npm run build && npm pack
@@ -34,40 +37,50 @@ git init
 npm init -y
 npm install husky-*.tgz
 
+cat > .huskyrc << EOL
+{
+  "hooks": {
+    "commit-msg": "echo \"commit-msg hook from Husky\" && echo \$HUSKY_GIT_PARAMS > $hookParamsFile"
+  }
+}
+EOL
+
 sep
 
 # Show post-checkout hook content
 # cat .git/hooks/post-checkout
 
 # Run git checkout with HUSKY_SKIP_HOOKS=1
-touch $filename
-git add $filename
-(export HUSKY_SKIP_HOOKS=1; time git commit -m "first")
+commit first 1
 
 # Verify that post-checkout hook didn't run
-if [ -f $hookParams ]; then
-  echo ".git/hooks/post-checkout script has run, hooks were not skipped."
+if [ -f $hookParamsFile ]; then
+  echo "hook script has run, hooks were not skipped."
   exit 1
 fi
 
 sep
 
 # Retry
-echo foo
-touch second && git add second && git commit -m second
-echo bar
+commit second
 
 # Verify that hook did run
-if [ ! -f $hookParams ]; then
+if [ ! -f $hookParamsFile ]; then
   echo "hook script didn't run"
   exit 1
 fi
 
-# test that HUSKY_GIT_PARAMS worked TODO
+# test that HUSKY_GIT_PARAMS worked
+actual=$(cat $hookParamsFile)
+expected=".git/COMMIT_EDITMSG"
+if [ "$actual" != "$expected" ]; then
+  echo "HUSKY_GIT_PARAMS weren't set correctly"
+  echo "$actual != $expected"
+  exit 1
+fi
 
 sep
 
 # Should not fail due to missing script
 mv node_modules _node_modules
-time git commit --amend -m "third"
-
+commit third

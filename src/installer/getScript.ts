@@ -45,7 +45,7 @@ gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
 
 debug() {
-  if [ "$\{HUSKY_DEBUG}" = "true" ] || [ "$\{HUSKY_DEBUG}" = "1" ]; then
+  if [ "$HUSKY_DEBUG" = "true" ] || [ "$HUSKY_DEBUG" = "1" ]; then
     echo "husky:debug $1"
   fi
 }
@@ -55,15 +55,15 @@ if [ -f ~/${huskyrc} ]; then
   . ~/${huskyrc}
 fi
 
-if [ -f "$\{gitRoot}"/${huskyrc}.local ]; then
-  debug "source $\{gitRoot}/${huskyrc}.local"
-  . "$\{gitRoot}"/${huskyrc}.local
+if [ -f "$gitRoot"/${huskyrc}.local ]; then
+  debug "source $gitRoot/${huskyrc}.local"
+  . "$gitRoot"/${huskyrc}.local
 fi
 
 debug "$hookName hook started"
 
-if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
-  debug "HUSKY_SKIP_HOOKS is set to $\{HUSKY_SKIP_HOOKS}, skipping hook"
+if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
+  debug "HUSKY_SKIP_HOOKS is set to $HUSKY_SKIP_HOOKS, skipping hook"
   exit 0
 fi
 
