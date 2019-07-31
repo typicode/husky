@@ -1,6 +1,6 @@
 # Sponsoring
 
-You can support next major release work (v4.0) on [Open Collective](https://opencollective.com/husky) and [GitHub Sponsors](https://github.com/users/typicode/sponsorship) 🎉 (Yarn 2.0 support among other things...)
+You can now support Husky next major release work (v4.0) on [Open Collective](https://opencollective.com/husky) and [GitHub Sponsors](https://github.com/users/typicode/sponsorship) 🎉 (Yarn 2.0 support among other things...)
 
 ---
 
