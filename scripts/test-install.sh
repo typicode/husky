@@ -19,7 +19,7 @@ sep() {
 commit() {
   touch $1
   git add $1
-  time HUSKY_SKIP_HOOKS=$2 git commit -m "$1 msg"
+  (export HUSKY_SKIP_HOOKS=$2; time git commit -m "$1 msg")
 }
 
 # Reset dir
