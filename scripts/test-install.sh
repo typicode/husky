@@ -16,10 +16,13 @@ sep() {
 }
 
 # Commit function
+gitCommit() {
+  HUSKY_SKIP_HOOKS=$2 git commit -m "$1 msg"
+}
 commit() {
   touch $1
   git add $1
-  HUSKY_SKIP_HOOKS=$2 git commit -m "$1 msg"
+  time gitCommit $1 $2
 }
 
 # Reset dir
