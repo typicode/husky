@@ -39,6 +39,7 @@ npm install husky-*.tgz
 
 cat > .huskyrc << EOL
 {
+  "skipCI": false,
   "hooks": {
     "commit-msg": "echo \"commit-msg hook from Husky\" && echo \$HUSKY_GIT_PARAMS > $hookParamsFile"
   }
