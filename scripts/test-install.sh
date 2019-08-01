@@ -16,8 +16,6 @@ sep() {
 }
 
 # Commit function
-gitCommit() {
-}
 commit() {
   touch $1
   git add $1
