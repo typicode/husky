@@ -22,6 +22,7 @@ gitCommit() {
 commit() {
   touch $1
   git add $1
+  time echo test
   time gitCommit $1 $2
 }
 
