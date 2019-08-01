@@ -35,8 +35,7 @@ mv husky-*.tgz $projectDir
 cd $projectDir
 git init
 npm init -y
-npm install husky-*.tgz
-
+# Create .huskyrc with skipCI: false before installing husky
 cat > .huskyrc << EOL
 {
   "skipCI": false,
@@ -45,6 +44,7 @@ cat > .huskyrc << EOL
   }
 }
 EOL
+npm install husky-*.tgz
 
 sep
 
