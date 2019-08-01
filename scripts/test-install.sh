@@ -59,14 +59,13 @@ if [ -f $hookParamsFile ]; then
   exit 1
 fi
 
-rm $hookParamsFile
-
 sep
 
 # Retry
 commit second
 
 # Verify that hook did run
+ls -la
 if [ ! -f $hookParamsFile ]; then
   echo "hook script didn't run"
   exit 1
