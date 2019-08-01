@@ -59,6 +59,8 @@ if [ -f $hookParamsFile ]; then
   exit 1
 fi
 
+rm $hookParamsFile
+
 sep
 
 # Retry
