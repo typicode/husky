@@ -1,17 +1,28 @@
+# Integrations test
+# Installs husky in /tmp and makes a few commits
+
 # Exit on error
 set -e
 
-# Enable DEBUG
+# ---
+# Variables
+# ---
+
 HUSKY_DEBUG=1
 
-# Test directory and files
 projectDir=/tmp/husky-project
 hookParamsFile=hook-params
 
+
+# ---
+# Functions
+# ---
+
 # Separator function for readability
-sep() {
-  echo
-  echo '------'
+test() {
+  echo '---'
+  echo $1
+  echo '---'
   echo
 }
 
@@ -21,6 +32,11 @@ commit() {
   git add $1
   HUSKY_SKIP_HOOKS=$2 git commit -m "$1 msg"
 }
+
+
+# ---
+# Setup
+# ---
 
 # Reset dir
 rm -rf $projectDir && mkdir $projectDir
@@ -35,6 +51,7 @@ mv husky-*.tgz $projectDir
 cd $projectDir
 git init
 npm init -y
+
 # Create .huskyrc with skipCI: false before installing husky
 cat > .huskyrc << EOL
 {
@@ -46,43 +63,44 @@ cat > .huskyrc << EOL
 EOL
 npm install husky-*.tgz
 
-sep
+# Show hook content
+cat .git/hooks/commit-msg
 
-# Show post-checkout hook content
-# cat .git/hooks/post-checkout
 
-# Run git checkout with HUSKY_SKIP_HOOKS=1
+# ---
+# Tests
+# ---
+
+test "hook should not run when HUSKY_SKIP_HOOKS=1"
+
 commit first 1
 
-# Verify that post-checkout hook didn't run
 if [ -f $hookParamsFile ]; then
-  echo "hook script has run, hooks were not skipped."
+  echo "Fail: hooks were not skipped."
   exit 1
 fi
 
-sep
+# ---
+test "hook should run and have HUSKY_GIT_PARAMS set"
 
-# Retry
 commit second
 
-# Verify that hook did run
-ls -la
 if [ ! -f $hookParamsFile ]; then
-  echo "hook script didn't run"
+  echo "Fail: hook script didn't run"
   exit 1
 fi
 
-# test that HUSKY_GIT_PARAMS worked
 actual=$(cat $hookParamsFile)
 expected=".git/COMMIT_EDITMSG"
+
 if [ "$actual" != "$expected" ]; then
-  echo "HUSKY_GIT_PARAMS weren't set correctly"
+  echo "Fail: HUSKY_GIT_PARAMS weren't set correctly"
   echo "$actual != $expected"
   exit 1
 fi
 
-sep
+# ---
+test "hook should not fail if husky is not found"
 
-# Should not fail due to missing script
 mv node_modules _node_modules
 commit third

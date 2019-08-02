@@ -1,6 +1,0 @@
-{
-  "skipCI": false,
-  "hooks": {
-    "commit-msg": "echo \"running CI hook test\" && echo $HUSKY_GIT_PARAMS > hook-params"
-  }
-}
