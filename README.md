@@ -2,7 +2,7 @@
 
 # Announcement
 
-**Next release: you can support the development of `v4` major release on [Open Collective](https://opencollective.com/husky) and [GitHub Sponsors](https://github.com/users/typicode/sponsorship)!** 🎉
+__Next release: you can support the development of `v4` major release on [Open Collective](https://opencollective.com/husky) and [GitHub Sponsors](https://github.com/users/typicode/sponsorship)!__ 🎉
 
 ---
 
