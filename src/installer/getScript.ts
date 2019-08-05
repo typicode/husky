@@ -50,6 +50,10 @@ debug() {
   fi
 }
 
+command_exists () {
+  command -v "$1" >/dev/null 2>&1
+}
+
 if [ -f ~/${huskyrc} ]; then
   debug "source ~/${huskyrc}"
   . ~/${huskyrc}
@@ -66,6 +70,8 @@ if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
   debug "HUSKY_SKIP_HOOKS is set to $HUSKY_SKIP_HOOKS, skipping hook"
   exit 0
 fi
+
+# TODO check if npm/yarn/pnpm command exists
 
 cd "${pathToUserPkgDir}"
 ${runCommand} husky-run $hookName "$gitParams"
