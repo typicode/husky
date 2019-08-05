@@ -4,18 +4,44 @@ exports[`hookScript should match snapshot 1`] = `
 "#!/bin/sh
 # husky
 
-# Hook created by Husky (https://github.com/typicode/husky#readme)
-#   Version: 3.0.3
+# Hook created by Husky v3.0.3 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
+#   With: npm
 
-hookName=\`basename \\"$0\\"\`
 gitRoot=\\"$(git rev-parse --show-toplevel)\\"
 gitParams=\\"$*\\"
+hookName=\`basename \\"$0\\"\`
+packageManager=npm
 
 debug() {
   if [ \\"$HUSKY_DEBUG\\" = \\"true\\" ] || [ \\"$HUSKY_DEBUG\\" = \\"1\\" ]; then
     echo \\"husky:debug $1\\"
+  fi
+}
+
+command_exists () {
+  command -v \\"$1\\" >/dev/null 2>&1
+}
+
+run_command () {
+  if command_exists \\"$1\\"; then
+    \\"$1\\" \\"$2\\" husky-run $hookName \\"$gitParams\\"
+
+    exitCode=\\"$?\\"
+    debug \\"$1 $2 husky-run exited with $exitCode exit code\\"
+
+    if [ $exitCode -eq 127 ]; then
+      echo \\"Can't find Husky, skipping $hookName hook\\"
+      echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+    else
+      exit $exitCode
+    fi
+
+  else
+    echo \\"Can't find $1 in PATH: $PATH\\"
+    echo \\"Skipping $hookName hook\\"
+    exit 0
   fi
 }
 
@@ -37,15 +63,11 @@ if [ \\"$HUSKY_SKIP_HOOKS\\" = \\"true\\" ] || [ \\"$HUSKY_SKIP_HOOKS\\" = \\"1\
 fi
 
 cd \\".\\"
-npx --no-install husky-run $hookName \\"$gitParams\\"
-
-exitCode=$?
-debug \\"npx --no-install husky-run exited with $exitCode exit code\\"
-if [ $exitCode -eq 127 ]; then
-  echo \\"Can't find Husky, skipping $hookName hook\\"
-  echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
-else
-  exit $exitCode
-fi
+case $packageManager in
+  \\"npm\\") run_command npx --no-install;;
+  \\"pnpm\\") run_command pnpx --no-install;;
+  \\"yarn\\") run_command yarn;;
+  \\"*\\") echo \\"Unknow package manager: $packageManager\\"; exit 0;;
+esac
 "
 `;

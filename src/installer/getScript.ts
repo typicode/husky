@@ -1,19 +1,13 @@
 import fs from 'fs'
 import path from 'path'
 
-enum RunCommand {
-  NPX = 'npx --no-install',
-  PNPX = 'pnpx --no-install',
-  YARN = 'yarn run'
-}
-
 interface Context {
   createdAt: string
   homepage: string
+  packageManager: string
   pathToUserPkgDir: string
   pkgDirectory?: string
   pkgHomepage?: string
-  runCommand: RunCommand
   version: string
 }
 
@@ -27,22 +21,23 @@ const huskyrc = '.huskyrc'
 const render = ({
   createdAt,
   homepage,
+  packageManager,
   pathToUserPkgDir,
   pkgDirectory,
   pkgHomepage,
-  runCommand,
   version
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
-# Hook created by Husky (${homepage})
-#   Version: ${version}
+# Hook created by Husky v${version} (${homepage})
 #   At: ${createdAt}
 #   From: ${pkgDirectory} (${pkgHomepage})
+#   With: ${packageManager}
 
-hookName=\`basename "$0"\`
 gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
+hookName=\`basename "$0"\`
+packageManager=${packageManager}
 
 debug() {
   if [ "$HUSKY_DEBUG" = "true" ] || [ "$HUSKY_DEBUG" = "1" ]; then
@@ -52,6 +47,27 @@ debug() {
 
 command_exists () {
   command -v "$1" >/dev/null 2>&1
+}
+
+run_command () {
+  if command_exists "$1"; then
+    "$1" "$2" husky-run $hookName "$gitParams"
+
+    exitCode="$?"
+    debug "$1 $2 husky-run exited with $exitCode exit code"
+
+    if [ $exitCode -eq 127 ]; then
+      echo "Can't find Husky, skipping $hookName hook"
+      echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
+    else
+      exit $exitCode
+    fi
+
+  else
+    echo "Can't find $1 in PATH: $PATH"
+    echo "Skipping $hookName hook"
+    exit 0
+  fi
 }
 
 if [ -f ~/${huskyrc} ]; then
@@ -71,27 +87,24 @@ if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
   exit 0
 fi
 
-# TODO check if npm/yarn/pnpm command exists
-
 cd "${pathToUserPkgDir}"
-${runCommand} husky-run $hookName "$gitParams"
-
-exitCode=$?
-debug "${runCommand} husky-run exited with $exitCode exit code"
-if [ $exitCode -eq 127 ]; then
-  echo "Can't find Husky, skipping $hookName hook"
-  echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
-else
-  exit $exitCode
-fi
+case $packageManager in
+  "npm") run_command npx --no-install;;
+  "pnpm") run_command pnpx --no-install;;
+  "yarn") run_command yarn;;
+  "*") echo "Unknow package manager: $packageManager"; exit 0;;
+esac
 `
 
 /**
  * @param {string} pathToUserPkgDir - relative path from git dir to dir containing package.json
- * @param {string} pmName - e.g. npm, pnpm or yarn
+ * @param {string} packageManager - e.g. npm, pnpm or yarn
  * @returns {string} script
  */
-export default function(pathToUserPkgDir: string, pmName: string): string {
+export default function(
+  pathToUserPkgDir: string,
+  packageManager: string
+): string {
   // Env variable
   const pkgHomepage = process && process.env && process.env.npm_package_homepage
   const pkgDirectory = process && process.env && process.env.PWD
@@ -105,31 +118,20 @@ export default function(pathToUserPkgDir: string, pmName: string): string {
   const createdAt = new Date().toLocaleString()
 
   // Script runner command
-  let runCommand
-  switch (pmName) {
-    case 'npm':
-      runCommand = RunCommand.NPX
-      break
-    case 'pnpm':
-      runCommand = RunCommand.PNPX
-      break
-    case 'yarn':
-      runCommand = RunCommand.YARN
-      break
-    default:
-      throw new Error(
-        `Unknown package manager: ${pmName}\nnpm_config_user_agent: ${process.env.npm_config_user_agent}`
-      )
+  if (!['npm', 'pnpm', 'yarn'].includes(packageManager)) {
+    throw new Error(
+      `Unknown package manager: ${packageManager} (npm_config_user_agent: ${process.env.npm_config_user_agent})`
+    )
   }
 
   // Render script
   return render({
     createdAt,
     homepage,
+    packageManager,
     pathToUserPkgDir,
     pkgDirectory,
     pkgHomepage,
-    runCommand,
     version
   })
 }

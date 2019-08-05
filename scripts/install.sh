@@ -20,10 +20,7 @@ hookParamsFile=hook-params
 
 # Separator function for readability
 test() {
-  echo '---'
-  echo $1
-  echo '---'
-  echo
+  echo -e "\e[34m\n---\n$1\n---\n\e[0m"
 }
 
 # Commit function
