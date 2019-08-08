@@ -57,7 +57,7 @@
     "is-ci": "^2.0.0",
     "opencollective-postinstall": "^2.0.2",
     "pkg-dir": "^4.2.0",
-    "please-upgrade-node": "^3.1.1",
+    "please-upgrade-node": "^3.2.0",
     "read-pkg": "^5.1.1",
     "run-node": "^1.0.0",
     "slash": "^3.0.0"
