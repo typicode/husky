@@ -39,8 +39,6 @@ git commit -m 'Keep calm and commit'
 
 To go further, see the docs [here](https://github.com/typicode/husky/blob/master/DOCS.md).
 
-__Note__: there's a known issue with Node `v12.0`, please use `v12.1` or higher. 
-
 ## Uninstall
 
 ```sh
@@ -72,6 +70,9 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/husky/organization/8/website"><img src="https://opencollective.com/husky/organization/8/avatar.svg"></a>
 <a href="https://opencollective.com/husky/organization/9/website"><img src="https://opencollective.com/husky/organization/9/avatar.svg"></a>
 
+## Requirements
+
+Husky requires Node `>= 8.6.0` and Git `>= 2.13.2`
 
 ## Upgrading from 0.14
 
