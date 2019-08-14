@@ -4,6 +4,8 @@
 
 __Next release__ you can support the development of v4 major release on [Open Collective](https://opencollective.com/husky) and [GitHub Sponsors](https://github.com/users/typicode/sponsorship) 🎉
 
+See [next](https://github.com/typicode/husky/tree/next) branch.
+
 ---
 
 # Husky
