@@ -6,10 +6,17 @@ const pkg = require('./package.json')
 pleaseUpgradeNode(pkg, {
   exitCode: 0,
   message: function(requiredVersion) {
-    return 'Husky requires Node ' + requiredVersion + ', skipping Git hooks installation.'
+    return (
+      'Husky requires Node ' +
+      requiredVersion +
+      ', skipping Git hooks installation.'
+    )
   }
 })
 
 // Node version is supported, continue
-require('./lib/installer/bin')
-
+try {
+  require('./lib/installer/bin')
+} catch (e) {
+  console.log('missing lib directory')
+}

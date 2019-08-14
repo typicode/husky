@@ -100,8 +100,12 @@ function isInNodeModules(dir: string): boolean {
   return (dir.match(/node_modules/g) || []).length > 1
 }
 
+function getGitHooksDir(gitDir: string): string {
+  return path.join(gitDir, 'hooks')
+}
+
 function getHooks(gitDir: string): string[] {
-  const gitHooksDir = path.join(gitDir, 'hooks')
+  const gitHooksDir = getGitHooksDir(gitDir)
   return hookList.map((hookName: string): string =>
     path.join(gitHooksDir, hookName)
   )
@@ -111,16 +115,16 @@ function getHooks(gitDir: string): string[] {
  * @param topLevel - as returned by git --rev-parse
  * @param gitDir - as returned by git --rev-parse
  * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
+ * @param pmName - which package manager was used to install husky
  * @param isCI - true if running in CI
- * @param requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
  */
 // eslint-disable-next-line max-params
 export function install(
   topLevel: string,
   gitDir: string,
   huskyDir: string,
-  isCI: boolean,
-  requireRunNodePath = require.resolve('run-node/run-node')
+  pmName: string,
+  isCI: boolean
 ): void {
   // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
@@ -158,13 +162,16 @@ export function install(
   }
 
   // Create hooks directory if it doesn't exist
-  const gitHooksDir = path.join(gitDir, 'hooks')
+  const gitHooksDir = getGitHooksDir(gitDir)
   if (!fs.existsSync(gitHooksDir)) {
     fs.mkdirSync(gitHooksDir)
   }
 
   const hooks = getHooks(gitDir)
-  const script = getScript(topLevel, huskyDir, requireRunNodePath)
+
+  // Path.relative can return '' if both paths are the same, so '.' is used as a default value
+  const pathToUserPkgDir = path.relative(topLevel, userPkgDir) || '.'
+  const script = getScript(pathToUserPkgDir, pmName)
   createHooks(hooks, script)
 
   console.log(`husky > Done`)

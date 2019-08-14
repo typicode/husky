@@ -20,6 +20,8 @@ test_script:
   - node --version
   - npm --version
 
+  - sh ./scripts/test-install.sh
+
   # Run tests
   - npm test
 

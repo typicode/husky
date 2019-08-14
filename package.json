@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "3.0.1",
+  "version": "4.0.0-0",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-run": "./run.js",
@@ -11,18 +11,16 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "_install": "node husky install",
+    "install": "node husky install",
+    "postinstall": "opencollective-postinstall || true",
     "preuninstall": "node husky uninstall",
-    "devinstall": "npm run build && npm run _install -- node_modules/husky && node scripts/dev-fix-path",
-    "devuninstall": "npm run build && npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
     "postversion": "git push && git push --tags",
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
-    "fix": "npm run lint -- --fix",
-    "postinstall": "opencollective-postinstall || true"
+    "fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -57,10 +55,11 @@
     "is-ci": "^2.0.0",
     "opencollective-postinstall": "^2.0.2",
     "pkg-dir": "^4.2.0",
-    "please-upgrade-node": "^3.1.1",
+    "please-upgrade-node": "^3.2.0",
     "read-pkg": "^5.1.1",
     "run-node": "^1.0.0",
-    "slash": "^3.0.0"
+    "slash": "^3.0.0",
+    "which-pm-runs": "^1.0.0"
   },
   "devDependencies": {
     "@types/cosmiconfig": "^5.0.3",
@@ -91,11 +90,13 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "__env__.ts"
+    ],
     "moduleFileExtensions": [
       "ts",
-      "tsx",
       "js",
-      "jsx",
       "json",
       "node"
     ]

@@ -1,16 +1,13 @@
 import fs from 'fs'
-import os from 'os'
 import path from 'path'
-import slash from 'slash'
 
 interface Context {
   createdAt: string
   homepage: string
-  node: string
+  packageManager: string
+  pathToUserPkgDir: string
   pkgDirectory?: string
   pkgHomepage?: string
-  platform: string
-  runScriptPath: string
   version: string
 }
 
@@ -24,33 +21,52 @@ const huskyrc = '.huskyrc'
 const render = ({
   createdAt,
   homepage,
-  node,
+  packageManager,
+  pathToUserPkgDir,
   pkgDirectory,
   pkgHomepage,
-  platform,
-  runScriptPath,
   version
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
-# Hook created by Husky
-#   Version: ${version}
+# Hook created by Husky v${version} (${homepage})
 #   At: ${createdAt}
-#   See: ${homepage}
-
-# From
-#   Directory: ${pkgDirectory}
-#   Homepage: ${pkgHomepage}
-
-scriptPath="${runScriptPath}.js"
-hookName=\`basename "$0"\`
+#   From: ${pkgDirectory} (${pkgHomepage})
+#   With: ${packageManager}
 
 gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
+hookName=\`basename "$0"\`
+packageManager=${packageManager}
 
 debug() {
-  if [ "$\{HUSKY_DEBUG}" = "true" ] || [ "$\{HUSKY_DEBUG}" = "1" ]; then
+  if [ "$HUSKY_DEBUG" = "true" ] || [ "$HUSKY_DEBUG" = "1" ]; then
     echo "husky:debug $1"
+  fi
+}
+
+command_exists () {
+  command -v "$1" >/dev/null 2>&1
+}
+
+run_command () {
+  if command_exists "$1"; then
+    "$1" "$2" husky-run $hookName "$gitParams"
+
+    exitCode="$?"
+    debug "$1 $2 husky-run exited with $exitCode exit code"
+
+    if [ $exitCode -eq 127 ]; then
+      echo "Can't find Husky, skipping $hookName hook"
+      echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
+    else
+      exit $exitCode
+    fi
+
+  else
+    echo "Can't find $1 in PATH: $PATH"
+    echo "Skipping $hookName hook"
+    exit 0
   fi
 }
 
@@ -58,62 +74,37 @@ if [ -f ~/${huskyrc} ]; then
   debug "source ~/${huskyrc}"
   . ~/${huskyrc}
 fi
-if [ -f "$\{gitRoot}"/${huskyrc}.local ]; then
-  debug "source $\{gitRoot}/${huskyrc}.local"
-  . "$\{gitRoot}"/${huskyrc}.local
+
+if [ -f "$gitRoot"/${huskyrc}.local ]; then
+  debug "source $gitRoot/${huskyrc}.local"
+  . "$gitRoot"/${huskyrc}.local
 fi
 
 debug "$hookName hook started"
 
-if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
-  debug "HUSKY_SKIP_HOOKS is set to $\{HUSKY_SKIP_HOOKS}, skipping hook"
+if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
+  debug "HUSKY_SKIP_HOOKS is set to $HUSKY_SKIP_HOOKS, skipping hook"
   exit 0
 fi
 
-if [ "$\{HUSKY_USE_YARN}" = "true" ] || [ "$\{HUSKY_USE_YARN}" = "1" ]; then
-  debug "calling husky through Yarn"
-  yarn husky-run $hookName "$gitParams"
-else
-  ${
-    platform === 'win32'
-      ? ''
-      : `
-  if ! command -v node >/dev/null 2>&1; then
-    echo "Info: can't find node in PATH, trying to find a node binary on your system"
-  fi
-  `
-  }
-  if [ -f "$scriptPath" ]; then
-    # if [ -t 1 ]; then
-    #   exec < /dev/tty
-    # fi
-    ${node} "$scriptPath" $hookName "$gitParams"
-  else
-    echo "Can't find Husky, skipping $hookName hook"
-    echo "You can reinstall it using 'npm install husky --save-dev' or delete this hook"
-  fi
-fi
+cd "${pathToUserPkgDir}"
+case $packageManager in
+  "npm") run_command npx --no-install;;
+  "pnpm") run_command pnpx --no-install;;
+  "yarn") run_command yarn;;
+  "*") echo "Unknow package manager: $packageManager"; exit 0;;
+esac
 `
 
 /**
- * @param {string} rootDir - e.g. /home/typicode/project/
- * @param {string} huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param {string} requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
- * @param {string} platform - platform husky installer is running on (used to produce win32 specific script)
+ * @param {string} pathToUserPkgDir - relative path from git dir to dir containing package.json
+ * @param {string} packageManager - e.g. npm, pnpm or yarn
  * @returns {string} script
  */
 export default function(
-  rootDir: string,
-  huskyDir: string,
-  requireRunNodePath: string,
-  // Additional param used for testing only
-  platform: string = os.platform()
+  pathToUserPkgDir: string,
+  packageManager: string
 ): string {
-  const runNodePath = slash(path.relative(rootDir, requireRunNodePath))
-
-  // On Windows do not rely on run-node
-  const node = platform === 'win32' ? 'node' : runNodePath
-
   // Env variable
   const pkgHomepage = process && process.env && process.env.npm_package_homepage
   const pkgDirectory = process && process.env && process.env.PWD
@@ -123,23 +114,24 @@ export default function(
     fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
   )
 
-  // Path to run.js
-  const runScriptPath = slash(
-    path.join(path.relative(rootDir, huskyDir), 'run')
-  )
-
   // Created at
   const createdAt = new Date().toLocaleString()
+
+  // Script runner command
+  if (!['npm', 'pnpm', 'yarn'].includes(packageManager)) {
+    throw new Error(
+      `Unknown package manager: ${packageManager} (npm_config_user_agent: ${process.env.npm_config_user_agent})`
+    )
+  }
 
   // Render script
   return render({
     createdAt,
     homepage,
-    node,
+    packageManager,
+    pathToUserPkgDir,
     pkgDirectory,
     pkgHomepage,
-    platform,
-    runScriptPath,
     version
   })
 }

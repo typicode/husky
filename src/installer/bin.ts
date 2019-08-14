@@ -1,13 +1,13 @@
 import chalk from 'chalk'
 import isCI from 'is-ci'
 import path from 'path'
+import whichPMRuns from 'which-pm-runs'
 import debug from '../debug'
 import { install, uninstall } from './'
 import gitRevParse from './gitRevParse'
 
 // Debug
 debug(`cwd: ${process.cwd()}`)
-debug(`INIT_CWD: ${process.env.INIT_CWD}`)
 
 // Action can be "install" or "uninstall"
 // huskyDir is ONLY used in dev, don't use this arguments
@@ -30,7 +30,9 @@ try {
 
   // Install or uninstall
   if (action === 'install') {
-    install(topLevel, absoluteGitDir, huskyDir, isCI)
+    const pm = whichPMRuns()
+    debug(`package manager: ${pm.name}`)
+    install(topLevel, absoluteGitDir, huskyDir, pm.name, isCI)
   } else {
     uninstall(absoluteGitDir, huskyDir)
   }

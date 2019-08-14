@@ -1,10 +1,14 @@
-# Announcement: Husky is on [Open Collective](https://opencollective.com/husky) 🎉
+---
+
+# Announcement
+
+__Next release__ you can support the development of v4 major release on [Open Collective](https://opencollective.com/husky) and [GitHub Sponsors](https://github.com/users/typicode/sponsorship) 🎉
 
 ---
 
 # Husky
 
-[![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
+[![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
 
 > Git hooks made easy
 
@@ -34,8 +38,6 @@ git commit -m 'Keep calm and commit'
 ```
 
 To go further, see the docs [here](https://github.com/typicode/husky/blob/master/DOCS.md).
-
-__Note__: there's a known issue with Node `v12.0`, please use `v12.1` or higher. 
 
 ## Uninstall
 
@@ -68,6 +70,9 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/husky/organization/8/website"><img src="https://opencollective.com/husky/organization/8/avatar.svg"></a>
 <a href="https://opencollective.com/husky/organization/9/website"><img src="https://opencollective.com/husky/organization/9/avatar.svg"></a>
 
+## Requirements
+
+Husky requires Node `>= 8.6.0` and Git `>= 2.13.2`
 
 ## Upgrading from 0.14
 
