@@ -70,7 +70,7 @@ cat .git/hooks/commit-msg
 
 test "hook should not run when HUSKY_SKIP_HOOKS=1"
 
-commit first 1
+time commit first 1
 
 if [ -f $hookParamsFile ]; then
   echo "Fail: hooks were not skipped."
@@ -80,7 +80,7 @@ fi
 # ---
 test "hook should run and have HUSKY_GIT_PARAMS set"
 
-commit second
+time commit second
 
 if [ ! -f $hookParamsFile ]; then
   echo "Fail: hook script didn't run"
