@@ -51,10 +51,10 @@ command_exists () {
 
 run_command () {
   if command_exists "$1"; then
-    "$1" "$2" husky-run $hookName "$gitParams"
+    "$@" husky-run $hookName "$gitParams"
 
     exitCode="$?"
-    debug "$1 $2 husky-run exited with $exitCode exit code"
+    debug "$* husky-run exited with $exitCode exit code"
 
     if [ $exitCode -eq 127 ]; then
       echo "Can't find Husky, skipping $hookName hook"
