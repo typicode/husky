@@ -11,5 +11,5 @@ cache:
 env:
   - HUSKY_DEBUG=1
 script:
-  - sh ./scripts/test-install.sh
+  - sh ./scripts/install.sh
   - npm test
