@@ -80,7 +80,7 @@ fi
 # ---
 test "hook should run and have HUSKY_GIT_PARAMS set"
 
-time commit second
+commit second
 
 if [ ! -f $hookParamsFile ]; then
   echo "Fail: hook script didn't run"
