@@ -53,10 +53,6 @@ Git hooks installed by husky will be removed.
 
 Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/husky/contribute)]
 
-### Individuals
-
-<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890"></a>
-
 ### Organizations
 
 Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/husky/contribute)]
@@ -71,6 +67,10 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/husky/organization/7/website"><img src="https://opencollective.com/husky/organization/7/avatar.svg"></a>
 <a href="https://opencollective.com/husky/organization/8/website"><img src="https://opencollective.com/husky/organization/8/avatar.svg"></a>
 <a href="https://opencollective.com/husky/organization/9/website"><img src="https://opencollective.com/husky/organization/9/avatar.svg"></a>
+
+### Individuals
+
+<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890"></a>
 
 ## Requirements
 
