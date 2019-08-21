@@ -60,11 +60,6 @@ export default async function run(
       env.HUSKY_GIT_STDIN = await getStdinFn()
     }
 
-    if (command) {
-      console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(command, { cwd, env, stdio: 'inherit' })
-    }
-
     if (oldCommand) {
       console.log()
       console.log(
@@ -79,8 +74,11 @@ export default async function run(
       console.log()
       console.log(`See https://github.com/typicode/husky for usage`)
       console.log()
+    }
+
+    if (command || oldCommand) {
       console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(oldCommand, { cwd, env, stdio: 'inherit' })
+      execa.shellSync(command || oldCommand, { cwd, env, stdio: 'inherit' })
     }
 
     return 0

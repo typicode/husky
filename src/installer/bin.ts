@@ -21,6 +21,18 @@ try {
     action === 'install' ? 'Setting up' : 'Uninstalling'
   )
 
+  // Skip install if HUSKY_SKIP_INSTALL=1
+  if (
+    action === 'install' &&
+    ['1', 'true'].includes(process.env.HUSKY_SKIP_INSTALL || '')
+  ) {
+    console.log(
+      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
+      'skipping Git hooks installation.'
+    )
+    process.exit(0)
+  }
+
   // Get top level and git dir
   const { topLevel, absoluteGitDir } = gitRevParse()
 
@@ -34,6 +46,8 @@ try {
   } else {
     uninstall(absoluteGitDir, huskyDir)
   }
+
+  console.log(`husky > Done`)
 } catch (error) {
   console.log(chalk.red(error.message.trim()))
   console.log(chalk.red(`husky > Failed to ${action}`))

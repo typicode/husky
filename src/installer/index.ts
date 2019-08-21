@@ -157,14 +157,6 @@ export function install(
   const conf = getConf(userPkgDir)
 
   // Checks
-  if (['1', 'true'].includes(process.env.HUSKY_SKIP_INSTALL || '')) {
-    console.log(
-      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
-      'skipping Git hooks installation.'
-    )
-    return
-  }
-
   if (isCI && conf.skipCI) {
     console.log('CI detected, skipping Git hooks installation.')
     return
@@ -186,8 +178,6 @@ export function install(
   const hooks = getHooks(gitDir)
   const script = getScript(topLevel, huskyDir, requireRunNodePath)
   createHooks(hooks, script, conf.overwriteExisting)
-
-  console.log(`husky > Done`)
 }
 
 export function uninstall(gitDir: string, huskyDir: string): void {
@@ -208,6 +198,4 @@ export function uninstall(gitDir: string, huskyDir: string): void {
   // Remove hooks
   const hooks = getHooks(gitDir)
   removeHooks(hooks)
-
-  console.log('husky > Done')
 }

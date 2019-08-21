@@ -1,4 +1,5 @@
 .gitattributes
+.github
 .huskyrc
 .travis.yml
 appveyor.yml
@@ -7,6 +8,5 @@ preprocessor.js
 scripts
 src
 tsconfig.json
-tslint.json
 typings
 docs-util.js

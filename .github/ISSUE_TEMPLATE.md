@@ -1,2 +1,1 @@
-<!-- Love husky? Please consider supporting our collective:
-👉  https://opencollective.com/husky/donate -->
+<!-- Love ❤️ husky? Please consider supporting this project by clicking the Sponsor button 🙏 -->
