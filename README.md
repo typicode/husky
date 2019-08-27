@@ -125,7 +125,6 @@ To view the full list of changes, please see the [CHANGELOG](https://github.com/
 * [webpack](https://github.com/webpack/webpack)
 * [babel](https://github.com/babel/babel)
 * [create-react-app](https://github.com/facebookincubator/create-react-app)
-* [Next.js](https://github.com/zeit/next.js)
 * [Hyper](https://github.com/zeit/hyper)
 * [Kibana](https://github.com/elastic/kibana)
 * [JSON Server](https://github.com/typicode/json-server)
