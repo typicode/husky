@@ -78,6 +78,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "formatree": "^1.0.2",
     "jest": "^24.8.0",
+    "markdown-toc": "^1.2.0",
     "mkdirp": "^0.5.1",
     "pinst": "^1.1.1",
     "pkg-ok": "^2.3.1",
