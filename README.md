@@ -77,6 +77,27 @@ Support this project with your organization. Your logo will show up here with a 
 
 ## Guides
 
+<!-- toc -->
+
+  * [Upgrading from 0.14](#upgrading-from-014)
+  * [Supported hooks](#supported-hooks)
+  * [Access Git params and stdin](#access-git-params-and-stdin)
+  * [Skip all hooks (rebase)](#skip-all-hooks-rebase)
+  * [Disable auto-install](#disable-auto-install)
+  * [CI servers](#ci-servers)
+  * [Monorepos](#monorepos)
+  * [Node version managers](#node-version-managers)
+  * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
+  * [Debug](#debug)
+  * [Multiple commands](#multiple-commands)
+  * [Troubleshoot](#troubleshoot)
+    + [Hooks aren't running](#hooks-arent-running)
+    + [Commits aren't blocked](#commits-arent-blocked)
+    + [Commits are slow](#commits-are-slow)
+    + [Testing husky in a new repo](#testing-husky-in-a-new-repo)
+
+<!-- tocstop -->
+
 ### Upgrading from 0.14
 
 Run `husky-upgrade` to automatically upgrade your configuration:
@@ -228,9 +249,9 @@ module.exports = {
 
 Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too.
 
-## Troubleshoot
+### Troubleshoot
 
-### Hooks aren't running
+#### Hooks aren't running
 
 Check if hooks were installed. Verify that `.git/hooks/pre-commit` exists and have husky code. It should start with:
 
@@ -246,15 +267,15 @@ husky > Setting up git hooks
 husky > Done
 ```
 
-### Commits aren't blocked
+#### Commits aren't blocked
 
 For a commit to be blocked, `pre-commit` script must exit with a non-zero exit code. If you commit isn't blocked, check your script exit code.
 
-### Commits are slow
+#### Commits are slow
 
 Husky is fast and only adds a few tenth of seconds to commits (`~0.3s` on a low-end PC). So it's most probably related to how many things are done during `pre-commit`. You can often improve this by using cache on your tools (babel, eslint, ...) and using [lint-staged](https://github.com/okonet/lint-staged).
 
-### Testing husky in a new repo
+#### Testing husky in a new repo
 
 To isolate your issue, you can also create a new repo:
 
