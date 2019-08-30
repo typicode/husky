@@ -14,10 +14,16 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
 ## Install
 
+#### Install via *npm*
 ```sh
-npm install husky --save-dev
+$ npm install husky --save-dev
+```
+#### Install via *yarn*
+```shell script
+$ yarn add --dev husky
 ```
 
+#### Add this configuration in your `package.json`
 ```js
 // package.json
 {
@@ -31,16 +37,23 @@ npm install husky --save-dev
 }
 ```
 
+#### test husky hook
 ```sh
-git commit -m 'Keep calm and commit'
+$ git commit -m 'Keep calm and commit'
 ```
 
 _Existing hooks are kept. Requires Node `>= 8.6.0` and Git `>= 2.13.2`._
 
 ## Uninstall
 
+#### for npm install user
 ```sh
-npm uninstall husky
+$ npm uninstall husky
+```
+
+#### for yarn install user
+```shell script
+$ yarn remove husky
 ```
 
 _Git hooks installed by husky will be removed._
