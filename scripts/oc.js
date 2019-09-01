@@ -4,7 +4,7 @@ function renderTier(tier, height) {
   const arr = [`#### ${tier} Sponsors`]
   for (let i = 0; i <= 9; i++) {
     arr.push(
-      `<a href="https://opencollective.com/husky/${tier.toLowerCase()}-sponsor/0/website"><img src="https://opencollective.com/husky/${tier.toLowerCase()}-sponsor/0/avatar.svg" height="${height}px"></a>`
+      `<a href="https://opencollective.com/husky/${tier.toLowerCase()}-sponsor/${i}/website"><img src="https://opencollective.com/husky/${tier.toLowerCase()}-sponsor/${i}/avatar.svg" height="${height}px"></a>`
     )
   }
 
@@ -18,6 +18,10 @@ function render() {
 }
 
 const data = fs.readFileSync('README.md', 'utf-8')
-const regex = /<!-- oc -->(.*)<!-- oc-end -->/s
+const regex = /(<!-- oc -->)(.*)(<!-- oc-end -->)/s
 
-console.log(data.replace(regex, render()))
+fs.writeFileSync(
+  'README.md',
+  data.replace(regex, `$1\n${render()}\n$3`),
+  'utf-8'
+)
