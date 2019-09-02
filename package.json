@@ -22,7 +22,7 @@
     "postpublish": "pinst --disable",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
     "fix": "npm run lint -- --fix",
-    "postinstall": "opencollective-postinstall || exit 0"
+    "_postinstall": "opencollective-postinstall || exit 0"
   },
   "repository": {
     "type": "git",
