@@ -12,7 +12,6 @@
   "scripts": {
     "test": "npm run lint && jest",
     "install": "node husky install",
-    "postinstall": "opencollective-postinstall || true",
     "preuninstall": "node husky uninstall",
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
@@ -20,7 +19,8 @@
     "prepublishOnly": "npm run test && npm run build && pinst --enable && pkg-ok",
     "postpublish": "pinst --disable",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
-    "fix": "npm run lint -- --fix"
+    "fix": "npm run lint -- --fix",
+    "_postinstall": "opencollective-postinstall || exit 0"
   },
   "repository": {
     "type": "git",
@@ -77,6 +77,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "formatree": "^1.0.2",
     "jest": "^24.8.0",
+    "markdown-toc": "^1.2.0",
     "mkdirp": "^0.5.1",
     "pinst": "^1.1.1",
     "pkg-ok": "^2.3.1",

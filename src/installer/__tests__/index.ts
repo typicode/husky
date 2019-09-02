@@ -76,7 +76,6 @@ function expectHookToExist(filename: string): void {
 describe('install', (): void => {
   beforeEach((): void => {
     delete process.env.INIT_CWD
-    delete process.env.HUSKY_SKIP_INSTALL
     tempDir = tempy.directory()
   })
   afterEach((): Promise<string[]> => del(tempDir, { force: true }))
@@ -288,24 +287,6 @@ describe('install', (): void => {
     install()
     const hook = readFile(defaultHookFilename)
     expect(hook).toMatch(huskyIdentifier)
-  })
-
-  it('should not install hooks if HUSKY_SKIP_INSTALL=1', (): void => {
-    mkdir(defaultGitDir, defaultHuskyDir)
-    writeFile('package.json', pkg)
-
-    process.env.HUSKY_SKIP_INSTALL = '1'
-    install()
-    expect(exists(defaultHookFilename)).toBeFalsy()
-  })
-
-  it('should not install hooks if HUSKY_SKIP_INSTALL=true', (): void => {
-    mkdir(defaultGitDir, defaultHuskyDir)
-    writeFile('package.json', pkg)
-
-    process.env.HUSKY_SKIP_INSTALL = 'true'
-    install()
-    expect(exists(defaultHookFilename)).toBeFalsy()
   })
 
   it('should not install hooks in CI server', (): void => {
