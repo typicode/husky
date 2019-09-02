@@ -93,7 +93,7 @@ Support this project with your organization. Your logo will show up here with a 
 
 ### Individuals
 
-<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890&height=60"></a>
+<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890" height="60px"></a>
 
 ## Used by
 
