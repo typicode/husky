@@ -55,40 +55,40 @@ Support this project with your organization. Your logo will show up here with a 
 
 <!-- oc -->
 #### Gold Sponsors
-<a href="https://opencollective.com/husky/gold-sponsor/0/website"><img src="https://opencollective.com/husky/gold-sponsor/0/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/1/website"><img src="https://opencollective.com/husky/gold-sponsor/1/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/2/website"><img src="https://opencollective.com/husky/gold-sponsor/2/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/3/website"><img src="https://opencollective.com/husky/gold-sponsor/3/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/4/website"><img src="https://opencollective.com/husky/gold-sponsor/4/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/5/website"><img src="https://opencollective.com/husky/gold-sponsor/5/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/6/website"><img src="https://opencollective.com/husky/gold-sponsor/6/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/7/website"><img src="https://opencollective.com/husky/gold-sponsor/7/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/8/website"><img src="https://opencollective.com/husky/gold-sponsor/8/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/gold-sponsor/9/website"><img src="https://opencollective.com/husky/gold-sponsor/9/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/0/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/1/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/2/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/3/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/3/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/4/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/4/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/5/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/5/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/6/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/6/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/7/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/7/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/8/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/gold-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/9/avatar.svg" height="60px"></a>
 
 #### Silver Sponsors
-<a href="https://opencollective.com/husky/silver-sponsor/0/website"><img src="https://opencollective.com/husky/silver-sponsor/0/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/1/website"><img src="https://opencollective.com/husky/silver-sponsor/1/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/2/website"><img src="https://opencollective.com/husky/silver-sponsor/2/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/3/website"><img src="https://opencollective.com/husky/silver-sponsor/3/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/4/website"><img src="https://opencollective.com/husky/silver-sponsor/4/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/5/website"><img src="https://opencollective.com/husky/silver-sponsor/5/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/6/website"><img src="https://opencollective.com/husky/silver-sponsor/6/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/7/website"><img src="https://opencollective.com/husky/silver-sponsor/7/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/8/website"><img src="https://opencollective.com/husky/silver-sponsor/8/avatar.svg" height="45px"></a>
-<a href="https://opencollective.com/husky/silver-sponsor/9/website"><img src="https://opencollective.com/husky/silver-sponsor/9/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/0/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/1/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/2/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/3/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/3/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/4/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/4/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/5/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/5/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/6/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/6/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/7/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/7/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/8/avatar.svg" height="45px"></a>
+<a href="https://opencollective.com/husky/tiers/silver-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/9/avatar.svg" height="45px"></a>
 
 #### Bronze Sponsors
-<a href="https://opencollective.com/husky/bronze-sponsor/0/website"><img src="https://opencollective.com/husky/bronze-sponsor/0/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/1/website"><img src="https://opencollective.com/husky/bronze-sponsor/1/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/2/website"><img src="https://opencollective.com/husky/bronze-sponsor/2/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/3/website"><img src="https://opencollective.com/husky/bronze-sponsor/3/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/4/website"><img src="https://opencollective.com/husky/bronze-sponsor/4/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/5/website"><img src="https://opencollective.com/husky/bronze-sponsor/5/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/6/website"><img src="https://opencollective.com/husky/bronze-sponsor/6/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/7/website"><img src="https://opencollective.com/husky/bronze-sponsor/7/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/8/website"><img src="https://opencollective.com/husky/bronze-sponsor/8/avatar.svg" height="30px"></a>
-<a href="https://opencollective.com/husky/bronze-sponsor/9/website"><img src="https://opencollective.com/husky/bronze-sponsor/9/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/0/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/1/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/2/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/3/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/3/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/4/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/4/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/5/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/5/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/6/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/6/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/7/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/7/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/8/avatar.svg" height="30px"></a>
+<a href="https://opencollective.com/husky/tiers/bronze-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/9/avatar.svg" height="30px"></a>
 <!-- oc-end -->
 
 ### Individuals

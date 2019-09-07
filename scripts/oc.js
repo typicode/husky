@@ -2,10 +2,11 @@
 const fs = require('fs')
 
 function renderTier(tier, height) {
+  const baseUrl = `https://opencollective.com/husky/tiers/${tier.toLowerCase()}-sponsor`
   const arr = [`#### ${tier} Sponsors`]
   for (let i = 0; i <= 9; i++) {
     arr.push(
-      `<a href="https://opencollective.com/husky/${tier.toLowerCase()}-sponsor/${i}/website"><img src="https://opencollective.com/husky/${tier.toLowerCase()}-sponsor/${i}/avatar.svg" height="${height}px"></a>`
+      `<a href="${baseUrl}/${i}/website"><img src="${baseUrl}/${i}/avatar.svg" height="${height}px"></a>`
     )
   }
 
