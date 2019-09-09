@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import isCI from 'is-ci'
+import { isCI } from 'ci-info'
 import path from 'path'
 import debug from '../debug'
 import { install, uninstall } from './'

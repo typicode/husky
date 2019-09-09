@@ -1,3 +1,3 @@
 declare module 'execa'
-declare module 'is-ci'
+declare module 'ci-info'
 declare module 'slash'
