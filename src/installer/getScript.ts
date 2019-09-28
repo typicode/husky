@@ -60,24 +60,24 @@ if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
 fi
 
 if [ "$\{HUSKY_USE_YARN}" = "true" ] || [ "$\{HUSKY_USE_YARN}" = "1" ]; then
-  debug "calling husky through Yarn"
+  debug "Calling husky through Yarn"
   yarn husky-run $hookName "$gitParams"
 else
-  ${
-    platform === 'win32'
-      ? ''
-      : `
+${
+  platform === 'win32'
+    ? ''
+    : `
   if ! command -v node >/dev/null 2>&1; then
     echo "Info: can't find node in PATH, trying to find a node binary on your system"
   fi
-  `
-  }
+`
+}
   if [ -f "$scriptPath" ]; then
     # if [ -t 1 ]; then
     #   exec < /dev/tty
     # fi
     if [ -f ${huskyrc} ]; then
-      debug "source ${huskyrc}"
+      debug "Sourcing '${huskyrc}'"
       . ${huskyrc}
     fi
     ${node} "$scriptPath" $hookName "$gitParams"

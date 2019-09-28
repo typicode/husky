@@ -115,9 +115,9 @@ Support this project with your organization. Your logo will show up here with a 
   * [Monorepos](#monorepos)
   * [Node version managers](#node-version-managers)
   * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
-  * [Debug](#debug)
   * [Multiple commands](#multiple-commands)
   * [Troubleshoot](#troubleshoot)
+    + [Debug messages](#debug-messages)
     + [Hooks aren't running](#hooks-arent-running)
     + [Commits aren't blocked](#commits-arent-blocked)
     + [Commits are slow](#commits-are-slow)
@@ -247,10 +247,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
-### Debug
-
-Use `HUSKY_DEBUG=1` to log debug messages.
-
 ### Multiple commands
 
 By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command. 
@@ -277,6 +273,15 @@ module.exports = {
 Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too.
 
 ### Troubleshoot
+
+#### Debug messages
+
+`HUSKY_DEBUG=1` can provide additional informations when running commands.
+
+```
+HUSKY_DEBUG=1 npm install husky --save-dev
+HUSKY_DEBUG=1 git commit ...
+```
 
 #### Hooks aren't running
 

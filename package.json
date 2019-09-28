@@ -22,6 +22,7 @@
     "postpublish": "pinst --disable",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
     "fix": "npm run lint -- --fix",
+    "doc": "markdown-toc -i README.md",
     "_postinstall": "opencollective-postinstall || exit 0"
   },
   "repository": {
