@@ -41,17 +41,17 @@ try {
   }
 
   // Get top level and git dir
-  const { topLevel, absoluteGitDir } = gitRevParse()
+  const { topLevel, gitCommonDir } = gitRevParse()
 
   debug('Git rev-parse command returned:')
-  debug(`  topLevel: ${topLevel}`)
-  debug(`  absoluteGitDir: ${absoluteGitDir}`)
+  debug(`  --show-top-level: ${topLevel}`)
+  debug(`  --git-common-dir: ${gitCommonDir}`)
 
   // Install or uninstall
   if (action === 'install') {
-    install(topLevel, absoluteGitDir, huskyDir, isCI)
+    install(topLevel, gitCommonDir, huskyDir, isCI)
   } else {
-    uninstall(absoluteGitDir, huskyDir)
+    uninstall(gitCommonDir, huskyDir)
   }
 
   console.log(`husky > Done`)
