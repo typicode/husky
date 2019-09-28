@@ -19,7 +19,7 @@ try {
   // Show un/install message
   console.log(
     'husky > %s git hooks',
-    action === 'install' ? 'Setting up' : 'Uninstalling',
+    action === 'install' ? 'Setting up' : 'Uninstalling'
   )
 
   // Skip install if HUSKY_SKIP_INSTALL=1
@@ -29,7 +29,7 @@ try {
   ) {
     console.log(
       "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
-      'skipping Git hooks installation.',
+      'skipping Git hooks installation.'
     )
     process.exit(0)
   }
@@ -37,7 +37,7 @@ try {
   if (process.env.GIT_DIR) {
     debug(`GIT_DIR environment variable is set to '${process.env.GIT_DIR}'.`)
     debug(
-      `Unless it's on purpose, you may want to unset GIT_DIR as it will affect where Git hooks are going to be installed.`,
+      `Unless it's on purpose, you may want to unset GIT_DIR as it will affect where Git hooks are going to be installed.`
     )
   }
 
