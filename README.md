@@ -37,6 +37,8 @@ git commit -m 'Keep calm and commit'
 
 _Existing hooks are kept. Requires Node `>= 8.6.0` and Git `>= 2.13.2`._
 
+__Note__: if you're trying Yarn v2, please install `husky@next`. See [next](https://github.com/typicode/husky/tree/next) branch.
+
 ## Uninstall
 
 ```sh
