@@ -52,6 +52,7 @@ debug() {
   fi
 }
 
+debug "husky v${version} (created at ${createdAt})"
 debug "$hookName hook started"
 
 if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then

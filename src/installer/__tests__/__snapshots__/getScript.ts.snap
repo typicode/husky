@@ -23,6 +23,7 @@ debug() {
   fi
 }
 
+debug \\"husky v3.0.6 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
 
 if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
@@ -79,6 +80,7 @@ debug() {
   fi
 }
 
+debug \\"husky v3.0.6 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
 
 if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
