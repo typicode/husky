@@ -278,7 +278,7 @@ Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too
 
 #### Debug messages
 
-`HUSKY_DEBUG=1` can provide additional informations when running commands.
+`HUSKY_DEBUG=1` can provide additional information when running commands.
 
 ```
 HUSKY_DEBUG=1 npm install husky --save-dev
