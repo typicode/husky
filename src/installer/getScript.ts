@@ -25,7 +25,7 @@ const render = ({
   pathToUserPkgDir,
   pkgDirectory,
   pkgHomepage,
-  version
+  version,
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
@@ -103,7 +103,7 @@ esac
  */
 export default function(
   pathToUserPkgDir: string,
-  packageManager: string
+  packageManager: string,
 ): string {
   // Env variable
   const pkgHomepage = process && process.env && process.env.npm_package_homepage
@@ -111,7 +111,7 @@ export default function(
 
   // Husky package.json
   const { homepage, version } = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
+    fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8'),
   )
 
   // Created at
@@ -120,7 +120,7 @@ export default function(
   // Script runner command
   if (!['npm', 'pnpm', 'yarn'].includes(packageManager)) {
     throw new Error(
-      `Unknown package manager: ${packageManager} (npm_config_user_agent: ${process.env.npm_config_user_agent})`
+      `Unknown package manager: ${packageManager} (npm_config_user_agent: ${process.env.npm_config_user_agent})`,
     )
   }
 
@@ -132,6 +132,6 @@ export default function(
     pathToUserPkgDir,
     pkgDirectory,
     pkgHomepage,
-    version
+    version,
   })
 }

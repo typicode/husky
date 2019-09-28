@@ -4,7 +4,12 @@ exports[`hookScript should match snapshot 1`] = `
 "#!/bin/sh
 # husky
 
+<<<<<<< HEAD
 # Hook created by Husky v4.0.0-beta.1 (https://github.com/typicode/husky#readme)
+=======
+# Hook created by Husky
+#   Version: 3.0.6
+>>>>>>> master
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 #   With: npm
@@ -28,6 +33,7 @@ run_command () {
   if command_exists \\"$1\\"; then
     \\"$@\\" husky-run $hookName \\"$gitParams\\"
 
+<<<<<<< HEAD
     exitCode=\\"$?\\"
     debug \\"$* husky-run exited with $exitCode exit code\\"
 
@@ -36,6 +42,24 @@ run_command () {
       echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
     else
       exit $exitCode
+=======
+if [ \\"\${HUSKY_USE_YARN}\\" = \\"true\\" ] || [ \\"\${HUSKY_USE_YARN}\\" = \\"1\\" ]; then
+  debug \\"Calling husky through Yarn\\"
+  yarn husky-run $hookName \\"$gitParams\\"
+else
+
+  if ! command -v node >/dev/null 2>&1; then
+    echo \\"Info: can't find node in PATH, trying to find a node binary on your system\\"
+  fi
+
+  if [ -f \\"$scriptPath\\" ]; then
+    # if [ -t 1 ]; then
+    #   exec < /dev/tty
+    # fi
+    if [ -f ~/.huskyrc ]; then
+      debug \\"Sourcing '~/.huskyrc'\\"
+      . ~/.huskyrc
+>>>>>>> master
     fi
 
   else
@@ -43,7 +67,26 @@ run_command () {
     echo \\"Skipping $hookName hook\\"
     exit 0
   fi
+<<<<<<< HEAD
 }
+=======
+fi
+"
+`;
+
+exports[`hookScript should match snapshot (Windows) 1`] = `
+"#!/bin/sh
+# husky
+
+# Hook created by Husky
+#   Version: 3.0.6
+#   At: <locale date string>
+#   See: https://github.com/typicode/husky#readme
+
+# From
+#   Directory: /home/typicode/projects/foo-package
+#   Homepage: https://github.com/foo/foo-package
+>>>>>>> master
 
 if [ -f ~/.huskyrc ]; then
   debug \\"source ~/.huskyrc\\"
@@ -62,6 +105,7 @@ if [ \\"$HUSKY_SKIP_HOOKS\\" = \\"true\\" ] || [ \\"$HUSKY_SKIP_HOOKS\\" = \\"1\
   exit 0
 fi
 
+<<<<<<< HEAD
 cd \\".\\"
 case $packageManager in
   \\"npm\\") run_command npx --no-install;;
@@ -69,5 +113,26 @@ case $packageManager in
   \\"yarn\\") run_command yarn;;
   \\"*\\") echo \\"Unknow package manager: $packageManager\\"; exit 0;;
 esac
+=======
+if [ \\"\${HUSKY_USE_YARN}\\" = \\"true\\" ] || [ \\"\${HUSKY_USE_YARN}\\" = \\"1\\" ]; then
+  debug \\"Calling husky through Yarn\\"
+  yarn husky-run $hookName \\"$gitParams\\"
+else
+
+  if [ -f \\"$scriptPath\\" ]; then
+    # if [ -t 1 ]; then
+    #   exec < /dev/tty
+    # fi
+    if [ -f ~/.huskyrc ]; then
+      debug \\"Sourcing '~/.huskyrc'\\"
+      . ~/.huskyrc
+    fi
+    node \\"$scriptPath\\" $hookName \\"$gitParams\\"
+  else
+    echo \\"Can't find Husky, skipping $hookName hook\\"
+    echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+  fi
+fi
+>>>>>>> master
 "
 `;

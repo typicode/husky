@@ -4,6 +4,7 @@ import pkgDir from 'pkg-dir'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
+import debug from '../debug'
 
 const hookList = [
   'applypatch-msg',
@@ -159,6 +160,7 @@ export function install(
     fs.mkdirSync(gitHooksDir)
   }
 
+  debug(`Installing hooks in '${gitHooksDir}'`)
   const hooks = getHooks(gitDir)
 
   // Path.relative can return '' if both paths are the same, so '.' is used as a default value

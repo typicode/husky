@@ -22,7 +22,7 @@ export default async function run(
   const cwd = path.resolve(scriptPath.split('node_modules')[0])
 
   // Debug
-  debug(`cwd: ${cwd} (updated)`)
+  debug(`Changed current working directory to '${cwd}'`)
 
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch

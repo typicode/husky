@@ -2,7 +2,7 @@ import index from './'
 import debug from '../debug'
 
 // Debug
-debug(`cwd: ${process.cwd()}`)
+debug(`Current working directory is '${process.cwd()}'`)
 
 // Run hook
 index(process.argv)
