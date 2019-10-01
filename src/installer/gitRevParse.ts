@@ -5,6 +5,7 @@ export default function(): {
   topLevel: string
   gitCommonDir: string
 } {
+  // https://github.com/typicode/husky/issues/580
   const result = execa.sync('git', [
     'rev-parse',
     '--show-toplevel',
