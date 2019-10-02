@@ -3,15 +3,16 @@ import execa from 'execa'
 
 export default function(): {
   topLevel: string
-  absoluteGitDir: string
+  gitCommonDir: string
 } {
+  // https://github.com/typicode/husky/issues/580
   const result = execa.sync('git', [
     'rev-parse',
     '--show-toplevel',
-    '--absolute-git-dir'
+    '--git-common-dir'
   ])
 
-  const [topLevel, absoluteGitDir] = result.stdout
+  const [topLevel, gitCommonDir] = result.stdout
     .trim()
     .split('\n')
     // Normalize for Windows
@@ -20,9 +21,9 @@ export default function(): {
   // Git rev-parse returns unknown options as is.
   // If we get --absolute-git-dir in the output,
   // it probably means that an older version of Git has been used.
-  if (absoluteGitDir === '--absolute-git-dir') {
-    throw new Error('Husky requires Git >= 2.13.2, please update Git')
+  if (gitCommonDir === '--git-common-dir') {
+    throw new Error('Husky requires Git >= 2.5.1, please update Git')
   }
 
-  return { topLevel, absoluteGitDir }
+  return { topLevel, gitCommonDir }
 }
