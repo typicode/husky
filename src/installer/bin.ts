@@ -4,6 +4,7 @@ import path from 'path'
 import debug from '../debug'
 import { install, uninstall } from './'
 import gitRevParse from './gitRevParse'
+import { checkGitDirEnv } from '../checkGitDirEnv'
 
 // Debug
 debug(`Current working directory is '${process.cwd()}'`)
@@ -33,12 +34,8 @@ try {
     process.exit(0)
   }
 
-  if (process.env.GIT_DIR) {
-    debug(`GIT_DIR environment variable is set to '${process.env.GIT_DIR}'.`)
-    debug(
-      `Unless it's on purpose, you may want to unset GIT_DIR as it will affect where Git hooks are going to be installed.`
-    )
-  }
+  // Check GIT_DIR environment variable
+  checkGitDirEnv()
 
   // Get top level and git dir
   const { topLevel, gitCommonDir } = gitRevParse()
