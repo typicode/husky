@@ -5,7 +5,7 @@ exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
 # husky
 
 # Hook created by Husky
-#   Version: 3.0.7
+#   Version: 3.0.8
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 
@@ -23,7 +23,7 @@ debug() {
   fi
 }
 
-debug \\"husky v3.0.7 (created at <locale date string>)\\"
+debug \\"husky v3.0.8 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
 
 if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
@@ -62,7 +62,7 @@ exports[`hookScript should match snapshot (Windows) 1`] = `
 # husky
 
 # Hook created by Husky
-#   Version: 3.0.7
+#   Version: 3.0.8
 #   At: <locale date string>
 #   See: https://github.com/typicode/husky#readme
 
@@ -80,7 +80,7 @@ debug() {
   fi
 }
 
-debug \\"husky v3.0.7 (created at <locale date string>)\\"
+debug \\"husky v3.0.8 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
 
 if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
