@@ -5,6 +5,7 @@ const pkg = require('./package.json')
 
 // Node version isn't supported, skip
 pleaseUpgradeNode(pkg, {
+  exitCode: 0,
   message(requiredVersion) {
     return 'Husky requires Node ' + requiredVersion + ", can't run Git hook."
   }
