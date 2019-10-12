@@ -1,10 +1,11 @@
 import chalk from 'chalk'
-import isCI from 'is-ci'
+import { isCI } from 'ci-info'
 import path from 'path'
 import whichPMRuns from 'which-pm-runs'
 import debug from '../debug'
 import { install, uninstall } from './'
 import gitRevParse from './gitRevParse'
+import { checkGitDirEnv } from '../checkGitDirEnv'
 
 // Debug
 debug(`Current working directory is '${process.cwd()}'`)
@@ -34,27 +35,23 @@ try {
     process.exit(0)
   }
 
-  if (process.env.GIT_DIR) {
-    debug(`GIT_DIR environment variable is set to '${process.env.GIT_DIR}'.`)
-    debug(
-      `Unless it's on purpose, you may want to unset GIT_DIR as it will affect where Git hooks are going to be installed.`
-    )
-  }
+  // Check GIT_DIR environment variable
+  checkGitDirEnv()
 
   // Get top level and git dir
-  const { topLevel, absoluteGitDir } = gitRevParse()
+  const { topLevel, gitCommonDir } = gitRevParse()
 
   debug('Git rev-parse command returned:')
-  debug(`  topLevel: ${topLevel}`)
-  debug(`  absoluteGitDir: ${absoluteGitDir}`)
+  debug(`  --show-top-level: ${topLevel}`)
+  debug(`  --git-common-dir: ${gitCommonDir}`)
 
   // Install or uninstall
   if (action === 'install') {
     const pm = whichPMRuns()
     debug(`package manager: ${pm.name}`)
-    install(topLevel, absoluteGitDir, huskyDir, pm.name, isCI)
+    install(topLevel, gitCommonDir, huskyDir, pm.name, isCI)
   } else {
-    uninstall(absoluteGitDir, huskyDir)
+    uninstall(gitCommonDir, huskyDir)
   }
 
   console.log(`husky > Done`)

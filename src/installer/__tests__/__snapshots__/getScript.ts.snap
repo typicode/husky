@@ -24,6 +24,9 @@ command_exists () {
   command -v \\"$1\\" >/dev/null 2>&1
 }
 
+debug \\"husky v4.0.0-beta.2 (created at <locale date string>)\\"
+debug \\"$hookName hook started\\"
+
 run_command () {
   if command_exists \\"$1\\"; then
     \\"$@\\" husky-run $hookName \\"$gitParams\\"
