@@ -1,8 +1,6 @@
 import { spawnSync } from 'child_process'
 import getStdin from 'get-stdin'
-import path from 'path'
 import readPkg from 'read-pkg'
-import debug from '../debug'
 import getConf from '../getConf'
 
 export interface Env extends NodeJS.ProcessEnv {
@@ -44,18 +42,16 @@ function runCmd(cwd: string, hookName: string, cmd: string, env: Env): number {
 
 /**
  * @param {array} argv - process.argv
- * @param {promise} getStdinFn - used for mocking only
+ * @param {string} options.cwd - cwd
+ * @param {promise} options.getStdinFn - used for mocking only
  */
 export default async function run(
-  [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
-  getStdinFn: () => Promise<string> = getStdin
+  [, , hookName = '', HUSKY_GIT_PARAMS]: string[],
+  {
+    cwd = process.cwd(),
+    getStdinFn = getStdin
+  }: { cwd?: string; getStdinFn?: () => Promise<string> } = {}
 ): Promise<number> {
-  // Update CWD
-  const cwd = path.resolve(scriptPath.split('node_modules')[0])
-
-  // Debug
-  debug(`Changed current working directory to '${cwd}'`)
-
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch
   let pkg
@@ -93,17 +89,16 @@ export default async function run(
   }
 
   if (oldCommand) {
-    console.log()
-    console.log(
-      `Warning: Setting ${hookName} script in package.json > scripts will be deprecated`
-    )
-    console.log(
-      `Please move it to husky.hooks in package.json, a .huskyrc file, or a husky.config.js file`
-    )
-    console.log(`Or run ./node_modules/.bin/husky-upgrade for automatic update`)
-    console.log()
-    console.log(`See https://github.com/typicode/husky for usage`)
-    console.log()
+    console.log(`
+Warning: Setting ${hookName} script in package.json > scripts will be deprecated.
+Please move it to husky.hooks in package.json or .huskyrc file.
+
+For an automatic updata you can also run:
+npx --no-install husky-upgrade
+yarn husky-upgrade
+
+See https://github.com/typicode/husky for more information.
+`)
   }
 
   if (command) {
