@@ -52,10 +52,10 @@
   "homepage": "https://github.com/typicode/husky#readme",
   "dependencies": {
     "chalk": "^2.4.2",
+    "ci-info": "^2.0.0",
     "cosmiconfig": "^5.2.1",
     "execa": "^1.0.0",
     "get-stdin": "^7.0.0",
-    "is-ci": "^2.0.0",
     "opencollective-postinstall": "^2.0.2",
     "pkg-dir": "^4.2.0",
     "please-upgrade-node": "^3.2.0",
