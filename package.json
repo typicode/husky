@@ -13,7 +13,7 @@
     "test": "npm run lint && jest",
     "_install": "node husky install",
     "preuninstall": "node husky uninstall",
-    "devinstall": "npm run build && cross-env HUSKY_DEBUG=1 npm run _install -- node_modules/husky && node scripts/dev-fix-path",
+    "devinstall": "npm run build && cross-env HUSKY_DEBUG=1 npm run _install -- node_modules/husky",
     "devuninstall": "npm run build && cross-env HUSKY_DEBUG=1 npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
