@@ -26,6 +26,7 @@ command_exists () {
 
 debug \\"husky v4.0.0-beta.2 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
+debug \\"Current working directory is '\`pwd\`'\\"
 
 run_command () {
   if command_exists \\"$1\\"; then

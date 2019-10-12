@@ -1,9 +1,5 @@
 import index from './'
-import debug from '../debug'
 import { checkGitDirEnv } from '../checkGitDirEnv'
-
-// Debug
-debug(`Current working directory is '${process.cwd()}'`)
 
 // Check GIT_DIR environment variable
 checkGitDirEnv()
