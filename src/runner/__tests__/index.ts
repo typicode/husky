@@ -7,6 +7,9 @@ import index, { Env } from '../'
 
 let spy: jest.SpyInstance
 
+// On AppVeyor $SHELL is not set
+process.env.SHELL = process.env.SHELL || 'sh'
+
 function getScriptPath(dir: string): string {
   return path.join(dir, 'node_modules/husky/runner/index.js')
 }
