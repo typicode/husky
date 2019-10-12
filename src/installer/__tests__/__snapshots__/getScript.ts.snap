@@ -25,6 +25,7 @@ debug() {
 
 debug \\"husky v3.0.8 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
+debug \\"Current working directory is '\`pwd\`'\\"
 
 if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
   debug \\"HUSKY_SKIP_HOOKS is set to \${HUSKY_SKIP_HOOKS}, skipping hook\\"
@@ -82,6 +83,7 @@ debug() {
 
 debug \\"husky v3.0.8 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
+debug \\"Current working directory is '\`pwd\`'\\"
 
 if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
   debug \\"HUSKY_SKIP_HOOKS is set to \${HUSKY_SKIP_HOOKS}, skipping hook\\"

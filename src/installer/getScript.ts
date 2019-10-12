@@ -54,6 +54,7 @@ debug() {
 
 debug "husky v${version} (created at ${createdAt})"
 debug "$hookName hook started"
+debug "Current working directory is '\`pwd\`'"
 
 if [ "$\{HUSKY_SKIP_HOOKS}" = "true" ] || [ "$\{HUSKY_SKIP_HOOKS}" = "1" ]; then
   debug "HUSKY_SKIP_HOOKS is set to $\{HUSKY_SKIP_HOOKS}, skipping hook"
