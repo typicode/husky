@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import slash from 'slash'
 
 interface Context {
   createdAt: string
@@ -132,7 +133,8 @@ export default function(
     createdAt,
     homepage,
     packageManager,
-    pathToUserPkgDir,
+    // Normalize path
+    pathToUserPkgDir: slash(pathToUserPkgDir),
     pkgDirectory,
     pkgHomepage,
     version
