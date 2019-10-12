@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "_install": "node husky install",
+    "install": "node husky install",
     "preuninstall": "node husky uninstall",
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
@@ -21,7 +21,7 @@
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
     "fix": "npm run lint -- --fix",
     "doc": "markdown-toc -i README.md",
-    "_postinstall": "opencollective-postinstall || exit 0"
+    "postinstall": "opencollective-postinstall || exit 0"
   },
   "repository": {
     "type": "git",
