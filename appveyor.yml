@@ -21,7 +21,7 @@ test_script:
   - npm --version
 
   # Run tests
-  - sh ./scripts/install.sh
+  - sh ./scripts/test-install.sh
   - npm test
 
 # Don't actually build.
