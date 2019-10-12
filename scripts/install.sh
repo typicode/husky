@@ -30,7 +30,6 @@ commit() {
   HUSKY_SKIP_HOOKS=$2 git commit -m "$1 msg"
 }
 
-
 # ---
 # Setup
 # ---
@@ -63,6 +62,9 @@ npm install husky-*.tgz
 # Show hook content
 cat .git/hooks/commit-msg
 
+# Needed by AppVeyor
+git config user.name foo
+git config user.email foo@example.com
 
 # ---
 # Tests
