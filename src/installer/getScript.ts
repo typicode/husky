@@ -52,7 +52,7 @@ command_exists () {
 
 debug "husky v${version} (created at ${createdAt})"
 debug "$hookName hook started"
-debug "Current working directory is '\`pwd\`'"
+debug "Current working directory is \`pwd\`"
 
 run_command () {
   if command_exists "$1"; then

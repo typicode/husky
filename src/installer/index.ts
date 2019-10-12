@@ -160,7 +160,7 @@ export function install(
     fs.mkdirSync(gitHooksDir)
   }
 
-  debug(`Installing hooks in '${gitHooksDir}'`)
+  debug(`Installing hooks in ${gitHooksDir}`)
   const hooks = getHooks(gitDir)
 
   // Path.relative can return '' if both paths are the same, so '.' is used as a default value

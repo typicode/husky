@@ -8,8 +8,8 @@ import gitRevParse from './gitRevParse'
 import { checkGitDirEnv } from '../checkGitDirEnv'
 
 // Debug
-debug(`Current working directory is '${process.cwd()}'`)
-debug(`INIT_CWD environment variable is set to '${process.env.INIT_CWD}'`)
+debug(`Current working directory is ${process.cwd()}`)
+debug(`INIT_CWD environment variable is set to ${process.env.INIT_CWD}`)
 
 // Action can be "install" or "uninstall"
 // huskyDir is ONLY used in dev, don't use this arguments
@@ -48,7 +48,7 @@ try {
   // Install or uninstall
   if (action === 'install') {
     const pm = whichPMRuns()
-    debug(`package manager: ${pm.name}`)
+    debug(`Package manager: ${pm.name}`)
     install(topLevel, gitCommonDir, huskyDir, pm.name, isCI)
   } else {
     uninstall(gitCommonDir, huskyDir)
