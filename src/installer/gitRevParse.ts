@@ -6,6 +6,7 @@ export default function(): {
   gitCommonDir: string
 } {
   // https://github.com/typicode/husky/issues/580
+  // https://github.com/typicode/husky/issues/587
   const result = execa.sync('git', [
     'rev-parse',
     '--show-toplevel',
@@ -22,7 +23,7 @@ export default function(): {
   // If we get --absolute-git-dir in the output,
   // it probably means that an older version of Git has been used.
   if (gitCommonDir === '--git-common-dir') {
-    throw new Error('Husky requires Git >= 2.5.1, please update Git')
+    throw new Error('Husky requires Git >= 2.13.0, please upgrade Git')
   }
 
   return { topLevel, gitCommonDir }

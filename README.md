@@ -35,7 +35,7 @@ npm install husky --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-_Existing hooks are kept. Requires Node `>= 8.6.0` and Git `>= 2.13.2`._
+_Existing hooks are kept. Requires Node `>= 8.6.0` and Git `>= 2.13.0`._
 
 __Note__: if you're trying Yarn v2, please install `husky@next`. See [next](https://github.com/typicode/husky/tree/next) branch.
 
@@ -124,6 +124,7 @@ Support this project with your organization. Your logo will show up here with a 
     + [Commits aren't blocked](#commits-arent-blocked)
     + [Commits are slow](#commits-are-slow)
     + [Testing husky in a new repo](#testing-husky-in-a-new-repo)
+    + [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
 
 <!-- tocstop -->
 
@@ -323,6 +324,10 @@ npm install husky --save-dev
 
 # Make a commit
 ```
+
+#### ENOENT error 'node_modules/husky/.git/hooks'
+
+Verify that your version of Git is `>=2.13.0`.
 
 ## See also
 
