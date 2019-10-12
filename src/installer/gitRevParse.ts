@@ -1,5 +1,5 @@
+import cp from 'child_process'
 import slash from 'slash'
-import execa from 'execa'
 
 export default function(): {
   topLevel: string
@@ -7,13 +7,14 @@ export default function(): {
 } {
   // https://github.com/typicode/husky/issues/580
   // https://github.com/typicode/husky/issues/587
-  const result = execa.sync('git', [
+  const result = cp.spawnSync('git', [
     'rev-parse',
     '--show-toplevel',
     '--git-common-dir'
   ])
 
   const [topLevel, gitCommonDir] = result.stdout
+    .toString()
     .trim()
     .split('\n')
     // Normalize for Windows
