@@ -46,7 +46,10 @@ mv husky-*.tgz $projectDir
 # Init a blank git/npm project and install husky
 cd $projectDir
 git init
+git config user.name foo # Needed by AppVeyor
+git config user.email foo@example.com # Needed by AppVeyor
 npm init -y
+
 
 # Create .huskyrc with skipCI: false before installing husky
 cat > .huskyrc << EOL
@@ -61,10 +64,6 @@ npm install husky-*.tgz
 
 # Show hook content
 cat .git/hooks/commit-msg
-
-# Needed by AppVeyor
-git config user.name foo
-git config user.email foo@example.com
 
 # ---
 # Tests
