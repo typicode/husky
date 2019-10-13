@@ -57,7 +57,6 @@
     "pkg-dir": "^4.2.0",
     "please-upgrade-node": "^3.2.0",
     "read-pkg": "^5.2.0",
-    "run-node": "^1.0.0",
     "slash": "^3.0.0",
     "which-pm-runs": "^1.0.0"
   },
