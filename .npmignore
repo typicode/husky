@@ -1,12 +1,11 @@
 .gitattributes
 .github
+.eslintrc
 .huskyrc
+.prettierrc
 .travis.yml
 appveyor.yml
 ci-post-checkout
-preprocessor.js
 scripts
 src
 tsconfig.json
-typings
-docs-util.js
