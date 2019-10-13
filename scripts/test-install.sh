@@ -38,7 +38,10 @@ commit() {
 rm -rf $projectDir && mkdir $projectDir
 
 # Husky needs to be packed to be closer to a real install
+# Ensure that install scripts are enabled for the test
+npx --no-install pinst --enable
 npm run build && npm pack
+npx --no-install pinst --disable
 
 # Move husky to project
 mv husky-*.tgz $projectDir
