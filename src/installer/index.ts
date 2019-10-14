@@ -105,28 +105,19 @@ function getHooks(gitDir: string): string[] {
   )
 }
 
-/**
- * topLevel - as returned by git --rev-parse
- * gitCommonDir - as returned by git --rev-parse
- * INIT_CWD - set by npm, pnpm or yarn (https://docs.npmjs.com/cli/run-script)
-
- * pmName - which package manager was used to install husky
- * isCI - true if running in CI
- */
 export function install({
-  topLevel,
-  gitCommonDir,
-  INIT_CWD,
-  pmName,
-  isCI
+  topLevel, // git rev-parse
+  gitCommonDir, // git rev-parse
+  pmName, // package manager name
+  isCI, // running in CI or not
+  INIT_CWD // set by package managers
 }: {
   topLevel: string
   gitCommonDir: string
-  INIT_CWD: string
   pmName: string
   isCI: boolean
+  INIT_CWD: string
 }): void {
-  // First directory containing user's package.json
   const userPkgDir = pkgDir.sync(INIT_CWD)
 
   if (userPkgDir === undefined) {
@@ -175,13 +166,6 @@ export function uninstall({
   gitCommonDir: string
   INIT_CWD: string
 }): void {
-  if (gitCommonDir === null) {
-    console.log(
-      "Can't find resolved .git directory, skipping Git hooks uninstallation."
-    )
-    return
-  }
-
   if (isInNodeModules(INIT_CWD)) {
     console.log(
       'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'

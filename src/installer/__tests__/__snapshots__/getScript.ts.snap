@@ -24,10 +24,6 @@ command_exists () {
   command -v \\"$1\\" >/dev/null 2>&1
 }
 
-debug \\"husky v4.0.0-beta.3 (created at <locale date string>)\\"
-debug \\"$hookName hook started\\"
-debug \\"Current working directory is \`pwd\`\\"
-
 run_command () {
   if command_exists \\"$1\\"; then
     \\"$@\\" husky-run $hookName \\"$gitParams\\"
@@ -49,6 +45,10 @@ run_command () {
   fi
 }
 
+debug \\"husky v4.0.0-beta.3 (created at <locale date string>)\\"
+debug \\"$hookName hook started\\"
+debug \\"Current working directory is \`pwd\`\\"
+
 if [ -f ~/.huskyrc ]; then
   debug \\"source ~/.huskyrc\\"
   . ~/.huskyrc
@@ -67,6 +67,7 @@ if [ \\"$HUSKY_SKIP_HOOKS\\" = \\"true\\" ] || [ \\"$HUSKY_SKIP_HOOKS\\" = \\"1\
 fi
 
 cd \\".\\"
+
 case $packageManager in
   \\"npm\\") run_command npx --no-install;;
   \\"pnpm\\") run_command pnpx --no-install;;

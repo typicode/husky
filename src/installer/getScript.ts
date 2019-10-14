@@ -1,15 +1,15 @@
-import fs from 'fs'
 import path from 'path'
 import slash from 'slash'
+import readPkg from 'read-pkg'
 
 interface Context {
   createdAt: string
-  homepage: string
+  huskyHomepage?: string
+  huskyVersion: string
   packageManager: string
   pathToUserPkgDir: string
   pkgDirectory?: string
   pkgHomepage?: string
-  version: string
 }
 
 // Used to identify scripts created by Husky
@@ -21,16 +21,16 @@ const huskyrc = '.huskyrc'
 // Render script
 const render = ({
   createdAt,
-  homepage,
+  huskyHomepage,
+  huskyVersion,
   packageManager,
   pathToUserPkgDir,
   pkgDirectory,
-  pkgHomepage,
-  version
+  pkgHomepage
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
-# Hook created by Husky v${version} (${homepage})
+# Hook created by Husky v${huskyVersion} (${huskyHomepage})
 #   At: ${createdAt}
 #   From: ${pkgDirectory} (${pkgHomepage})
 #   With: ${packageManager}
@@ -49,10 +49,6 @@ debug() {
 command_exists () {
   command -v "$1" >/dev/null 2>&1
 }
-
-debug "husky v${version} (created at ${createdAt})"
-debug "$hookName hook started"
-debug "Current working directory is \`pwd\`"
 
 run_command () {
   if command_exists "$1"; then
@@ -75,6 +71,10 @@ run_command () {
   fi
 }
 
+debug "husky v${huskyVersion} (created at ${createdAt})"
+debug "$hookName hook started"
+debug "Current working directory is \`pwd\`"
+
 if [ -f ~/${huskyrc} ]; then
   debug "source ~/${huskyrc}"
   . ~/${huskyrc}
@@ -93,6 +93,7 @@ if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
 fi
 
 cd "${pathToUserPkgDir}"
+
 case $packageManager in
   "npm") run_command npx --no-install;;
   "pnpm") run_command pnpx --no-install;;
@@ -110,34 +111,31 @@ export default function(
   pathToUserPkgDir: string,
   packageManager: string
 ): string {
-  // Env variable
-  const pkgHomepage = process && process.env && process.env.npm_package_homepage
-  const pkgDirectory = process && process.env && process.env.PWD
+  const pkgHomepage = process.env.npm_package_homepage
+  const pkgDirectory = process.env.PWD
 
-  // Husky package.json
-  const { homepage, version } = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8')
-  )
+  const { homepage: huskyHomepage, version: huskyVersion } = readPkg.sync({
+    cwd: path.join(__dirname, '../..')
+  })
 
-  // Created at
   const createdAt = new Date().toLocaleString()
 
-  // Script runner command
   if (!['npm', 'pnpm', 'yarn'].includes(packageManager)) {
     throw new Error(
       `Unknown package manager: ${packageManager} (npm_config_user_agent: ${process.env.npm_config_user_agent})`
     )
   }
 
+  const normalizedPath = slash(pathToUserPkgDir)
+
   // Render script
   return render({
     createdAt,
-    homepage,
+    huskyHomepage,
+    huskyVersion,
     packageManager,
-    // Normalize path
-    pathToUserPkgDir: slash(pathToUserPkgDir),
+    pathToUserPkgDir: normalizedPath,
     pkgDirectory,
-    pkgHomepage,
-    version
+    pkgHomepage
   })
 }

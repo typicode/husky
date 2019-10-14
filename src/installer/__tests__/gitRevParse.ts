@@ -1,6 +1,6 @@
 import path from 'path'
 import slash from 'slash'
-import gitRevParse from '../gitRevParse'
+import { gitRevParse } from '../gitRevParse'
 
 const root = path.join(__dirname, '../../..')
 
