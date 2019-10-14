@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import { isCI } from 'ci-info'
-import path from 'path'
 import whichPMRuns from 'which-pm-runs'
 import debug from '../debug'
 import { install, uninstall } from './'
@@ -11,9 +10,8 @@ import { checkGitDirEnv } from '../checkGitDirEnv'
 debug(`Current working directory is ${process.cwd()}`)
 debug(`INIT_CWD environment variable is set to ${process.env.INIT_CWD}`)
 
-// Action can be "install" or "uninstall"
-// huskyDir is ONLY used in dev, don't use this arguments
-const [, , action, huskyDir = path.join(__dirname, '../..')] = process.argv
+type Action = 'install' | 'uninstall'
+const action = process.argv[2] as Action
 
 // Find Git dir
 try {
@@ -29,7 +27,7 @@ try {
     ['1', 'true'].includes(process.env.HUSKY_SKIP_INSTALL || '')
   ) {
     console.log(
-      "HUSKY_SKIP_INSTALL environment variable is set to 'true',",
+      'HUSKY_SKIP_INSTALL environment variable is set to true,',
       'skipping Git hooks installation.'
     )
     process.exit(0)
@@ -45,13 +43,20 @@ try {
   debug(`  --show-top-level: ${topLevel}`)
   debug(`  --git-common-dir: ${gitCommonDir}`)
 
+  const { INIT_CWD } = process.env
+  debug(`INIT_CWD environment variable is set to ${INIT_CWD}`)
+
+  if (INIT_CWD === undefined) {
+    throw new Error('INIT_CWD is undefined, please update your package manager')
+  }
+
   // Install or uninstall
   if (action === 'install') {
     const pm = whichPMRuns()
     debug(`Package manager: ${pm.name}`)
-    install(topLevel, gitCommonDir, huskyDir, pm.name, isCI)
+    install({ topLevel, gitCommonDir, INIT_CWD, pmName: pm.name, isCI })
   } else {
-    uninstall(gitCommonDir, huskyDir)
+    uninstall({ gitCommonDir, INIT_CWD })
   }
 
   console.log(`husky > Done`)

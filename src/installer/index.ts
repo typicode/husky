@@ -91,14 +91,7 @@ function removeHooks(filenames: string[]): void {
 // This prevents the case where someone would want to debug a node_module that has
 // husky as devDependency and run npm install from node_modules directory
 function isInNodeModules(dir: string): boolean {
-  // INIT_CWD holds the full path you were in when you ran npm install (supported also by yarn and pnpm)
-  // See https://docs.npmjs.com/cli/run-script
-  if (process.env.INIT_CWD) {
-    return process.env.INIT_CWD.indexOf('node_modules') !== -1
-  }
-
-  // Old technique
-  return (dir.match(/node_modules/g) || []).length > 1
+  return dir.indexOf('node_modules') !== -1
 }
 
 function getGitHooksDir(gitDir: string): string {
@@ -113,22 +106,28 @@ function getHooks(gitDir: string): string[] {
 }
 
 /**
- * @param topLevel - as returned by git --rev-parse
- * @param gitDir - as returned by git --rev-parse
- * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param pmName - which package manager was used to install husky
- * @param isCI - true if running in CI
+ * topLevel - as returned by git --rev-parse
+ * gitCommonDir - as returned by git --rev-parse
+ * INIT_CWD - set by npm, pnpm or yarn (https://docs.npmjs.com/cli/run-script)
+
+ * pmName - which package manager was used to install husky
+ * isCI - true if running in CI
  */
-// eslint-disable-next-line max-params
-export function install(
-  topLevel: string,
-  gitDir: string,
-  huskyDir: string,
-  pmName: string,
+export function install({
+  topLevel,
+  gitCommonDir,
+  INIT_CWD,
+  pmName,
+  isCI
+}: {
+  topLevel: string
+  gitCommonDir: string
+  INIT_CWD: string
+  pmName: string
   isCI: boolean
-): void {
+}): void {
   // First directory containing user's package.json
-  const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
+  const userPkgDir = pkgDir.sync(INIT_CWD)
 
   if (userPkgDir === undefined) {
     console.log("Can't find package.json, skipping Git hooks installation.")
@@ -147,7 +146,7 @@ export function install(
     return
   }
 
-  if (isInNodeModules(huskyDir)) {
+  if (isInNodeModules(INIT_CWD)) {
     console.log(
       'Trying to install from node_modules directory, skipping Git hooks installation.'
     )
@@ -155,13 +154,13 @@ export function install(
   }
 
   // Create hooks directory if it doesn't exist
-  const gitHooksDir = getGitHooksDir(gitDir)
+  const gitHooksDir = getGitHooksDir(gitCommonDir)
   if (!fs.existsSync(gitHooksDir)) {
     fs.mkdirSync(gitHooksDir)
   }
 
   debug(`Installing hooks in ${gitHooksDir}`)
-  const hooks = getHooks(gitDir)
+  const hooks = getHooks(gitCommonDir)
 
   // Path.relative can return '' if both paths are the same, so '.' is used as a default value
   const pathToUserPkgDir = path.relative(topLevel, userPkgDir) || '.'
@@ -169,15 +168,21 @@ export function install(
   createHooks(hooks, script)
 }
 
-export function uninstall(gitDir: string, huskyDir: string): void {
-  if (gitDir === null) {
+export function uninstall({
+  gitCommonDir,
+  INIT_CWD
+}: {
+  gitCommonDir: string
+  INIT_CWD: string
+}): void {
+  if (gitCommonDir === null) {
     console.log(
       "Can't find resolved .git directory, skipping Git hooks uninstallation."
     )
     return
   }
 
-  if (isInNodeModules(huskyDir)) {
+  if (isInNodeModules(INIT_CWD)) {
     console.log(
       'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'
     )
@@ -185,6 +190,6 @@ export function uninstall(gitDir: string, huskyDir: string): void {
   }
 
   // Remove hooks
-  const hooks = getHooks(gitDir)
+  const hooks = getHooks(gitCommonDir)
   removeHooks(hooks)
 }
