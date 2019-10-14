@@ -261,13 +261,13 @@ By design and just like `scripts` defined in `package.json`, husky will run hook
 That said, if you prefer to use an array, the recommended approach is to define them in `.huskyrc.js`.
 
 ```js
-const tasks = arr => arr.join(' && ')
+const tasks = task => task.join(' && ')
 
 module.exports = {
   'hooks': {
     'pre-commit': tasks([
-      'cmd',
-      'cmd'
+      'cmd1',
+      'cmd2'
     ])
   }
 }
