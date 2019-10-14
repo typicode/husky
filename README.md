@@ -153,7 +153,7 @@ You can also do it manually. Move your existing hooks to `husky.hooks` field and
 }
 ```
 
-Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json` or `.huskyrc.js` file.
+Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`, `.huskyrc.js` or `husky.config.js` file.
 
 ```js
 // .huskyrc
@@ -258,7 +258,7 @@ By design and just like `scripts` defined in `package.json`, husky will run hook
 "pre-commit": "cmd && cmd"
 ```
 
-That said, if you prefer to use an array, the recommended approach is to define them in `.huskyrc.js`.
+That said, if you prefer to use an array, the recommended approach is to define them in `.huskyrc.js` or `husky.config.js`.
 
 ```js
 const tasks = arr => arr.join(' && ')
