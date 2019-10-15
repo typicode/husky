@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import pkgDir from 'pkg-dir'
+import { debug } from '../debug'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
-import debug from '../debug'
 
 const hookList = [
   'applypatch-msg',

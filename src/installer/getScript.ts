@@ -5,7 +5,7 @@ import readPkg from 'read-pkg'
 interface Context {
   createdAt: string
   huskyHomepage?: string
-  huskyVersion: string
+  huskyVersion?: string
   packageManager: string
   pathToUserPkgDir: string
   pkgDirectory?: string
@@ -115,7 +115,8 @@ export default function(
   const pkgDirectory = process.env.PWD
 
   const { homepage: huskyHomepage, version: huskyVersion } = readPkg.sync({
-    cwd: path.join(__dirname, '../..')
+    cwd: path.join(__dirname, '../..'),
+    normalize: false
   })
 
   const createdAt = new Date().toLocaleString()

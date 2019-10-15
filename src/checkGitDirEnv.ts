@@ -1,4 +1,4 @@
-import debug from './debug'
+import { debug } from './debug'
 
 export function checkGitDirEnv(): void {
   if (process.env.GIT_DIR) {

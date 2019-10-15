@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-ignore
 const pleaseUpgradeNode = require('please-upgrade-node')
 const pkg = require('./package.json')
 

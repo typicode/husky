@@ -1,13 +1,13 @@
 import chalk from 'chalk'
 import { isCI } from 'ci-info'
 import whichPMRuns from 'which-pm-runs'
-import debug from '../debug'
-import { install, uninstall } from './'
-import { gitRevParse, GitMeta } from './gitRevParse'
 import { checkGitDirEnv } from '../checkGitDirEnv'
+import { debug } from '../debug'
+import { install, uninstall } from './'
+import { GitMeta, gitRevParse } from './gitRevParse'
 
 // Skip install if HUSKY_SKIP_INSTALL is true
-function checkSkipInstallEnv() {
+function checkSkipInstallEnv(): void {
   if (['1', 'true'].includes(process.env.HUSKY_SKIP_INSTALL || '')) {
     console.log(
       'HUSKY_SKIP_INSTALL is set to true,',
