@@ -110,7 +110,7 @@ export default async function run(
 Warning: Setting ${hookName} script in package.json > scripts will be deprecated.
 Please move it to husky.hooks in package.json or .huskyrc file.
 
-For an automatic updata you can also run:
+For an automatic update you can also run:
 npx --no-install husky-upgrade
 yarn husky-upgrade
 
