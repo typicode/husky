@@ -1,8 +1,8 @@
+import chalk from 'chalk'
 import { spawnSync } from 'child_process'
 import getStdin from 'get-stdin'
-import readPkg, { PackageJson } from 'read-pkg'
 import getConf from '../getConf'
-import chalk from 'chalk'
+import { readPkg } from '../read-pkg'
 
 export interface Env extends NodeJS.ProcessEnv {
   HUSKY_GIT_STDIN?: string
@@ -13,9 +13,9 @@ export interface Env extends NodeJS.ProcessEnv {
 function getOldCommand(cwd: string, hookName: string): string | undefined {
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch
-  let pkg: PackageJson = {}
+  let pkg: { scripts?: { [key: string]: string } } = {}
   try {
-    pkg = readPkg.sync({ cwd, normalize: false })
+    pkg = readPkg(cwd)
   } catch (err) {
     if (err.code !== 'ENOENT') {
       throw err

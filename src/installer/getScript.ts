@@ -1,6 +1,6 @@
 import path from 'path'
 import slash from 'slash'
-import readPkg from 'read-pkg'
+import { readPkg } from '../read-pkg'
 
 interface Context {
   createdAt: string
@@ -114,10 +114,9 @@ export default function(
   const pkgHomepage = process.env.npm_package_homepage
   const pkgDirectory = process.env.PWD
 
-  const { homepage: huskyHomepage, version: huskyVersion } = readPkg.sync({
-    cwd: path.join(__dirname, '../..'),
-    normalize: false
-  })
+  const { homepage: huskyHomepage, version: huskyVersion } = readPkg(
+    path.join(__dirname, '../..')
+  )
 
   const createdAt = new Date().toLocaleString()
 
