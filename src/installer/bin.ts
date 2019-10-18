@@ -18,13 +18,13 @@ function checkSkipInstallEnv(): void {
 }
 
 function getGitMeta(): GitMeta {
-  const { topLevel, gitCommonDir } = gitRevParse()
+  const { prefix, gitCommonDir } = gitRevParse()
 
   debug('Git rev-parse command returned:')
-  debug(`  --show-top-level: ${topLevel}`)
   debug(`  --git-common-dir: ${gitCommonDir}`)
+  debug(`  --show-prefix: ${prefix}`)
 
-  return { topLevel, gitCommonDir }
+  return { prefix, gitCommonDir }
 }
 
 // Get INIT_CWD env variable
@@ -58,13 +58,13 @@ function run(): void {
 
     if (action === 'install') checkSkipInstallEnv()
     checkGitDirEnv()
-    const { gitCommonDir, topLevel } = getGitMeta()
+    const { gitCommonDir, prefix } = getGitMeta()
     const INIT_CWD = getInitCwdEnv()
 
     if (action === 'install') {
       const { name: pmName } = whichPMRuns()
       debug(`Package manager: ${pmName}`)
-      install({ topLevel, gitCommonDir, pmName, isCI, INIT_CWD })
+      install({ gitCommonDir, prefix, pmName, isCI, INIT_CWD })
     } else {
       uninstall({ gitCommonDir, INIT_CWD })
     }

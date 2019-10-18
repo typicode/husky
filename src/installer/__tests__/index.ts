@@ -15,6 +15,7 @@ let tempDir: string
 
 // Default values
 const defaultGitCommonDir = '.git'
+const defaultPrefix = ''
 const defaultGitHooksDir = '.git/hooks'
 const defaultHookFilename = '.git/hooks/pre-commit'
 const DEFAULT_INIT_CWD = '.'
@@ -22,19 +23,19 @@ const pkg = JSON.stringify({})
 
 // Helpers
 function install({
-  topLevel = '',
   gitCommonDir = defaultGitCommonDir,
+  prefix = defaultPrefix,
   INIT_CWD = DEFAULT_INIT_CWD,
   isCI = false
 }: {
-  topLevel?: string
   gitCommonDir?: string
+  prefix?: string
   INIT_CWD?: string
   isCI?: boolean
 } = {}): void {
   installer.install({
-    topLevel: path.join(tempDir, topLevel),
     gitCommonDir: path.join(tempDir, gitCommonDir),
+    prefix,
     INIT_CWD: path.join(tempDir, INIT_CWD),
     pmName: 'npm',
     isCI
@@ -54,7 +55,7 @@ function uninstall({
   })
 }
 
-function mkdir(...dirs: string[]): void {
+function mkdir(dirs: string[]): void {
   dirs.forEach((dir): mkdirp.Made => mkdirp.sync(path.join(tempDir, dir)))
 }
 
@@ -85,7 +86,7 @@ describe('install', (): void => {
   afterEach((): Promise<string[]> => del(tempDir, { force: true }))
 
   it('should install and uninstall', (): void => {
-    mkdir(defaultGitHooksDir, DEFAULT_INIT_CWD)
+    mkdir([defaultGitHooksDir, DEFAULT_INIT_CWD])
     writeFile('package.json', pkg)
 
     install()
@@ -99,7 +100,7 @@ describe('install', (): void => {
   })
 
   it('should update existing husky hooks', (): void => {
-    mkdir(defaultGitHooksDir, DEFAULT_INIT_CWD)
+    mkdir([defaultGitHooksDir, DEFAULT_INIT_CWD])
     writeFile('package.json', pkg)
 
     // Create an existing husky hook
@@ -113,7 +114,7 @@ describe('install', (): void => {
   })
 
   it('should update existing husky hooks (v0.14 and earlier)', (): void => {
-    mkdir(defaultGitHooksDir, DEFAULT_INIT_CWD)
+    mkdir([defaultGitHooksDir, DEFAULT_INIT_CWD])
     writeFile('package.json', pkg)
 
     // Create an existing husky hook
@@ -127,7 +128,7 @@ describe('install', (): void => {
   })
 
   it('should not modify user hooks', (): void => {
-    mkdir(defaultGitHooksDir, DEFAULT_INIT_CWD)
+    mkdir([defaultGitHooksDir, DEFAULT_INIT_CWD])
     writeFile('package.json', pkg)
     writeFile(defaultHookFilename, 'foo')
 
@@ -146,7 +147,7 @@ describe('install', (): void => {
     // and INIT_CWD can therefore not be the user package directory.
     // Husky need to be able find it nonetheless.
     const INIT_CWD = 'sub'
-    mkdir(defaultGitHooksDir, INIT_CWD)
+    mkdir([defaultGitHooksDir, INIT_CWD])
     writeFile('package.json', pkg)
 
     install({ INIT_CWD })
@@ -159,29 +160,28 @@ describe('install', (): void => {
   })
 
   it('should support package.json installed in sub directory', (): void => {
+    const prefix = 'A/B/'
     const INIT_CWD = 'A/B'
-    mkdir(defaultGitHooksDir, INIT_CWD)
+    mkdir([defaultGitHooksDir, INIT_CWD])
     writeFile('A/B/package.json', pkg)
 
-    install({ INIT_CWD })
+    install({ prefix, INIT_CWD })
     const hook = readFile('.git/hooks/pre-commit')
 
-    expect(hook).toMatch('cd "A/B"')
+    expect(hook).toMatch('cd "A/B/"')
 
     uninstall({ INIT_CWD })
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
   it('should support git submodule', (): void => {
-    const topLevel = 'A/B'
     const gitCommonDir = '.git/modules/A/B'
     const INIT_CWD = 'A/B'
 
-    mkdir('.git/modules/A/B/hooks', INIT_CWD)
+    mkdir(['.git/modules/A/B/hooks', INIT_CWD])
     writeFile('A/B/package.json', pkg)
 
     install({
-      topLevel,
       gitCommonDir,
       INIT_CWD
     })
@@ -193,67 +193,10 @@ describe('install', (): void => {
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
   })
 
-  it('should support git submodule and sub directory', (): void => {
-    const topLevel = 'A/B'
-    const gitCommonDir = '.git/modules/A/B'
-    const INIT_CWD = 'A/B/C'
-
-    mkdir('.git/modules/A/B/hooks', INIT_CWD)
-    writeFile('A/B/C/package.json', pkg)
-
-    install({ topLevel, gitCommonDir, INIT_CWD })
-    const hook = readFile('.git/modules/A/B/hooks/pre-commit')
-
-    expect(hook).toMatch('cd "C"')
-
-    uninstall({ gitCommonDir, INIT_CWD })
-    expect(exists('.git/hooks/pre-push')).toBeFalsy()
-  })
-
-  it('should support git worktrees', (): void => {
-    const topLevel = 'A/B'
-    const gitCommonDir = '.git/worktrees/B'
-    const INIT_CWD = 'A/B'
-
-    mkdir(`${gitCommonDir}/hooks`, INIT_CWD)
-    writeFile('A/B/package.json', pkg)
-
-    install({ topLevel, gitCommonDir, INIT_CWD })
-
-    const hook = readFile(`${gitCommonDir}/hooks/pre-commit`)
-
-    expect(hook).toMatch('cd "."')
-
-    uninstall({ gitCommonDir, INIT_CWD })
-    expect(exists('.git/worktrees/B/hooks/pre-commit')).toBeFalsy()
-  })
-
-  it('should support git worktrees with worktree outside', (): void => {
-    const topLevel = 'project/B'
-    const gitCommonDir = 'project/A/.git/worktrees/B'
-    const INIT_CWD = 'project/B'
-
-    mkdir(gitCommonDir, INIT_CWD)
-    writeFile('project/B/package.json', pkg)
-
-    install({
-      topLevel,
-      gitCommonDir,
-      INIT_CWD
-    })
-
-    const hook = readFile('project/A/.git/worktrees/B/hooks/pre-commit')
-
-    expect(hook).toMatch('cd "."')
-
-    uninstall({ gitCommonDir, INIT_CWD })
-    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
-  })
-
   it('should not install from node_modules/A', (): void => {
     const INIT_CWD = 'node_modules/A'
 
-    mkdir(defaultGitHooksDir, INIT_CWD)
+    mkdir([defaultGitHooksDir, INIT_CWD])
     writeFile('node_modules/A/package.json', '{}')
     writeFile('package.json', pkg)
 
@@ -262,7 +205,7 @@ describe('install', (): void => {
   })
 
   it('should migrate existing scripts (ghooks)', (): void => {
-    mkdir(defaultGitHooksDir)
+    mkdir([defaultGitHooksDir])
     writeFile('package.json', pkg)
     writeFile(
       defaultHookFilename,
@@ -275,7 +218,7 @@ describe('install', (): void => {
   })
 
   it('should migrate existing scripts (pre-commit)', (): void => {
-    mkdir(defaultGitHooksDir)
+    mkdir([defaultGitHooksDir])
     writeFile('package.json', pkg)
     writeFile(defaultHookFilename, './node_modules/pre-commit/hook')
 
@@ -285,7 +228,7 @@ describe('install', (): void => {
   })
 
   it('should not install hooks in CI server', (): void => {
-    mkdir(defaultGitHooksDir)
+    mkdir([defaultGitHooksDir])
     writeFile('package.json', pkg)
 
     // By default isCI is false in husky's test
@@ -294,7 +237,7 @@ describe('install', (): void => {
   })
 
   it('should install in CI server if skipCI is set to false', (): void => {
-    mkdir(defaultGitHooksDir)
+    mkdir([defaultGitHooksDir])
     writeFile('package.json', JSON.stringify({ husky: { skipCI: false } }))
 
     install()
@@ -302,7 +245,8 @@ describe('install', (): void => {
   })
 
   it("should install even if .git/hooks doesn't exist", (): void => {
-    mkdir(defaultGitCommonDir)
+    // Create only Git common dir but hooks dir
+    mkdir([defaultGitCommonDir])
     writeFile('package.json', pkg)
 
     install()

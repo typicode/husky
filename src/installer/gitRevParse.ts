@@ -2,23 +2,23 @@ import cp from 'child_process'
 import slash from 'slash'
 
 export type GitMeta = {
-  topLevel: string
+  prefix: string
   gitCommonDir: string
 }
 
-export function gitRevParse(): GitMeta {
+export function gitRevParse(cwd = process.cwd()): GitMeta {
   // https://github.com/typicode/husky/issues/580
   // https://github.com/typicode/husky/issues/587
-  const result = cp.spawnSync('git', [
-    'rev-parse',
-    '--show-toplevel',
-    '--git-common-dir'
-  ])
+  const result = cp.spawnSync(
+    'git',
+    ['rev-parse', '--show-prefix', '--git-common-dir'],
+    { cwd }
+  )
 
-  const [topLevel, gitCommonDir] = result.stdout
+  const [prefix, gitCommonDir] = result.stdout
     .toString()
-    .trim()
     .split('\n')
+    .map(s => s.trim())
     // Normalize for Windows
     .map(slash)
 
@@ -31,5 +31,5 @@ export function gitRevParse(): GitMeta {
     throw new Error('Husky requires Git >= 2.13.0, please upgrade Git')
   }
 
-  return { topLevel, gitCommonDir }
+  return { prefix, gitCommonDir }
 }

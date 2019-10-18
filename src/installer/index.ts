@@ -106,13 +106,13 @@ function getHooks(gitDir: string): string[] {
 }
 
 export function install({
-  topLevel, // git rev-parse
-  gitCommonDir, // git rev-parse
+  prefix, // git rev-parse --show-prefix
+  gitCommonDir, // git rev-parse --git-common-dir
   pmName, // package manager name
   isCI, // running in CI or not
   INIT_CWD // set by package managers
 }: {
-  topLevel: string
+  prefix: string
   gitCommonDir: string
   pmName: string
   isCI: boolean
@@ -153,8 +153,8 @@ export function install({
   debug(`Installing hooks in ${gitHooksDir}`)
   const hooks = getHooks(gitCommonDir)
 
-  // Path.relative can return '' if both paths are the same, so '.' is used as a default value
-  const pathToUserPkgDir = path.relative(topLevel, userPkgDir) || '.'
+  // Prefix can be an empty string
+  const pathToUserPkgDir = prefix || '.'
   const script = getScript(pathToUserPkgDir, pmName)
   createHooks(hooks, script)
 }
