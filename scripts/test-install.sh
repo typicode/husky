@@ -63,7 +63,7 @@ cat > .huskyrc << EOL
   }
 }
 EOL
-npm install husky-*.tgz
+HUSKY_DEBUG=1 npm install husky-*.tgz
 
 # Show hook content
 cat .git/hooks/commit-msg

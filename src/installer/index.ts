@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-import pkgDir from 'pkg-dir'
 import { debug } from '../debug'
 import getConf from '../getConf'
 import getScript from './getScript'
@@ -106,28 +105,18 @@ function getHooks(gitDir: string): string[] {
 }
 
 export function install({
-  prefix, // git rev-parse --show-prefix
-  gitCommonDir, // git rev-parse --git-common-dir
+  absoluteGitCommonDir,
+  relativeUserPkgDir,
+  userPkgDir,
   pmName, // package manager name
-  isCI, // running in CI or not
-  INIT_CWD // set by package managers
+  isCI // running in CI or not
 }: {
-  prefix: string
-  gitCommonDir: string
+  absoluteGitCommonDir: string
+  relativeUserPkgDir: string
+  userPkgDir: string
   pmName: string
   isCI: boolean
-  INIT_CWD: string
 }): void {
-  const userPkgDir = pkgDir.sync(INIT_CWD)
-
-  if (userPkgDir === undefined) {
-    console.log("Can't find package.json, skipping Git hooks installation.")
-    console.log(
-      'Please check that your project has a package.json or create it and reinstall husky.'
-    )
-    return
-  }
-
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
 
@@ -137,7 +126,7 @@ export function install({
     return
   }
 
-  if (isInNodeModules(INIT_CWD)) {
+  if (isInNodeModules(userPkgDir)) {
     console.log(
       'Trying to install from node_modules directory, skipping Git hooks installation.'
     )
@@ -145,28 +134,27 @@ export function install({
   }
 
   // Create hooks directory if it doesn't exist
-  const gitHooksDir = getGitHooksDir(gitCommonDir)
+  const gitHooksDir = getGitHooksDir(absoluteGitCommonDir)
   if (!fs.existsSync(gitHooksDir)) {
     fs.mkdirSync(gitHooksDir)
   }
 
   debug(`Installing hooks in ${gitHooksDir}`)
-  const hooks = getHooks(gitCommonDir)
+  const hooks = getHooks(absoluteGitCommonDir)
 
   // Prefix can be an empty string
-  const pathToUserPkgDir = prefix || '.'
-  const script = getScript(pathToUserPkgDir, pmName)
+  const script = getScript({ relativeUserPkgDir, pmName })
   createHooks(hooks, script)
 }
 
 export function uninstall({
-  gitCommonDir,
-  INIT_CWD
+  absoluteGitCommonDir,
+  userPkgDir
 }: {
-  gitCommonDir: string
-  INIT_CWD: string
+  absoluteGitCommonDir: string
+  userPkgDir: string
 }): void {
-  if (isInNodeModules(INIT_CWD)) {
+  if (isInNodeModules(userPkgDir)) {
     console.log(
       'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'
     )
@@ -174,6 +162,6 @@ export function uninstall({
   }
 
   // Remove hooks
-  const hooks = getHooks(gitCommonDir)
+  const hooks = getHooks(absoluteGitCommonDir)
   removeHooks(hooks)
 }

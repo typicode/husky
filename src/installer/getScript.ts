@@ -6,10 +6,10 @@ interface Context {
   createdAt: string
   huskyHomepage?: string
   huskyVersion?: string
-  packageManager: string
-  pathToUserPkgDir: string
   pkgDirectory?: string
   pkgHomepage?: string
+  pmName: string
+  relativeUserPkgDir: string
 }
 
 // Used to identify scripts created by Husky
@@ -23,22 +23,22 @@ const render = ({
   createdAt,
   huskyHomepage,
   huskyVersion,
-  packageManager,
-  pathToUserPkgDir,
   pkgDirectory,
-  pkgHomepage
+  pkgHomepage,
+  pmName,
+  relativeUserPkgDir
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
 
 # Hook created by Husky v${huskyVersion} (${huskyHomepage})
 #   At: ${createdAt}
 #   From: ${pkgDirectory} (${pkgHomepage})
-#   With: ${packageManager}
+#   With: ${pmName}
 
 gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
 hookName=\`basename "$0"\`
-packageManager=${packageManager}
+packageManager=${pmName}
 
 debug() {
   if [ "$HUSKY_DEBUG" = "true" ] || [ "$HUSKY_DEBUG" = "1" ]; then
@@ -92,7 +92,7 @@ if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
   exit 0
 fi
 
-cd "${pathToUserPkgDir}"
+cd "${relativeUserPkgDir}"
 
 case $packageManager in
   "npm") run_command npx --no-install;;
@@ -103,14 +103,17 @@ esac
 `
 
 /**
- * @param {string} pathToUserPkgDir - relative path from git dir to dir containing package.json
+ * @param {string} relativeUserPkgDir - relative path from git dir to dir containing user package.json
  * @param {string} packageManager - e.g. npm, pnpm or yarn
  * @returns {string} script
  */
-export default function(
-  pathToUserPkgDir: string,
-  packageManager: string
-): string {
+export default function({
+  relativeUserPkgDir,
+  pmName
+}: {
+  relativeUserPkgDir: string
+  pmName: string
+}): string {
   const pkgHomepage = process.env.npm_package_homepage
   const pkgDirectory = process.env.PWD
 
@@ -120,22 +123,22 @@ export default function(
 
   const createdAt = new Date().toLocaleString()
 
-  if (!['npm', 'pnpm', 'yarn'].includes(packageManager)) {
+  if (!['npm', 'pnpm', 'yarn'].includes(pmName)) {
     throw new Error(
-      `Unknown package manager: ${packageManager} (npm_config_user_agent: ${process.env.npm_config_user_agent})`
+      `Unknown package manager: ${pmName} (npm_config_user_agent: ${process.env.npm_config_user_agent})`
     )
   }
 
-  const normalizedPath = slash(pathToUserPkgDir)
+  const normalizedPath = slash(relativeUserPkgDir)
 
   // Render script
   return render({
     createdAt,
     huskyHomepage,
     huskyVersion,
-    packageManager,
-    pathToUserPkgDir: normalizedPath,
+    relativeUserPkgDir: normalizedPath,
     pkgDirectory,
-    pkgHomepage
+    pkgHomepage,
+    pmName
   })
 }

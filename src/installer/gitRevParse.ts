@@ -1,12 +1,12 @@
 import cp from 'child_process'
 import slash from 'slash'
 
-export type GitMeta = {
+export type GitRevParseResult = {
   prefix: string
   gitCommonDir: string
 }
 
-export function gitRevParse(cwd = process.cwd()): GitMeta {
+export function gitRevParse(cwd = process.cwd()): GitRevParseResult {
   // https://github.com/typicode/husky/issues/580
   // https://github.com/typicode/husky/issues/587
   const result = cp.spawnSync(
