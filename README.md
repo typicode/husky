@@ -21,12 +21,18 @@ npm install husky --save-dev
 ```js
 // package.json
 {
+  "scripts": {
+    "test": "node test/YOUR_SAMPLE_TEST.js"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm test",
       "pre-push": "npm test",
       "...": "..."
     }
+  },
+  "devDependencies": {
+    "husky": "^3.0.xx"
   }
 }
 ```
