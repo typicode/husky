@@ -106,5 +106,9 @@
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/husky"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/husky"
   }
 }
