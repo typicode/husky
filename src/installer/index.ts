@@ -10,6 +10,7 @@ const hookList = [
   'pre-applypatch',
   'post-applypatch',
   'pre-commit',
+  'pre-merge-commit',
   'prepare-commit-msg',
   'commit-msg',
   'post-commit',

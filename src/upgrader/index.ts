@@ -19,6 +19,7 @@ const hookList: HookMap = {
   preapplypatch: 'pre-applypatch',
   preautogc: 'pre-auto-gc',
   precommit: 'pre-commit',
+  premergecommit: 'pre-merge-commit',
   preparecommitmsg: 'prepare-commit-msg',
   prepush: 'pre-push',
   prerebase: 'pre-rebase',
