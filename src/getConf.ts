@@ -2,6 +2,7 @@ import cosmiconfig from 'cosmiconfig'
 
 interface Conf {
   skipCI: boolean
+  skipDeprecatedHooks?: boolean
   hooks?: { [key: string]: string }
 }
 

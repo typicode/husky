@@ -37,11 +37,15 @@ export default async function run(
 
   const config = getConf(cwd)
 
+  const skipOldCommand: boolean | undefined =
+    config && config.skipDeprecatedHooks === true
+
   const command: string | undefined =
     config && config.hooks && config.hooks[hookName]
 
-  const oldCommand: string | undefined =
-    pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
+  const oldCommand: string | undefined = skipOldCommand
+    ? undefined
+    : pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
 
   // Run command
   try {
@@ -70,6 +74,10 @@ export default async function run(
       )
       console.log(
         `Or run ./node_modules/.bin/husky-upgrade for automatic update`
+      )
+      console.log()
+      console.log(
+        `Alternatively, disable support for legacy hooks by setting husky.skipDeprecatedHooks to true `
       )
       console.log()
       console.log(`See https://github.com/typicode/husky for usage`)

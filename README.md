@@ -164,6 +164,17 @@ Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`
 }
 ```
 
+If you have a `precommit` script defined in `scripts`, it will be treated as a `pre-commit` hook in `husky.hooks` to remain backward compatible with older version of Husky. If you want to disable this behaviour, you can define `skipDeprecatedHooks` in your configuration. This applies to all hooks.
+
+```json
+{
+  "husky": {
+    "hooks": {},
+    "skipDeprecatedHooks": true
+  }
+}
+```
+
 ### Supported hooks
 
 Husky supports all Git hooks defined [here](https://git-scm.com/docs/githooks). Server-side hooks (`pre-receive`, `update` and `post-receive`) aren't supported.
