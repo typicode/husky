@@ -4,7 +4,7 @@ os:
 language: node_js
 node_js:
   - "node"
-  - "8"
+  - "10"
 cache:
   directories:
     - "node_modules"
