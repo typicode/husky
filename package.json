@@ -7,7 +7,7 @@
     "husky-upgrade": "./lib/upgrader/bin.js"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=10"
   },
   "scripts": {
     "test": "npm run lint && jest",
