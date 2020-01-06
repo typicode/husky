@@ -1,13 +1,16 @@
-import index from './'
 import { checkGitDirEnv } from '../checkGitDirEnv'
+import index from './'
 
-// Check GIT_DIR environment variable
-checkGitDirEnv()
+async function run(): Promise<void> {
+  checkGitDirEnv()
 
-// Run hook
-index(process.argv)
-  .then((status: number): void => process.exit(status))
-  .catch((err: Error): void => {
+  try {
+    const status = await index(process.argv)
+    process.exit(status)
+  } catch (err) {
     console.log('Husky > unexpected error', err)
     process.exit(1)
-  })
+  }
+}
+
+run()

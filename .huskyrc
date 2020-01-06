@@ -1,7 +1,5 @@
 {
-  "skipCI": false,
   "hooks": {
-    "pre-commit": "npm test",
-    "post-checkout": "rm -f ci-post-checkout && echo \"running CI post-checkout test\" && node scripts/ci-post-checkout-script"
+    "commit-msg": "echo \"commit-msg hook from Husky\" && echo $HUSKY_GIT_PARAMS > hook-params"
   }
 }

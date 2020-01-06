@@ -4,30 +4,12 @@ os:
 language: node_js
 node_js:
   - "node"
-  - "8"
+  - "10"
 cache:
   directories:
     - "node_modules"
 env:
   - HUSKY_DEBUG=1
 script:
+  - sh ./scripts/test-install.sh
   - npm test
-
-  # Install hooks locally
-  - npm run devinstall
-  - cat .git/hooks/post-checkout
-
-  # Test HUSKY_SKIP_HOOKS
-  - HUSKY_SKIP_HOOKS=1 time git checkout
-  - node scripts/ci-husky-skip-hooks-check
-
-  # Test post-checkout hook
-  - time git checkout
-  - node scripts/ci-post-checkout-check
-
-  # Should not fail due to missing script
-  - node scripts/ci-break-path.js
-  - time git checkout
-
-  # Test uninstall
-  - npm run devuninstall

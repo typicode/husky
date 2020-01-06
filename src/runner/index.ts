@@ -1,87 +1,54 @@
-import execa from 'execa'
+import chalk from 'chalk'
+import { spawnSync } from 'child_process'
 import getStdin from 'get-stdin'
-import path from 'path'
-import readPkg from 'read-pkg'
-import debug from '../debug'
 import getConf from '../getConf'
+import { readPkg } from '../read-pkg'
 
 export interface Env extends NodeJS.ProcessEnv {
   HUSKY_GIT_STDIN?: string
   HUSKY_GIT_PARAMS?: string
 }
 
-/**
- * @param {array} argv - process.argv
- * @param {promise} getStdinFn - used for mocking only
- */
-export default async function run(
-  [, scriptPath, hookName = '', HUSKY_GIT_PARAMS]: string[],
-  getStdinFn: () => Promise<string> = getStdin
-): Promise<number> {
-  // Update CWD
-  const cwd = path.resolve(scriptPath.split('node_modules')[0])
-
-  // Debug
-  debug(`Changed current working directory to '${cwd}'`)
-
+// Husky <1.0.0 (commands were defined in pkg.scripts)
+function getOldCommand(cwd: string, hookName: string): string | undefined {
   // In some cases, package.json may not exist
   // For example, when switching to gh-page branch
-  let pkg
+  let pkg: { scripts?: { [key: string]: string } } = {}
   try {
-    pkg = readPkg.sync({ cwd, normalize: false })
+    pkg = readPkg(cwd)
   } catch (err) {
     if (err.code !== 'ENOENT') {
       throw err
     }
   }
 
+  return pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
+}
+
+// Husky >= 1.0.0
+function getCommand(cwd: string, hookName: string): string | undefined {
   const config = getConf(cwd)
 
-  const command: string | undefined =
-    config && config.hooks && config.hooks[hookName]
+  return config && config.hooks && config.hooks[hookName]
+}
 
-  const oldCommand: string | undefined =
-    pkg && pkg.scripts && pkg.scripts[hookName.replace('-', '')]
+function runCommand(
+  cwd: string,
+  hookName: string,
+  cmd: string,
+  env: Env
+): number {
+  console.log(`husky > ${hookName} (node ${process.version})`)
 
-  // Run command
+  const SHELL = process.env.SHELL || 'sh'
   try {
-    const env: Env = {}
+    const { status } = spawnSync(SHELL, ['-c', cmd], {
+      cwd,
+      env: { ...process.env, ...env },
+      stdio: 'inherit'
+    })
 
-    if (HUSKY_GIT_PARAMS) {
-      env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS
-    }
-
-    if (
-      ['pre-push', 'pre-receive', 'post-receive', 'post-rewrite'].includes(
-        hookName
-      )
-    ) {
-      // Wait for stdin
-      env.HUSKY_GIT_STDIN = await getStdinFn()
-    }
-
-    if (oldCommand) {
-      console.log()
-      console.log(
-        `Warning: Setting ${hookName} script in package.json > scripts will be deprecated`
-      )
-      console.log(
-        `Please move it to husky.hooks in package.json, a .huskyrc file, or a husky.config.js file`
-      )
-      console.log(
-        `Or run ./node_modules/.bin/husky-upgrade for automatic update`
-      )
-      console.log()
-      console.log(`See https://github.com/typicode/husky for usage`)
-      console.log()
-    }
-
-    if (command || oldCommand) {
-      console.log(`husky > ${hookName} (node ${process.version})`)
-      execa.shellSync(command || oldCommand, { cwd, env, stdio: 'inherit' })
-    }
-
-    return 0
+    return status || 0
   } catch (err) {
     const noVerifyMessage = [
       'commit-msg',
@@ -93,6 +60,65 @@ export default async function run(
       : '(cannot be bypassed with --no-verify due to Git specs)'
 
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
-    return err.code
+
+    console.log({ err })
+
+    return 1
   }
+}
+
+/**
+ * @param {array} argv process.argv
+ * @param {string} options.cwd cwd
+ * @param {promise} options.getStdinFn - used for mocking only
+ */
+export default async function run(
+  [, , hookName = '', HUSKY_GIT_PARAMS]: string[],
+  {
+    cwd = process.cwd(),
+    getStdinFn = getStdin
+  }: { cwd?: string; getStdinFn?: () => Promise<string> } = {}
+): Promise<number> {
+  const oldCommand = getOldCommand(cwd, hookName)
+  const command = getCommand(cwd, hookName)
+
+  // Add HUSKY_GIT_PARAMS to env
+  const env: Env = {}
+
+  if (HUSKY_GIT_PARAMS) {
+    env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS
+  }
+
+  // Read stdin and add HUSKY_GIT_STDIN
+  const hooksWithStdin = [
+    'pre-push',
+    'pre-receive',
+    'post-receive',
+    'post-rewrite'
+  ]
+  if (hooksWithStdin.includes(hookName)) {
+    env.HUSKY_GIT_STDIN = await getStdinFn()
+  }
+
+  if (command) {
+    return runCommand(cwd, hookName, command, env)
+  }
+
+  if (oldCommand) {
+    console.log(
+      chalk.red(`
+Warning: Setting ${hookName} script in package.json > scripts will be deprecated.
+Please move it to husky.hooks in package.json or .huskyrc file.
+
+For an automatic update you can also run:
+npx --no-install husky-upgrade
+yarn husky-upgrade
+
+See https://github.com/typicode/husky for more information.
+`)
+    )
+    return runCommand(cwd, hookName, oldCommand, env)
+  }
+
+  return 0
 }

@@ -21,27 +21,8 @@ test_script:
   - npm --version
 
   # Run tests
+  - sh ./scripts/test-install.sh
   - npm test
-
-  # Install hooks locally
-  - npm run devinstall
-  - cat .git/hooks/post-checkout
-
-  # Test HUSKY_SKIP_HOOKS
-  - ps: $env:HUSKY_SKIP_HOOKS=1
-  - node scripts/ci-husky-skip-hooks-check
-  - ps: $env:HUSKY_SKIP_HOOKS=0
-
-  # Test post-checkout hook
-  - git checkout
-  - node scripts/ci-post-checkout-check
-
-  # Should not fail due to missing script
-  - node scripts/ci-break-path.js
-  - git checkout
-
-  # Test uninstall
-  - npm run devuninstall
 
 # Don't actually build.
 build: off

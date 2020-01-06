@@ -1,20 +1,18 @@
 {
   "name": "husky",
-  "version": "3.1.0",
+  "version": "4.0.0-beta.5",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-run": "./run.js",
     "husky-upgrade": "./lib/upgrader/bin.js"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=10"
   },
   "scripts": {
     "test": "npm run lint && jest",
     "_install": "node husky install",
     "preuninstall": "node husky uninstall",
-    "devinstall": "npm run build && cross-env HUSKY_DEBUG=1 npm run _install -- node_modules/husky && node scripts/dev-fix-path",
-    "devuninstall": "npm run build && cross-env HUSKY_DEBUG=1 npm run preuninstall -- node_modules/husky",
     "build": "del-cli lib && tsc",
     "version": "jest -u && git add -A src/installer/__tests__/__snapshots__",
     "postversion": "git push && git push --tags",
@@ -54,14 +52,12 @@
     "chalk": "^2.4.2",
     "ci-info": "^2.0.0",
     "cosmiconfig": "^5.2.1",
-    "execa": "^1.0.0",
     "get-stdin": "^7.0.0",
     "opencollective-postinstall": "^2.0.2",
     "pkg-dir": "^4.2.0",
     "please-upgrade-node": "^3.2.0",
-    "read-pkg": "^5.2.0",
-    "run-node": "^1.0.0",
-    "slash": "^3.0.0"
+    "slash": "^3.0.0",
+    "which-pm-runs": "^1.0.0"
   },
   "devDependencies": {
     "@types/ci-info": "^2.0.0",
@@ -94,11 +90,13 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "__env__.ts"
+    ],
     "moduleFileExtensions": [
       "ts",
-      "tsx",
       "js",
-      "jsx",
       "json",
       "node"
     ]

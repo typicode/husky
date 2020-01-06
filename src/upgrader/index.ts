@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import readPkg from 'read-pkg'
+import { readPkg } from '../read-pkg'
 
 interface HookMap {
   [key: string]: string
@@ -32,7 +32,7 @@ const hookList: HookMap = {
 export default function upgrade(cwd: string): void {
   const pkgFile = path.join(cwd, 'package.json')
   if (fs.existsSync(pkgFile)) {
-    const pkg = readPkg.sync({ cwd, normalize: false })
+    const pkg = readPkg(cwd)
 
     console.log(`husky > upgrading ${pkgFile}`)
 

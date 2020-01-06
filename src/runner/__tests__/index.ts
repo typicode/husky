@@ -1,19 +1,29 @@
-import execa from 'execa'
 import fs from 'fs'
-import mkdirp from 'mkdirp'
+import cp from 'child_process'
 import path from 'path'
 import tempy from 'tempy'
-import index from '../'
+import index, { Env } from '../'
 
 let spy: jest.SpyInstance
 
-function getScriptPath(dir: string): string {
-  return path.join(dir, 'node_modules/husky/runner/index.js')
+// On AppVeyor $SHELL is not set
+process.env.SHELL = process.env.SHELL || 'sh'
+
+function expectSpawnSyncToHaveBeenCalledWith(
+  cwd: string,
+  cmd: string,
+  env: Env = {}
+): void {
+  expect(cp.spawnSync).toHaveBeenCalledWith(process.env.SHELL, ['-c', cmd], {
+    cwd,
+    env: { ...process.env, ...env },
+    stdio: 'inherit'
+  })
 }
 
 describe('run', (): void => {
   beforeEach((): void => {
-    spy = jest.spyOn(execa, 'shellSync')
+    spy = jest.spyOn(cp, 'spawnSync')
   })
 
   afterEach((): void => {
@@ -21,9 +31,7 @@ describe('run', (): void => {
     spy.mockRestore()
   })
 
-  it('should run working command and return 0 status', async (): Promise<
-    void
-  > => {
+  it('should run command and return 0 status', async (): Promise<void> => {
     const dir = tempy.directory()
 
     fs.writeFileSync(
@@ -37,44 +45,11 @@ describe('run', (): void => {
       })
     )
 
-    const status = await index(['', getScriptPath(dir), 'pre-commit'])
-    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
-      cwd: dir,
-      env: {},
-      stdio: 'inherit'
-    })
+    const status = await index(['', '', 'pre-commit'], { cwd: dir })
+    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success')
     expect(status).toBe(0)
   })
 
-  it('should run working command and return 0 status when husky is installed in a sub directory', async (): Promise<
-    void
-  > => {
-    const dir = tempy.directory()
-    const subDir = path.join(dir, 'A/B')
-    mkdirp.sync(subDir)
-
-    fs.writeFileSync(
-      path.join(subDir, 'package.json'),
-      JSON.stringify({
-        husky: {
-          hooks: {
-            'pre-commit': 'echo success'
-          }
-        }
-      })
-    )
-
-    const status = await index(['', getScriptPath(subDir), 'pre-commit'])
-    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
-      cwd: subDir,
-      env: {},
-      stdio: 'inherit'
-    })
-    expect(status).toBe(0)
-  })
-
-  // This shouldn't happen since the shell script checks for command existence
-  // but in case there's a false positive, we're testing this also
   it('should return 0 status if the command is undefined', async (): Promise<
     void
   > => {
@@ -87,8 +62,8 @@ describe('run', (): void => {
       })
     )
 
-    const status = await index(['', getScriptPath(dir), 'pre-commit'])
-    expect(execa.shellSync).not.toBeCalled()
+    const status = await index(['', '', 'pre-commit'], { cwd: dir })
+    expect(cp.spawnSync).not.toBeCalled()
     expect(status).toBe(0)
   })
 
@@ -108,12 +83,8 @@ describe('run', (): void => {
       })
     )
 
-    const status = await index(['', getScriptPath(dir), 'pre-commit'])
-    expect(execa.shellSync).toHaveBeenCalledWith('echo fail && exit 2', {
-      cwd: dir,
-      env: {},
-      stdio: 'inherit'
-    })
+    const status = await index(['', '', 'pre-commit'], { cwd: dir })
+    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo fail && exit 2')
     expect(status).toBe(2)
   })
 
@@ -131,12 +102,8 @@ describe('run', (): void => {
       })
     )
 
-    const status = await index(['', getScriptPath(dir), 'pre-commit'])
-    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
-      cwd: dir,
-      env: {},
-      stdio: 'inherit'
-    })
+    const status = await index(['', '', 'pre-commit'], { cwd: dir })
+    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success')
     expect(status).toBe(0)
   })
 
@@ -156,16 +123,12 @@ describe('run', (): void => {
       })
     )
 
-    const status = await index(
-      ['', getScriptPath(dir), 'pre-push'],
-      (): Promise<string> => Promise.resolve('foo')
-    )
-    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
+    const status = await index(['', '', 'pre-push'], {
       cwd: dir,
-      env: {
-        HUSKY_GIT_STDIN: 'foo'
-      },
-      stdio: 'inherit'
+      getStdinFn: (): Promise<string> => Promise.resolve('foo')
+    })
+    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
+      HUSKY_GIT_STDIN: 'foo'
     })
     expect(status).toBe(0)
   })
@@ -185,27 +148,20 @@ describe('run', (): void => {
     )
 
     // 'commit-msg' takes one parameter from git
-    const status = await index([
-      '',
-      getScriptPath(dir),
-      'commit-msg',
-      'git fake param'
-    ])
-    expect(execa.shellSync).toHaveBeenCalledWith('echo success', {
-      cwd: dir,
-      env: {
-        HUSKY_GIT_PARAMS: 'git fake param'
-      },
-      stdio: 'inherit'
+    const status = await index(['', '', 'commit-msg', 'git fake param'], {
+      cwd: dir
+    })
+    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
+      HUSKY_GIT_PARAMS: 'git fake param'
     })
     expect(status).toBe(0)
   })
 
   it("should not throw if there's no package.json", async (): Promise<void> => {
     const dir = tempy.directory()
-    await index(
-      ['', getScriptPath(dir), 'pre-push'],
-      (): Promise<string> => Promise.resolve('foo')
-    )
+    await index(['', '', 'pre-push'], {
+      cwd: dir,
+      getStdinFn: (): Promise<string> => Promise.resolve('foo')
+    })
   })
 })

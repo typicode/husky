@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2016",
+    "target": "es2017",
     "module": "commonjs",
     "outDir": "./lib",
     "rootDir": "./src",
@@ -11,7 +11,5 @@
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "exclude": [
-    "**/__tests__/*"
-  ]
+  "exclude": ["**/__tests__/*"]
 }

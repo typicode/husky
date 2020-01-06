@@ -1,113 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`hookScript should match snapshot (OS X/Linux) 1`] = `
+exports[`hookScript should match snapshot 1`] = `
 "#!/bin/sh
 # husky
 
-# Hook created by Husky
-#   Version: 3.1.0
+# Hook created by Husky v4.0.0-beta.5 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
-#   See: https://github.com/typicode/husky#readme
+#   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
+#   With: npm
 
-# From
-#   Directory: /home/typicode/projects/foo-package
-#   Homepage: https://github.com/foo/foo-package
-
-scriptPath=\\"node_modules/husky/run.js\\"
-hookName=\`basename \\"$0\\"\`
+gitRoot=\\"$(git rev-parse --show-toplevel)\\"
 gitParams=\\"$*\\"
+hookName=\`basename \\"$0\\"\`
+packageManager=npm
 
 debug() {
-  if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ] || [ \\"\${HUSKY_DEBUG}\\" = \\"1\\" ]; then
+  if [ \\"$HUSKY_DEBUG\\" = \\"true\\" ] || [ \\"$HUSKY_DEBUG\\" = \\"1\\" ]; then
     echo \\"husky:debug $1\\"
   fi
 }
 
-debug \\"husky v3.1.0 (created at <locale date string>)\\"
-debug \\"$hookName hook started\\"
-debug \\"Current working directory is '\`pwd\`'\\"
+command_exists () {
+  command -v \\"$1\\" >/dev/null 2>&1
+}
 
-if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
-  debug \\"HUSKY_SKIP_HOOKS is set to \${HUSKY_SKIP_HOOKS}, skipping hook\\"
-  exit 0
-fi
+run_command () {
+  if command_exists \\"$1\\"; then
+    \\"$@\\" husky-run $hookName \\"$gitParams\\"
 
-if [ \\"\${HUSKY_USE_YARN}\\" = \\"true\\" ] || [ \\"\${HUSKY_USE_YARN}\\" = \\"1\\" ]; then
-  debug \\"Calling husky through Yarn\\"
-  yarn husky-run $hookName \\"$gitParams\\"
-else
+    exitCode=\\"$?\\"
+    debug \\"$* husky-run exited with $exitCode exit code\\"
 
-  if ! command -v node >/dev/null 2>&1; then
-    echo \\"Info: can't find node in PATH, trying to find a node binary on your system\\"
-  fi
-
-  if [ -f \\"$scriptPath\\" ]; then
-    # if [ -t 1 ]; then
-    #   exec < /dev/tty
-    # fi
-    if [ -f ~/.huskyrc ]; then
-      debug \\"Sourcing '~/.huskyrc'\\"
-      . ~/.huskyrc
+    if [ $exitCode -eq 127 ]; then
+      echo \\"Can't find Husky, skipping $hookName hook\\"
+      echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
+    else
+      exit $exitCode
     fi
-    node_modules/run-node/run-node \\"$scriptPath\\" $hookName \\"$gitParams\\"
+
   else
-    echo \\"Can't find Husky, skipping $hookName hook\\"
-    echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
-  fi
-fi
-"
-`;
-
-exports[`hookScript should match snapshot (Windows) 1`] = `
-"#!/bin/sh
-# husky
-
-# Hook created by Husky
-#   Version: 3.1.0
-#   At: <locale date string>
-#   See: https://github.com/typicode/husky#readme
-
-# From
-#   Directory: /home/typicode/projects/foo-package
-#   Homepage: https://github.com/foo/foo-package
-
-scriptPath=\\"node_modules/husky/run.js\\"
-hookName=\`basename \\"$0\\"\`
-gitParams=\\"$*\\"
-
-debug() {
-  if [ \\"\${HUSKY_DEBUG}\\" = \\"true\\" ] || [ \\"\${HUSKY_DEBUG}\\" = \\"1\\" ]; then
-    echo \\"husky:debug $1\\"
+    echo \\"Can't find $1 in PATH: $PATH\\"
+    echo \\"Skipping $hookName hook\\"
+    exit 0
   fi
 }
 
-debug \\"husky v3.1.0 (created at <locale date string>)\\"
+debug \\"husky v4.0.0-beta.5 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
-debug \\"Current working directory is '\`pwd\`'\\"
+debug \\"Current working directory is \`pwd\`\\"
 
-if [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"true\\" ] || [ \\"\${HUSKY_SKIP_HOOKS}\\" = \\"1\\" ]; then
-  debug \\"HUSKY_SKIP_HOOKS is set to \${HUSKY_SKIP_HOOKS}, skipping hook\\"
+if [ -f ~/.huskyrc ]; then
+  debug \\"source ~/.huskyrc\\"
+  . ~/.huskyrc
+fi
+
+if [ -f \\"$gitRoot\\"/.huskyrc.local ]; then
+  debug \\"source $gitRoot/.huskyrc.local\\"
+  . \\"$gitRoot\\"/.huskyrc.local
+fi
+
+debug \\"$hookName hook started\\"
+
+if [ \\"$HUSKY_SKIP_HOOKS\\" = \\"true\\" ] || [ \\"$HUSKY_SKIP_HOOKS\\" = \\"1\\" ]; then
+  debug \\"HUSKY_SKIP_HOOKS is set to $HUSKY_SKIP_HOOKS, skipping hook\\"
   exit 0
 fi
 
-if [ \\"\${HUSKY_USE_YARN}\\" = \\"true\\" ] || [ \\"\${HUSKY_USE_YARN}\\" = \\"1\\" ]; then
-  debug \\"Calling husky through Yarn\\"
-  yarn husky-run $hookName \\"$gitParams\\"
-else
+cd \\".\\"
 
-  if [ -f \\"$scriptPath\\" ]; then
-    # if [ -t 1 ]; then
-    #   exec < /dev/tty
-    # fi
-    if [ -f ~/.huskyrc ]; then
-      debug \\"Sourcing '~/.huskyrc'\\"
-      . ~/.huskyrc
-    fi
-    node \\"$scriptPath\\" $hookName \\"$gitParams\\"
-  else
-    echo \\"Can't find Husky, skipping $hookName hook\\"
-    echo \\"You can reinstall it using 'npm install husky --save-dev' or delete this hook\\"
-  fi
-fi
+case $packageManager in
+  \\"npm\\") run_command npx --no-install;;
+  \\"pnpm\\") run_command pnpx --no-install;;
+  \\"yarn\\") run_command yarn;;
+  \\"*\\") echo \\"Unknow package manager: $packageManager\\"; exit 0;;
+esac
 "
 `;

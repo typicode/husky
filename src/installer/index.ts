@@ -1,10 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-import pkgDir from 'pkg-dir'
+import { debug } from '../debug'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
-import debug from '../debug'
 
 const hookList = [
   'applypatch-msg',
@@ -92,14 +91,7 @@ function removeHooks(filenames: string[]): void {
 // This prevents the case where someone would want to debug a node_module that has
 // husky as devDependency and run npm install from node_modules directory
 function isInNodeModules(dir: string): boolean {
-  // INIT_CWD holds the full path you were in when you ran npm install (supported also by yarn and pnpm)
-  // See https://docs.npmjs.com/cli/run-script
-  if (process.env.INIT_CWD) {
-    return process.env.INIT_CWD.indexOf('node_modules') !== -1
-  }
-
-  // Old technique
-  return (dir.match(/node_modules/g) || []).length > 1
+  return dir.indexOf('node_modules') !== -1
 }
 
 function getGitHooksDir(gitDir: string): string {
@@ -113,32 +105,19 @@ function getHooks(gitDir: string): string[] {
   )
 }
 
-/**
- * @param topLevel - as returned by git --rev-parse
- * @param gitDir - as returned by git --rev-parse
- * @param huskyDir - e.g. /home/typicode/project/node_modules/husky/
- * @param isCI - true if running in CI
- * @param requireRunNodePath - path to run-node resolved by require e.g. /home/typicode/project/node_modules/run-node/run-node
- */
-// eslint-disable-next-line max-params
-export function install(
-  topLevel: string,
-  gitDir: string,
-  huskyDir: string,
-  isCI: boolean,
-  requireRunNodePath = require.resolve('run-node/run-node')
-): void {
-  // First directory containing user's package.json
-  const userPkgDir = pkgDir.sync(path.join(huskyDir, '..'))
-
-  if (userPkgDir === undefined) {
-    console.log("Can't find package.json, skipping Git hooks installation.")
-    console.log(
-      'Please check that your project has a package.json or create it and reinstall husky.'
-    )
-    return
-  }
-
+export function install({
+  absoluteGitCommonDir,
+  relativeUserPkgDir,
+  userPkgDir,
+  pmName, // package manager name
+  isCI // running in CI or not
+}: {
+  absoluteGitCommonDir: string
+  relativeUserPkgDir: string
+  userPkgDir: string
+  pmName: string
+  isCI: boolean
+}): void {
   // Get conf from package.json or .huskyrc
   const conf = getConf(userPkgDir)
 
@@ -148,7 +127,7 @@ export function install(
     return
   }
 
-  if (isInNodeModules(huskyDir)) {
+  if (isInNodeModules(userPkgDir)) {
     console.log(
       'Trying to install from node_modules directory, skipping Git hooks installation.'
     )
@@ -156,26 +135,27 @@ export function install(
   }
 
   // Create hooks directory if it doesn't exist
-  const gitHooksDir = getGitHooksDir(gitDir)
+  const gitHooksDir = getGitHooksDir(absoluteGitCommonDir)
   if (!fs.existsSync(gitHooksDir)) {
     fs.mkdirSync(gitHooksDir)
   }
 
-  debug(`Installing hooks in '${gitHooksDir}'`)
-  const hooks = getHooks(gitDir)
-  const script = getScript(topLevel, huskyDir, requireRunNodePath)
+  debug(`Installing hooks in ${gitHooksDir}`)
+  const hooks = getHooks(absoluteGitCommonDir)
+
+  // Prefix can be an empty string
+  const script = getScript({ relativeUserPkgDir, pmName })
   createHooks(hooks, script)
 }
 
-export function uninstall(gitDir: string, huskyDir: string): void {
-  if (gitDir === null) {
-    console.log(
-      "Can't find resolved .git directory, skipping Git hooks uninstallation."
-    )
-    return
-  }
-
-  if (isInNodeModules(huskyDir)) {
+export function uninstall({
+  absoluteGitCommonDir,
+  userPkgDir
+}: {
+  absoluteGitCommonDir: string
+  userPkgDir: string
+}): void {
+  if (isInNodeModules(userPkgDir)) {
     console.log(
       'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'
     )
@@ -183,6 +163,6 @@ export function uninstall(gitDir: string, huskyDir: string): void {
   }
 
   // Remove hooks
-  const hooks = getHooks(gitDir)
+  const hooks = getHooks(absoluteGitCommonDir)
   removeHooks(hooks)
 }
