@@ -29,7 +29,7 @@ npm install husky@next --save-dev
 git commit -m 'Keep calm and commit'
 ```
 
-_Existing hooks are kept. Requires Node `>= 8.6.0` and Git `>= 2.13.0`._
+_Existing hooks are kept. Requires Node `>= 10` and Git `>= 2.13.0`._
 
 ## Uninstall
 
