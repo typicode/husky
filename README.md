@@ -1,9 +1,3 @@
-__Announcement__ you can support the development of v4 major release on [__Open Collective__](https://opencollective.com/husky) and [__GitHub Sponsors__](https://github.com/users/typicode/sponsorship) 🚀
-
-See [next](https://github.com/typicode/husky/tree/next) branch. Feedback is welcome 🙏
-
----
-
 # Husky
 
 [![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Mac/Linux Build Status](https://img.shields.io/travis/typicode/husky/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/typicode/husky) [![Windows Build status](https://img.shields.io/appveyor/ci/typicode/husky/master.svg?label=Windows)](https://ci.appveyor.com/project/typicode/husky)
@@ -36,8 +30,6 @@ git commit -m 'Keep calm and commit'
 ```
 
 _Existing hooks are kept. Requires Node `>= 8.6.0` and Git `>= 2.13.0`._
-
-__Note__: if you're trying Yarn v2, please install `husky@next`. See [next](https://github.com/typicode/husky/tree/next) branch.
 
 ## Uninstall
 
