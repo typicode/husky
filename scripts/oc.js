@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 const fs = require('fs')
 
 function renderTier(tier, height) {
@@ -14,7 +15,11 @@ function renderTier(tier, height) {
 }
 
 function render() {
-  return [['Gold', 60], ['Silver', 45], ['Bronze', 30]]
+  return [
+    ['Gold', 60],
+    ['Silver', 45],
+    ['Bronze', 30]
+  ]
     .map(([tier, height]) => renderTier(tier, height))
     .join('\n\n')
 }

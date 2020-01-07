@@ -1,4 +1,4 @@
-import cosmiconfig from 'cosmiconfig'
+import { cosmiconfigSync } from 'cosmiconfig'
 
 interface Conf {
   skipCI: boolean
@@ -6,8 +6,8 @@ interface Conf {
 }
 
 export default function getConf(dir: string): Conf {
-  const explorer = cosmiconfig('husky')
-  const { config = {} } = explorer.searchSync(dir) || {}
+  const explorer = cosmiconfigSync('husky')
+  const { config = {} } = explorer.search(dir) || {}
 
   const defaults: Conf = {
     skipCI: true
