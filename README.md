@@ -9,7 +9,7 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 ## Install
 
 ```sh
-npm install husky@next --save-dev
+npm install husky --save-dev
 ```
 
 ```js
