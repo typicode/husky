@@ -1,32 +1,10 @@
 import fs from 'fs'
 import path from 'path'
+import hookList from 'git-hooks-list'
 import { debug } from '../debug'
 import getConf from '../getConf'
 import getScript from './getScript'
 import { isGhooks, isHusky, isPreCommit, isYorkie } from './is'
-
-const hookList = [
-  'applypatch-msg',
-  'pre-applypatch',
-  'post-applypatch',
-  'pre-commit',
-  'pre-merge-commit',
-  'prepare-commit-msg',
-  'commit-msg',
-  'post-commit',
-  'pre-rebase',
-  'post-checkout',
-  'post-merge',
-  'pre-push',
-  'pre-receive',
-  'update',
-  'post-receive',
-  'post-update',
-  'push-to-checkout',
-  'pre-auto-gc',
-  'post-rewrite',
-  'sendemail-validate'
-]
 
 function writeHook(filename: string, script: string): void {
   fs.writeFileSync(filename, script, 'utf-8')

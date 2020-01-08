@@ -1,33 +1,19 @@
 import fs from 'fs'
 import path from 'path'
+import gitHooks from 'git-hooks-list'
 import { readPkg } from '../read-pkg'
 
 interface HookMap {
   [key: string]: string
 }
 
-const hookList: HookMap = {
-  applypatchmsg: 'applypatch-msg',
-  commitmsg: 'commit-msg',
-  postapplypatch: 'post-applypatch',
-  postcheckout: 'post-checkout',
-  postcommit: 'post-commit',
-  postmerge: 'post-merge',
-  postreceive: 'post-receive',
-  postrewrite: 'post-rewrite',
-  postupdate: 'post-update',
-  preapplypatch: 'pre-applypatch',
-  preautogc: 'pre-auto-gc',
-  precommit: 'pre-commit',
-  premergecommit: 'pre-merge-commit',
-  preparecommitmsg: 'prepare-commit-msg',
-  prepush: 'pre-push',
-  prerebase: 'pre-rebase',
-  prereceive: 'pre-receive',
-  pushtocheckout: 'push-to-checkout',
-  sendemailvalidate: 'sendemail-validate',
-  update: 'update'
-}
+const hookList: HookMap = gitHooks.reduce(
+  (hookList: HookMap, hook: string): HookMap => {
+    hookList[hook.replace(/-/g, '')] = hook
+    return hookList
+  },
+  {}
+)
 
 export default function upgrade(cwd: string): void {
   const pkgFile = path.join(cwd, 'package.json')
