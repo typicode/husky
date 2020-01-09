@@ -41,15 +41,13 @@ function runCommand(
   console.log(`husky > ${hookName} (node ${process.version})`)
 
   const SHELL = process.env.SHELL || 'sh'
-  try {
-    const { status } = spawnSync(SHELL, ['-c', cmd], {
-      cwd,
-      env: { ...process.env, ...env },
-      stdio: 'inherit'
-    })
+  const { status } = spawnSync(SHELL, ['-c', cmd], {
+    cwd,
+    env: { ...process.env, ...env },
+    stdio: 'inherit'
+  })
 
-    return status || 0
-  } catch (err) {
+  if (status !== 0) {
     const noVerifyMessage = [
       'commit-msg',
       'pre-commit',
@@ -60,11 +58,9 @@ function runCommand(
       : '(cannot be bypassed with --no-verify due to Git specs)'
 
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
-
-    console.log({ err })
-
-    return 1
   }
+
+  return status || 0
 }
 
 /**
