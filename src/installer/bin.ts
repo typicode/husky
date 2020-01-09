@@ -103,7 +103,7 @@ function run(): void {
     console.log(chalk.red(err.message.trim()))
     debug(err.stack)
     console.log(chalk.red(`husky > Failed to ${action}`))
-    process.exit(1)
+    process.exitCode = 1
   }
 }
 
