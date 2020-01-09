@@ -9,13 +9,17 @@ export type GitRevParseResult = {
 export function gitRevParse(cwd = process.cwd()): GitRevParseResult {
   // https://github.com/typicode/husky/issues/580
   // https://github.com/typicode/husky/issues/587
-  const result = cp.spawnSync(
+  const { status, stderr, stdout } = cp.spawnSync(
     'git',
     ['rev-parse', '--show-prefix', '--git-common-dir'],
     { cwd }
   )
 
-  const [prefix, gitCommonDir] = result.stdout
+  if (status !== 0) {
+    throw new Error(stderr.toString())
+  }
+
+  const [prefix, gitCommonDir] = stdout
     .toString()
     .split('\n')
     .map(s => s.trim())
