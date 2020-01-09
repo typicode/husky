@@ -1,6 +1,6 @@
 .gitattributes
 .github
-.eslintrc
+.eslintrc.js
 .huskyrc
 .prettierrc
 .travis.yml
