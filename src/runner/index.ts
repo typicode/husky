@@ -29,7 +29,13 @@ function getOldCommand(cwd: string, hookName: string): string | undefined {
 function getCommand(cwd: string, hookName: string): string | undefined {
   const config = getConf(cwd)
 
-  return config && config.hooks && config.hooks[hookName]
+  const command = config && config.hooks && config.hooks[hookName]
+
+  if (Array.isArray(command)) {
+    return command.join(' && ')
+  }
+
+  return command
 }
 
 function runCommand(

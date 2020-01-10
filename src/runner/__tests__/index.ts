@@ -164,4 +164,25 @@ describe('run', (): void => {
       getStdinFn: (): Promise<string> => Promise.resolve('foo')
     })
   })
+
+  it('should run array of commands and exit with 0 status', async (): Promise<
+    void
+  > => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': ['echo alpha', 'echo bravo']
+          }
+        }
+      })
+    )
+
+    const status = await index(['', '', 'pre-commit'], { cwd: dir })
+    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo alpha && echo bravo')
+    expect(status).toBe(0)
+  })
 })
