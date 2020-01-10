@@ -95,9 +95,8 @@ fi
 cd "${relativeUserPkgDir}"
 
 case $packageManager in
-  "npm") run_command npx --no-install;;
+  "npm"|"yarn") run_command npx --no-install;;
   "pnpm") run_command pnpx --no-install;;
-  "yarn") run_command yarn run --silent;;
   "*") echo "Unknow package manager: $packageManager"; exit 0;;
 esac
 `
