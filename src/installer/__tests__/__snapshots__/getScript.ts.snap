@@ -4,7 +4,7 @@ exports[`hookScript should match snapshot 1`] = `
 "#!/bin/sh
 # husky
 
-# Hook created by Husky v4.0.4 (https://github.com/typicode/husky#readme)
+# Hook created by Husky v4.0.5 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 #   With: npm
@@ -45,7 +45,7 @@ run_command () {
   fi
 }
 
-debug \\"husky v4.0.4 (created at <locale date string>)\\"
+debug \\"husky v4.0.5 (created at <locale date string>)\\"
 debug \\"$hookName hook started\\"
 debug \\"Current working directory is \`pwd\`\\"
 
