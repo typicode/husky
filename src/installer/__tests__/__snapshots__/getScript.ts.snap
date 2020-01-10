@@ -68,6 +68,10 @@ fi
 
 cd \\".\\"
 
+if command_exists winpty && test -t 1; then
+  exec < /dev/tty
+fi
+
 case $packageManager in
   \\"npm\\") run_command npx --no-install;;
   \\"pnpm\\") run_command pnpx --no-install;;
