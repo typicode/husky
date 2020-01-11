@@ -246,26 +246,16 @@ export NVM_DIR="$HOME/.nvm"
 
 By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command. 
 
-```json
+```jsonc
 "pre-commit": "cmd && cmd"
+
+// or
+
+"pre-commit": [
+  "cmd",
+  "cmd"
+]
 ```
-
-That said, if you prefer to use an array, the recommended approach is to define them in `.huskyrc.js`.
-
-```js
-const tasks = arr => arr.join(' && ')
-
-module.exports = {
-  'hooks': {
-    'pre-commit': tasks([
-      'cmd',
-      'cmd'
-    ])
-  }
-}
-```
-
-Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too.
 
 ### Troubleshoot
 
