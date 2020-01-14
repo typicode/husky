@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import { spawnSync } from 'child_process'
-import getStdin from 'get-stdin'
 import getConf from '../getConf'
 import { readPkg } from '../read-pkg'
 
@@ -70,10 +69,7 @@ function runCommand(
  */
 export default async function run(
   [, , hookName = '', HUSKY_GIT_PARAMS]: string[],
-  {
-    cwd = process.cwd(),
-    getStdinFn = getStdin
-  }: { cwd?: string; getStdinFn?: () => Promise<string> } = {}
+  { cwd = process.cwd() }: { cwd?: string } = {}
 ): Promise<number> {
   const oldCommand = getOldCommand(cwd, hookName)
   const command = getCommand(cwd, hookName)
@@ -83,17 +79,6 @@ export default async function run(
 
   if (HUSKY_GIT_PARAMS) {
     env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS
-  }
-
-  // Read stdin and add HUSKY_GIT_STDIN
-  const hooksWithStdin = [
-    'pre-push',
-    'pre-receive',
-    'post-receive',
-    'post-rewrite'
-  ]
-  if (hooksWithStdin.includes(hookName)) {
-    env.HUSKY_GIT_STDIN = await getStdinFn()
   }
 
   if (command) {

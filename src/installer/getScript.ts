@@ -94,9 +94,10 @@ fi
 
 cd "${relativeUserPkgDir}"
 
-if command_exists winpty && test -t 1; then
-  exec < /dev/tty
-fi
+case $hookName in
+  "pre-push"|"pre-receive"|"post-receive"|"post-rewrite")
+    export HUSKY_GIT_STDIN=\`cat\`;;
+esac
 
 case $packageManager in
   "npm") run_command npx --no-install;;
