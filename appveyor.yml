@@ -22,6 +22,10 @@ test_script:
 
   # Run tests
   - sh ./scripts/test-install.sh
+  - where.exe sh
+  - ps: $env:Path = "C:\Program Files\Git\bin;$env:Path"
+  - where.exe sh
+  - sh ./scripts/test-install.sh
   - npm test
 
 # Don't actually build.
