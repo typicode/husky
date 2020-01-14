@@ -110,12 +110,14 @@ export function install({
   relativeUserPkgDir,
   userPkgDir,
   pmName, // package manager name
+  pmVersion, // package manager version
   isCI // running in CI or not
 }: {
   absoluteGitCommonDir: string
   relativeUserPkgDir: string
   userPkgDir: string
   pmName: string
+  pmVersion: string
   isCI: boolean
 }): void {
   // Get conf from package.json or .huskyrc
@@ -144,7 +146,7 @@ export function install({
   const hooks = getHooks(absoluteGitCommonDir)
 
   // Prefix can be an empty string
-  const script = getScript({ relativeUserPkgDir, pmName })
+  const script = getScript({ relativeUserPkgDir, pmName, pmVersion })
   createHooks(hooks, script)
 }
 

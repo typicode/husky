@@ -32,6 +32,7 @@ function install({
     relativeUserPkgDir,
     userPkgDir: path.join(tempDir, userPkgDir),
     pmName: 'npm',
+    pmVersion: '6.9.0',
     isCI
   })
 }

@@ -85,13 +85,14 @@ function run(): void {
     const { absoluteGitCommonDir, relativeUserPkgDir } = getDirs(userPkgDir)
 
     if (action === 'install') {
-      const { name: pmName } = whichPMRuns()
+      const { name: pmName, version: pmVersion } = whichPMRuns()
       debug(`Package manager: ${pmName}`)
       install({
         absoluteGitCommonDir,
         relativeUserPkgDir,
         userPkgDir,
         pmName,
+        pmVersion,
         isCI
       })
     } else {

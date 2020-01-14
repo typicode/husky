@@ -9,6 +9,7 @@ interface Context {
   pkgDirectory?: string
   pkgHomepage?: string
   pmName: string
+  pmVersion: string
   relativeUserPkgDir: string
 }
 
@@ -26,6 +27,7 @@ const render = ({
   pkgDirectory,
   pkgHomepage,
   pmName,
+  pmVersion,
   relativeUserPkgDir
 }: Context): string => `#!/bin/sh
 ${huskyIdentifier}
@@ -33,12 +35,13 @@ ${huskyIdentifier}
 # Hook created by Husky v${huskyVersion} (${huskyHomepage})
 #   At: ${createdAt}
 #   From: ${pkgDirectory} (${pkgHomepage})
-#   With: ${pmName}
+#   With: ${pmName} (${pmVersion})
 
 gitRoot="$(git rev-parse --show-toplevel)"
 gitParams="$*"
 hookName=\`basename "$0"\`
-packageManager=${pmName}
+packageManager="${pmName}"
+packageManagerVersion="${pmVersion}"
 
 debug() {
   if [ "$HUSKY_DEBUG" = "true" ] || [ "$HUSKY_DEBUG" = "1" ]; then
@@ -94,7 +97,7 @@ fi
 
 cd "${relativeUserPkgDir}"
 
-if command_exists winpty && test -t 1; then
+if command_exists winpty && test -t 1 && [ "$packageManager" = "yarn" ] && [ "\${packageManagerVersion%%.*}" -lt 2 ]; then
   exec < /dev/tty
 fi
 
@@ -113,10 +116,12 @@ esac
  */
 export default function({
   relativeUserPkgDir,
-  pmName
+  pmName,
+  pmVersion
 }: {
   relativeUserPkgDir: string
   pmName: string
+  pmVersion: string
 }): string {
   const pkgHomepage = process.env.npm_package_homepage
   const pkgDirectory = process.env.PWD
@@ -143,6 +148,7 @@ export default function({
     relativeUserPkgDir: normalizedPath,
     pkgDirectory,
     pkgHomepage,
-    pmName
+    pmName,
+    pmVersion
   })
 }
