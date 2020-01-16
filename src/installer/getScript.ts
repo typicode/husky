@@ -96,7 +96,7 @@ cd "${relativeUserPkgDir}"
 
 case $hookName in
   "pre-push"|"pre-receive"|"post-receive"|"post-rewrite")
-    export HUSKY_GIT_STDIN="\`cat\`";;
+    export HUSKY_GIT_STDIN="$(cat)";;
 esac
 
 if command_exists winpty && test -t 1; then
