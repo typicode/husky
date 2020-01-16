@@ -63,7 +63,10 @@ cat > .huskyrc << EOL
   }
 }
 EOL
+
+# Install husky with npm or yarn
 HUSKY_DEBUG=1 npm install husky-*.tgz
+# HUSKY_DEBUG=1 yarn add ./husky-*.tgz
 
 # Show hook content
 cat .git/hooks/commit-msg
@@ -105,3 +108,28 @@ test "hook should not fail if husky is not found"
 
 mv node_modules _node_modules
 commit third
+mv _node_modules node_modules
+
+# ---
+test "hook should fail"
+cat > .huskyrc << EOL
+{
+  "skipCI": false,
+  "hooks": {
+    "pre-commit": "echo \"failing pre-commit\" && exit 1"
+  }
+}
+EOL
+
+set +e
+commit fourth
+exitCode=$?
+set -e
+
+if [ "$exitCode" -eq 0 ]; then
+  echo "Fail: pre-commit hook should have failed"
+  exit 1
+fi
+
+echo
+echo "Success: all tests passed"

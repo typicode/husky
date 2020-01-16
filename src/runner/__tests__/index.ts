@@ -107,32 +107,6 @@ describe('run', (): void => {
     expect(status).toBe(0)
   })
 
-  it('should set HUSKY_GIT_STDIN env for some hooks', async (): Promise<
-    void
-  > => {
-    const dir = tempy.directory()
-
-    fs.writeFileSync(
-      path.join(dir, 'package.json'),
-      JSON.stringify({
-        husky: {
-          hooks: {
-            'pre-push': 'echo success'
-          }
-        }
-      })
-    )
-
-    const status = await index(['', '', 'pre-push'], {
-      cwd: dir,
-      getStdinFn: (): Promise<string> => Promise.resolve('foo')
-    })
-    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
-      HUSKY_GIT_STDIN: 'foo'
-    })
-    expect(status).toBe(0)
-  })
-
   it('should set HUSKY_GIT_PARAMS', async (): Promise<void> => {
     const dir = tempy.directory()
 
@@ -160,8 +134,7 @@ describe('run', (): void => {
   it("should not throw if there's no package.json", async (): Promise<void> => {
     const dir = tempy.directory()
     await index(['', '', 'pre-push'], {
-      cwd: dir,
-      getStdinFn: (): Promise<string> => Promise.resolve('foo')
+      cwd: dir
     })
   })
 })
