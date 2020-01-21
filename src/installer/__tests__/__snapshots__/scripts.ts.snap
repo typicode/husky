@@ -26,6 +26,7 @@ exports[`mainScript should match snapshot 1`] = `
 "# Created by Husky v4.0.10 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
+
 debug () {
   if [ \\"$HUSKY_DEBUG\\" = \\"true\\" ] || [ \\"$HUSKY_DEBUG\\" = \\"1\\" ]; then
     echo \\"husky:debug $1\\"
