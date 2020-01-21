@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-var-requires */
 const pleaseUpgradeNode = require('please-upgrade-node')
-const pkg = require('./package.json')
+const pkg = require('../package.json')
 
 // Node version isn't supported, skip
 pleaseUpgradeNode(pkg, {
@@ -11,4 +11,4 @@ pleaseUpgradeNode(pkg, {
 })
 
 // Node version is supported, continue
-require('./lib/runner/bin')
+require('../lib/runner/bin')

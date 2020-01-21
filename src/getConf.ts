@@ -5,7 +5,7 @@ interface Conf {
   hooks?: { [key: string]: string }
 }
 
-export default function getConf(dir: string): Conf {
+export function getConf(dir: string): Conf {
   const explorer = cosmiconfigSync('husky')
   const { config = {} } = explorer.search(dir) || {}
 
