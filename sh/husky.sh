@@ -58,7 +58,7 @@ debug "Current working directory is $(pwd)"
 
 # Skip fast if hookName is not defined
 if ! hookIsDefined; then
-  debug "$hookName config not found, skip"
+  debug "$hookName config not found, skipping hook"
   exit 0
 fi
 
