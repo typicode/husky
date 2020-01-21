@@ -10,7 +10,7 @@ export function getMainScript(): string {
     .readFileSync(path.join(__dirname, '../../sh/husky.sh'), 'utf-8')
     .replace('huskyVersion="0.0.0"', `huskyVersion="${pkg.version}"`)
 
-  return [getBanner(), mainScript].join('\n')
+  return [getBanner(), '', mainScript].join('\n')
 }
 
 export function createMainScript(gitHooksDir: string): void {
