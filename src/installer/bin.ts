@@ -7,6 +7,7 @@ import { checkGitDirEnv } from '../checkGitDirEnv'
 import { debug } from '../debug'
 import { install, uninstall } from './'
 import { gitRevParse } from './gitRevParse'
+import { checkGitVersion } from './checkGitVersion'
 
 // Skip install if HUSKY_SKIP_INSTALL is true
 function checkSkipInstallEnv(): void {
@@ -78,7 +79,11 @@ function run(): void {
 
     debug(`Current working directory is ${process.cwd()}`)
 
-    if (action === 'install') checkSkipInstallEnv()
+    if (action === 'install') {
+      checkSkipInstallEnv()
+      checkGitVersion()
+    }
+
     const INIT_CWD = getInitCwdEnv()
     const userPkgDir = getUserPkgDir(INIT_CWD)
     checkGitDirEnv()
