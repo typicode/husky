@@ -11,7 +11,7 @@ ${huskyIdentifier}
 
 ${getBanner()}
 
-source "$(dirname "$0")/husky.sh"
+. "$(dirname "$0")/husky.sh"
 `
 }
 

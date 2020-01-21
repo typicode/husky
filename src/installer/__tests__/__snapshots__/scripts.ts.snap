@@ -8,7 +8,7 @@ exports[`hookScript should match snapshot 1`] = `
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
-source \\"$(dirname \\"$0\\")/husky.sh\\"
+. \\"$(dirname \\"$0\\")/husky.sh\\"
 "
 `;
 
