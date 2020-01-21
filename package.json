@@ -51,7 +51,9 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "ci-info": "^2.0.0",
+    "compare-versions": "^3.5.1",
     "cosmiconfig": "^6.0.0",
+    "find-versions": "^3.2.0",
     "opencollective-postinstall": "^2.0.2",
     "pkg-dir": "^4.2.0",
     "please-upgrade-node": "^3.2.0",
