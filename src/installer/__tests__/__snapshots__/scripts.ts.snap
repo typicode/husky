@@ -4,7 +4,7 @@ exports[`hookScript should match snapshot 1`] = `
 "#!/bin/sh
 # husky
 
-# Created by Husky v4.1.0 (https://github.com/typicode/husky#readme)
+# Created by Husky v4.2.0 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
@@ -13,7 +13,7 @@ exports[`hookScript should match snapshot 1`] = `
 `;
 
 exports[`localScript should match snapshot 1`] = `
-"# Created by Husky v4.1.0 (https://github.com/typicode/husky#readme)
+"# Created by Husky v4.2.0 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
@@ -23,7 +23,7 @@ cd \\".\\"
 `;
 
 exports[`mainScript should match snapshot 1`] = `
-"# Created by Husky v4.1.0 (https://github.com/typicode/husky#readme)
+"# Created by Husky v4.2.0 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
@@ -69,7 +69,7 @@ hookIsDefined () {
     husky.config.js
 }
 
-huskyVersion=\\"4.1.0\\"
+huskyVersion=\\"4.2.0\\"
 gitParams=\\"$*\\"
 hookName=\\"$(basename \\"$0\\")\\"
 
