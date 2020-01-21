@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import { spawnSync } from 'child_process'
-import getConf from '../getConf'
+import { getConf } from '../getConf'
 import { readPkg } from '../read-pkg'
 
 export interface Env extends NodeJS.ProcessEnv {

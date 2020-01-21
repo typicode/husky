@@ -8,7 +8,7 @@ set -e
 # Variables
 # ---
 
-HUSKY_DEBUG=1
+export HUSKY_DEBUG=1
 
 projectDir=/tmp/husky-project
 hookParamsFile=hook-params
