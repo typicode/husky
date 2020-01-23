@@ -53,7 +53,7 @@ if [ "$HUSKY_SKIP_HOOKS" = "true" ] || [ "$HUSKY_SKIP_HOOKS" = "1" ]; then
 fi
 
 # Source user var and change directory
-. "$(dirname $0)/husky.local.sh"
+. "$(dirname "$0")/husky.local.sh"
 debug "Current working directory is $(pwd)"
 
 # Skip fast if hookName is not defined
