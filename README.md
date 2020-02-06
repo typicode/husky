@@ -31,6 +31,10 @@ git commit -m 'Keep calm and commit'
 
 _Existing hooks are kept. Requires Node `>= 10` and Git `>= 2.13.0`._
 
+## Reinstall
+
+If Husky is already in your `node_modules` or `pnp.js` (Yarn 2) and you want to reinstall hooks, you can run `npm rebuild` or `yarn rebuild`.
+
 ## Uninstall
 
 ```sh
