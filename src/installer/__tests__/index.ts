@@ -5,7 +5,7 @@ import path from 'path'
 import tempy from 'tempy'
 import './__env__'
 import * as installer from '../'
-import { huskyIdentifier } from '../getScript'
+import { huskyIdentifier } from '../hooks'
 
 // RandomId to verify that scripts get updated
 const randomId = Math.random().toString()
@@ -111,12 +111,16 @@ describe('install', (): void => {
     writeFile('package.json', pkg)
 
     install()
+    expect(exists('.git/hooks/husky.sh')).toBeTruthy()
+    expect(exists('.git/hooks/husky.local.sh')).toBeTruthy()
     expectHookToExist('.git/hooks/pre-commit')
 
-    const hook = readFile('.git/hooks/pre-commit')
-    expect(hook).toMatch('cd "."')
+    const localScript = readFile('.git/hooks/husky.local.sh')
+    expect(localScript).toMatch('cd "."')
 
     uninstall()
+    expect(exists('.git/hooks/husky.sh')).toBeFalsy()
+    expect(exists('.git/hooks/husky.local.sh')).toBeFalsy()
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
@@ -166,11 +170,13 @@ describe('install', (): void => {
     writeFile('A/B/package.json', pkg)
 
     install({ relativeUserPkgDir, userPkgDir: relativeUserPkgDir })
-    const hook = readFile('.git/hooks/pre-commit')
+    const localScript = readFile('.git/hooks/husky.local.sh')
 
-    expect(hook).toMatch('cd "A/B/"')
+    expect(localScript).toMatch('cd "A/B/"')
+    expectHookToExist('.git/hooks/pre-commit')
 
     uninstall({ userPkgDir: relativeUserPkgDir })
+    expect(exists('.git/hooks/husky.local.sh')).toBeFalsy()
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
@@ -185,11 +191,13 @@ describe('install', (): void => {
       gitCommonDir,
       userPkgDir
     })
-    const hook = readFile('.git/modules/A/B/hooks/pre-commit')
+    const localScript = readFile('.git/modules/A/B/hooks/husky.local.sh')
 
-    expect(hook).toMatch('cd "."')
+    expect(localScript).toMatch('cd "."')
+    expectHookToExist('.git/modules/A/B/hooks/pre-commit')
 
     uninstall({ gitCommonDir, userPkgDir })
+    expect(exists('.git/modules/A/B/hooks/husky.local.sh')).toBeFalsy()
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
   })
 

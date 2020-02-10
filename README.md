@@ -31,6 +31,10 @@ git commit -m 'Keep calm and commit'
 
 _Existing hooks are kept. Requires Node `>= 10` and Git `>= 2.13.0`._
 
+## Reinstall
+
+If Husky is already in your `node_modules` or `pnp.js` (Yarn 2) and you want to reinstall hooks, you can run `npm rebuild` or `yarn rebuild`.
+
 ## Uninstall
 
 ```sh
@@ -145,7 +149,7 @@ You can also do it manually. Move your existing hooks to `husky.hooks` field and
 }
 ```
 
-Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json` or `.huskyrc.js` file.
+Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`, `.huskyrc.js` or `husky.config.js` file.
 
 ```js
 // .huskyrc

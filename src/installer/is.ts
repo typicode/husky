@@ -1,4 +1,4 @@
-import { huskyIdentifier } from './getScript'
+import { huskyIdentifier } from './hooks'
 
 export function isHusky(data: string): boolean {
   // Husky v0.14 and prior used #husky as an identifier.

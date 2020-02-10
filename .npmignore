@@ -6,6 +6,7 @@
 .travis.yml
 appveyor.yml
 ci-post-checkout
+hook-params
 scripts
 src
 tsconfig.json
