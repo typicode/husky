@@ -99,7 +99,7 @@ fi
 
 # Set HUSKY_GIT_STDIN from stdin
 case $hookName in
-  \\"pre-push\\"|\\"pre-receive\\"|\\"post-receive\\"|\\"post-rewrite\\")
+  \\"pre-push\\"|\\"post-rewrite\\")
     export HUSKY_GIT_STDIN=\\"$(cat)\\";;
 esac
 
