@@ -36,8 +36,6 @@ hookIsDefined () {
     .huskyrc.json \
     .huskyrc.yaml \
     .huskyrc.yml \
-    .huskyrc.js \
-    husky.config.js
 }
 
 huskyVersion="0.0.0"
