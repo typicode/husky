@@ -261,6 +261,8 @@ By design and just like `scripts` defined in `package.json`, husky will run hook
 ]
 ```
 
+Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too.
+
 ### Troubleshoot
 
 #### Debug messages
