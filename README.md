@@ -260,10 +260,10 @@ To run multiple commands in series you can specify an array of commands.
 Or if you use a string instead, just like `scripts` defined in `package.json`, husky will run hook scripts as a single command. 
 
 ```json
-"pre-commit": "cmd1 && cmd2"
+"pre-commit": "cmd && cmd"
 ```
 
-ℹ️ _The two examples above will result equivalent behavior._
+ℹ️ _The two examples above will result in equivalent behavior._
 
 Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too.
 
