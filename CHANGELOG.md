@@ -1,6 +1,6 @@
 # CHANGELOG
 
-Changes for 3.0.0+ can now be found in https://github.com/typicode/husky/releases
+⚠️ __Changes for `>=3` can now be found in https://github.com/typicode/husky/releases__
 
 ## 3.0.0
 
