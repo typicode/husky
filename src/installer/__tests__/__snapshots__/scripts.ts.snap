@@ -81,6 +81,13 @@ fi
 
 # Source user var and change directory
 . \\"$(dirname \\"$0\\")/husky.local.sh\\"
+
+cdExitCode=\\"$?\\"
+if [ $cdExitCode -ne 0 ]; then
+  debug \\"Change directory (husky.local.sh) failed with $cdExitCode exit code\\"
+  exit $cdExitCode
+fi
+
 debug \\"Current working directory is $(pwd)\\"
 
 # Skip fast if hookName is not defined
