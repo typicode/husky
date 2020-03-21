@@ -20,8 +20,7 @@
     "postpublish": "pinst --disable",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
     "fix": "npm run lint -- --fix",
-    "doc": "markdown-toc -i README.md",
-    "_postinstall": "opencollective-postinstall || exit 0"
+    "doc": "markdown-toc -i README.md"
   },
   "repository": {
     "type": "git",
@@ -54,7 +53,6 @@
     "compare-versions": "^3.5.1",
     "cosmiconfig": "^6.0.0",
     "find-versions": "^3.2.0",
-    "opencollective-postinstall": "^2.0.2",
     "pkg-dir": "^4.2.0",
     "please-upgrade-node": "^3.2.0",
     "slash": "^3.0.0",
