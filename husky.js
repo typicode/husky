@@ -10,6 +10,7 @@ pleaseUpgradeNode(pkg, {
     return (
       'Husky requires Node ' +
       requiredVersion +
+      ' (runtime: ' + process.version + ')' +
       ', skipping Git hooks installation.'
     )
   }
