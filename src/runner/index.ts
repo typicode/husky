@@ -58,6 +58,13 @@ function runCommand(
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
   }
 
+  // If shell exits with 127 it means that some command was not found.
+  // However, if husky has been deleted from node_modules, it'll be a 127 too.
+  // To be able to distinguish between both cases, 127 is changed to 1.
+  if (status === 127) {
+    return 1
+  }
+
   return status || 0
 }
 
