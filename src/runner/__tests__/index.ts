@@ -14,7 +14,7 @@ function expectSpawnSyncToHaveBeenCalledWith(
   expect(cp.spawnSync).toHaveBeenCalledWith('sh', ['-c', cmd], {
     cwd,
     env: { ...process.env, ...env },
-    stdio: 'inherit'
+    stdio: 'inherit',
   })
 }
 
@@ -36,9 +36,9 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'pre-commit': 'echo success'
-          }
-        }
+            'pre-commit': 'echo success',
+          },
+        },
       })
     )
 
@@ -55,7 +55,7 @@ describe('run', (): void => {
     fs.writeFileSync(
       path.join(dir, 'package.json'),
       JSON.stringify({
-        husky: {}
+        husky: {},
       })
     )
 
@@ -94,9 +94,9 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'pre-commit': 'echo fail && exit 2'
-          }
-        }
+            'pre-commit': 'echo fail && exit 2',
+          },
+        },
       })
     )
 
@@ -114,8 +114,8 @@ describe('run', (): void => {
       path.join(dir, 'package.json'),
       JSON.stringify({
         scripts: {
-          precommit: 'echo success'
-        }
+          precommit: 'echo success',
+        },
       })
     )
 
@@ -132,18 +132,18 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'commit-msg': 'echo success'
-          }
-        }
+            'commit-msg': 'echo success',
+          },
+        },
       })
     )
 
     // 'commit-msg' takes one parameter from git
     const status = await index(['', '', 'commit-msg', 'git fake param'], {
-      cwd: dir
+      cwd: dir,
     })
     expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
-      HUSKY_GIT_PARAMS: 'git fake param'
+      HUSKY_GIT_PARAMS: 'git fake param',
     })
     expect(status).toBe(0)
   })
@@ -151,7 +151,7 @@ describe('run', (): void => {
   it("should not throw if there's no package.json", async (): Promise<void> => {
     const dir = tempy.directory()
     await index(['', '', 'pre-push'], {
-      cwd: dir
+      cwd: dir,
     })
   })
 })

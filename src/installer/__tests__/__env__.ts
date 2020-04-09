@@ -10,7 +10,7 @@ process.env = {
   // eslint-disable-next-line @typescript-eslint/camelcase
   npm_package_homepage: 'https://github.com/foo/foo-package',
   // eslint-disable-next-line @typescript-eslint/camelcase
-  npm_package_name: 'foo-package'
+  npm_package_name: 'foo-package',
 }
 
 // Mock Date.toLocaleString

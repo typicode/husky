@@ -21,7 +21,7 @@ export function install({
   relativeUserPkgDir,
   userPkgDir,
   pmName, // package manager name
-  isCI // running in CI or not
+  isCI, // running in CI or not
 }: {
   absoluteGitCommonDir: string
   relativeUserPkgDir: string
@@ -59,7 +59,7 @@ export function install({
 
 export function uninstall({
   absoluteGitCommonDir,
-  userPkgDir
+  userPkgDir,
 }: {
   absoluteGitCommonDir: string
   userPkgDir: string

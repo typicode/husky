@@ -13,8 +13,8 @@ describe('upgrade', (): void => {
       JSON.stringify({
         scripts: {
           commitmsg: 'echo $GIT_PARAMS GIT_PARAMS HUSKY_GIT_PARAMS',
-          precommit: 'npm test'
-        }
+          precommit: 'npm test',
+        },
       }),
       'utf-8'
     )
@@ -26,10 +26,10 @@ describe('upgrade', (): void => {
         hooks: {
           'commit-msg':
             'echo $HUSKY_GIT_PARAMS HUSKY_GIT_PARAMS HUSKY_GIT_PARAMS',
-          'pre-commit': 'npm test'
-        }
+          'pre-commit': 'npm test',
+        },
       },
-      scripts: {}
+      scripts: {},
     })
   })
 })

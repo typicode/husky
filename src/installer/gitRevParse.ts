@@ -22,7 +22,7 @@ export function gitRevParse(cwd = process.cwd()): GitRevParseResult {
   const [prefix, gitCommonDir] = stdout
     .toString()
     .split('\n')
-    .map(s => s.trim())
+    .map((s) => s.trim())
     // Normalize for Windows
     .map(slash)
 
