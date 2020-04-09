@@ -83,7 +83,8 @@ fi
 # Run husky-run with the package manager used to install Husky
 case $packageManager in
   "npm") run_command npx --no-install;;
+  "npminstall") run_command npx --no-install;;
   "pnpm") run_command pnpx --no-install;;
   "yarn") run_command yarn run --silent;;
-  "*") echo "Unknown package manager: $packageManager"; exit 0;;
+  *) echo "Unknown package manager: $packageManager"; exit 0;;
 esac
