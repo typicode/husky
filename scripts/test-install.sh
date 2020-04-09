@@ -131,5 +131,26 @@ if [ "$exitCode" -eq 0 ]; then
   exit 1
 fi
 
+# ---
+test "hook should fail if command not found"
+cat > .huskyrc << EOL
+{
+  "skipCI": false,
+  "hooks": {
+    "pre-commit": "cmdfoo"
+  }
+}
+EOL
+
+set +e
+commit fifth
+exitCode=$?
+set -e
+
+if [ "$exitCode" -eq 0 ]; then
+  echo "Fail: pre-commit hook should have failed"
+  exit 1
+fi
+
 echo
 echo "Success: all tests passed"
