@@ -236,5 +236,14 @@ describe('install', (): void => {
     expectHookToExist('.git/hooks/pre-commit')
   })
 
+  it('should not throw error during uninstall if some files do not exist', (): void => {
+    writeFile('package.json', pkg)
+
+    install()
+    fs.unlinkSync(path.join(tempDir, '.git/hooks/pre-commit'))
+    fs.unlinkSync(path.join(tempDir, '.git/hooks/husky.sh'))
+
+    expect(uninstall).not.toThrow()
+  })
   hooksManagers.forEach(testMigration)
 })
