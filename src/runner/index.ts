@@ -43,7 +43,6 @@ function runCommand(
     execSync(cmd, {
       cwd,
       env: { ...process.env, ...env },
-      shell: 'sh',
       stdio: 'inherit'
     })
   } catch (err) {

@@ -4,6 +4,8 @@
 # Exit on error
 set -e
 
+echo $0
+
 # ---
 # Variables
 # ---
