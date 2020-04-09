@@ -6,15 +6,12 @@ import index, { Env } from '../'
 
 let spy: jest.SpyInstance
 
-// On AppVeyor $SHELL is not set
-process.env.SHELL = process.env.SHELL || 'sh'
-
-function expectSpawnSyncToHaveBeenCalledWith(
+function expectExecSyncToHaveBeenCalledWith(
   cwd: string,
   cmd: string,
   env: Env = {}
 ): void {
-  expect(cp.spawnSync).toHaveBeenCalledWith(process.env.SHELL, ['-c', cmd], {
+  expect(cp.execSync).toHaveBeenCalledWith(cmd, {
     cwd,
     env: { ...process.env, ...env },
     stdio: 'inherit'
@@ -23,7 +20,7 @@ function expectSpawnSyncToHaveBeenCalledWith(
 
 describe('run', (): void => {
   beforeEach((): void => {
-    spy = jest.spyOn(cp, 'spawnSync')
+    spy = jest.spyOn(cp, 'execSync')
   })
 
   afterEach((): void => {
@@ -46,7 +43,7 @@ describe('run', (): void => {
     )
 
     const status = await index(['', '', 'pre-commit'], { cwd: dir })
-    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success')
+    expectExecSyncToHaveBeenCalledWith(dir, 'echo success')
     expect(status).toBe(0)
   })
 
@@ -63,7 +60,7 @@ describe('run', (): void => {
     )
 
     const status = await index(['', '', 'pre-commit'], { cwd: dir })
-    expect(cp.spawnSync).not.toBeCalled()
+    expect(cp.execSync).not.toBeCalled()
     expect(status).toBe(0)
   })
 
@@ -84,7 +81,7 @@ describe('run', (): void => {
     )
 
     const status = await index(['', '', 'pre-commit'], { cwd: dir })
-    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo fail && exit 2')
+    expectExecSyncToHaveBeenCalledWith(dir, 'echo fail && exit 2')
     expect(status).toBe(2)
   })
 
@@ -103,7 +100,7 @@ describe('run', (): void => {
     )
 
     const status = await index(['', '', 'pre-commit'], { cwd: dir })
-    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success')
+    expectExecSyncToHaveBeenCalledWith(dir, 'echo success')
     expect(status).toBe(0)
   })
 
@@ -125,7 +122,7 @@ describe('run', (): void => {
     const status = await index(['', '', 'commit-msg', 'git fake param'], {
       cwd: dir
     })
-    expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
+    expectExecSyncToHaveBeenCalledWith(dir, 'echo success', {
       HUSKY_GIT_PARAMS: 'git fake param'
     })
     expect(status).toBe(0)

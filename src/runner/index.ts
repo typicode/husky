@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { spawnSync } from 'child_process'
+import { execSync } from 'child_process'
 import { getConf } from '../getConf'
 import { readPkg } from '../read-pkg'
 
@@ -39,14 +39,13 @@ function runCommand(
 ): number {
   console.log(`husky > ${hookName} (node ${process.version})`)
 
-  const SHELL = process.env.SHELL || 'sh'
-  const { status } = spawnSync(SHELL, ['-c', cmd], {
-    cwd,
-    env: { ...process.env, ...env },
-    stdio: 'inherit'
-  })
-
-  if (status !== 0) {
+  try {
+    execSync(cmd, {
+      cwd,
+      env: { ...process.env, ...env },
+      stdio: 'inherit'
+    })
+  } catch (err) {
     const noVerifyMessage = [
       'commit-msg',
       'pre-commit',
@@ -57,9 +56,11 @@ function runCommand(
       : '(cannot be bypassed with --no-verify due to Git specs)'
 
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
+
+    return err.status || 0
   }
 
-  return status || 0
+  return 0
 }
 
 /**
