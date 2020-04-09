@@ -74,9 +74,9 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'pre-commit': 'cmdfoo'
-          }
-        }
+            'pre-commit': 'cmdfoo',
+          },
+        },
       })
     )
 
