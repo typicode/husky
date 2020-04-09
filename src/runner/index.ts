@@ -39,8 +39,7 @@ function runCommand(
 ): number {
   console.log(`husky > ${hookName} (node ${process.version})`)
 
-  const SHELL = process.env.SHELL || 'sh'
-  const { status } = spawnSync(SHELL, ['-c', cmd], {
+  const { status } = spawnSync('sh', ['-c', cmd], {
     cwd,
     env: { ...process.env, ...env },
     stdio: 'inherit'
