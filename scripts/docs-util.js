@@ -10,9 +10,9 @@ console.log(
       packages: {
         A: { 'package.json': 0 },
         B: { 'package.json': 0 },
-        C: { 'package.json': 0 }
-      }
-    }
+        C: { 'package.json': 0 },
+      },
+    },
   })
 )
 
@@ -22,8 +22,8 @@ console.log(
       '.git': 0,
       'package.json 🐶 # add husky here': 0,
       'sub-directory': {
-        'package.json': 0
-      }
-    }
+        'package.json': 0,
+      },
+    },
   })
 )

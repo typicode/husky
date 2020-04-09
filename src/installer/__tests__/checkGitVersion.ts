@@ -9,7 +9,7 @@ describe('checkGitVersion', (): void => {
     // @ts-ignore
     cp.spawnSync.mockReturnValue({
       status: 0,
-      stdout: Buffer.from('git version 2.12.0')
+      stdout: Buffer.from('git version 2.12.0'),
     })
     expect(() => checkGitVersion()).toThrowError()
   })
@@ -19,7 +19,7 @@ describe('checkGitVersion', (): void => {
     // @ts-ignore
     cp.spawnSync.mockReturnValue({
       status: 0,
-      stdout: Buffer.from('git version 2.14.0')
+      stdout: Buffer.from('git version 2.14.0'),
     })
     expect(() => checkGitVersion()).not.toThrowError()
   })

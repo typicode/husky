@@ -42,7 +42,7 @@ function runCommand(
   const { status } = spawnSync('sh', ['-c', cmd], {
     cwd,
     env: { ...process.env, ...env },
-    stdio: 'inherit'
+    stdio: 'inherit',
   })
 
   if (status !== 0) {
@@ -50,7 +50,7 @@ function runCommand(
       'commit-msg',
       'pre-commit',
       'pre-rebase',
-      'pre-push'
+      'pre-push',
     ].includes(hookName)
       ? '(add --no-verify to bypass)'
       : '(cannot be bypassed with --no-verify due to Git specs)'

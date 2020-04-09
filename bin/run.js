@@ -14,7 +14,7 @@ pleaseUpgradeNode(pkg, {
       ')' +
       ", can't run Git hook."
     )
-  }
+  },
 })
 
 // Node version is supported, continue

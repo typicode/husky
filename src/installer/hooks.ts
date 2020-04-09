@@ -32,7 +32,7 @@ const hookList = [
   'push-to-checkout',
   'pre-auto-gc',
   'post-rewrite',
-  'sendemail-validate'
+  'sendemail-validate',
 ]
 
 function getHooks(gitHooksDir: string): string[] {
@@ -98,7 +98,5 @@ function removeHook(filename: string): void {
 }
 
 export function removeHooks(gitHooksDir: string): void {
-  getHooks(gitHooksDir)
-    .filter(canRemove)
-    .forEach(removeHook)
+  getHooks(gitHooksDir).filter(canRemove).forEach(removeHook)
 }
