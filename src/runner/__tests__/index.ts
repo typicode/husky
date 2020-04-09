@@ -6,15 +6,12 @@ import index, { Env } from '../'
 
 let spy: jest.SpyInstance
 
-// On AppVeyor $SHELL is not set
-process.env.SHELL = process.env.SHELL || 'sh'
-
 function expectSpawnSyncToHaveBeenCalledWith(
   cwd: string,
   cmd: string,
   env: Env = {}
 ): void {
-  expect(cp.spawnSync).toHaveBeenCalledWith(process.env.SHELL, ['-c', cmd], {
+  expect(cp.spawnSync).toHaveBeenCalledWith('sh', ['-c', cmd], {
     cwd,
     env: { ...process.env, ...env },
     stdio: 'inherit'
