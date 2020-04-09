@@ -14,7 +14,7 @@ function expectExecSyncToHaveBeenCalledWith(
   expect(cp.execSync).toHaveBeenCalledWith(cmd, {
     cwd,
     env: { ...process.env, ...env },
-    shell: 'sh',
+    shell: '/bin/sh',
     stdio: 'inherit'
   })
 }
