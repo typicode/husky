@@ -52,7 +52,7 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/husky/contribute)]
 
 <!-- oc -->
-#### Gold Sponsors
+#### Gold Sponsors _$500+/month_
 <a href="https://opencollective.com/husky/tiers/gold-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/0/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/gold-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/1/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/gold-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/2/avatar.svg" height="60px"></a>
@@ -64,7 +64,7 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/husky/tiers/gold-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/8/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/gold-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/9/avatar.svg" height="60px"></a>
 
-#### Silver Sponsors
+#### Silver Sponsors _$250+/month_
 <a href="https://opencollective.com/husky/tiers/silver-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/0/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/silver-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/1/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/silver-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/2/avatar.svg" height="60px"></a>
@@ -76,7 +76,7 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/husky/tiers/silver-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/8/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/silver-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/9/avatar.svg" height="60px"></a>
 
-#### Bronze Sponsors
+#### Bronze Sponsors _$100/month_
 <a href="https://opencollective.com/husky/tiers/bronze-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/0/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/bronze-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/1/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/bronze-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/2/avatar.svg" height="60px"></a>
