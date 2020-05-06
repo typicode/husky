@@ -17,8 +17,8 @@ function renderTier(tier, height) {
 function render() {
   return [
     ['Gold', 60],
-    ['Silver', 45],
-    ['Bronze', 30],
+    ['Silver', 60],
+    ['Bronze', 60],
   ]
     .map(([tier, height]) => renderTier(tier, height))
     .join('\n\n')
