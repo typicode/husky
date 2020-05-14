@@ -107,6 +107,7 @@ Support this project with your organization. Your logo will show up here with a 
 
 <!-- toc -->
 
+  * [How it works](#how-it-works)
   * [Upgrading from 0.14](#upgrading-from-014)
   * [Supported hooks](#supported-hooks)
   * [Access Git params and stdin](#access-git-params-and-stdin)
@@ -126,6 +127,9 @@ Support this project with your organization. Your logo will show up here with a 
     + [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
 
 <!-- tocstop -->
+
+### How it works
+While the husky dependency is installed (through `npm install`, `npm add husky`, `yarn install`, ...) git hooks are created/updated in the .git/hooks directory. If the hook is triggered through a git command a script from husky is triggered that will execute ad command based on the package manage you used for the installation. If you use npm `npx --no-install husky-run $hookName "$gitParams"` is executed. That command looks into your configuration and executed the command defined for the hook there.
 
 ### Upgrading from 0.14
 
