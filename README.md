@@ -152,7 +152,7 @@ You can also do it manually. Move your existing hooks to `husky.hooks` field and
 }
 ```
 
-Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`, `.huskyrc.js` or `husky.config.js` file.
+Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`, `.huskyrc.yaml`, `huskyrc.yml`, `.huskyrc.js` or `husky.config.js` file.
 
 ```js
 // .huskyrc
