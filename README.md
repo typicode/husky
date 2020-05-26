@@ -45,11 +45,11 @@ _Git hooks installed by husky will be removed._
 
 ## Financial Contributors
 
-Become a financial contributor and help us sustain our community ❤️. [[Contribute](https://opencollective.com/husky/contribute)]
+Become a financial contributor and help us sustain our community ❤️ [[Contribute](https://opencollective.com/husky/contribute)]
 
 ### Organizations
 
-Support this project with your organization. Your logo will show up here with a link to your website. [[__Contribute__](https://opencollective.com/husky/contribute)]
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/husky/contribute)]
 
 <!-- oc -->
 #### Gold Sponsors ($500+ / month)
