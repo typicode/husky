@@ -1,12 +1,12 @@
 import fs = require('fs')
 import path = require('path')
-import { isGhooks, isPreCommit, isHusky, isYorkie } from './is'
+import { isGhooks, isPreCommit, isHusky, isYorkie, isGitLFS } from './is'
 import { getBanner } from './getBanner'
 
 export const huskyIdentifier = '# husky'
 
-export function getHookScript(): string {
-  return `#!/bin/sh
+export function getHookScript(includeShebang = true): string {
+  return `${includeShebang ? '#!/bin/sh' : ''}
 ${huskyIdentifier}
 
 ${getBanner()}
@@ -46,6 +46,13 @@ function writeHook(filename: string, script: string): void {
   fs.chmodSync(filename, 0o0755)
 }
 
+function appendHook(filename: string): void {
+  const appendScript = getHookScript(false)
+  const currentHook = fs.readFileSync(filename, 'utf-8')
+  const script = currentHook + appendScript
+  writeHook(filename, script)
+}
+
 function createHook(filename: string): void {
   const name = path.basename(filename)
   const hookScript = getHookScript()
@@ -64,6 +71,12 @@ function createHook(filename: string): void {
     if (isPreCommit(hook)) {
       console.log(`migrating existing pre-commit script: ${name}`)
       return writeHook(filename, hookScript)
+    }
+
+    // Append
+    if (isGitLFS(hook)) {
+      console.log(`appending to git-lfs script: ${name}`)
+      return appendHook(filename)
     }
 
     // Update

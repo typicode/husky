@@ -150,6 +150,19 @@ describe('install', (): void => {
     expect(hook).not.toContain(randomId)
   })
 
+  it('should merge with git lfs hooks', (): void => {
+    writeFile('package.json', pkg)
+
+    // Create an existing husky hook
+    writeFile('.git/hooks/pre-commit', `#!/bin/sh\ngit lfs pre-push "$@"`)
+
+    // Verify that it has been updated
+    install()
+    const hook = readFile('.git/hooks/pre-commit')
+    expect(hook).toContain('# husky')
+    expect(hook).toContain('git lfs')
+  })
+
   it('should not modify user hooks', (): void => {
     writeFile('package.json', pkg)
     writeFile('.git/hooks/pre-commit', 'foo')

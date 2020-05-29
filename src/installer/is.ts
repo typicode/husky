@@ -22,3 +22,7 @@ export function isGhooks(data: string): boolean {
 export function isPreCommit(data: string): boolean {
   return data.indexOf('./node_modules/pre-commit/hook') !== -1
 }
+
+export function isGitLFS(data: string): boolean {
+  return data.indexOf('git lfs') !== -1
+}
