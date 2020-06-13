@@ -328,7 +328,7 @@ npm install husky --save-dev
 
 Verify that your version of Git is `>=2.13.0`.
 
-#### Lerna Workspaces and Monorepos
+#### Lerna, Monorepos, and Yarn Worksapces
 If your project has nested `node_modules` or you run `npm|yarn install` not from the project's root,
 simply set `HUSKY_RUN_FROM_ROOT` environment variable to force husky relative path to be `.`.
 
