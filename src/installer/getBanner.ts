@@ -12,5 +12,7 @@ export function getBanner(): string {
   const createdAt = new Date().toLocaleString()
   return `# Created by Husky v${huskyVersion} (${huskyHomepage})
 #   At: ${createdAt}
-#   From: ${pkgDirectory} (${pkgHomepage})`
+#   From: ${pkgDirectory} (${pkgHomepage})
+
+# See the following documentation for using husky with git lfs: https://github.com/typicode/husky#git-lfs`
 }

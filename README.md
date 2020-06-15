@@ -117,6 +117,7 @@ Support this project with your organization. Your logo will show up here with a 
   * [Node version managers](#node-version-managers)
   * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
   * [Multiple commands](#multiple-commands)
+  * [Git LFS](#git-lfs)
   * [Troubleshoot](#troubleshoot)
     + [Debug messages](#debug-messages)
     + [Hooks aren't running](#hooks-arent-running)
@@ -124,6 +125,9 @@ Support this project with your organization. Your logo will show up here with a 
     + [Commits are slow](#commits-are-slow)
     + [Testing husky in a new repo](#testing-husky-in-a-new-repo)
     + [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
+- [See also](#see-also)
+- [Patreon](#patreon)
+- [License](#license)
 
 <!-- tocstop -->
 
@@ -273,6 +277,37 @@ module.exports = {
 ```
 
 Tools like [npm-run-all](https://github.com/mysticatea/npm-run-all) can help too.
+
+### Git LFS
+
+Husky works with Git Large File Storage if Git LFS's hooks are already installed in the project.
+
+If you are installing Git LFS **after** Husky's hooks have been installed, you will get the following error:
+
+```sh
+Hook already exists: pre-push
+
+        #!/bin/sh
+        # husky
+
+        # Created by Husky v4.2.5 (https://github.com/typicode/husky#readme)
+        #   At: 6/1/2020, 6:14:22 PM
+        #   From: /ant-design/node_modules/husky (https://github.com/typicode/husky#readme)
+
+        # [...]
+
+To resolve this, either:
+  1: run `git lfs update --manual` for instructions on how to merge hooks.
+  2: run `git lfs update --force` to overwrite your hook.
+```
+
+To fix this issue, overwrite the local hooks.
+
+`git lfs update --force`
+
+And then reinstall husky.
+
+`npm install husky --save-dev`
 
 ### Troubleshoot
 
