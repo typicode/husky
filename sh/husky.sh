@@ -10,7 +10,7 @@ command_exists () {
 
 run_command () {
   if command_exists "$1"; then
-    "$@" husky-run $hookName "$gitParams"
+    "$@" husky-run $hookName $gitParams
 
     exitCode="$?"
     debug "$* husky-run exited with $exitCode exit code"
