@@ -138,8 +138,7 @@ describe('run', (): void => {
       })
     )
 
-    // 'commit-msg' takes one parameter from git
-    const status = await index(['', '', 'commit-msg', 'git fake param'], {
+    const status = await index(['', '', 'commit-msg', 'git', 'fake', 'param'], {
       cwd: dir,
     })
     expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
