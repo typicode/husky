@@ -249,6 +249,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
+### Per-Project commands (/project/dir/.huskyhook)
+
+Husky will source `/project/dir/.huskyhook` file if it exists before running hook scripts (also before the local command
+defined in `~/.huskyrc`). You can use it the same way you use `~/.huskyrc`, but being able to track the script with
+`git` and share it with your project colleagues.
+
 ### Multiple commands
 
 By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command. 
