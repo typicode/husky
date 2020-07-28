@@ -116,6 +116,7 @@ Support this project with your organization. Your logo will show up here with a 
   * [Monorepos](#monorepos)
   * [Node version managers](#node-version-managers)
   * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
+  * [Per-project commands (/project/dir/.huskyhook)](#per-project-commands-projectdirhuskyhook)
   * [Multiple commands](#multiple-commands)
   * [Troubleshoot](#troubleshoot)
     + [Debug messages](#debug-messages)
@@ -249,7 +250,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
-### Per-Project commands (/project/dir/.huskyhook)
+### Per-project commands (/project/dir/.huskyhook)
 
 Husky will source `/project/dir/.huskyhook` file if it exists before running hook scripts (also before the local command
 defined in `~/.huskyrc`). You can use it the same way you use `~/.huskyrc`, but being able to track the script with
