@@ -63,6 +63,13 @@ if [ ! -f .huskyrc.js ] && [ ! -f husky.config.js ] && ! hookIsDefined; then
   exit 0
 fi
 
+# Source project-level global hook script. Not using ".huskyrc" name at the
+# project level because it's already used for other purposes.
+if [ -f "$PWD/.huskyhook" ]; then
+  debug "source $PWD/.huskyhook"
+  . "$PWD/.huskyhook"
+fi
+
 # Source user ~/.huskyrc
 if [ -f ~/.huskyrc ]; then
   debug "source ~/.huskyrc"
