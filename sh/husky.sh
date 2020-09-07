@@ -58,7 +58,7 @@ debug "Current working directory is $(pwd)"
 # Don't skip if .huskyrc.js or .huskyrc.config.js are used as the heuristic could
 # fail due to the dynamic aspect of JS. For example:
 # `"pre-" + "commit"` or `require('./config/hooks')`)
-if [ ! -f .huskyrc.js ] && [ ! -f husky.config.js ] && ! hookIsDefined; then
+if [ ! -f .huskyrc.js ] && [ ! -f huskyrc.cjs ] && [ ! -f husky.config.js ] && [ ! -f husky.config.cjs ] && ! hookIsDefined; then
   debug "$hookName config not found, skipping hook"
   exit 0
 fi
