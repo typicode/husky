@@ -1,6 +1,0 @@
-*.log
-.DS_Store
-ci-post-checkout
-hook-params
-lib
-node_modules/

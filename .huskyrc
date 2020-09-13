@@ -1,5 +1,0 @@
-{
-  "hooks": {
-    "commit-msg": "echo \"commit-msg hook from Husky\" && echo $HUSKY_GIT_PARAMS > hook-params"
-  }
-}
