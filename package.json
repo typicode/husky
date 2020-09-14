@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-alpha.0",
   "description": "Git hooks made easy",
   "bin": "lib/bin.js",
   "files": [
@@ -40,7 +40,8 @@
     "postpublish": "pinst --enable",
     "pretest": "npm run build && npm pack",
     "test": "sh ./test/default.sh && sh ./test/subdir.sh",
-    "posttest": "rm husky-*.tgz"
+    "posttest": "rm husky-*.tgz",
+    "commit": "commit"
   },
   "engines": {
     "node": ">= 10"
