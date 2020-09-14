@@ -1,0 +1,92 @@
+{
+  "name": "husky",
+  "version": "5.0.0-beta.0",
+  "description": "Git hooks made easy",
+  "bin": "lib/bin.js",
+  "files": [
+    "/lib",
+    "/scripts",
+    "LICENSE",
+    "LICENSE-MIT",
+    "LICENSE-PARITY",
+    "LICENSE-PATRON"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/prompt-cli": "^11.0.0",
+    "@tsconfig/node10": "^1.0.7",
+    "@types/node": "^12.7.1",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "docsify-cli": "^4.4.1",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "pinst": "^1.1.1",
+    "prettier": "^2.0.5",
+    "type-fest": "^0.16.0",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "serve": "docsify serve docs",
+    "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
+    "postinstall": "npm run build && node lib/bin install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "prepublish": "pinst --disable",
+    "postpublish": "pinst --enable",
+    "pretest": "npm run build && npm pack",
+    "test": "sh ./test/default.sh && sh ./test/subdir.sh",
+    "posttest": "rm husky-*.tgz"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typicode/husky.git"
+  },
+  "keywords": [
+    "git",
+    "hook",
+    "hooks",
+    "test",
+    "lint",
+    "applypatch-msg",
+    "pre-applypatch",
+    "post-applypatch",
+    "pre-commit",
+    "pre-merge-commit",
+    "prepare-commit-msg",
+    "commit-msg",
+    "post-commit",
+    "pre-rebase",
+    "post-checkout",
+    "post-merge",
+    "pre-push",
+    "post-update",
+    "push-to-checkout",
+    "pre-auto-gc",
+    "post-rewrite",
+    "sendemail-validate"
+  ],
+  "author": "Typicode <typicode@gmail.com>",
+  "license": "See LICENSE file",
+  "bugs": {
+    "url": "https://github.com/typicode/husky/issues"
+  },
+  "homepage": "https://github.com/typicode/husky#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/typicode"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/husky"
+    }
+  ]
+}

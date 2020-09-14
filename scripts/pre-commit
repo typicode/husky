@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+echo 'husky - installing git hooks...'
+
+mkdir -p "$husky_dir/_"
+echo "_" > "$husky_dir/.gitignore"
+cp "$(dirname $0)/husky.sh" "$husky_dir/_"
+git config core.hooksPath "$husky_dir"
+
+echo 'husky - done'
+exit 1 # abort git commit
