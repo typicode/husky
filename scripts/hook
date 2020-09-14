@@ -1,4 +1,0 @@
-#!/bin/sh
-. "$(dirname $0)/_/husky.sh"
-
-# Add your hook command(s) below (you can remove this comment)
