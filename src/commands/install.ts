@@ -1,6 +1,14 @@
+import os from 'os'
 import fs from 'fs'
 import path from 'path'
 import cp from 'child_process'
+
+function copyScript(scriptName: string, destDir: string) {
+  fs.copyFileSync(
+    path.join(__dirname, '../../scripts', scriptName),
+    path.join(destDir, scriptName)
+  )
+}
 
 export function install({
   cwd,
@@ -26,14 +34,19 @@ export function install({
     throw new Error("package.json can't be found")
   }
 
-  const preCommitDir = path.join(__dirname, '../../scripts')
-  const preCommitFilename = path.join(preCommitDir, 'pre-commit')
-  fs.chmodSync(preCommitFilename, 0o0755)
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'husky-'))
 
-  cp.spawnSync('git', ['config', 'core.hooksPath', preCommitDir])
+  copyScript('husky.sh', tmpDir)
+  copyScript('pre-commit', tmpDir)
 
+  fs.chmodSync(path.join(tmpDir, 'pre-commit'), 0o0755)
+
+  cp.spawnSync('git', ['config', 'core.hooksPath', tmpDir])
   cp.spawnSync('git', ['commit'], {
     stdio: 'inherit',
-    env: { ...process.env, husky_dir: path.join(absoluteHooksDir, '.husky') },
+    env: {
+      ...process.env,
+      husky_dir: path.join(absoluteHooksDir, '.husky'),
+    },
   })
 }
