@@ -36,6 +36,7 @@
     "postinstall": "npm run build && node lib/bin install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
+    "preversion": "npm run build",
     "postversion": "git push && git push --tags && npm publish --tag next",
     "prepublish": "pinst --disable",
     "postpublish": "pinst --enable",
