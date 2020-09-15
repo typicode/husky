@@ -58,6 +58,8 @@ Otherwise, `postinstall` will run when someone installs your package and result 
 }
 ```
 
+**Note for Yarn 2 users** `postinstall` won't run automatically, please run `yarn run postinstall` manually to enable hooks.
+
 ### Add a hook
 
 ```shell
