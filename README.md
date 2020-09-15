@@ -6,4 +6,4 @@
 
 Husky improves your commits and more 🐶*woof!*
 
-[__Documentation__](/docs)
+[__Documentation__](https://typicode.github.io/husky)
