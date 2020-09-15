@@ -42,7 +42,7 @@ export function install({
   fs.chmodSync(path.join(tmpDir, 'pre-commit'), 0o0755)
 
   cp.spawnSync('git', ['config', 'core.hooksPath', tmpDir])
-  cp.spawnSync('git', ['commit'], {
+  cp.spawnSync('git', ['commit', '--author', 'husky <husky@example.com>'], {
     stdio: 'inherit',
     env: {
       ...process.env,
