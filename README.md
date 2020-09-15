@@ -113,7 +113,7 @@ GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All 
 
 * [webpack](https://github.com/webpack/webpack)
 * [babel](https://github.com/babel/babel)
-* [create-react-app](https://github.com/facebookincubator/create-react-app)
+* [create-react-app](https://github.com/facebook/create-react-app)
 * ... and many other awesome projects
 
 ## Guides
