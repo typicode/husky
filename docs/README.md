@@ -20,7 +20,7 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 ### Install
 
 ```shell
-npm install husky --save-dev
+npm install husky@next --save-dev
 
 # Add pinst if you're publishing your project on a registry
 npm install pinst --save-dev
