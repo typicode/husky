@@ -19,6 +19,8 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 
 ### Install
 
+_If you're already using husky in your project, see [#migrate](#migrate) for automatic migration._
+
 ```shell
 npm install husky@next --save-dev
 
@@ -72,6 +74,14 @@ git commit -m "Keep calm and commit"
 ```
 
 If `npm test` command fails, your commit will be automatically aborted.
+
+## Migrate
+
+To automatically migrate hooks defined with husky `v1..v4`, run the following command:
+
+```shell
+npm install husky@next -D && npx github:typicode/husky-migrate
+```
 
 ## Recipes
 
