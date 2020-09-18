@@ -173,11 +173,11 @@ Ensure that you don't have a typo in your filename. For example, `precommit` or 
 
 Check hooks permissions, they should be executable. This is automatically set when using `husky add` command but you can run `chmod +x <filename>` to fix that.
 
-## Early access for Open Source and Sponsors
+## Free for Open Source, early access for Sponsors
 
 How it works?
 
-- If you have an Open Source project, you're free to install or upgrade husky to v5, __just like with previous versions__ ❤️
+- If you have an Open Source project, you're free to install or upgrade husky to v5 ❤️
 - If you have a commercial project and are a Sponsor, you can start using v5 today at work 🎁
 
 To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective/husky).
