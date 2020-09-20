@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "5.0.0-alpha.4",
+  "version": "5.0.0-alpha.6",
   "description": "Git hooks made easy",
   "bin": "lib/bin.js",
   "files": [
@@ -26,6 +26,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "pinst": "^2.0.0",
     "prettier": "^2.1.1",
+    "release": "^6.3.0",
     "type-fest": "^0.16.0",
     "typescript": "^4.0.2"
   },
@@ -33,7 +34,7 @@
     "build": "tsc",
     "serve": "docsify serve docs",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
-    "postinstall": "npm run build && node lib/bin install",
+    "_postinstall": "npm run build && node lib/bin install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "preversion": "npm run build",
