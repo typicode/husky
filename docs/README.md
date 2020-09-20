@@ -180,7 +180,7 @@ How it works?
 - If you have an Open Source project, you're free to install or upgrade husky to v5 ❤️
 - If you have a commercial project and are a Sponsor, you can start using v5 today at work 🎁
 
-To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective/husky).
+To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
 
 ## Sponsors
 
