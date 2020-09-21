@@ -19,11 +19,11 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 
 ### Install
 
+Install `husky` and [`pinst`](https://github.com/typicode/pinst)
+
 ```shell
 npm install husky@next --save-dev
-
-# Add pinst if you're publishing your project on a registry
-npm install pinst --save-dev
+npm install pinst --save-dev # if your package is not private
 ```
 
 Enable Git hooks
@@ -43,7 +43,7 @@ To automatically have Git hooks enabled after `npm install`, edit `package.json`
 }
 ```
 
-**important** if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst).
+**Important** if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst).
 
 Otherwise, `postinstall` will run when someone installs your package and result in an error.
 
@@ -62,10 +62,13 @@ Otherwise, `postinstall` will run when someone installs your package and result 
 
 ### Add a hook
 
+To add a hook, you can use `husky add <hookname> [cmd]`
+
 ```shell
-npx husky add pre-commit "npm test"
-# Creates .husky/pre-commit file
+npx husky add pre-commit "npm test" # will create .husky/pre-commit file
 ```
+
+Try to make a commit
 
 ```shell
 git commit -m "Keep calm and commit"
