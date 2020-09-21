@@ -175,7 +175,7 @@ For example, for `nvm` that would be:
 
 Ensure that you don't have a typo in your filename. For example, `precommit` or `pre-commit.sh` are invalid names. See Git hooks [documentation](https://git-scm.com/docs/githooks) for valid names.
 
-Check hooks permissions, they should be executable. This is automatically set when using `husky add` command but you can run `chmod +x <filename>` to fix that.
+Check hooks permissions, they should be executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
 
 ## Free for Open Source, early access for Sponsors
 
