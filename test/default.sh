@@ -1,5 +1,7 @@
 . $(dirname $0)/_functions.sh
 
+title "default"
+
 tempDir=/tmp/pre-commit-test
 
 rm -rf $tempDir
@@ -21,4 +23,4 @@ npx --no-install husky add pre-commit "echo \"msg from pre-commit hook\" && exit
 
 # Test pre-commit
 git add package.json
-git commit -m "should fail" || echo -e "\e[0;32msuccess :)\e[m" && exit 0
+git commit -m "should fail" || echo -e "\e[0;32mSUCCESS\e[m" && exit 0

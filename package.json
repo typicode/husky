@@ -40,7 +40,7 @@
     "postversion": "git push && git push --tags && npm publish --tag next",
     "prepublish": "pinst --disable",
     "postpublish": "pinst --enable",
-    "pretest": "npm run build && npm pack",
+    "pretest": "npm run build --silent && npm pack --silent",
     "test": "sh ./test/default.sh && sh ./test/subdir.sh",
     "posttest": "rm husky-*.tgz",
     "commit": "commit"
