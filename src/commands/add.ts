@@ -26,6 +26,7 @@ function createHookFile(cwd: string, hookName: string, cmd: string) {
     cmd,
   ].join('\n')
   fs.writeFileSync(filename, data, 'utf-8')
+  console.log(path.relative(cwd, filename))
 }
 
 export function add({
