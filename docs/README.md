@@ -134,6 +134,17 @@ npm install is-ci --save-dev
 }
 ```
 
+### Test hooks
+
+If you want to test a hook, you can add `exit 1` at the end of the script to abort git command.
+
+```shell
+# .husky/pre-commit
+
+# Commit will be aborted
+exit 1
+```
+
 ## FAQ
 
 ### Does it work on Windows?
