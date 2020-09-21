@@ -39,7 +39,7 @@ if (arg === 'add') {
 } else if (arg === 'install') {
   install({
     cwd: process.cwd(),
-    pathToPackageDir: params[0],
+    dir: params[0],
   })
 } else if (['--version', '-v'].includes(arg)) {
   version()

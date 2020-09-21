@@ -27,3 +27,11 @@ function init_git {
   git config user.email "test@test"
   git config user.name "test"
 }
+
+function test_hooksPath {
+  readonly hooksPath=`git config core.hooksPath`
+  if [ "$hooksPath" != "$1" ]; then
+    echo -e "\e[0;31mERROR:\e[m core.hooksPath should be $1, was $hooksPath"
+    exit 1
+  fi
+}

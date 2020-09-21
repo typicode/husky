@@ -12,14 +12,13 @@ function copyScript(scriptName: string, destDir: string) {
 
 export function install({
   cwd,
-  pathToPackageDir = '.',
+  dir = '.',
 }: {
   cwd: string
-  pathToPackageDir: string
+  dir: string
 }): void {
-  const absoluteHooksDir = path.resolve(cwd, pathToPackageDir)
-
   // Ensure that we're not trying to install outside cwd
+  const absoluteHooksDir = path.resolve(cwd, dir)
   if (!absoluteHooksDir.startsWith(cwd)) {
     throw new Error('.. not allowed')
   }
@@ -46,7 +45,7 @@ export function install({
     stdio: 'inherit',
     env: {
       ...process.env,
-      husky_dir: path.join(absoluteHooksDir, '.husky'),
+      husky_dir: path.join(dir, '.husky'),
     },
   })
 }
