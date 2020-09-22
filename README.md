@@ -6,7 +6,11 @@
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
+__Announcement: Husky v5 (alpha) has been published, to view v5 docs click [here](https://typicode.github.io/husky).__
+
 ## Install
+
+This will install husky v4.
 
 ```sh
 npm install husky --save-dev
