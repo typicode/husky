@@ -6,11 +6,22 @@
 
 Husky improves your commits and more 🐶*woof!*
 
-[__Documentation__](https://typicode.github.io/husky)
+[__Documentation (v5 alpha)__](https://typicode.github.io/husky)
+[Documentation (v4 stable)](https://github.com/typicode/husky)
 
-## Sponsors
+---
 
-### Companies
+You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁.
+
+To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
+
+If you can't sponsor Husky, that's okay, husky v4 is free to use in any project. During the early access, v4 will continue to receive maintainance updates.  
+
+---
+
+# Sponsors
+
+## Companies
 
 <!-- for (let i = 0; i < 40; i++) console.log(`[![Husky Sponsor](https://opencollective.com/husky/backer/${i}/avatar)](https://opencollective.com/husky/backer/${i}/website)`) -->
 
@@ -27,7 +38,7 @@ Does your company use Husky? Ask your manager or marketing team if your company 
 <a href="https://opencollective.com/husky/tiers/sponsor/8/website"><img src="https://opencollective.com/husky/tiers/sponsor/8/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/sponsor/9/website"><img src="https://opencollective.com/husky/tiers/sponsor/9/avatar.svg" height="60px"></a>
 
-### Individuals
+## Individuals
 
 Find Husky helpful? Become a backer and show your appreciation with a monthly donation on [Open Collective](https://opencollective.com/husky). You can also tip with a one-time donation.
 

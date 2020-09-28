@@ -4,13 +4,9 @@
 
 Husky improves your commits and more 🐶*woof!*
 
-You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks. 
+You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks.
 
-__Note__ you're viewing documentation for husky v5, which is currently free to use in Open Source projects and in early access for Sponsors ([how it works?](#free-for-open-source-early-access-for-sponsors)).
-
-To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
-
-If you can't sponsor Husky, that's okay, husky v4 is free to use in any project and the docs can be found [here](https://https://github.com/typicode/husky/tree/master). During the early access, v4 will continue to receive maintainance updates.
+?> You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁. To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).<br><br>If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project.
 
 # Features
 
@@ -32,13 +28,14 @@ npm install pinst --save-dev # if your package is not private
 
 Enable Git hooks
 
-```
+```shell
 npx husky install
 ```
 
 To automatically have Git hooks enabled after `npm install`, edit `package.json`
 
-```json
+```js
+// package.json
 {
   "private": true,
   "scripts": {
@@ -47,11 +44,12 @@ To automatically have Git hooks enabled after `npm install`, edit `package.json`
 }
 ```
 
-**Important** if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst).
+**Note for Yarn 2 users** `postinstall` won't run automatically, please run `yarn run postinstall` manually to enable hooks.
 
-Otherwise, `postinstall` will run when someone installs your package and result in an error.
+!> **if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst)**. Otherwise, `postinstall` will run when someone installs your package and result in an error.
 
-```json
+```js
+// package.json
 {
   "private": false,
   "scripts": {
@@ -61,8 +59,6 @@ Otherwise, `postinstall` will run when someone installs your package and result 
   }
 }
 ```
-
-**Note for Yarn 2 users** `postinstall` won't run automatically, please run `yarn run postinstall` manually to enable hooks.
 
 ## Add a hook
 
@@ -92,7 +88,8 @@ By design, `husky install` must be run in the same directory as `.git` but you c
 
 For example, if your `package.json` is in a subdirectory (.e.g `front/`), you can change directory during `postinstall` and specify where your git hooks are:
 
-```json
+```js
+// package.json
 {
   "scripts": {
     "postinstall": "cd .. && husky install ./front"
@@ -121,16 +118,18 @@ You can set `HUSKY` environment variable to `0` in your CI config file, to disab
 Alternatively, most Continuous Integration Servers set a `CI` environment variable. You can use it in your hooks to detect if it's running in a CI.
 
 ```shell
+# .husky/pre-commit
 [ -z "$CI" ] && exit 0
 ```
 
-You can also use `is-ci` in your `postinstall` script to conditionnally install husky
+You can also use [is-ci](https://github.com/watson/is-ci) in your `postinstall` script to conditionnally install husky
 
 ```shell
 npm install is-ci --save-dev
 ```
 
-```json
+```js
+// package.json
 {
   "scripts": {
     "postinstall": "is-ci || husky install"
@@ -144,9 +143,7 @@ If you want to test a hook, you can add `exit 1` at the end of the script to abo
 
 ```shell
 # .husky/pre-commit
-
-# Commit will be aborted
-exit 1
+exit 1 # Commit will be aborted
 ```
 
 # FAQ
@@ -163,7 +160,7 @@ If you're running Git from an app and the command can be found in your terminal,
 
 You can `echo $PATH` in your terminal and configure your app to use the same value.
 
-If you've installed your command using `brew`, see the [FAQ](https://docs.brew.sh/FAQ) to make your command available to your app.
+If you've installed your command using `brew`, see the [Homebrew FAQ](https://docs.brew.sh/FAQ) to make your command available to your app.
 
 Finally, if you're using a script for managing versions like `nvm`, `n`, `rbenv`, `pyenv`, ... you can use `~/.huskyrc` to load the necessary before running hooks.
 
@@ -189,6 +186,23 @@ How it works?
 - If you have a commercial project and are a Sponsor, you can start using v5 today at work 🎁
 
 To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
+
+# Breaking changes
+
+Environment variables:
+
+- `HUSKY_SKIP_HOOKS` becomes `HUSKY`
+- `HUSKY_SKIP_INSTALL` is removed
+- `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
+
+Path for mocally installed tools is not automatically set anymore. You'll need to use your package manager to run it.
+
+```shell
+# .husky/pre-commit
+jest                  # will fail
+npx --no-install jest # will work
+npm test              # will work
+```
 
 # Sponsors
 
