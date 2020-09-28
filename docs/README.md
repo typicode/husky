@@ -6,6 +6,12 @@ Husky improves your commits and more 🐶*woof!*
 
 You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks. 
 
+__Note__ you're viewing documentation for husky v5, which is currently free to use in Open Source projects and in early access for Sponsors ([how it works?](#free-for-open-source-early-access-for-sponsors)).
+
+To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
+
+If you can't sponsor Husky, that's okay, husky v4 is free to use in any project and the docs can be found [here](https://https://github.com/typicode/husky/tree/master). During the early access, v4 will continue to receive maintainance updates.
+
 # Features
 
 - Zero dependencies
