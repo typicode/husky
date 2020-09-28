@@ -7,7 +7,7 @@
 Husky improves your commits and more 🐶*woof!*
 
 * [__Documentation (v5 alpha)__](https://typicode.github.io/husky)
-* [Documentation (v4 stable)](https://github.com/typicode/husky)
+* [Documentation (v4 stable)](https://github.com/typicode/husky/tree/master)
 
 ---
 
@@ -15,7 +15,7 @@ You're viewing documentation for husky v5, which is free to use in Open Source p
 
 To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
 
-If you can't sponsor Husky, that's okay, husky v4 is free to use in any project. During the early access, v4 will continue to receive maintainance updates.  
+If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project. During the early access, v4 will continue to receive maintainance updates.  
 
 ---
 
