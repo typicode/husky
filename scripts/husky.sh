@@ -25,4 +25,6 @@ if [ -z "$husky_skip_init" ]; then
     echo "husky - $hook_name hook exited with code $exitCode (error)"
     exit $exitCode
   fi
+
+  exit 0
 fi
