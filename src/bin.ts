@@ -30,19 +30,24 @@ Examples
 `)
 }
 
-if (arg === 'add') {
-  add({
-    cwd: process.cwd(),
-    hookName: params[0],
-    cmd: params[1],
-  })
-} else if (arg === 'install') {
-  install({
-    cwd: process.cwd(),
-    dir: params[0],
-  })
-} else if (['--version', '-v'].includes(arg)) {
-  version()
-} else {
-  help()
+try {
+  if (arg === 'add') {
+    add({
+      cwd: process.cwd(),
+      hookName: params[0],
+      cmd: params[1],
+    })
+  } else if (arg === 'install') {
+    install({
+      cwd: process.cwd(),
+      dir: params[0],
+    })
+  } else if (['--version', '-v'].includes(arg)) {
+    version()
+  } else {
+    help()
+  }
+} catch(err) {
+  console.error(err);
+  process.exitCode = 1;
 }
