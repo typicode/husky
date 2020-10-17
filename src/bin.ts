@@ -48,6 +48,6 @@ try {
     help()
   }
 } catch(err) {
-  console.error(err);
-  process.exitCode = 1;
+  console.error(err)
+  process.exitCode = 1
 }
