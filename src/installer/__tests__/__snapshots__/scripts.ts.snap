@@ -4,7 +4,7 @@ exports[`hookScript should match snapshot 1`] = `
 "#!/bin/sh
 # husky
 
-# Created by Husky v4.2.1 (https://github.com/typicode/husky#readme)
+# Created by Husky v4.3.0 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
@@ -13,7 +13,7 @@ exports[`hookScript should match snapshot 1`] = `
 `;
 
 exports[`localScript should match snapshot 1`] = `
-"# Created by Husky v4.2.1 (https://github.com/typicode/husky#readme)
+"# Created by Husky v4.3.0 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
@@ -23,7 +23,7 @@ cd \\".\\"
 `;
 
 exports[`mainScript should match snapshot 1`] = `
-"# Created by Husky v4.2.1 (https://github.com/typicode/husky#readme)
+"# Created by Husky v4.3.0 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
@@ -64,12 +64,10 @@ hookIsDefined () {
     .huskyrc \\\\
     .huskyrc.json \\\\
     .huskyrc.yaml \\\\
-    .huskyrc.yml \\\\
-    .huskyrc.js \\\\
-    husky.config.js
+    .huskyrc.yml
 }
 
-huskyVersion=\\"4.2.1\\"
+huskyVersion=\\"4.3.0\\"
 gitParams=\\"$*\\"
 hookName=\\"$(basename \\"$0\\")\\"
 
@@ -86,7 +84,10 @@ fi
 debug \\"Current working directory is $(pwd)\\"
 
 # Skip fast if hookName is not defined
-if ! hookIsDefined; then
+# Don't skip if .huskyrc.js or .huskyrc.config.js are used as the heuristic could
+# fail due to the dynamic aspect of JS. For example:
+# \`\\"pre-\\" + \\"commit\\"\` or \`require('./config/hooks')\`)
+if [ ! -f .huskyrc.js ] && [ ! -f huskyrc.cjs ] && [ ! -f husky.config.js ] && [ ! -f husky.config.cjs ] && ! hookIsDefined; then
   debug \\"$hookName config not found, skipping hook\\"
   exit 0
 fi
@@ -99,7 +100,7 @@ fi
 
 # Set HUSKY_GIT_STDIN from stdin
 case $hookName in
-  \\"pre-push\\"|\\"pre-receive\\"|\\"post-receive\\"|\\"post-rewrite\\")
+  \\"pre-push\\"|\\"post-rewrite\\")
     export HUSKY_GIT_STDIN=\\"$(cat)\\";;
 esac
 
@@ -111,9 +112,10 @@ fi
 # Run husky-run with the package manager used to install Husky
 case $packageManager in
   \\"npm\\") run_command npx --no-install;;
+  \\"npminstall\\") run_command npx --no-install;;
   \\"pnpm\\") run_command pnpx --no-install;;
   \\"yarn\\") run_command yarn run --silent;;
-  \\"*\\") echo \\"Unknown package manager: $packageManager\\"; exit 0;;
+  *) echo \\"Unknown package manager: $packageManager\\"; exit 0;;
 esac
 "
 `;

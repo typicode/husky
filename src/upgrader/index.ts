@@ -26,7 +26,7 @@ const hookList: HookMap = {
   prereceive: 'pre-receive',
   pushtocheckout: 'push-to-checkout',
   sendemailvalidate: 'sendemail-validate',
-  update: 'update'
+  update: 'update',
 }
 
 export default function upgrade(cwd: string): void {

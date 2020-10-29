@@ -6,7 +6,7 @@ describe('gitRevParse', (): void => {
       // Git rev-parse uses a different separator on Linux/MacOS and Windows
       // slash is used to normalized the returned value for tests
       gitCommonDir: '.git',
-      prefix: ''
+      prefix: '',
     })
   })
 
@@ -15,7 +15,7 @@ describe('gitRevParse', (): void => {
       // Git rev-parse uses a different separator on Linux/MacOS and Windows
       // slash is used to normalized the returned value for tests
       gitCommonDir: '../../../.git',
-      prefix: `src/installer/__tests__/`
+      prefix: `src/installer/__tests__/`,
     })
   })
 })

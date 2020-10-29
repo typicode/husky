@@ -10,7 +10,7 @@ export function getConf(dir: string): Conf {
   const { config = {} } = explorer.search(dir) || {}
 
   const defaults: Conf = {
-    skipCI: true
+    skipCI: true,
   }
 
   return { ...defaults, ...config }

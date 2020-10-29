@@ -45,11 +45,10 @@ function runCommand(
 ): number {
   console.log(`husky > ${hookName} (node ${process.version})`)
 
-  const SHELL = process.env.SHELL || 'sh'
-  const { status } = spawnSync(SHELL, ['-c', cmd], {
+  const { status } = spawnSync('sh', ['-c', cmd], {
     cwd,
     env: { ...process.env, ...env },
-    stdio: 'inherit'
+    stdio: 'inherit',
   })
 
   if (status !== 0) {
@@ -57,12 +56,19 @@ function runCommand(
       'commit-msg',
       'pre-commit',
       'pre-rebase',
-      'pre-push'
+      'pre-push',
     ].includes(hookName)
       ? '(add --no-verify to bypass)'
       : '(cannot be bypassed with --no-verify due to Git specs)'
 
     console.log(`husky > ${hookName} hook failed ${noVerifyMessage}`)
+  }
+
+  // If shell exits with 127 it means that some command was not found.
+  // However, if husky has been deleted from node_modules, it'll be a 127 too.
+  // To be able to distinguish between both cases, 127 is changed to 1.
+  if (status === 127) {
+    return 1
   }
 
   return status || 0

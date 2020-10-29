@@ -35,9 +35,7 @@ hookIsDefined () {
     .huskyrc \
     .huskyrc.json \
     .huskyrc.yaml \
-    .huskyrc.yml \
-    .huskyrc.js \
-    husky.config.js
+    .huskyrc.yml
 }
 
 huskyVersion="0.0.0"
@@ -57,7 +55,10 @@ fi
 debug "Current working directory is $(pwd)"
 
 # Skip fast if hookName is not defined
-if ! hookIsDefined; then
+# Don't skip if .huskyrc.js or .huskyrc.config.js are used as the heuristic could
+# fail due to the dynamic aspect of JS. For example:
+# `"pre-" + "commit"` or `require('./config/hooks')`)
+if [ ! -f .huskyrc.js ] && [ ! -f huskyrc.cjs ] && [ ! -f husky.config.js ] && [ ! -f husky.config.cjs ] && ! hookIsDefined; then
   debug "$hookName config not found, skipping hook"
   exit 0
 fi
@@ -70,7 +71,7 @@ fi
 
 # Set HUSKY_GIT_STDIN from stdin
 case $hookName in
-  "pre-push"|"pre-receive"|"post-receive"|"post-rewrite")
+  "pre-push"|"post-rewrite")
     export HUSKY_GIT_STDIN="$(cat)";;
 esac
 
@@ -82,7 +83,8 @@ fi
 # Run husky-run with the package manager used to install Husky
 case $packageManager in
   "npm") run_command npx --no-install;;
+  "npminstall") run_command npx --no-install;;
   "pnpm") run_command pnpx --no-install;;
   "yarn") run_command yarn run --silent;;
-  "*") echo "Unknown package manager: $packageManager"; exit 0;;
+  *) echo "Unknown package manager: $packageManager"; exit 0;;
 esac

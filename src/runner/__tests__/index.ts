@@ -6,18 +6,15 @@ import index, { Env } from '../'
 
 let spy: jest.SpyInstance
 
-// On AppVeyor $SHELL is not set
-process.env.SHELL = process.env.SHELL || 'sh'
-
 function expectSpawnSyncToHaveBeenCalledWith(
   cwd: string,
   cmd: string,
   env: Env = {}
 ): void {
-  expect(cp.spawnSync).toHaveBeenCalledWith(process.env.SHELL, ['-c', cmd], {
+  expect(cp.spawnSync).toHaveBeenCalledWith('sh', ['-c', cmd], {
     cwd,
     env: { ...process.env, ...env },
-    stdio: 'inherit'
+    stdio: 'inherit',
   })
 }
 
@@ -39,9 +36,9 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'pre-commit': 'echo success'
-          }
-        }
+            'pre-commit': 'echo success',
+          },
+        },
       })
     )
 
@@ -50,7 +47,7 @@ describe('run', (): void => {
     expect(status).toBe(0)
   })
 
-  it('should return 0 status if the command is undefined', async (): Promise<
+  it('should return 0 status if no hooks are defined', async (): Promise<
     void
   > => {
     const dir = tempy.directory()
@@ -58,13 +55,33 @@ describe('run', (): void => {
     fs.writeFileSync(
       path.join(dir, 'package.json'),
       JSON.stringify({
-        husky: {}
+        husky: {},
       })
     )
 
     const status = await index(['', '', 'pre-commit'], { cwd: dir })
     expect(cp.spawnSync).not.toBeCalled()
     expect(status).toBe(0)
+  })
+
+  it('should return 1 status if the command is not found in PATH', async (): Promise<
+    void
+  > => {
+    const dir = tempy.directory()
+
+    fs.writeFileSync(
+      path.join(dir, 'package.json'),
+      JSON.stringify({
+        husky: {
+          hooks: {
+            'pre-commit': 'cmdfoo',
+          },
+        },
+      })
+    )
+
+    const status = await index(['', '', 'pre-commit'], { cwd: dir })
+    expect(status).toBe(1)
   })
 
   it('should run failing command and return 1 status', async (): Promise<
@@ -77,9 +94,9 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'pre-commit': 'echo fail && exit 2'
-          }
-        }
+            'pre-commit': 'echo fail && exit 2',
+          },
+        },
       })
     )
 
@@ -97,8 +114,8 @@ describe('run', (): void => {
       path.join(dir, 'package.json'),
       JSON.stringify({
         scripts: {
-          precommit: 'echo success'
-        }
+          precommit: 'echo success',
+        },
       })
     )
 
@@ -115,18 +132,18 @@ describe('run', (): void => {
       JSON.stringify({
         husky: {
           hooks: {
-            'commit-msg': 'echo success'
-          }
-        }
+            'commit-msg': 'echo success',
+          },
+        },
       })
     )
 
     // 'commit-msg' takes one parameter from git
     const status = await index(['', '', 'commit-msg', 'git fake param'], {
-      cwd: dir
+      cwd: dir,
     })
     expectSpawnSyncToHaveBeenCalledWith(dir, 'echo success', {
-      HUSKY_GIT_PARAMS: 'git fake param'
+      HUSKY_GIT_PARAMS: 'git fake param',
     })
     expect(status).toBe(0)
   })
@@ -134,7 +151,7 @@ describe('run', (): void => {
   it("should not throw if there's no package.json", async (): Promise<void> => {
     const dir = tempy.directory()
     await index(['', '', 'pre-push'], {
-      cwd: dir
+      cwd: dir,
     })
   })
 

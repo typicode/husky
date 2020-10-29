@@ -59,7 +59,7 @@ function getUserPkgDir(dir: string): string {
     throw new Error(
       [
         `Can't find package.json in ${dir} directory or parents`,
-        'Please check that your project has a package.json or create one and reinstall husky.'
+        'Please check that your project has a package.json or create one and reinstall husky.',
       ].join('\n')
     )
   }
@@ -97,7 +97,7 @@ function run(): void {
         relativeUserPkgDir,
         userPkgDir,
         pmName,
-        isCI
+        isCI,
       })
     } else {
       uninstall({ absoluteGitCommonDir, userPkgDir })

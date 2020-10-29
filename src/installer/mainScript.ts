@@ -18,5 +18,8 @@ export function createMainScript(gitHooksDir: string): void {
 }
 
 export function removeMainScript(gitHooksDir: string): void {
-  fs.unlinkSync(path.join(gitHooksDir, 'husky.sh'))
+  const filename = path.join(gitHooksDir, 'husky.sh')
+  if (fs.existsSync(filename)) {
+    fs.unlinkSync(filename)
+  }
 }

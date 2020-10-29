@@ -26,5 +26,8 @@ export function createLocalScript(
 }
 
 export function removeLocalScript(gitHooksDir: string): void {
-  fs.unlinkSync(path.join(gitHooksDir, 'husky.local.sh'))
+  const filename = path.join(gitHooksDir, 'husky.local.sh')
+  if (fs.existsSync(filename)) {
+    fs.unlinkSync(filename)
+  }
 }
