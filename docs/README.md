@@ -19,20 +19,26 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 
 ## Install
 
-Install `husky` and [pinst](https://github.com/typicode/pinst) (optional)
+1. Install `husky` and [pinst](https://github.com/typicode/pinst) (optional)
 
 ```shell
+# npm
 npm install husky@next --save-dev
 npm install pinst --save-dev # if your package is not private
+
+# yarn
+yarn add husky@next --dev
+yarn add pinst --dev # if your package is not private
 ```
 
-Enable Git hooks
+2. Enable Git hooks
 
 ```shell
 npx husky install
+yarn husky install
 ```
 
-To automatically have Git hooks enabled after `npm install`, edit `package.json`
+3. To automatically have Git hooks enabled after install, edit `package.json`
 
 ```js
 // package.json
@@ -43,8 +49,6 @@ To automatically have Git hooks enabled after `npm install`, edit `package.json`
   }
 }
 ```
-
-**Note for Yarn 2 users** `postinstall` won't run automatically, please run `yarn run postinstall` manually to enable hooks.
 
 !> **if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst)**. Otherwise, `postinstall` will run when someone installs your package and result in an error.
 
