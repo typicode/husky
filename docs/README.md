@@ -90,7 +90,7 @@ It's recommended to add husky in root `package.json`. You can use tools like [le
 
 If you want to install husky in another directory, for example `.config`, you can pass it to `install` command. For example:
 
-```
+```js
 // package.json
 {
   "scripts": {
