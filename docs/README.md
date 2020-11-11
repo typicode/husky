@@ -86,11 +86,22 @@ If `npm test` command fails, your commit will be automatically aborted.
 
 It's recommended to add husky in root `package.json`. You can use tools like [lerna](https://github.com/lerna/lerna) and filters to only run scripts in packages that have been changed.
 
-## Subdirectory
+## Custom directory
 
-By design, `husky install` must be run in the same directory as `.git` but you can indicate where your git hooks are.
+If you want to install husky in another directory, for example `.config`, you can pass it to `install` command. For example:
 
-For example, if your `package.json` is in a subdirectory (.e.g `front/`), you can change directory during `postinstall` and specify where your git hooks are:
+```
+// package.json
+{
+  "scripts": {
+    "postinstall": "husky install .config"
+  }
+}
+```
+
+Another case you may be in is if your `package.json` file and `.git` directory are not at the same level. For example, `project/.git` and `project/front/.package.json`.
+
+By design, `husky install` must be run in the same directory as `.git`, but you can change directory during `postinstall` script and pass a subdirectory:
 
 ```js
 // package.json
