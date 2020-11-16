@@ -210,7 +210,7 @@ Environment variables:
 - `HUSKY_SKIP_INSTALL` is removed
 - `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
 
-Path for mocally installed tools is not automatically set anymore. You'll need to use your package manager to run it.
+Path for locally installed tools is not automatically set anymore. You'll need to use your package manager to run it.
 
 ```shell
 # .husky/pre-commit
