@@ -77,7 +77,7 @@
     "sendemail-validate"
   ],
   "author": "Typicode <typicode@gmail.com>",
-  "license": "See LICENSE file",
+  "license": "Parity-7.0.0 AND MIT WITH Patron-1.0.0",
   "bugs": {
     "url": "https://github.com/typicode/husky/issues"
   },
