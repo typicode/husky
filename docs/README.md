@@ -66,7 +66,7 @@ yarn husky install
 
 ## Add a hook
 
-To add a hook, you can use `husky add <hookname> [cmd]`
+To add a hook, you can use `husky add <hookname> [cmd]` (don't forget to run `husky install` before).
 
 ```shell
 npx husky add pre-commit "npm test" # will create .husky/pre-commit file
@@ -206,17 +206,78 @@ To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://git
 
 Environment variables:
 
-- `HUSKY_SKIP_HOOKS` becomes `HUSKY`
-- `HUSKY_SKIP_INSTALL` is removed
+- `HUSKY_SKIP_HOOKS` becomes `HUSKY`.
+- `HUSKY_SKIP_INSTALL` is removed.
 - `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
+- `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
-Path for locally installed tools is not automatically set anymore. You'll need to use your package manager to run it.
+# Migrate from v4 to v5
+
+## Package scripts (i.e. npm test, ...)
+
+If you were calling `package.json` scripts, you don't have to make particular changes.
+
+`v4`
+
+```js
+// .huskyrc.json
+{
+  "hooks": {
+    "pre-commit": "npm test && npm run foo"
+  }
+}
+```
+
+`v5`
 
 ```shell
 # .husky/pre-commit
-jest                  # will fail
-npx --no-install jest # will work
-npm test              # will work
+npm test
+npm run foo
+```
+
+## Locally installed tools (i.e. jest, eslint, ...)
+
+`v4`
+
+```js
+// .huskyrc.json
+{
+  "hooks": {
+    "pre-commit": "jest"
+  }
+}
+```
+
+`v5`
+
+```shell
+# .husky/pre-commit
+npx --no-install jest
+# or
+yarn jest
+```
+
+## HUSKY_GIT_PARAMS (i.e. commitlint, ...)
+
+`v4`
+
+```js
+// .huskyrc.json
+{
+  "hooks": {
+    "pre-commit": "commitlint -E HUSKY_GIT_PARAMS"
+  }
+}
+```
+
+`v5`
+
+```shell
+# .husky/pre-commit
+npx --no-install commitlint --edit $1
+# or
+yarn commitlint --edit $1
 ```
 
 # Sponsors
