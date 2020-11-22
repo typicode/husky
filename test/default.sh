@@ -26,4 +26,9 @@ test_hooksPath ".husky"
 
 # Test pre-commit
 git add package.json
-git commit -m "should fail" || echo -e "\e[0;32mSUCCESS\e[m" && exit 0
+git commit -m "should fail" || echo -e "\e[0;32mOK\e[m"
+
+# Uninstall
+npx --no-install husky uninstall
+git config core.hooksPath || echo -e "\e[0;32mOK\e[m"
+

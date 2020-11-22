@@ -34,6 +34,7 @@
     "serve": "docsify serve docs",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
     "postinstall": "npm run build && node lib/bin install",
+    "preuninstall": "node lib/bin uninstall",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "preversion": "npm run build",
