@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "Git hooks made easy",
   "bin": "lib/bin.js",
   "files": [
