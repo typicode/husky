@@ -13,8 +13,11 @@ function makeHookExecutable(cwd: string, hookName: string): void {
 }
 
 function createHookFile(cwd: string, hookName: string, cmd: string) {
-  const filename = getHookFile(cwd, hookName)
+  if (!fs.existsSync(path.join(cwd, hooksDir))) {
+    throw new Error("can't create hook, .husky directory doesn't exist")
+  }
 
+  const filename = getHookFile(cwd, hookName)
   if (fs.existsSync(filename)) {
     throw new Error(`${hookName} already exists`)
   }
@@ -25,6 +28,7 @@ function createHookFile(cwd: string, hookName: string, cmd: string) {
     '',
     cmd,
   ].join('\n')
+
   fs.writeFileSync(filename, data, 'utf-8')
   console.log(path.relative(cwd, filename))
 }
