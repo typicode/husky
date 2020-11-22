@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { add } from './commands/add'
 import { install } from './commands/install'
+import { uninstall } from './commands/uninstall'
 import fs from 'fs'
 import path from 'path'
 import { PackageJson } from 'type-fest'
@@ -22,6 +23,7 @@ function version() {
 function help() {
   console.log(`Usage
   husky install [path from git root to package.json]
+  husky uninstall
   husky add <hookname> [cmd]
 
 Examples
@@ -41,6 +43,8 @@ if (arg === 'add') {
     cwd: process.cwd(),
     dir: params[0],
   })
+} else if (arg === 'uninstall') {
+  uninstall()
 } else if (['--version', '-v'].includes(arg)) {
   version()
 } else {
