@@ -114,7 +114,7 @@ By design, `husky install` must be run in the same directory as `.git`, but you 
 
 In your hooks, you'll also need to change directory:
 
-```sh
+```shell
 # .husky/pre-commit
 # ...
 cd ./front
