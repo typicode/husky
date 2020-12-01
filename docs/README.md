@@ -112,6 +112,15 @@ By design, `husky install` must be run in the same directory as `.git`, but you 
 }
 ```
 
+In your hooks, you'll also need to change directory:
+
+```sh
+# .husky/pre-commit
+# ...
+cd ./front
+npm test
+```
+
 ## Bypass hooks
 
 You can bypass `pre-commit` and `commit-msg` hooks using Git `-n/--no-verify` option:
@@ -134,6 +143,7 @@ Alternatively, most Continuous Integration Servers set a `CI` environment variab
 
 ```shell
 # .husky/pre-commit
+# ...
 [ -z "$CI" ] && exit 0
 ```
 
@@ -158,6 +168,7 @@ If you want to test a hook, you can add `exit 1` at the end of the script to abo
 
 ```shell
 # .husky/pre-commit
+# ...
 exit 1 # Commit will be aborted
 ```
 
@@ -232,6 +243,7 @@ If you were calling `package.json` scripts, you don't have to make particular ch
 
 ```shell
 # .husky/pre-commit
+# ...
 npm test
 npm run foo
 ```
@@ -253,6 +265,7 @@ npm run foo
 
 ```shell
 # .husky/pre-commit
+# ...
 npx --no-install jest
 # or
 yarn jest
@@ -275,6 +288,7 @@ yarn jest
 
 ```shell
 # .husky/pre-commit
+# ...
 npx --no-install commitlint --edit $1
 # or
 yarn commitlint --edit $1
@@ -348,4 +362,5 @@ GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All 
 
 # License
 
+[License Zero Parity 7.0.0](https://paritylicense.com/versions/7.0.0.html) and MIT (contributions) with exception [License Zero Patron 1.0.0](https://patronlicense.com/versions/1.0.0).
 [License Zero Parity 7.0.0](https://paritylicense.com/versions/7.0.0.html) and MIT (contributions) with exception [License Zero Patron 1.0.0](https://patronlicense.com/versions/1.0.0).
