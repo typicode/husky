@@ -6,16 +6,18 @@
 
 Husky improves your commits and more 🐶*woof!*
 
-* [__Documentation v5 (recommended)__](https://typicode.github.io/husky)
-* [Documentation v4 (current latest)](https://github.com/typicode/husky/tree/master)
+- [**Documentation v5 (recommended for Open Source and Sponsors)**](https://typicode.github.io/husky)
+- [Documentation v4 (current latest)](https://github.com/typicode/husky/tree/master)
 
 ---
 
-You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁.
+You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁 _for a limited time_.
 
 To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
 
-If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project. During the early access, v4 will continue to receive maintainance updates.  
+If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project. During the early access, v4 will continue to receive maintainance updates.
+
+After the early access, husky v5 will be MIT again.
 
 ---
 
@@ -84,4 +86,3 @@ Find Husky helpful? Become a backer and show your appreciation with a monthly do
 [![Husky Sponsor](https://opencollective.com/husky/backer/39/avatar)](https://opencollective.com/husky/backer/39/website)
 
 GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All past and current Open Collective sponsors can be viewed on [Husky's Open Collective](https://opencollective.com/husky).
-
