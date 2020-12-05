@@ -43,7 +43,7 @@ function getInitCwdEnv(): string {
   if (INIT_CWD === undefined) {
     const { name, version } = whichPMRuns()
     throw new Error(
-      `INIT_CWD is not set, please upgrade your package manager (${name} ${version})`
+      `INIT_CWD is not set, please check that your package manager supports it (${name} ${version})`
     )
   }
 
@@ -84,8 +84,12 @@ function run(): void {
       checkGitVersion()
     }
 
-    const INIT_CWD = getInitCwdEnv()
-    const userPkgDir = getUserPkgDir(INIT_CWD)
+    let cwd = process.argv[3]
+    if (cwd === undefined) {
+      cwd = getInitCwdEnv()
+    }
+
+    const userPkgDir = getUserPkgDir(cwd)
     checkGitDirEnv()
     const { absoluteGitCommonDir, relativeUserPkgDir } = getDirs(userPkgDir)
 

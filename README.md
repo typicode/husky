@@ -6,7 +6,9 @@
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
-__Announcement: Husky v5 (alpha) has been published, to view v5 docs click [here](https://typicode.github.io/husky).__
+**Announcement: Husky v5 has been published, to view v5 docs click [here](https://typicode.github.io/husky).**
+
+**Note for npm 7 users** Currently `INIT_CWD` environment variable is missing in npm v7 and is required for Husky v4 to auto-install (https://github.com/npm/cli/issues/2033). To manually install husky v4, run `npx --no-install husky install .` or upgrade to husky v5.
 
 ## Install
 
@@ -49,7 +51,7 @@ _Git hooks installed by husky will be removed._
 
 ## Sponsors
 
-### Companies ($100+/month)
+### Companies (\$100+/month)
 
 <!-- for (let i = 0; i < 40; i++) console.log(`[![Husky Sponsor](https://opencollective.com/husky/backer/${i}/avatar)](https://opencollective.com/husky/backer/${i}/website)`) -->
 
@@ -115,32 +117,32 @@ GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All 
 
 ## Used by
 
-* [webpack](https://github.com/webpack/webpack)
-* [babel](https://github.com/babel/babel)
-* [create-react-app](https://github.com/facebook/create-react-app)
-* ... and many other awesome projects
+- [webpack](https://github.com/webpack/webpack)
+- [babel](https://github.com/babel/babel)
+- [create-react-app](https://github.com/facebook/create-react-app)
+- ... and many other awesome projects
 
 ## Guides
 
 <!-- toc -->
 
-  * [Upgrading from 0.14](#upgrading-from-014)
-  * [Supported hooks](#supported-hooks)
-  * [Access Git params and stdin](#access-git-params-and-stdin)
-  * [Skip all hooks (rebase)](#skip-all-hooks-rebase)
-  * [Disable auto-install](#disable-auto-install)
-  * [CI servers](#ci-servers)
-  * [Monorepos](#monorepos)
-  * [Node version managers](#node-version-managers)
-  * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
-  * [Multiple commands](#multiple-commands)
-  * [Troubleshoot](#troubleshoot)
-    + [Debug messages](#debug-messages)
-    + [Hooks aren't running](#hooks-arent-running)
-    + [Commits aren't blocked](#commits-arent-blocked)
-    + [Commits are slow](#commits-are-slow)
-    + [Testing husky in a new repo](#testing-husky-in-a-new-repo)
-    + [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
+- [Upgrading from 0.14](#upgrading-from-014)
+- [Supported hooks](#supported-hooks)
+- [Access Git params and stdin](#access-git-params-and-stdin)
+- [Skip all hooks (rebase)](#skip-all-hooks-rebase)
+- [Disable auto-install](#disable-auto-install)
+- [CI servers](#ci-servers)
+- [Monorepos](#monorepos)
+- [Node version managers](#node-version-managers)
+- [Local commands (~/.huskyrc)](#local-commands-huskyrc)
+- [Multiple commands](#multiple-commands)
+- [Troubleshoot](#troubleshoot)
+  - [Debug messages](#debug-messages)
+  - [Hooks aren't running](#hooks-arent-running)
+  - [Commits aren't blocked](#commits-arent-blocked)
+  - [Commits are slow](#commits-are-slow)
+  - [Testing husky in a new repo](#testing-husky-in-a-new-repo)
+  - [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
 
 <!-- tocstop -->
 
@@ -214,7 +216,7 @@ By default, Husky won't install on CI servers.
 
 ### Monorepos
 
-If you have a multi-package repository, it's __recommended__ to use tools like [lerna](https://github.com/lerna/lerna) and have husky installed ONLY in the root `package.json` to act as the source of truth.
+If you have a multi-package repository, it's **recommended** to use tools like [lerna](https://github.com/lerna/lerna) and have husky installed ONLY in the root `package.json` to act as the source of truth.
 
 Generally speaking, you should AVOID defining husky in multiple `package.json`, as each package would overwrite previous husky installation.
 
@@ -252,6 +254,7 @@ Generally speaking, you should AVOID defining husky in multiple `package.json`, 
 If you're on Windows, husky will simply use the version installed globally on your system.
 
 For macOS and Linux users:
+
 - if you're running `git` commands in the terminal, husky will use the version defined in your shell `PATH`. In other words, if you're a `nvm` user, husky will use the version that you've set with `nvm`.
 - if you're using a GUI client and `nvm`, it may have a different `PATH` and not load `nvm`, in this case the highest `node` version installed by `nvm` will usually be picked. You can also check `~/.node_path` to see which version is used by GUIs and edit if you want to use something else.
 
@@ -268,7 +271,7 @@ export NVM_DIR="$HOME/.nvm"
 
 ### Multiple commands
 
-By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command. 
+By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command.
 
 ```json
 "pre-commit": "cmd && cmd"
@@ -277,15 +280,12 @@ By design and just like `scripts` defined in `package.json`, husky will run hook
 That said, if you prefer to use an array, the recommended approach is to define them in `.huskyrc.js` or `husky.config.js`.
 
 ```js
-const tasks = arr => arr.join(' && ')
+const tasks = (arr) => arr.join(' && ')
 
 module.exports = {
-  'hooks': {
-    'pre-commit': tasks([
-      'cmd',
-      'cmd'
-    ])
-  }
+  hooks: {
+    'pre-commit': tasks(['cmd', 'cmd']),
+  },
 }
 ```
 
@@ -347,9 +347,9 @@ Verify that your version of Git is `>=2.13.0`.
 
 ## See also
 
-* [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
-* [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
-* [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
+- [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
+- [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
+- [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
 
 ## Patreon
 
