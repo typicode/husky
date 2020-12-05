@@ -11,7 +11,7 @@ Husky improves your commits and more 🐶*woof!*
 
 ---
 
-You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁 _for a limited time_.
+You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁.
 
 To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
 
