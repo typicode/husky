@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "4.3.3",
+  "version": "4.3.4",
   "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
   "bin": {
     "husky-run": "./bin/run.js",
@@ -92,8 +92,16 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "testPathIgnorePatterns": ["node_modules", "__env__.ts"],
-    "moduleFileExtensions": ["ts", "js", "json", "node"]
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "__env__.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
   },
   "collective": {
     "type": "opencollective",
