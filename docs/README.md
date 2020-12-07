@@ -58,7 +58,7 @@ yarn husky install
   "private": false,
   "scripts": {
     "postinstall": "husky install",
-    "prepublish": "pinst --disable",
+    "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   }
 }
