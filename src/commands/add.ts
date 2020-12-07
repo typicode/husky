@@ -24,7 +24,9 @@ function createHookFile(cwd: string, hookName: string, cmd: string) {
 
   const data = [
     '#!/bin/sh',
-    '. "$(dirname $0)/_/husky.sh"',
+    '',
+    '# shellcheck source=./_/husky.sh',
+    '. "$(dirname "$(readlink -f "$0")")/_/husky.sh"',
     '',
     cmd,
   ].join('\n')
