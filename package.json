@@ -63,6 +63,7 @@
   "devDependencies": {
     "@types/ci-info": "^2.0.0",
     "@types/cosmiconfig": "^6.0.0",
+    "@types/is-ci": "^2.0.0",
     "@types/jest": "^25.2.1",
     "@types/mkdirp": "^1.0.0",
     "@types/node": "^13.11.1",
