@@ -1,7 +1,6 @@
 {
   "extends": "@tsconfig/node10/tsconfig.json",
   "compilerOptions": {
-    "incremental": true,
     "rootDir": "./src",
     "outDir": "./lib",
     "noUnusedLocals": true,
