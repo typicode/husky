@@ -94,7 +94,7 @@ If you want to install husky in another directory, for example `.config`, you ca
 // package.json
 {
   "scripts": {
-    "postinstall": "husky install .config"
+    "postinstall": "husky install .config/husky"
   }
 }
 ```
@@ -107,7 +107,7 @@ By design, `husky install` must be run in the same directory as `.git`, but you 
 // package.json
 {
   "scripts": {
-    "postinstall": "cd .. && husky install ./front"
+    "postinstall": "cd .. && husky install ./front/.husky"
   }
 }
 ```

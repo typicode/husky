@@ -1,15 +1,16 @@
 . $(dirname $0)/_functions.sh
 
-title "subdir"
+# Example:
+# .git
+# sub/package.json
+title "sub directory"
+tempDir="/tmp/husky-sub-dir-test"
+subDir="$tempDir/sub"
 
-rootDir="/tmp/pre-commit-sub"
-subDir="$rootDir/sub"
+rm -rf $tempDir
+cd_and_install_tgz $subDir
 
-rm -rf $rootDir
-install_tgz $subDir
-
-# Init git in rootDir
-cd $rootDir
+cd $tempDir
 init_git
 
 # Edit package.json in sub directory
@@ -17,7 +18,7 @@ cd $subDir
 cat > package.json << EOL
 {
 	"scripts": {
-		"postinstall": "cd .. && husky install sub"
+		"postinstall": "cd .. && husky install sub/.husky"
 	}
 }
 EOL

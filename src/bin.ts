@@ -8,7 +8,7 @@ import { PackageJson } from 'type-fest'
 
 function readPkg(): PackageJson {
   return JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')
+    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'),
   ) as PackageJson
 }
 
@@ -22,31 +22,51 @@ function version() {
 
 function help() {
   console.log(`Usage
-  husky install [path from git root to package.json]
+
+  husky install [dir] (default: .husky)
   husky uninstall
-  husky add <hookname> [cmd]
+  husky add <file> [cmd]
 
 Examples
-  husky add pre-commit
-  husky add pre-commit "npm test"
+
+  husky install
+  husky install .config/husky
+
+  husky add .husky/pre-commit
+  husky add .husky/pre-commit "npm test"
+  husky add .config/husky/pre-commit "npm test"
 `)
 }
 
-if (arg === 'add') {
-  add({
-    cwd: process.cwd(),
-    hookName: params[0],
-    cmd: params[1],
-  })
-} else if (arg === 'install') {
-  install({
-    cwd: process.cwd(),
-    dir: params[0],
-  })
-} else if (arg === 'uninstall') {
-  uninstall()
-} else if (['--version', '-v'].includes(arg)) {
-  version()
-} else {
-  help()
+switch (arg) {
+  case 'install': {
+    if (params.length > 2) {
+      help()
+      process.exit(2)
+    }
+    install(params[0])
+    break
+  }
+  case 'uninstall': {
+    uninstall()
+    break
+  }
+  case 'add': {
+    if (params.length === 0 || params.length > 2) {
+      help()
+      process.exit(2)
+    }
+    add(params[0], params[1])
+    break
+  }
+  case '--version': {
+    version()
+    break
+  }
+  case '-v': {
+    version()
+    break
+  }
+  default:
+    help()
 }

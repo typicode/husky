@@ -1,47 +1,28 @@
 import fs from 'fs'
 import path from 'path'
 
-const hooksDir = '.husky'
-
-function getHookFile(cwd: string, hookName: string): string {
-  return path.join(cwd, hooksDir, hookName)
+function makeHookExecutable(file: string): void {
+  fs.chmodSync(file, 0o0755)
 }
 
-function makeHookExecutable(cwd: string, hookName: string): void {
-  const hookFile = getHookFile(cwd, hookName)
-  fs.chmodSync(hookFile, 0o0755)
-}
-
-function createHookFile(cwd: string, hookName: string, cmd: string) {
-  if (!fs.existsSync(path.join(cwd, hooksDir))) {
-    throw new Error("can't create hook, .husky directory doesn't exist")
+function createHookFile(file: string, cmd: string) {
+  const dir = path.dirname(file)
+  if (!fs.existsSync(dir)) {
+    throw new Error(`can't create hook, ${dir} directory doesn't exist`)
   }
 
-  const filename = getHookFile(cwd, hookName)
-  if (fs.existsSync(filename)) {
-    throw new Error(`${hookName} already exists`)
+  if (fs.existsSync(file)) {
+    throw new Error(`${file} already exists`)
   }
 
-  const data = [
-    '#!/bin/sh',
-    '. "$(dirname $0)/_/husky.sh"',
-    '',
-    cmd,
-  ].join('\n')
+  const data = ['#!/bin/sh', '. "$(dirname $0)/_/husky.sh"', '', cmd].join('\n')
 
-  fs.writeFileSync(filename, data, 'utf-8')
-  console.log(path.relative(cwd, filename))
+  fs.writeFileSync(file, data, 'utf-8')
+  // Show "./file" instead of just "file"
+  console.log(`created ${dir}${path.sep}${path.basename(file)}`)
 }
 
-export function add({
-  cwd,
-  hookName,
-  cmd,
-}: {
-  cwd: string
-  hookName: string
-  cmd: string
-}): void {
-  createHookFile(cwd, hookName, cmd)
-  makeHookExecutable(cwd, hookName)
+export function add(file: string, cmd: string): void {
+  createHookFile(file, cmd)
+  makeHookExecutable(file)
 }

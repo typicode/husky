@@ -6,31 +6,20 @@ import cp from 'child_process'
 function copyScript(scriptName: string, destDir: string) {
   fs.copyFileSync(
     path.join(__dirname, '../../scripts', scriptName),
-    path.join(destDir, scriptName)
+    path.join(destDir, scriptName),
   )
 }
 
-export function install({
-  cwd,
-  dir = '.',
-}: {
-  cwd: string
-  dir: string
-}): void {
+export function install(dir = '.husky'): void {
   // Ensure that we're not trying to install outside cwd
-  const absoluteHooksDir = path.resolve(cwd, dir)
-  if (!absoluteHooksDir.startsWith(cwd)) {
+  const absoluteHooksDir = path.resolve(process.cwd(), dir)
+  if (!absoluteHooksDir.startsWith(process.cwd())) {
     throw new Error('.. not allowed')
   }
 
   // Ensure that cwd is git top level
-  if (!fs.existsSync(path.join(cwd, '.git'))) {
+  if (!fs.existsSync('.git')) {
     throw new Error(".git can't be found")
-  }
-
-  // Ensure that pathToPackageDir contains package.json
-  if (!fs.existsSync(path.join(absoluteHooksDir, 'package.json'))) {
-    throw new Error("package.json can't be found")
   }
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'husky-'))
@@ -45,7 +34,7 @@ export function install({
     stdio: 'inherit',
     env: {
       ...process.env,
-      husky_dir: path.join(dir, '.husky'),
+      husky_dir: dir,
     },
   })
 }
