@@ -8,12 +8,7 @@ Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
 **Announcement: Husky v5 has been published, to view v5 docs click [here](https://typicode.github.io/husky).**
 
-**Note for npm v7 users** Currently `INIT_CWD` environment variable is missing in npm v7 and is required for Husky v4 to auto-install (https://github.com/npm/cli/issues/2033). To manually install husky v4, run 
-```shell
-INIT_CWD="$(pwd)" npm install husky --save-dev
-```
-
-Or upgrade to [husky v5](https://typicode.github.io/husky/#/).
+**Note to npm v7 users**: if hooks aren't being installed with npm `v7`, check that your version is at least `v7.1.2`.
 
 ## Install
 
