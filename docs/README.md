@@ -272,15 +272,16 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 // .huskyrc.json (v4)
 {
   "hooks": {
-    "pre-commit": "commitlint -E HUSKY_GIT_PARAMS"
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
 ```
 
 ```shell
-# .husky/pre-commit (v5)
+# .husky/commit-msg (v5)
 # ...
 npx --no-install commitlint --edit $1
+# or
 yarn commitlint --edit $1
 ```
 
