@@ -14,7 +14,7 @@ function readPkg(): PackageJson {
 
 const pkg = readPkg()
 
-const [, , arg, ...params] = process.argv
+const [, , cmd, ...args] = process.argv
 
 function version() {
   console.log(pkg.version)
@@ -38,13 +38,13 @@ Examples
 `)
 }
 
-switch (arg) {
+switch (cmd) {
   case 'install': {
-    if (params.length > 2) {
+    if (args.length > 2) {
       help()
       process.exit(2)
     }
-    install(params[0])
+    install(args[0])
     break
   }
   case 'uninstall': {
@@ -52,11 +52,11 @@ switch (arg) {
     break
   }
   case 'add': {
-    if (params.length === 0 || params.length > 2) {
+    if (args.length === 0 || args.length > 2) {
       help()
       process.exit(2)
     }
-    add(params[0], params[1])
+    add(args[0], args[1])
     break
   }
   case '--version': {
