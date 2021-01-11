@@ -58,7 +58,7 @@ yarn husky install
   "private": false,
   "scripts": {
     "postinstall": "husky install",
-    "prepublish": "pinst --disable",
+    "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   }
 }
@@ -66,10 +66,10 @@ yarn husky install
 
 ## Add a hook
 
-To add a hook, you can use `husky add <hookname> [cmd]` (don't forget to run `husky install` before).
+To add a hook, you can use `husky add <file> [cmd]` (don't forget to run `husky install` before).
 
 ```shell
-npx husky add pre-commit "npm test" # will create .husky/pre-commit file
+npx husky add .husky/pre-commit "npm test"
 ```
 
 Try to make a commit
@@ -94,7 +94,7 @@ If you want to install husky in another directory, for example `.config`, you ca
 // package.json
 {
   "scripts": {
-    "postinstall": "husky install .config"
+    "postinstall": "husky install .config/husky"
   }
 }
 ```
@@ -107,7 +107,7 @@ By design, `husky install` must be run in the same directory as `.git`, but you 
 // package.json
 {
   "scripts": {
-    "postinstall": "cd .. && husky install ./front"
+    "postinstall": "cd .. && husky install front/.husky"
   }
 }
 ```
@@ -117,7 +117,7 @@ In your hooks, you'll also need to change directory:
 ```shell
 # .husky/pre-commit
 # ...
-cd ./front
+cd front
 npm test
 ```
 
@@ -144,7 +144,7 @@ Alternatively, most Continuous Integration Servers set a `CI` environment variab
 ```shell
 # .husky/pre-commit
 # ...
-[ -z "$CI" ] && exit 0
+[ -n "$CI" ] && exit 0
 ```
 
 You can also use [is-ci](https://github.com/watson/is-ci) in your `postinstall` script to conditionnally install husky
@@ -224,14 +224,12 @@ Environment variables:
 
 # Migrate from v4 to v5
 
-## Package scripts (i.e. npm test, ...)
+## Package scripts
 
-If you were calling `package.json` scripts, you don't have to make particular changes.
-
-`v4`
+If you were calling `package.json` scripts using `npm` or `yarn`, **you can simply copy your commands**:
 
 ```js
-// .huskyrc.json
+// .huskyrc.json (v4)
 {
   "hooks": {
     "pre-commit": "npm test && npm run foo"
@@ -239,21 +237,19 @@ If you were calling `package.json` scripts, you don't have to make particular ch
 }
 ```
 
-`v5`
-
 ```shell
-# .husky/pre-commit
+# .husky/pre-commit (v5)
 # ...
 npm test
 npm run foo
 ```
 
-## Locally installed tools (i.e. jest, eslint, ...)
+## Locally installed binaries
 
-`v4`
+If you were calling directly locally installed binaries, **you need to run them via your package manager**:
 
 ```js
-// .huskyrc.json
+// .huskyrc.json (v4)
 {
   "hooks": {
     "pre-commit": "jest"
@@ -261,33 +257,28 @@ npm run foo
 }
 ```
 
-`v5`
-
 ```shell
-# .husky/pre-commit
+# .husky/pre-commit (v5)
 # ...
 npx --no-install jest
-# or
 yarn jest
 ```
 
 ## HUSKY_GIT_PARAMS (i.e. commitlint, ...)
 
-`v4`
+Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$1`, `$2`, etc.
 
 ```js
-// .huskyrc.json
+// .huskyrc.json (v4)
 {
   "hooks": {
-    "pre-commit": "commitlint -E HUSKY_GIT_PARAMS"
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
 ```
 
-`v5`
-
 ```shell
-# .husky/pre-commit
+# .husky/commit-msg (v5)
 # ...
 npx --no-install commitlint --edit $1
 # or
