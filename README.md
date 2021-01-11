@@ -1,6 +1,6 @@
 # husky
 
-[![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) ![Node.js CI](https://github.com/typicode/husky/workflows/Node.js%20CI/badge.svg)
+[![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) ![Node.js CI](https://github.com/typicode/husky/workflows/Node.js%20CI/badge.svg) [![Meercode CI Score](https://meercode.io/badge/typicode/husky?type=ci-score&branch=next)](https://meercode.io/typicode/husky)
 
 > Git hooks made easy
 
