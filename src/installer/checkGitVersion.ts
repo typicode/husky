@@ -6,10 +6,10 @@ export function checkGitVersion(): void {
   const { status, stderr, stdout } = cp.spawnSync('git', ['--version'])
 
   if (status !== 0) {
-    throw new Error(stderr.toString())
+    throw new Error(`git --version command failed. Got ${String(stderr)}.`)
   }
 
-  const [version] = findVersions(stdout.toString())
+  const [version] = findVersions(String(stdout))
 
   if (compareVersions(version, '2.13.0') === -1) {
     throw new Error(`Husky requires Git >=2.13.0. Got v${version}.`)
