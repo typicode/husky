@@ -16,7 +16,7 @@ export function gitRevParse(cwd = process.cwd()): GitRevParseResult {
   )
 
   if (status !== 0) {
-    throw new Error(stderr.toString())
+    throw new Error(`git rev-parse command failed. Got ${String(stderr)}`)
   }
 
   const [prefix, gitCommonDir] = stdout

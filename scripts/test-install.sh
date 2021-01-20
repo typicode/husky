@@ -152,5 +152,37 @@ if [ "$exitCode" -eq 0 ]; then
   exit 1
 fi
 
+# ---
+test "hook should run and pass all HUSKY_GIT_PARAMS"
+cat > .huskyrc << EOL
+{
+  "skipCI": false,
+  "hooks": {
+    "prepare-commit-msg": "echo \"prepare-commit-msg hook from Husky\" && echo \$HUSKY_GIT_PARAMS > $hookParamsFile"
+  }
+}
+EOL
+if [ -f $hookParamsFile ]; then
+  rm $hookParamsFile
+fi
+
+commit sixth
+
+if [ ! -f $hookParamsFile ]; then
+  echo "Fail: hook script didn't run"
+  exit 1
+fi
+
+actual=$(cat $hookParamsFile)
+expected=".git/COMMIT_EDITMSG message"
+
+if [ "$actual" != "$expected" ]; then
+  echo "Fail: HUSKY_GIT_PARAMS weren't set correctly"
+  echo "$actual != $expected"
+  exit 1
+fi
+
 echo
 echo "Success: all tests passed"
+
+

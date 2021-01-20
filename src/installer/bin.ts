@@ -43,7 +43,12 @@ function getInitCwdEnv(): string {
   if (INIT_CWD === undefined) {
     const { name, version } = whichPMRuns()
     throw new Error(
-      `INIT_CWD is not set, please upgrade your package manager (${name} ${version})`
+      `INIT_CWD is not set, please check that your package manager supports it (${name} ${version})
+
+Alternatively, you could set it manually:
+INIT_CWD="$(pwd)" npm install husky --save-dev
+
+Or upgrade to husky v5`
     )
   }
 

@@ -1,6 +1,8 @@
 *.log
 .DS_Store
+.husky
 ci-post-checkout
 hook-params
 lib
 node_modules/
+tsconfig.tsbuildinfo

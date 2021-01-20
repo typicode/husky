@@ -10,3 +10,4 @@ hook-params
 scripts
 src
 tsconfig.json
+tsconfig.tsbuildinfo

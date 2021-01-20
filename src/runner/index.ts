@@ -74,7 +74,7 @@ function runCommand(
  * @param {promise} options.getStdinFn - used for mocking only
  */
 export default async function run(
-  [, , hookName = '', HUSKY_GIT_PARAMS]: string[],
+  [, , hookName = '', ...HUSKY_GIT_PARAMS]: string[],
   { cwd = process.cwd() }: { cwd?: string } = {}
 ): Promise<number> {
   const oldCommand = getOldCommand(cwd, hookName)
@@ -83,8 +83,8 @@ export default async function run(
   // Add HUSKY_GIT_PARAMS to env
   const env: Env = {}
 
-  if (HUSKY_GIT_PARAMS) {
-    env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS
+  if (HUSKY_GIT_PARAMS?.length) {
+    env.HUSKY_GIT_PARAMS = HUSKY_GIT_PARAMS.join(' ')
   }
 
   if (command) {

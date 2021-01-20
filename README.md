@@ -6,7 +6,13 @@
 
 Husky can prevent bad `git commit`, `git push` and more 🐶 _woof!_
 
+**Announcement: Husky v5 has been published, to view v5 docs click [here](https://typicode.github.io/husky).**
+
+**Note to npm v7 users**: if hooks aren't being installed with npm `v7`, check that your version is at least `v7.1.2`.
+
 ## Install
+
+This will install husky v4.
 
 ```sh
 npm install husky --save-dev
@@ -43,91 +49,101 @@ npm uninstall husky
 
 _Git hooks installed by husky will be removed._
 
-## Financial Contributors
+## Sponsors
 
-Become a financial contributor and help us sustain our community ❤️ [[Contribute](https://opencollective.com/husky/contribute)]
+### Companies (\$100+/month)
 
-### Organizations
+<!-- for (let i = 0; i < 40; i++) console.log(`[![Husky Sponsor](https://opencollective.com/husky/backer/${i}/avatar)](https://opencollective.com/husky/backer/${i}/website)`) -->
 
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/husky/contribute)]
+Does your company use Husky? Ask your manager or marketing team if your company would be interested in supporting this project.
 
-<!-- oc -->
-#### Gold Sponsors ($500+ / month)
-
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/0/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/1/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/2/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/3/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/3/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/4/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/4/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/5/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/5/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/6/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/6/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/7/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/7/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/8/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/gold-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/gold-sponsor/9/avatar.svg" height="60px"></a>
-
-#### Silver Sponsors ($250+ / month)
-
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/0/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/1/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/2/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/3/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/3/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/4/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/4/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/5/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/5/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/6/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/6/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/7/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/7/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/8/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/silver-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/silver-sponsor/9/avatar.svg" height="60px"></a>
-
-#### Bronze Sponsors ($100+ / month)
-
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/0/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/0/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/1/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/1/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/2/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/2/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/3/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/3/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/4/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/4/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/5/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/5/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/6/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/6/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/7/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/7/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/8/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/8/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/husky/tiers/bronze-sponsor/9/website"><img src="https://opencollective.com/husky/tiers/bronze-sponsor/9/avatar.svg" height="60px"></a>
-<!-- oc-end -->
+<a href="https://opencollective.com/husky/tiers/sponsor/0/website"><img src="https://opencollective.com/husky/tiers/sponsor/0/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/1/website"><img src="https://opencollective.com/husky/tiers/sponsor/1/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/2/website"><img src="https://opencollective.com/husky/tiers/sponsor/2/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/3/website"><img src="https://opencollective.com/husky/tiers/sponsor/3/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/4/website"><img src="https://opencollective.com/husky/tiers/sponsor/4/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/5/website"><img src="https://opencollective.com/husky/tiers/sponsor/5/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/6/website"><img src="https://opencollective.com/husky/tiers/sponsor/6/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/7/website"><img src="https://opencollective.com/husky/tiers/sponsor/7/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/8/website"><img src="https://opencollective.com/husky/tiers/sponsor/8/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/husky/tiers/sponsor/9/website"><img src="https://opencollective.com/husky/tiers/sponsor/9/avatar.svg" height="60px"></a>
 
 ### Individuals
 
-<a href="https://opencollective.com/husky"><img src="https://opencollective.com/husky/individuals.svg?width=890" height="200px"></a>
+Find Husky helpful? Become a backer and show your appreciation with a monthly donation on [Open Collective](https://opencollective.com/husky). You can also tip with a one-time donation.
+
+[![Husky Sponsor](https://opencollective.com/husky/backer/0/avatar)](https://opencollective.com/husky/backer/0/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/1/avatar)](https://opencollective.com/husky/backer/1/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/2/avatar)](https://opencollective.com/husky/backer/2/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/3/avatar)](https://opencollective.com/husky/backer/3/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/4/avatar)](https://opencollective.com/husky/backer/4/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/5/avatar)](https://opencollective.com/husky/backer/5/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/6/avatar)](https://opencollective.com/husky/backer/6/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/7/avatar)](https://opencollective.com/husky/backer/7/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/8/avatar)](https://opencollective.com/husky/backer/8/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/9/avatar)](https://opencollective.com/husky/backer/9/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/10/avatar)](https://opencollective.com/husky/backer/10/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/11/avatar)](https://opencollective.com/husky/backer/11/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/12/avatar)](https://opencollective.com/husky/backer/12/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/13/avatar)](https://opencollective.com/husky/backer/13/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/14/avatar)](https://opencollective.com/husky/backer/14/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/15/avatar)](https://opencollective.com/husky/backer/15/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/16/avatar)](https://opencollective.com/husky/backer/16/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/17/avatar)](https://opencollective.com/husky/backer/17/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/18/avatar)](https://opencollective.com/husky/backer/18/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/19/avatar)](https://opencollective.com/husky/backer/19/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/20/avatar)](https://opencollective.com/husky/backer/20/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/21/avatar)](https://opencollective.com/husky/backer/21/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/22/avatar)](https://opencollective.com/husky/backer/22/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/23/avatar)](https://opencollective.com/husky/backer/23/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/24/avatar)](https://opencollective.com/husky/backer/24/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/25/avatar)](https://opencollective.com/husky/backer/25/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/26/avatar)](https://opencollective.com/husky/backer/26/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/27/avatar)](https://opencollective.com/husky/backer/27/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/28/avatar)](https://opencollective.com/husky/backer/28/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/29/avatar)](https://opencollective.com/husky/backer/29/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/30/avatar)](https://opencollective.com/husky/backer/30/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/31/avatar)](https://opencollective.com/husky/backer/31/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/32/avatar)](https://opencollective.com/husky/backer/32/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/33/avatar)](https://opencollective.com/husky/backer/33/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/34/avatar)](https://opencollective.com/husky/backer/34/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/35/avatar)](https://opencollective.com/husky/backer/35/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/36/avatar)](https://opencollective.com/husky/backer/36/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/37/avatar)](https://opencollective.com/husky/backer/37/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/38/avatar)](https://opencollective.com/husky/backer/38/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/39/avatar)](https://opencollective.com/husky/backer/39/website)
+
+GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All past and current Open Collective sponsors can be viewed on [Husky's Open Collective](https://opencollective.com/husky).
 
 ## Used by
 
-* [webpack](https://github.com/webpack/webpack)
-* [babel](https://github.com/babel/babel)
-* [create-react-app](https://github.com/facebookincubator/create-react-app)
-* ... and many other awesome projects
+- [webpack](https://github.com/webpack/webpack)
+- [babel](https://github.com/babel/babel)
+- [create-react-app](https://github.com/facebook/create-react-app)
+- ... and many other awesome projects
 
 ## Guides
 
 <!-- toc -->
 
-  * [Upgrading from 0.14](#upgrading-from-014)
-  * [Supported hooks](#supported-hooks)
-  * [Access Git params and stdin](#access-git-params-and-stdin)
-  * [Skip all hooks (rebase)](#skip-all-hooks-rebase)
-  * [Disable auto-install](#disable-auto-install)
-  * [CI servers](#ci-servers)
-  * [Monorepos](#monorepos)
-  * [Node version managers](#node-version-managers)
-  * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
-  * [Multiple commands](#multiple-commands)
-  * [Git LFS](#git-lfs)
-  * [Troubleshoot](#troubleshoot)
-    + [Debug messages](#debug-messages)
-    + [Hooks aren't running](#hooks-arent-running)
-    + [Commits aren't blocked](#commits-arent-blocked)
-    + [Commits are slow](#commits-are-slow)
-    + [Testing husky in a new repo](#testing-husky-in-a-new-repo)
-    + [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
-- [See also](#see-also)
-- [Patreon](#patreon)
-- [License](#license)
+- [Upgrading from 0.14](#upgrading-from-014)
+- [Supported hooks](#supported-hooks)
+- [Access Git params and stdin](#access-git-params-and-stdin)
+- [Skip all hooks (rebase)](#skip-all-hooks-rebase)
+- [Disable auto-install](#disable-auto-install)
+- [CI servers](#ci-servers)
+- [Monorepos](#monorepos)
+- [Node version managers](#node-version-managers)
+- [Local commands (~/.huskyrc)](#local-commands-huskyrc)
+- [Multiple commands](#multiple-commands)
+- [Git LFS](#git-lfs)
+- [Troubleshoot](#troubleshoot)
+  - [Debug messages](#debug-messages)
+  - [Hooks aren't running](#hooks-arent-running)
+  - [Commits aren't blocked](#commits-arent-blocked)
+  - [Commits are slow](#commits-are-slow)
+  - [Testing husky in a new repo](#testing-husky-in-a-new-repo)
+  - [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
 
 <!-- tocstop -->
 
@@ -156,7 +172,7 @@ You can also do it manually. Move your existing hooks to `husky.hooks` field and
 }
 ```
 
-Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`, `.huskyrc.yaml`, `huskyrc.yml`, `.huskyrc.js` or `husky.config.js` file.
+Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`, `.huskyrc.yaml`, `.huskyrc.yml`, `.huskyrc.js` or `husky.config.js` file.
 
 ```js
 // .huskyrc
@@ -201,7 +217,7 @@ By default, Husky won't install on CI servers.
 
 ### Monorepos
 
-If you have a multi-package repository, it's __recommended__ to use tools like [lerna](https://github.com/lerna/lerna) and have husky installed ONLY in the root `package.json` to act as the source of truth.
+If you have a multi-package repository, it's **recommended** to use tools like [lerna](https://github.com/lerna/lerna) and have husky installed ONLY in the root `package.json` to act as the source of truth.
 
 Generally speaking, you should AVOID defining husky in multiple `package.json`, as each package would overwrite previous husky installation.
 
@@ -239,6 +255,7 @@ Generally speaking, you should AVOID defining husky in multiple `package.json`, 
 If you're on Windows, husky will simply use the version installed globally on your system.
 
 For macOS and Linux users:
+
 - if you're running `git` commands in the terminal, husky will use the version defined in your shell `PATH`. In other words, if you're a `nvm` user, husky will use the version that you've set with `nvm`.
 - if you're using a GUI client and `nvm`, it may have a different `PATH` and not load `nvm`, in this case the highest `node` version installed by `nvm` will usually be picked. You can also check `~/.node_path` to see which version is used by GUIs and edit if you want to use something else.
 
@@ -255,7 +272,7 @@ export NVM_DIR="$HOME/.nvm"
 
 ### Multiple commands
 
-By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command. 
+By design and just like `scripts` defined in `package.json`, husky will run hook scripts as a single command.
 
 ```json
 "pre-commit": "cmd && cmd"
@@ -264,15 +281,12 @@ By design and just like `scripts` defined in `package.json`, husky will run hook
 That said, if you prefer to use an array, the recommended approach is to define them in `.huskyrc.js` or `husky.config.js`.
 
 ```js
-const tasks = arr => arr.join(' && ')
+const tasks = (arr) => arr.join(' && ')
 
 module.exports = {
-  'hooks': {
-    'pre-commit': tasks([
-      'cmd',
-      'cmd'
-    ])
-  }
+  hooks: {
+    'pre-commit': tasks(['cmd', 'cmd']),
+  },
 }
 ```
 
@@ -365,9 +379,9 @@ Verify that your version of Git is `>=2.13.0`.
 
 ## See also
 
-* [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
-* [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
-* [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
+- [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
+- [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
+- [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
 
 ## Patreon
 
