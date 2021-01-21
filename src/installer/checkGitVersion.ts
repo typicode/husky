@@ -6,7 +6,11 @@ export function checkGitVersion(): void {
   const { status, stderr, stdout } = cp.spawnSync('git', ['--version'])
 
   if (status !== 0) {
-    throw new Error(`git --version command failed. Got ${String(stderr)}.`)
+    throw new Error(
+      `git --version command failed. Got ${status} exit code and message: ${String(
+        stderr,
+      )}.`,
+    )
   }
 
   const [version] = findVersions(String(stdout))
