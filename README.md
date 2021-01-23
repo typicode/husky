@@ -9,7 +9,7 @@ Husky improves your commits and more 🐶*woof!*
 - [**Documentation v5 (recommended for Open Source and Sponsors)**](https://typicode.github.io/husky)
 - [Documentation v4 (current latest)](https://github.com/typicode/husky/tree/master)
 
-**01/23** 👋 Read husky 5 announcement and see what's new 
+**Jan 23, 2021** - 👋 Read husky 5 announcement and see what's new:
 
 https://blog.typicode.com/husky-5
 
