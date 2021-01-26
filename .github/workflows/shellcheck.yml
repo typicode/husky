@@ -1,4 +1,4 @@
-name: 'shellcheck'
+name: ShellCheck CI
 
 on: [push]
 
@@ -11,4 +11,4 @@ jobs:
     - name: Run ShellCheck
       uses: ludeeus/action-shellcheck@master
       with:
-        scandir: './scripts' './test'
+        scandir: './scripts'
