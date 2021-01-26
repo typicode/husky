@@ -1,4 +1,4 @@
-#!/bin/bash
+# shellcheck shell=bash
 
 # shellcheck source=./_functions.sh
 . "$(dirname "$0")/_functions.sh"

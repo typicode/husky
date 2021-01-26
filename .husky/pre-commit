@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # shellcheck source=./_/husky.sh
-. "$(dirname "$(readlink -f "$0")")/_/husky.sh"
+. "$(dirname "$0")/_/husky.sh"
 
 npm test
