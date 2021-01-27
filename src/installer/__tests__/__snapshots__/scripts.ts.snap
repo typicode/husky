@@ -8,6 +8,8 @@ exports[`hookScript should match snapshot 1`] = `
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
 
+# See the following documentation for using husky with git lfs: https://github.com/typicode/husky#git-lfs
+
 . \\"$(dirname \\"$0\\")/husky.sh\\"
 "
 `;
@@ -16,6 +18,8 @@ exports[`localScript should match snapshot 1`] = `
 "# Created by Husky v4.3.8 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
+
+# See the following documentation for using husky with git lfs: https://github.com/typicode/husky#git-lfs
 
 packageManager=npm
 cd \\".\\"
@@ -26,6 +30,8 @@ exports[`mainScript should match snapshot 1`] = `
 "# Created by Husky v4.3.8 (https://github.com/typicode/husky#readme)
 #   At: <locale date string>
 #   From: /home/typicode/projects/foo-package (https://github.com/foo/foo-package)
+
+# See the following documentation for using husky with git lfs: https://github.com/typicode/husky#git-lfs
 
 debug () {
   if [ \\"$HUSKY_DEBUG\\" = \\"true\\" ] || [ \\"$HUSKY_DEBUG\\" = \\"1\\" ]; then
