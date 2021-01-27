@@ -1,6 +1,9 @@
-. $(dirname $0)/_functions.sh
+# shellcheck shell=bash
 
-# Example: 
+# shellcheck source=./_functions.sh
+. "$(dirname "$0")/_functions.sh"
+
+# Example:
 # .config/husky
 title "config directory"
 tempDir="/tmp/husky-config-dir-test"
