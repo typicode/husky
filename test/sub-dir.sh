@@ -1,4 +1,7 @@
-. $(dirname "$0")/_functions.sh
+# shellcheck shell=bash
+
+# shellcheck source=./_functions.sh
+. "$(dirname "$0")/_functions.sh"
 
 # Example:
 # .git

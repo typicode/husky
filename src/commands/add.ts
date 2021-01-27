@@ -15,7 +15,9 @@ function createHookFile(file: string, cmd: string) {
     throw new Error(`${file} already exists`)
   }
 
-  const data = ['#!/bin/sh', '. "$(dirname "$0")/_/husky.sh"', '', cmd].join('\n')
+  const data = ['#!/bin/sh', '. "$(dirname "$0")/_/husky.sh"', '', cmd].join(
+    '\n',
+  )
 
   fs.writeFileSync(file, data, 'utf-8')
   // Show "./file" instead of just "file"
