@@ -1,4 +1,7 @@
-. $(dirname $0)/_functions.sh
+# shellcheck shell=bash
+
+# shellcheck source=./_functions.sh
+. "$(dirname "$0")/_functions.sh"
 
 title "default"
 tempDir="/tmp/husky-default-test"
@@ -23,4 +26,3 @@ git commit -m "should fail" || echo -e "\e[0;32mOK\e[m"
 # Uninstall
 npx --no-install husky uninstall
 git config core.hooksPath || echo -e "\e[0;32mOK\e[m"
-
