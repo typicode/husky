@@ -4,7 +4,7 @@
 
 > Git hooks made easy
 
-Husky improves your commits and more 🐶*woof!*
+Husky improves your commits and more 🐶 *woof!*
 
 - [**Documentation v5 (recommended for Open Source and Sponsors)**](https://typicode.github.io/husky)
 - [Documentation v4 (current latest)](https://github.com/typicode/husky/tree/master)
