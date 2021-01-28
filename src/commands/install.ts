@@ -15,12 +15,18 @@ export function install(dir = '.husky'): void {
   }
 
   try {
+    // Create .husky/_
     fs.mkdirSync(path.join(dir, '_'), { recursive: true })
+
+    // Create .husky/.gitignore
     fs.writeFileSync(path.join(dir, '.gitignore'), '_', 'utf-8')
+
+    // Copy husky.sh to .husky/_/husky.sh
     fs.copyFileSync(
       path.join(__dirname, '../../scripts/husky.sh'),
       path.join(dir, '_/husky.sh'),
     )
+
     cp.spawnSync('git', ['config', 'core.hooksPath', dir])
   } catch (e) {
     console.log('husky - Git hooks failed to install')
