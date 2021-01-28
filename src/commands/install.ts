@@ -1,14 +1,6 @@
-import os from 'os'
 import fs from 'fs'
 import path from 'path'
 import cp from 'child_process'
-
-function copyScript(scriptName: string, destDir: string) {
-  fs.copyFileSync(
-    path.join(__dirname, '../../scripts', scriptName),
-    path.join(destDir, scriptName),
-  )
-}
 
 export function install(dir = '.husky'): void {
   // Ensure that we're not trying to install outside cwd
@@ -22,19 +14,24 @@ export function install(dir = '.husky'): void {
     throw new Error(".git can't be found")
   }
 
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'husky-'))
+  try {
+    // Create .husky/_
+    fs.mkdirSync(path.join(dir, '_'), { recursive: true })
 
-  copyScript('husky.sh', tmpDir)
-  copyScript('pre-commit', tmpDir)
+    // Create .husky/.gitignore
+    fs.writeFileSync(path.join(dir, '.gitignore'), '_', 'utf-8')
 
-  fs.chmodSync(path.join(tmpDir, 'pre-commit'), 0o0755)
+    // Copy husky.sh to .husky/_/husky.sh
+    fs.copyFileSync(
+      path.join(__dirname, '../../scripts/husky.sh'),
+      path.join(dir, '_/husky.sh'),
+    )
 
-  cp.spawnSync('git', ['config', 'core.hooksPath', tmpDir])
-  cp.spawnSync('git', ['commit', '--author', 'husky <husky@example.com>'], {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      husky_dir: dir,
-    },
-  })
+    cp.spawnSync('git', ['config', 'core.hooksPath', dir])
+  } catch (e) {
+    console.log('husky - Git hooks failed to install')
+    throw e
+  }
+
+  console.log('husky - Git hooks installed')
 }
