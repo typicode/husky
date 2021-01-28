@@ -172,6 +172,23 @@ If you want to test a hook, you can add `exit 1` at the end of the script to abo
 exit 1 # Commit will be aborted
 ```
 
+## Git-flow
+
+If using [git-flow](https://github.com/petervanderdoes/gitflow-avh/) you need to ensure your git-flow hooks directory is set to use Husky's (`.husky` by default).
+
+```shell
+git config gitflow.path.hooks .husky
+```
+**Note:**
+- If you are configuring git-flow _after_ you have installed Husky, the git-flow setup process will correctly suggest the .husky directory.
+- If you have set a [custom directory](#custom-directory) for Husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
+
+To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default git hooks directory.
+
+```shell
+git config gitflow.path.hooks .git/hooks
+```
+
 # FAQ
 
 ## Does it work on Windows?
