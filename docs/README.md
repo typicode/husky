@@ -17,6 +17,8 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 
 # Usage
 
+_Already using husky? See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) to quickly migrate from v4 to v5._
+
 ## Install
 
 1. Install `husky` and [pinst](https://github.com/typicode/pinst) (optional)
