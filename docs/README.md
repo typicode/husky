@@ -2,22 +2,26 @@
 
 > Git hooks made easy
 
-Husky improves your commits and more 🐶 *woof!*
+Husky improves your commits and more 🐶 _woof!_
 
 You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks.
+
+**👋 Read husky 5 announcement and see what's new:**
+
+https://dev.to/typicode/what-s-new-in-husky-5-32g5
 
 ?> You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁. To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).<br><br>If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project.
 
 # Features
 
 - Zero dependencies
-- Lightweight
-- Fast
+- Lightweight (`~0.02MB` vs `~1MB` for husky 4)
+- Fast (`~0.01s` vs `~0.5s` for husky 4)
 - Supports macOS, Linux and Windows
 
 # Usage
 
-_Already using husky? See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) to quickly migrate from v4 to v5._
+_Already using husky? See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v5._
 
 ## Install
 
@@ -181,7 +185,9 @@ If using [git-flow](https://github.com/petervanderdoes/gitflow-avh/) you need to
 ```shell
 git config gitflow.path.hooks .husky
 ```
+
 **Note:**
+
 - If you are configuring git-flow _after_ you have installed Husky, the git-flow setup process will correctly suggest the .husky directory.
 - If you have set a [custom directory](#custom-directory) for Husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
 
@@ -244,6 +250,8 @@ Environment variables:
 - `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
 # Migrate from v4 to v5
+
+See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v5.
 
 ## Package scripts
 
