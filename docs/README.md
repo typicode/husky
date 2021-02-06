@@ -21,7 +21,7 @@ https://dev.to/typicode/what-s-new-in-husky-5-32g5
 
 # Usage
 
-_Already using husky? See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v5._
+Already using husky? See [Migrate from 4 to 5](#/?id=migrate-from-v4-to-v5) and `husky-4-to-5` CLI.
 
 ## Install
 
@@ -85,6 +85,8 @@ git commit -m "Keep calm and commit"
 ```
 
 If `npm test` command fails, your commit will be automatically aborted.
+
+!> __Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](#/?id=yarn-on-windows).__
 
 # Recipes
 
@@ -230,6 +232,33 @@ Ensure that you don't have a typo in your filename. For example, `precommit` or 
 Verify hooks permissions, they should be executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
 
 Check that your version of Git is greater than `2.9`.
+
+## Yarn on Windows
+
+Git hooks may fail when using Yarn on Windows with Git Bash (`stdin is not a tty`). If you have users on Windows, it's highly recommended to add the following workaround.
+
+1. Create `.husky/common.sh`:
+
+```shell
+command_exists () {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Workaround for Windows 10, Git Bash and Yarn
+if command_exists winpty && test -t 1; then
+  exec < /dev/tty
+fi
+```
+
+2. Source it in in places where Yarn is used to run commands:
+
+```shell
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"
+
+yarn ...
+```
 
 # Free for Open Source, early access for Sponsors
 
