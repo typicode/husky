@@ -21,7 +21,7 @@ https://dev.to/typicode/what-s-new-in-husky-5-32g5
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 5](#/?id=migrate-from-v4-to-v5) and `husky-4-to-5` CLI.
+Already using husky? See [Migrate from 4 to 5](#/?id=migrate-from-v4-to-v5).
 
 ## Install
 
@@ -279,6 +279,8 @@ Environment variables:
 - `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
 # Migrate from v4 to v5
+
+## husky-4-to-5 CLI
 
 See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v5.
 
