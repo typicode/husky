@@ -88,6 +88,18 @@ If `npm test` command fails, your commit will be automatically aborted.
 
 !> __Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](#/?id=yarn-on-windows).__
 
+## Uninstall
+
+```shell
+# npm
+npm uninstall husky
+
+# yarn
+yarn remove husky && git config --unset core.hooksPath
+```
+
+**Note:** When uninstalling with npm, `git config --unset core.hooksPath` will be automatically run for you.
+
 # Recipes
 
 ## Monorepo
