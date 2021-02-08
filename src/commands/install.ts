@@ -3,6 +3,13 @@ import path from 'path'
 import cp from 'child_process'
 
 export function install(dir = '.husky'): void {
+  // Ensure that we're inside a git repository
+  if (cp.spawnSync('git', ['rev-parse']).status !== 0) {
+    // Do not fail to let projects downloaded as zip files have their dependencies installed
+    console.log('husky - not a Git repository, skipping hooks installation')
+    return
+  }
+
   // Ensure that we're not trying to install outside cwd
   const absoluteHooksDir = path.resolve(process.cwd(), dir)
   if (!absoluteHooksDir.startsWith(process.cwd())) {
@@ -27,7 +34,11 @@ export function install(dir = '.husky'): void {
       path.join(dir, '_/husky.sh'),
     )
 
-    cp.spawnSync('git', ['config', 'core.hooksPath', dir])
+    // Configure repo
+    const { error } = cp.spawnSync('git', ['config', 'core.hooksPath', dir])
+    if (error) {
+      throw error
+    }
   } catch (e) {
     console.log('husky - Git hooks failed to install')
     throw e
