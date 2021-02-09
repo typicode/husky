@@ -126,23 +126,26 @@ GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All 
 
 <!-- toc -->
 
-- [Upgrading from 0.14](#upgrading-from-014)
-- [Supported hooks](#supported-hooks)
-- [Access Git params and stdin](#access-git-params-and-stdin)
-- [Skip all hooks (rebase)](#skip-all-hooks-rebase)
-- [Disable auto-install](#disable-auto-install)
-- [CI servers](#ci-servers)
-- [Monorepos](#monorepos)
-- [Node version managers](#node-version-managers)
-- [Local commands (~/.huskyrc)](#local-commands-huskyrc)
-- [Multiple commands](#multiple-commands)
-- [Troubleshoot](#troubleshoot)
-  - [Debug messages](#debug-messages)
-  - [Hooks aren't running](#hooks-arent-running)
-  - [Commits aren't blocked](#commits-arent-blocked)
-  - [Commits are slow](#commits-are-slow)
-  - [Testing husky in a new repo](#testing-husky-in-a-new-repo)
-  - [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
+  * [Upgrading from 0.14](#upgrading-from-014)
+  * [Downgrading from 5](#downgrading-from-5)
+  * [Supported hooks](#supported-hooks)
+  * [Access Git params and stdin](#access-git-params-and-stdin)
+  * [Skip all hooks (rebase)](#skip-all-hooks-rebase)
+  * [Disable auto-install](#disable-auto-install)
+  * [CI servers](#ci-servers)
+  * [Monorepos](#monorepos)
+  * [Node version managers](#node-version-managers)
+  * [Local commands (~/.huskyrc)](#local-commands-huskyrc)
+  * [Multiple commands](#multiple-commands)
+  * [Troubleshoot](#troubleshoot)
+    + [Debug messages](#debug-messages)
+    + [Hooks aren't running](#hooks-arent-running)
+    + [Commits aren't blocked](#commits-arent-blocked)
+    + [Commits are slow](#commits-are-slow)
+    + [Testing husky in a new repo](#testing-husky-in-a-new-repo)
+    + [ENOENT error 'node_modules/husky/.git/hooks'](#enoent-error-node_moduleshuskygithooks)
+- [See also](#see-also)
+- [License](#license)
 
 <!-- tocstop -->
 
@@ -362,10 +365,6 @@ Verify that your version of Git is `>=2.13.0`.
 - [pkg-ok](https://github.com/typicode/pkg-ok) - Prevents publishing a module with bad paths or incorrect line endings
 - [please-upgrade-node](https://github.com/typicode/please-upgrade-node) - Show a message to upgrade Node instead of a stacktrace in your CLIs
 - [pinst](https://github.com/typicode/pinst) - dev only postinstall hook
-
-## Patreon
-
-People and companies supporting via Patreon: [thanks](https://thanks.typicode.com)
 
 ## License
 
