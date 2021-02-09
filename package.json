@@ -41,7 +41,7 @@
     "postpack": "pinst --enable",
     "preversion": "npm run build",
     "postversion": "git push && git push --tags && npm publish --tag next",
-    "prepublish": "pinst --disable",
+    "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "pretest": "npm run build --silent && npm pack --silent",
     "test": "sh ./test/default.sh && sh ./test/sub-dir.sh && sh ./test/config-dir.sh && sh ./test/not-git-dir.sh",
