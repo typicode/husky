@@ -29,11 +29,11 @@ Already using husky? See [Migrate from 4 to 5](#/?id=migrate-from-v4-to-v5).
 
 ```shell
 # npm
-npm install husky@next --save-dev
+npm install husky --save-dev
 npm install pinst --save-dev # if your package is not private
 
 # yarn
-yarn add husky@next --dev
+yarn add husky --dev
 yarn add pinst --dev # if your package is not private
 ```
 
