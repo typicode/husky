@@ -182,6 +182,18 @@ Starting with `1.0.0`, husky can be configured using `.huskyrc`, `.huskyrc.json`
 }
 ```
 
+### Downgrading from 5
+
+```sh
+# npm
+npm install husky@4
+
+# yarn
+yarn add husky@4 && git config --unset core.hooksPath
+```
+
+__Note__: when downgrading with yarn, `git config --unset core.hooksPath` needs to be manually run.
+
 ### Supported hooks
 
 Husky supports all Git hooks defined [here](https://git-scm.com/docs/githooks). Server-side hooks (`pre-receive`, `update` and `post-receive`) aren't supported.
