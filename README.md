@@ -15,7 +15,7 @@ __👋 [Read husky 5 announcement and see what's new](https://dev.to/typicode/wh
 
 You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁.
 
-To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
+To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky) (monthly or yearly donations are supported).
 
 If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project. During the early access, v4 will continue to receive maintainance updates.
 
@@ -28,8 +28,6 @@ After the early access, husky v5 will be MIT again.
 ## Companies
 
 <!-- for (let i = 0; i < 40; i++) console.log(`[![Husky Sponsor](https://opencollective.com/husky/backer/${i}/avatar)](https://opencollective.com/husky/backer/${i}/website)`) -->
-
-Does your company use Husky? Ask your manager or marketing team if your company would be interested in supporting this project.
 
 <a href="https://opencollective.com/husky/tiers/sponsor/0/website"><img src="https://opencollective.com/husky/tiers/sponsor/0/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/sponsor/1/website"><img src="https://opencollective.com/husky/tiers/sponsor/1/avatar.svg" height="60px"></a>
