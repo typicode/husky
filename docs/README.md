@@ -19,7 +19,7 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 5](#/?id=migrate-from-v4-to-v5).
+Already using husky? See [Migrate from 4 to 5](https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v5).
 
 ## Install
 
