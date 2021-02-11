@@ -31,7 +31,7 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
-    "prebuild": "del lib",
+    "prebuild": "del-cli lib",
     "build": "tsc",
     "serve": "docsify serve docs",
     "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
