@@ -332,7 +332,7 @@ If you were calling directly locally installed binaries, **you need to run them 
 ```shell
 # .husky/pre-commit (v5)
 # ...
-npx --no-install jest
+npx --no jest
 yarn jest
 ```
 
@@ -352,7 +352,7 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 ```shell
 # .husky/commit-msg (v5)
 # ...
-npx --no-install commitlint --edit $1
+npx --no commitlint --edit $1
 # or
 yarn commitlint --edit $1
 ```
