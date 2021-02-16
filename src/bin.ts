@@ -52,11 +52,11 @@ switch (cmd) {
     break
   }
   case 'add': {
-    if (args.length === 0 || args.length > 2) {
+    if (args.length === 0) {
       help()
       process.exit(2)
     }
-    add(args[0], args[1])
+    add(args[0], args.splice(1).join(' '))
     break
   }
   case '--version': {
