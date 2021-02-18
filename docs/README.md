@@ -72,11 +72,13 @@ yarn husky install
 
 ## Add a hook
 
-To add a hook, you can use `husky add <file> [cmd]` (don't forget to run `husky install` before).
+To add a hook, use `husky add <file> [cmd]` (don't forget to run `husky install` before).
 
 ```shell
 npx husky add .husky/pre-commit "npm test"
 ```
+
+_Requires npm v7.4+ on Windows_
 
 Try to make a commit
 
