@@ -5,10 +5,11 @@ import { uninstall } from './commands/uninstall'
 import fs from 'fs'
 import path from 'path'
 import { PackageJson } from 'type-fest'
+import { init } from './commands/init'
 
 function readPkg(): PackageJson {
   return JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'),
+    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')
   ) as PackageJson
 }
 
@@ -23,11 +24,13 @@ function version() {
 function help() {
   console.log(`Usage
 
+  husky init
   husky install [dir] (default: .husky)
   husky uninstall
   husky add <file> [cmd]
 
 Examples
+  husky init
 
   husky install
   husky install .config/husky
@@ -39,6 +42,10 @@ Examples
 }
 
 switch (cmd) {
+  case 'init': {
+    init()
+    break
+  }
   case 'install': {
     if (args.length > 2) {
       help()
