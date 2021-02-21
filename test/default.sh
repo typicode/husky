@@ -10,8 +10,8 @@ rm -rf $tempDir
 cd_and_install_tgz $tempDir
 
 init_git
-npx --no-install husky install
-npx --no-install husky add .husky/pre-commit "echo \"msg from pre-commit hook\" && exit 1"
+npx --no husky install
+npx --no husky add .husky/pre-commit "echo \"msg from pre-commit hook\" && exit 1"
 
 # Debug
 # cat .husky/*
@@ -24,5 +24,5 @@ git add package.json
 git commit -m "should fail" || echo -e "\e[0;32mOK\e[m"
 
 # Uninstall
-npx --no-install husky uninstall
+npx --no husky uninstall
 git config core.hooksPath || echo -e "\e[0;32mOK\e[m"
