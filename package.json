@@ -41,7 +41,7 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "preversion": "npm run build",
-    "postversion": "git push && git push --tags && npm publish --tag next",
+    "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "pretest": "npm run build --silent && npm pack --silent",
