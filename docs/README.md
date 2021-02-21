@@ -4,7 +4,7 @@
 
 Husky improves your commits and more 🐶 _woof!_
 
-You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks.
+You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks.
 
 # Announcement
 
@@ -23,7 +23,31 @@ You can use it to lint your commit messages, run tests, lint code, etc... when y
 
 Already using husky? See [Migrate from 4 to 5](https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v5).
 
-## Install
+## Automatic (recommended)
+
+```shell
+# npm
+npm install husky --save-dev && npm exec husky init
+
+# yarn
+yarn add husky --dev && yarn husky init
+```
+
+The command above will setup husky and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
+
+To add another hook use `husky add`. For example:
+
+```shell
+# npm
+npx husky add .husky/commit-msg 'npx --no commitlint --edit "$1"'
+
+# yarn
+yarn husky add .husky/commit-msg 'npx --no commitlint --edit "$1"'
+```
+
+## Manual
+
+### Install
 
 1. Install `husky` and [pinst](https://github.com/typicode/pinst) (optional)
 
@@ -40,7 +64,10 @@ yarn add pinst --dev # if your package is not private
 2. Enable Git hooks
 
 ```shell
+# npm
 npx husky install
+
+# yarn
 yarn husky install
 ```
 
@@ -70,7 +97,7 @@ yarn husky install
 }
 ```
 
-## Add a hook
+### Add a hook
 
 To add a hook, use `husky add <file> [cmd]` (don't forget to run `husky install` before).
 
@@ -88,7 +115,7 @@ git commit -m "Keep calm and commit"
 
 If `npm test` command fails, your commit will be automatically aborted.
 
-!> __Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](#/?id=yarn-on-windows).__
+!> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](#/?id=yarn-on-windows).**
 
 ## Uninstall
 

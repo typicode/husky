@@ -16,12 +16,12 @@ function createHookFile(file: string, cmd: string) {
   }
 
   const data = ['#!/bin/sh', '. "$(dirname "$0")/_/husky.sh"', '', cmd].join(
-    '\n',
+    '\n'
   )
 
   fs.writeFileSync(file, data, 'utf-8')
   // Show "./file" instead of just "file"
-  console.log(`created ${dir}${path.sep}${path.basename(file)}`)
+  console.log(`husky - created ${dir}${path.sep}${path.basename(file)}`)
 }
 
 export function add(file: string, cmd: string): void {
