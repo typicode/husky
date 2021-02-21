@@ -148,7 +148,7 @@ If you want to install husky in another directory, for example `.config`, you ca
 }
 ```
 
-Another case you may be in is if your `package.json` file and `.git` directory are not at the same level. For example, `project/.git` and `project/front/.package.json`.
+Another case you may be in is if your `package.json` file and `.git` directory are not at the same level. For example, `project/.git` and `project/front/package.json`.
 
 By design, `husky install` must be run in the same directory as `.git`, but you can change directory during `postinstall` script and pass a subdirectory:
 
@@ -234,7 +234,7 @@ git config gitflow.path.hooks .husky
 - If you are configuring git-flow _after_ you have installed Husky, the git-flow setup process will correctly suggest the .husky directory.
 - If you have set a [custom directory](#custom-directory) for Husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
 
-To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default git hooks directory.
+To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default Git hooks directory.
 
 ```shell
 git config gitflow.path.hooks .git/hooks
