@@ -13,8 +13,12 @@ init_git
 npx --no husky init
 npm set-script test "echo \"msg from pre-commit hook\" && exit 1"
 
+
 # Debug
 # cat .husky/*
+
+# Test package.json scripts
+grep '"postinstall": "husky install"' package.json || echo -e "\e[0;32mOK\e[m"
 
 # Test core.hooksPath
 test_hooksPath ".husky"
