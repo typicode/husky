@@ -16,7 +16,7 @@ export function init(): void {
 
   // Write package.json
   const indent = regex.exec(str)?.[0]
-  fs.writeFileSync('package.json', JSON.stringify(pkg, null, indent))
+  fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, indent)}\n`)
 
   // Install husky
   install()
