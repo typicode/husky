@@ -3,16 +3,22 @@ import { PackageJson } from 'type-fest'
 import { add } from './add'
 import { install } from './install'
 
+const regex = /^[ ]+|\t+/m
+
 export function init(): void {
   // Read package.json
-  const pkg = JSON.parse(
-    fs.readFileSync('package.json', 'utf-8')
-  ) as PackageJson
+  const str = fs.readFileSync('package.json', 'utf-8')
+  const pkg = JSON.parse(str) as PackageJson
 
   // Add postinstall script
-  if (pkg.scripts !== undefined) {
-    pkg.scripts.postinstall = 'husky install'
-  }
+  pkg.scripts ||= {}
+  pkg.scripts.postinstall = 'husky install'
+
+  // Write package.json
+  const indent = regex.exec(str)?.[0]
+  fs.writeFileSync('package.json', JSON.stringify(pkg, null, indent))
+
+  // Install husky
   install()
 
   // Add pre-commit sample
