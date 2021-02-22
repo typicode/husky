@@ -14,8 +14,8 @@ cd_and_install_tgz $tempDir
 mkdir $configDir
 
 init_git
-npx --no husky install .config/husky
-npx --no husky add .config/husky/pre-commit "echo \"msg from pre-commit hook\" && exit 1"
+npx --no-install husky install .config/husky
+npx --no-install husky add .config/husky/pre-commit "echo \"msg from pre-commit hook\" && exit 1"
 
 # Debug
 # cat .husky/*

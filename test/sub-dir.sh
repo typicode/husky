@@ -30,7 +30,7 @@ EOL
 npm run postinstall
 
 # Add hook
-npx --no husky add pre-commit "echo \"msg from pre-commit hook\" && exit 1"
+npx --no-install husky add pre-commit "echo \"msg from pre-commit hook\" && exit 1"
 
 # Debug
 # cat .husky/*
