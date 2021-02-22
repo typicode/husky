@@ -26,7 +26,7 @@ export function install(dir = '.husky'): void {
     fs.mkdirSync(path.join(dir, '_'), { recursive: true })
 
     // Create .husky/.gitignore
-    fs.writeFileSync(path.join(dir, '.gitignore'), '_', 'utf-8')
+    fs.writeFileSync(path.join(dir, '.gitignore'), '_\n', 'utf-8')
 
     // Copy husky.sh to .husky/_/husky.sh
     fs.copyFileSync(
