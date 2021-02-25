@@ -27,7 +27,7 @@ Already using husky? See [Migrate from 4 to 5](https://typicode.github.io/husky/
 
 ```shell
 # npm
-npm install husky --save-dev && npm exec husky init
+npm install husky --save-dev && npx husky init
 
 # yarn
 yarn add husky --dev && yarn husky init
