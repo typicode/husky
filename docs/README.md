@@ -49,16 +49,14 @@ yarn husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 
 ### Install
 
-1. Install `husky` and [pinst](https://github.com/typicode/pinst) (optional)
+1. Install `husky`
 
 ```shell
 # npm
 npm install husky --save-dev
-npm install pinst --save-dev # if your package is not private
 
 # yarn
 yarn add husky --dev
-yarn add pinst --dev # if your package is not private
 ```
 
 2. Enable Git hooks
@@ -76,23 +74,8 @@ yarn husky install
 ```js
 // package.json
 {
-  "private": true,
   "scripts": {
-    "postinstall": "husky install"
-  }
-}
-```
-
-!> **if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst)**. Otherwise, `postinstall` will run when someone installs your package and result in an error.
-
-```js
-// package.json
-{
-  "private": false,
-  "scripts": {
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepare": "husky install"
   }
 }
 ```
@@ -104,8 +87,6 @@ To add a hook, use `husky add <file> [cmd]` (don't forget to run `husky install`
 ```shell
 npx husky add .husky/pre-commit "npm test"
 ```
-
-_Requires npm v7.4+ on Windows_
 
 Try to make a commit
 
@@ -143,20 +124,20 @@ If you want to install husky in another directory, for example `.config`, you ca
 // package.json
 {
   "scripts": {
-    "postinstall": "husky install .config/husky"
+    "prepare": "husky install .config/husky"
   }
 }
 ```
 
 Another case you may be in is if your `package.json` file and `.git` directory are not at the same level. For example, `project/.git` and `project/front/package.json`.
 
-By design, `husky install` must be run in the same directory as `.git`, but you can change directory during `postinstall` script and pass a subdirectory:
+By design, `husky install` must be run in the same directory as `.git`, but you can change directory during `prepare` script and pass a subdirectory:
 
 ```js
 // package.json
 {
   "scripts": {
-    "postinstall": "cd .. && husky install front/.husky"
+    "prepare": "cd .. && husky install front/.husky"
   }
 }
 ```
@@ -196,7 +177,7 @@ Alternatively, most Continuous Integration Servers set a `CI` environment variab
 [ -n "$CI" ] && exit 0
 ```
 
-You can also use [is-ci](https://github.com/watson/is-ci) in your `postinstall` script to conditionnally install husky
+You can also use [is-ci](https://github.com/watson/is-ci) in your `prepare` script to conditionnally install husky
 
 ```shell
 npm install is-ci --save-dev
@@ -206,7 +187,7 @@ npm install is-ci --save-dev
 // package.json
 {
   "scripts": {
-    "postinstall": "is-ci || husky install"
+    "prepare": "is-ci || husky install"
   }
 }
 ```

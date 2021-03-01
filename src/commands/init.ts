@@ -12,7 +12,7 @@ export function init(): void {
 
   // Add postinstall script
   pkg.scripts ||= {}
-  pkg.scripts.postinstall = 'husky install'
+  pkg.scripts.prepare = 'husky install'
 
   // Write package.json
   const indent = regex.exec(str)?.[0]
@@ -23,11 +23,4 @@ export function init(): void {
 
   // Add pre-commit sample
   add('.husky/pre-commit', 'npm test')
-
-  // Add pinst
-  if (pkg.private !== true) {
-    console.log(`⚠ if you're publishing your package to npm, you need to disable postinstall script using pinst.
-see https://typicode.github.io/husky/#/?id=install
-`)
-  }
 }
