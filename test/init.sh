@@ -18,7 +18,7 @@ npm set-script test "echo \"msg from pre-commit hook\" && exit 1"
 # cat .husky/*
 
 # Test package.json scripts
-grep '"postinstall": "husky install"' package.json || echo -e "\e[0;32mOK\e[m"
+grep '"prepare": "husky install"' package.json || echo -e "\e[0;32mOK\e[m"
 
 # Test core.hooksPath
 test_hooksPath ".husky"
