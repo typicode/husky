@@ -21,13 +21,13 @@ cd $subDir
 cat > package.json << EOL
 {
 	"scripts": {
-		"postinstall": "cd .. && husky install sub/.husky"
+		"prepare": "cd .. && husky install sub/.husky"
 	}
 }
 EOL
 
 # Install
-npm run postinstall
+npm run prepare
 
 # Add hook
 npx --no-install husky add pre-commit "echo \"msg from pre-commit hook\" && exit 1"
