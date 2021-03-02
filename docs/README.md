@@ -135,6 +135,14 @@ yarn husky install
 }
 ```
 
+### Uninstall
+
+Remove `"postinstall": "husky install"` from `package.json` and run:
+
+```shell
+yarn remove husky && git config --unset core.hooksPath
+```
+
 # Recipes
 
 ## Monorepo
