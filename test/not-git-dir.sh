@@ -10,4 +10,4 @@ rm -rf $tempDir
 cd_and_install_tgz $tempDir
 
 # Should not fail
-npx --no-install husky install && echo -e "\e[0;32mOK\e[m"
+npx --no-install husky install && ok
