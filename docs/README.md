@@ -21,7 +21,7 @@ You can use it to **lint your commit messages**, **run tests**, **lint code**, e
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 5](https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v5).
+Already using husky? See [Migrate from 4 to 5](/?id=migrate-from-v4-to-v5).
 
 ## Automatic (recommended)
 
@@ -84,7 +84,7 @@ git commit -m "Keep calm and commit"
 
 If `npm test` command fails, your commit will be automatically aborted.
 
-!> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](#/?id=yarn-on-windows).**
+!> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](/?id=yarn-on-windows).**
 
 ### Uninstall
 
@@ -238,7 +238,7 @@ git config gitflow.path.hooks .husky
 **Note:**
 
 - If you are configuring git-flow _after_ you have installed Husky, the git-flow setup process will correctly suggest the .husky directory.
-- If you have set a [custom directory](#custom-directory) for Husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
+- If you have set a [custom directory](/?id=custom-directory) for Husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
 
 To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default Git hooks directory.
 
@@ -463,4 +463,4 @@ GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All 
 
 [License Zero Parity 7.0.0](https://paritylicense.com/versions/7.0.0.html) and MIT (contributions) with exception [License Zero Patron 1.0.0](https://patronlicense.com/versions/1.0.0).
 
-👉 See the [announcement](https://typicode.github.io/husky/#/?id=announcement) for more details.
+👉 See the [announcement](/?id=announcement) for more details.
