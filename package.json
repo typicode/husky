@@ -45,7 +45,7 @@
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "pretest": "npm run build --silent && npm pack --silent",
-    "test": "sh ./test/init-npm.sh && sh ./test/init-yarn-2.sh && sh ./test/default.sh && sh ./test/sub-dir.sh && sh ./test/config-dir.sh && sh ./test/not-git-dir.sh",
+    "test": "sh ./test/init.sh && sh ./test/init-yarn-2.sh && sh ./test/default.sh && sh ./test/sub-dir.sh && sh ./test/config-dir.sh && sh ./test/not-git-dir.sh",
     "posttest": "rm husky-*.tgz",
     "commit": "commit"
   },

@@ -3,7 +3,7 @@
 # shellcheck source=./_functions.sh
 . "$(dirname "$0")/_functions.sh"
 
-title "init"
+title "yarn v2"
 tempDir="/tmp/husky-yarn-2-test"
 
 rm -rf $tempDir
@@ -16,11 +16,12 @@ mkdir -p $tempDir
 
 # Install
 cp $tgz $tempDir/husky.tgz
-yarn set version berry
-cd $tempDir && yarn init -y && yarn add ./husky.tgz
+cd $tempDir
+yarn set version berry && yarn init -y && yarn add ./husky.tgz
 
 init_git
 yarn husky init
+yarn # will install pinst
 npm set-script test "echo \"msg from pre-commit hook\" && exit 1"
 
 # Test package.json scripts
@@ -36,5 +37,10 @@ git add package.json
 git commit -m "should fail" || ok
 
 # Uninstall
+# Prevent yarn remove from failing due to missing husky command in postinstall
+npm set-script postinstall ""
 yarn remove husky
-git config core.hooksPath || ok
+
+# Yarn 2 doesn't run husky's uninstall script, so core.hooksPath is still set
+# and needs to be manually removed
+git config core.hooksPath && ok

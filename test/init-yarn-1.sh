@@ -3,7 +3,7 @@
 # shellcheck source=./_functions.sh
 . "$(dirname "$0")/_functions.sh"
 
-title "init"
+title "yarn v1"
 tempDir="/tmp/husky-yarn-1-test"
 
 rm -rf $tempDir
