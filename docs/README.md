@@ -26,23 +26,17 @@ Already using husky? See [Migrate from 4 to 5](https://typicode.github.io/husky/
 ## Automatic (recommended)
 
 ```shell
-# npm
 npm install husky --save-dev && npx husky init
-
-# yarn
-yarn add husky --dev && yarn husky init
 ```
 
-The command above will setup husky and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
+The command above will setup husky, modify `package.json` and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
 
-To add another hook use `husky add`. For example:
+To add another hook use `husky add`.
+
+For example:
 
 ```shell
-# npm
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
-
-# yarn
-yarn husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 
 ## Manual
@@ -52,21 +46,13 @@ yarn husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 1. Install `husky`
 
 ```shell
-# npm
 npm install husky --save-dev
-
-# yarn
-yarn add husky --dev
 ```
 
 2. Enable Git hooks
 
 ```shell
-# npm
 npx husky install
-
-# yarn
-yarn husky install
 ```
 
 3. To automatically have Git hooks enabled after install, edit `package.json`
@@ -79,6 +65,8 @@ yarn husky install
   }
 }
 ```
+
+!> **Yarn v2 doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to yarn v1 though). See [Yarn v2 install](/?id=yarn-v2).**
 
 ### Add a hook
 
@@ -98,17 +86,54 @@ If `npm test` command fails, your commit will be automatically aborted.
 
 !> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](#/?id=yarn-on-windows).**
 
-## Uninstall
+### Uninstall
 
 ```shell
-# npm
 npm uninstall husky
-
-# yarn
-yarn remove husky && git config --unset core.hooksPath
 ```
 
-**Note:** When uninstalling with npm, `git config --unset core.hooksPath` will be automatically run for you.
+## Yarn v2
+
+### Install
+
+1. Install `husky`
+
+```shell
+yarn install husky --save-dev
+yarn add pinst --dev # if your package is not private
+```
+
+2. Enable Git hooks
+
+```shell
+yarn husky install
+```
+
+3. To automatically have Git hooks enabled after install, edit `package.json`
+
+```js
+// package.json
+{
+  "private": true,
+  "scripts": {
+    "postinstall": "husky install"
+  }
+}
+```
+
+!> **if your package is not private and you're publishing it on a registry like [npmjs.com](https://npmjs.com), you need to disable `postinstall` script using [pinst](https://github.com/typicode/pinst)**. Otherwise, `postinstall` will run when someone installs your package and result in an error.
+
+```js
+// package.json
+{
+  "private": false,
+  "scripts": {
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
+  }
+}
+```
 
 # Recipes
 
