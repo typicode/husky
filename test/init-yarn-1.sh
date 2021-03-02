@@ -16,20 +16,15 @@ mkdir -p $tempDir
 
 # Install
 cp $tgz $tempDir/husky.tgz
-yarn set version berry
-cd $tempDir && yarn init -y && yarn add ./husky.tgz
+cd $tempDir
+yarn init -y && yarn add ./husky.tgz
 
 init_git
 yarn husky init
 npm set-script test "echo \"msg from pre-commit hook\" && exit 1"
 
-# Debug
-# cat .husky/*
-
 # Test package.json scripts
-grep '"postinstall": "husky install"' package.json || ok
-grep '"prepublishOnly": "pinst --disable"' package.json || ok
-grep '"postpublish": "pinst --enable"' package.json || ok
+grep '"prepare": "husky install"' package.json || ok
 
 # Test core.hooksPath
 test_hooksPath ".husky"
