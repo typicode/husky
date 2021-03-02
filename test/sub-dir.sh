@@ -32,12 +32,9 @@ npm run prepare
 # Add hook
 npx --no-install husky add pre-commit "echo \"msg from pre-commit hook\" && exit 1"
 
-# Debug
-# cat .husky/*
-
 # Test core.hooksPath
 test_hooksPath "sub/.husky"
 
 # Test pre-commit
 git add package.json
-git commit -m "should fail" || echo -e "\e[0;32mOK\e[m"
+git commit -m "should fail" || ok

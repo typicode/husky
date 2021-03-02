@@ -17,12 +17,9 @@ init_git
 npx --no-install husky install .config/husky
 npx --no-install husky add .config/husky/pre-commit "echo \"msg from pre-commit hook\" && exit 1"
 
-# Debug
-# cat .husky/*
-
 # Test core.hooksPath
 test_hooksPath ".config/husky"
 
 # Test pre-commit
 git add package.json
-git commit -m "should fail" || echo -e "\e[0;32mOK\e[m"
+git commit -m "should fail" || ok

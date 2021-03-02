@@ -43,7 +43,10 @@ Examples
 
 switch (cmd) {
   case 'init': {
-    init()
+    const isYarn2 = String(process.env.npm_config_user_agent).startsWith(
+      'yarn/2'
+    )
+    init(isYarn2)
     break
   }
   case 'install': {

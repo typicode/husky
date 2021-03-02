@@ -4,7 +4,7 @@
 . "$(dirname "$0")/_functions.sh"
 
 title "init"
-tempDir="/tmp/husky-default-test"
+tempDir="/tmp/husky-init-npm-test"
 
 rm -rf $tempDir
 cd_and_install_tgz $tempDir
@@ -13,20 +13,16 @@ init_git
 npx --no-install husky init
 npm set-script test "echo \"msg from pre-commit hook\" && exit 1"
 
-
-# Debug
-# cat .husky/*
-
 # Test package.json scripts
-grep '"prepare": "husky install"' package.json || echo -e "\e[0;32mOK\e[m"
+grep '"prepare": "husky install"' package.json || ok
 
 # Test core.hooksPath
 test_hooksPath ".husky"
 
 # Test pre-commit
 git add package.json
-git commit -m "should fail" || echo -e "\e[0;32mOK\e[m"
+git commit -m "should fail" || ok
 
 # Uninstall
 npx --no-install husky uninstall
-git config core.hooksPath || echo -e "\e[0;32mOK\e[m"
+git config core.hooksPath || ok
