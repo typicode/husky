@@ -11,6 +11,8 @@ Husky improves your commits and more 🐶 *woof!*
 
 __👋 [Read husky 5 announcement and see what's new](https://dev.to/typicode/what-s-new-in-husky-5-32g5)__
 
+__Note: husky 5 is a major version with breaking changes. Upgrading from v4 to v5 requires additional steps, please see the docs.__
+
 ---
 
 You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁.
