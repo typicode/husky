@@ -9,7 +9,7 @@ import { init } from './commands/init'
 
 function readPkg(): PackageJson {
   return JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')
+    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'),
   ) as PackageJson
 }
 
@@ -44,7 +44,7 @@ Examples
 switch (cmd) {
   case 'init': {
     const isYarn2 = String(process.env.npm_config_user_agent).startsWith(
-      'yarn/2'
+      'yarn/2',
     )
     init(isYarn2)
     break
