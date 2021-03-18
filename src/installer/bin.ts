@@ -20,6 +20,12 @@ function checkSkipInstallEnv(): void {
   }
 }
 
+// This prevents the case where someone would want to debug a node_module that has
+// husky as devDependency and run npm install from node_modules directory
+function isInNodeModules(dir: string): boolean {
+  return dir.indexOf('node_modules') !== -1
+}
+
 function getDirs(
   cwd: string
 ): { absoluteGitCommonDir: string; relativeUserPkgDir: string } {
@@ -77,6 +83,16 @@ function run(): void {
   const action = process.argv[2] as Action
 
   try {
+    const INIT_CWD = getInitCwdEnv()
+    const userPkgDir = getUserPkgDir(INIT_CWD)
+
+    if (isInNodeModules(userPkgDir)) {
+      console.log(
+        `Trying to ${action} from node_modules directory, skipping Git hooks installation.`
+      )
+      return
+    }
+
     console.log(
       'husky > %s git hooks',
       action === 'install' ? 'Setting up' : 'Uninstalling'
@@ -89,8 +105,6 @@ function run(): void {
       checkGitVersion()
     }
 
-    const INIT_CWD = getInitCwdEnv()
-    const userPkgDir = getUserPkgDir(INIT_CWD)
     checkGitDirEnv()
     const { absoluteGitCommonDir, relativeUserPkgDir } = getDirs(userPkgDir)
 
@@ -105,7 +119,7 @@ function run(): void {
         isCI,
       })
     } else {
-      uninstall({ absoluteGitCommonDir, userPkgDir })
+      uninstall(absoluteGitCommonDir)
     }
 
     console.log(`husky > Done`)

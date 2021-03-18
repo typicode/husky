@@ -36,17 +36,8 @@ function install({
   })
 }
 
-function uninstall({
-  gitCommonDir = '.git',
-  userPkgDir = '.',
-}: {
-  gitCommonDir?: string
-  userPkgDir?: string
-} = {}): void {
-  installer.uninstall({
-    absoluteGitCommonDir: path.join(tempDir, gitCommonDir),
-    userPkgDir,
-  })
+function uninstall(gitCommonDir = '.git'): void {
+  installer.uninstall(path.join(tempDir, gitCommonDir))
 }
 
 function mkdir(dirs: string[]): void {
@@ -175,7 +166,7 @@ describe('install', (): void => {
     expect(localScript).toMatch('cd "A/B/"')
     expectHookToExist('.git/hooks/pre-commit')
 
-    uninstall({ userPkgDir: relativeUserPkgDir })
+    uninstall()
     expect(exists('.git/hooks/husky.local.sh')).toBeFalsy()
     expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
@@ -196,20 +187,9 @@ describe('install', (): void => {
     expect(localScript).toMatch('cd "."')
     expectHookToExist('.git/modules/A/B/hooks/pre-commit')
 
-    uninstall({ gitCommonDir, userPkgDir })
+    uninstall(gitCommonDir)
     expect(exists('.git/modules/A/B/hooks/husky.local.sh')).toBeFalsy()
     expect(exists('.git/modules/A/B/hooks/pre-commit')).toBeFalsy()
-  })
-
-  it('should not install from node_modules/A', (): void => {
-    const userPkgDir = 'node_modules/A'
-
-    mkdir([userPkgDir])
-    writeFile('node_modules/A/package.json', '{}')
-    writeFile('package.json', pkg)
-
-    install({ userPkgDir })
-    expect(exists('.git/hooks/pre-commit')).toBeFalsy()
   })
 
   it('should not install hooks in CI server', (): void => {

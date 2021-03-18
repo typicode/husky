@@ -6,12 +6,6 @@ import { createHooks, removeHooks } from './hooks'
 import { createLocalScript, removeLocalScript } from './localScript'
 import { createMainScript, removeMainScript } from './mainScript'
 
-// This prevents the case where someone would want to debug a node_module that has
-// husky as devDependency and run npm install from node_modules directory
-function isInNodeModules(dir: string): boolean {
-  return dir.indexOf('node_modules') !== -1
-}
-
 function getGitHooksDir(gitDir: string): string {
   return path.join(gitDir, 'hooks')
 }
@@ -38,13 +32,6 @@ export function install({
     return
   }
 
-  if (isInNodeModules(userPkgDir)) {
-    console.log(
-      'Trying to install from node_modules directory, skipping Git hooks installation.'
-    )
-    return
-  }
-
   // Create hooks directory if it doesn't exist
   const gitHooksDir = getGitHooksDir(absoluteGitCommonDir)
   if (!fs.existsSync(gitHooksDir)) {
@@ -57,20 +44,7 @@ export function install({
   createMainScript(gitHooksDir)
 }
 
-export function uninstall({
-  absoluteGitCommonDir,
-  userPkgDir,
-}: {
-  absoluteGitCommonDir: string
-  userPkgDir: string
-}): void {
-  if (isInNodeModules(userPkgDir)) {
-    console.log(
-      'Trying to uninstall from node_modules directory, skipping Git hooks uninstallation.'
-    )
-    return
-  }
-
+export function uninstall(absoluteGitCommonDir: string): void {
   // Remove hooks
   const gitHooksDir = getGitHooksDir(absoluteGitCommonDir)
   removeHooks(gitHooksDir)
