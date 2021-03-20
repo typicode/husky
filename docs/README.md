@@ -99,7 +99,7 @@ npm uninstall husky
 1. Install `husky`
 
 ```shell
-yarn install husky --save-dev
+yarn add husky --dev
 yarn add pinst --dev # if your package is not private
 ```
 
