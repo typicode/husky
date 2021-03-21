@@ -35,7 +35,7 @@
     "preversion": "npm run build",
     "postversion": "git push && git push --tags && npm publish",
     "pretest": "npm run build --silent && npm pack --silent",
-    "test": "sh ./test/init.sh && sh ./test/init-yarn-2.sh && sh ./test/default.sh && sh ./test/sub-dir.sh && sh ./test/config-dir.sh && sh ./test/not-git-dir.sh",
+    "test": "sh ./test/init.sh && sh ./test/init-yarn-2.sh && sh ./test/default.sh && sh ./test/sub-dir.sh && sh ./test/config-dir.sh && sh ./test/not-git-dir.sh && sh ./test/set-add.sh",
     "posttest": "rm husky-*.tgz",
     "commit": "commit"
   },
