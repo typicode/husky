@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { PackageJson } from 'type-fest'
 
+import { l } from '../log'
 import { install } from './install'
 import { set } from './set_add'
 
@@ -29,7 +30,7 @@ export function init(isYarn2: boolean): void {
   // Write package.json
   const indent = regex.exec(str)?.[0]
   fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, indent)}\n`)
-  console.log('husky - updated package.json')
+  l('updated package.json')
 
   // Install husky
   install()

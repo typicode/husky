@@ -2,11 +2,13 @@ import cp from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
+import { l } from '../log'
+
 export function install(dir = '.husky'): void {
   // Ensure that we're inside a git repository
   if (cp.spawnSync('git', ['rev-parse']).status !== 0) {
     // Do not fail to let projects downloaded as zip files have their dependencies installed
-    console.log('husky - not a Git repository, skipping hooks installation')
+    l('not a Git repository, skipping hooks installation')
     return
   }
 
@@ -40,9 +42,9 @@ export function install(dir = '.husky'): void {
       throw error
     }
   } catch (e) {
-    console.log('husky - Git hooks failed to install')
+    l('Git hooks failed to install')
     throw e
   }
 
-  console.log('husky - Git hooks installed')
+  l('Git hooks installed')
 }
