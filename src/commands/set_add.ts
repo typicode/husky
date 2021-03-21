@@ -1,0 +1,35 @@
+import fs from 'fs'
+import path from 'path'
+
+function data(cmd: string) {
+  return `#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+${cmd}
+`
+}
+
+function format(file: string): string {
+  return `${path.dirname(file)}${path.sep}${path.basename(file)}`
+}
+
+export function set(file: string, cmd: string): void {
+  const dir = path.dirname(file)
+  if (!fs.existsSync(dir)) {
+    throw new Error(`can't create hook, ${dir} directory doesn't exist`)
+  }
+
+  fs.writeFileSync(file, data(cmd), { mode: 0o0755 })
+
+  // Show "./file" instead of just "file"
+  console.log(`husky - created ${format(file)}`)
+}
+
+export function add(file: string, cmd: string): void {
+  if (fs.existsSync(file)) {
+    fs.appendFileSync(file, `${cmd}\n`)
+    console.log(`husky - updated ${format(file)}`)
+  } else {
+    set(file, cmd)
+  }
+}
