@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-import { add } from './commands/set_add'
-import { install } from './commands/install'
-import { uninstall } from './commands/uninstall'
 import fs from 'fs'
 import path from 'path'
 import { PackageJson } from 'type-fest'
+
 import { init } from './commands/init'
+import { install } from './commands/install'
+import { add } from './commands/set_add'
+import { uninstall } from './commands/uninstall'
 
 function readPkg(): PackageJson {
   return JSON.parse(

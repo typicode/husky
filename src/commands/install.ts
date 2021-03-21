@@ -1,6 +1,6 @@
+import cp from 'child_process'
 import fs from 'fs'
 import path from 'path'
-import cp from 'child_process'
 
 export function install(dir = '.husky'): void {
   // Ensure that we're inside a git repository
