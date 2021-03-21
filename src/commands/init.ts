@@ -1,7 +1,8 @@
 import fs from 'fs'
 import { PackageJson } from 'type-fest'
-import { set } from './set_add'
+
 import { install } from './install'
+import { set } from './set_add'
 
 const regex = /^[ ]+|\t+/m
 
