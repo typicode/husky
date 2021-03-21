@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { add } from './commands/add'
+import { add } from './commands/set_add'
 import { install } from './commands/install'
 import { uninstall } from './commands/uninstall'
 import fs from 'fs'
@@ -27,6 +27,7 @@ function help() {
   husky init
   husky install [dir] (default: .husky)
   husky uninstall
+  husky set <file> [cmd]
   husky add <file> [cmd]
 
 Examples

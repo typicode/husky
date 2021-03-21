@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { PackageJson } from 'type-fest'
-import { add } from './add'
+import { set } from './set_add'
 import { install } from './install'
 
 const regex = /^[ ]+|\t+/m
@@ -34,5 +34,5 @@ export function init(isYarn2: boolean): void {
   install()
 
   // Add pre-commit sample
-  add('.husky/pre-commit', 'npm test')
+  set('.husky/pre-commit', 'npm test')
 }
