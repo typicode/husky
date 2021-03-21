@@ -19,7 +19,9 @@ function format(file: string): string {
 export function set(file: string, cmd: string): void {
   const dir = path.dirname(file)
   if (!fs.existsSync(dir)) {
-    throw new Error(`can't create hook, ${dir} directory doesn't exist`)
+    throw new Error(
+      `can't create hook, ${dir} directory doesn't exist (try running husky install)`,
+    )
   }
 
   fs.writeFileSync(file, data(cmd), { mode: 0o0755 })
