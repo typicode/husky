@@ -4,23 +4,24 @@ import path from 'path'
 
 import { l } from '../log'
 
+const customDirHelp = 'https://typicode.github.io/husky/#/?id=custom-directory'
+
 export function install(dir = '.husky'): void {
   // Ensure that we're inside a git repository
   if (cp.spawnSync('git', ['rev-parse']).status !== 0) {
-    // Do not fail to let projects downloaded as zip files have their dependencies installed
     l('not a Git repository, skipping hooks installation')
     return
   }
 
-  // Ensure that we're not trying to install outside cwd
+  // Ensure that we're not trying to install outside of cwd
   const absoluteHooksDir = path.resolve(process.cwd(), dir)
   if (!absoluteHooksDir.startsWith(process.cwd())) {
-    throw new Error('.. not allowed')
+    throw new Error(`.. not allowed (see ${customDirHelp})`)
   }
 
   // Ensure that cwd is git top level
   if (!fs.existsSync('.git')) {
-    throw new Error(".git can't be found")
+    throw new Error(`.git can't be found (see ${customDirHelp})`)
   }
 
   try {
