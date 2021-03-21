@@ -5,7 +5,7 @@ import { PackageJson } from 'type-fest'
 
 import { init } from './commands/init'
 import { install } from './commands/install'
-import { add } from './commands/set_add'
+import { add, set } from './commands/set_add'
 import { uninstall } from './commands/uninstall'
 
 function readPkg(): PackageJson {
@@ -37,6 +37,10 @@ Examples
   husky install
   husky install .config/husky
 
+  husky set .husky/pre-commit
+  husky set .husky/pre-commit "npm test"
+  husky set .config/husky/pre-commit "npm test"
+
   husky add .husky/pre-commit
   husky add .husky/pre-commit "npm test"
   husky add .config/husky/pre-commit "npm test"
@@ -61,6 +65,14 @@ switch (cmd) {
   }
   case 'uninstall': {
     uninstall()
+    break
+  }
+  case 'set': {
+    if (args.length === 0 || args.length > 2) {
+      help()
+      process.exit(2)
+    }
+    set(args[0], args[1])
     break
   }
   case 'add': {
