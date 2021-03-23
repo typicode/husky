@@ -322,6 +322,7 @@ How it works?
 
 - If you have an Open Source project, you're free to install or upgrade husky to v5 ❤️
 - If you have a commercial project and are a Sponsor, you can start using v5 today at work 🎁
+- You can try it for 30-days and if you've mistakenly installed husky 5 in a commercial projects, you're excused (see [Parity License](https://github.com/typicode/husky/blob/main/LICENSE-PARITY) for more details).
 
 To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
 
