@@ -33,7 +33,9 @@ __If you have any questions/doubts about the temporary license, feel free to [em
 
 ### Excuse
 
-If you've mistakenly installed husky 5 at work, no worries. You're excused for unknowingly breaking the license and can try husky 5 for 30-days (see [LICENSE-PARITY](https://github.com/typicode/husky/blob/main/LICENSE-PARITY)).
+If you've mistakenly installed husky 5 at work, no worries. You're excused for unknowingly breaking the license and can try husky 5 for 30-days.
+
+See [LICENSE-PARITY](https://github.com/typicode/husky/blob/main/LICENSE-PARITY) excuse section for more details.
 
 # Sponsors
 
