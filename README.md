@@ -9,25 +9,27 @@ Husky improves your commits and more 🐶 *woof!*
 - [**Documentation v5 - ❤️ 100% free for Open Source and recommended for Sponsors (🎁 non-sponsors can try it for 30-days)**](https://typicode.github.io/husky)
 - [Documentation v4 - actively maintained and recommended for other projects](https://github.com/typicode/husky/tree/v4)
 
-__👋 [Jan 23, 2021: Read husky 5 announcement and see what's new](https://blog.typicode.com/husky-5/)__
+👋 [Jan 23, 2021: Read husky 5 announcement and see what's new](https://blog.typicode.com/husky-5/)
 
 Note: __husky 5 is a major version with breaking changes.__ Upgrading from v4 to v5 requires additional steps, please see the docs.
 
 ## License
 
-You're viewing documentation for husky v5, which is free to use in Open Source projects and in early access for Sponsors.
+You're viewing documentation for husky 5, which is free to use in Open Source projects and in early access for Sponsors.
 
-To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky) (monthly or yearly donations are supported). __You can also try it for 30-days, no strings attached!__
+To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky) (monthly or yearly donations are supported). __You can also try it for 30-days.__
 
-__If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free for any project. During the early access, v4 will continue to receive maintainance updates.__
+__If you can't sponsor Husky, that's okay, [husky 4](https://github.com/typicode/husky/tree/master) is free for any project. During the early access, v4 will continue to receive maintainance updates.__
 
-After the early access, husky v5 will be MIT again.
-
-__As to why, I left my job to be able to work on Open Source. This will allow to compensate for the time on this release and fund new projects. Thank you for your understanding and support!__
-
-__If you have any question about the temporary license, feel free to [email](https://github.com/typicode) me. I'll be happy to answer! :)__
+After the early access, husky 5 will be MIT again.
 
 __And once again, it's free for Open Source. Also since husky is a devDependency the license is limited to your project only.__ 
+
+### Context
+
+I left my job to be able to work on Open Source. This will allow to compensate for the time on this release and fund new projects. Thank you for your understanding and support!
+
+__If you have any questions/doubts about the temporary license, feel free to [email](https://github.com/typicode) me. I'll be happy to answer! :)__
 
 ### Excuse
 
@@ -52,7 +54,7 @@ Many thanks to everyone who is funding my work! 🙏
 <a href="https://opencollective.com/husky/tiers/sponsor/8/website"><img src="https://opencollective.com/husky/tiers/sponsor/8/avatar.svg" height="60px"></a>
 <a href="https://opencollective.com/husky/tiers/sponsor/9/website"><img src="https://opencollective.com/husky/tiers/sponsor/9/avatar.svg" height="60px"></a>
 
-[Become a sponsor](https://opencollective.com/husky/contribute/sponsor-9986/checkout)
+[Become a sponsor and have your logo here and in the docs](https://opencollective.com/husky/contribute/sponsor-9986/checkout)
 
 ## Individuals
 
