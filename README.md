@@ -99,4 +99,4 @@ Find Husky helpful? Become a sponsor and show your appreciation with a monthly d
 [![Husky Sponsor](https://opencollective.com/husky/backer/38/avatar)](https://opencollective.com/husky/backer/38/website)
 [![Husky Sponsor](https://opencollective.com/husky/backer/39/avatar)](https://opencollective.com/husky/backer/39/website)
 
-GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All past and current Open Collective sponsors can be viewed on [Husky's Open Collective](https://opencollective.com/husky).
+GitHub sponsors can be viewed on my [sponsors page](https://github.com/sponsors/typicode#sponsors). All past and current Open Collective sponsors can be viewed on [Husky's Open Collective](https://opencollective.com/husky).
