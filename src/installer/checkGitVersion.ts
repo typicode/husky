@@ -8,8 +8,8 @@ export function checkGitVersion(): void {
   if (status !== 0) {
     throw new Error(
       `git --version command failed. Got ${status} exit code and message: ${String(
-        stderr,
-      )}.`,
+        stderr
+      )}.`
     )
   }
 
