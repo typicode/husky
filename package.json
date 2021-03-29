@@ -1,89 +1,30 @@
 {
-  "name": "husky",
-  "version": "5.2.0",
-  "description": "Git hooks made easy",
-  "bin": {
-    "husky": "lib/bin.js"
+  "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "del-cli \"packages/**/lib\" && lerna exec -- tsc && cpy --cwd=./packages/husky src/husky.sh lib",
+    "lint": "eslint . --ext .ts --ignore-path .gitignore",
+    "test": "sh test/_run_all.sh",
+    "serve": "docsify serve docs",
+    "prepare": "npm run build && node packages/husky/lib/bin.js install"
   },
-  "files": [
-    "/lib",
-    "/scripts",
-    "LICENSE",
-    "LICENSE-MIT",
-    "LICENSE-PARITY",
-    "LICENSE-PATRON"
-  ],
+  "author": "Typicode <typicode@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
     "@commitlint/prompt-cli": "^12.0.1",
     "@tsconfig/node10": "^1.0.7",
-    "@types/node": "^14.14.25",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.37",
     "@typicode/eslint-config": "^0.1.2",
+    "cpy-cli": "^3.1.1",
     "del-cli": "^3.0.1",
-    "docsify-cli": "^4.4.2",
-    "type-fest": "^0.21.2",
-    "typescript": "^4.1.3"
-  },
-  "scripts": {
-    "prebuild": "del-cli lib",
-    "build": "tsc",
-    "serve": "docsify serve docs",
-    "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
-    "prepare": "npm run build && node lib/bin install",
-    "preuninstall": "node lib/bin uninstall",
-    "preversion": "npm run build",
-    "postversion": "git push && git push --tags && npm publish",
-    "pretest": "npm run build --silent && npm pack --silent",
-    "test": "sh ./test/init.sh && sh ./test/init-yarn-2.sh && sh ./test/default.sh && sh ./test/sub-dir.sh && sh ./test/config-dir.sh && sh ./test/not-git-dir.sh && sh ./test/set-add.sh",
-    "posttest": "rm husky-*.tgz",
-    "commit": "commit"
-  },
-  "engines": {
-    "node": ">= 10"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/typicode/husky.git"
-  },
-  "keywords": [
-    "git",
-    "hook",
-    "hooks",
-    "test",
-    "lint",
-    "applypatch-msg",
-    "pre-applypatch",
-    "post-applypatch",
-    "pre-commit",
-    "pre-merge-commit",
-    "prepare-commit-msg",
-    "commit-msg",
-    "post-commit",
-    "pre-rebase",
-    "post-checkout",
-    "post-merge",
-    "pre-push",
-    "post-update",
-    "push-to-checkout",
-    "pre-auto-gc",
-    "post-rewrite",
-    "sendemail-validate"
-  ],
-  "author": "Typicode <typicode@gmail.com>",
-  "license": "Parity-7.0.0 AND MIT WITH Patron-1.0.0",
-  "bugs": {
-    "url": "https://github.com/typicode/husky/issues"
-  },
-  "homepage": "https://github.com/typicode/husky#readme",
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/typicode"
-    },
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/husky"
-    }
-  ]
+    "docsify-cli": "^4.4.3",
+    "husky": "^5.2.0",
+    "jest": "^26.6.3",
+    "lerna": "^4.0.0",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
+  }
 }

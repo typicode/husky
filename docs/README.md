@@ -1,32 +1,61 @@
 [![Financial Contributors on Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Node.js CI](https://github.com/typicode/husky/workflows/Node.js%20CI/badge.svg)](https://github.com/typicode/husky/actions)
 
-> Git hooks made easy
+> Modern native git hooks made easy
 
 Husky improves your commits and more 🐶 _woof!_
 
 You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks.
 
-# Announcement
-
-**👋 [Read husky 5 announcement and see what's new](https://dev.to/typicode/what-s-new-in-husky-5-32g5)**
-
-?> You're viewing documentation for husky v5, which is free to use in Open Source projects ❤️ and in early access for Sponsors 🎁. To use this new version at work, you can become a sponsor on [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).<br><br>If you can't sponsor Husky, that's okay, [husky v4](https://github.com/typicode/husky/tree/master) is free to use in any project.
-
 # Features
 
-- Zero dependencies
-- Lightweight (`~0.02MB` vs `~1MB` for husky 4)
-- Fast (`~0.01s` vs `~0.5s` for husky 4)
-- Supports macOS, Linux and Windows
+- Zero dependencies and lightweight (`6 kB`)
+- Powered by modern new Git feature (`core.hooksPath`)
+- Follows [npm](https://docs.npmjs.com/cli/v7/using-npm/scripts#best-practices) and [Yarn](https://yarnpkg.com/advanced/lifecycle-scripts#a-note-about-postinstall) best practices regarding autoinstall
+- User-friendly messages
+- Optional install
+- __Like husky 4, supports__
+  - macOS, Linux and Windows
+  - Git GUIs
+  - Custom directories
+  - Monorepos
+
+# Used by
+
+The new husky is used by these awesome projects:
+
+- [webpack/webpack](https://github.com/webpack/webpack)
+- [angular/angular](https://github.com/angular/angular)
+- [angular/angular-cli](https://github.com/angular/angular-cli)
+- [angular/components](https://github.com/angular/components)
+- [vercel/hyper](https://github.com/vercel/hyper)
+- [blitz-js/blitz](https://github.com/blitz-js/blitz)
+- [facebook/docusaurus](https://github.com/facebook/docusaurus)
+- [typescript-eslint/typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
+- [11ty/eleventy](https://github.com/11ty/eleventy)
+- [stylelint/stylelint](https://github.com/stylelint/stylelint)
+- [rollup/rollup](https://github.com/rollup/rollup)
+- [tauri-apps/tauri](https://github.com/tauri-apps/tauri)
+- [NativeScript/NativeScript](https://github.com/NativeScript/NativeScript)
+- [formatjs/formatjs](https://github.com/formatjs/formatjs)
+- [react-bootstrap/react-bootstrap](https://github.com/react-bootstrap/react-bootstrap)
+- [react-dnd/react-dnd](https://github.com/react-dnd/react-dnd)
+- [react-grid-layout/react-grid-layout](https://github.com/react-grid-layout/react-grid-layout)
+- [snabbdom/snabbdom](https://github.com/snabbdom/snabbdom)
+- [logaretm/vee-validate](https://github.com/logaretm/vee-validate)
+- [zenorocha/clipboard.js](https://github.com/zenorocha/clipboard.js)
+- [NodeBB/NodeBB](https://github.com/NodeBB/NodeBB)
+- And [__more__](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D)
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 5](/?id=migrate-from-v4-to-v5).
+Already using husky? See [Migrate from 4 to 6](/?id=migrate-from-v4-to-v6).
 
 ## Automatic (recommended)
 
 ```shell
-npm install husky --save-dev && npx husky init
+npx @husky/init && npm install       # npm
+npx @husky/init && yarn              # Yarn 1
+yarn dlx @husky/init --yarn2 && yarn # Yarn 2
 ```
 
 The command above will setup husky, modify `package.json` and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
@@ -57,6 +86,12 @@ npx husky install
 
 3. To automatically have Git hooks enabled after install, edit `package.json`
 
+```shell
+npm set-script prepare "husky install"
+```
+
+You should have:
+
 ```js
 // package.json
 {
@@ -66,11 +101,11 @@ npx husky install
 }
 ```
 
-!> **Yarn v2 doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to yarn v1 though). See [Yarn v2 install](/?id=yarn-v2).**
+!> **Yarn 2 doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2 install](/?id=yarn-v2).**
 
-### Add a hook
+### Create a hook
 
-To add a hook, use `husky add <file> [cmd]` (don't forget to run `husky install` before).
+To add a command to a hook or create a new one, use `husky add <file> [cmd]` (don't forget to run `husky install` before).
 
 ```shell
 npx husky add .husky/pre-commit "npm test"
@@ -92,7 +127,7 @@ If `npm test` command fails, your commit will be automatically aborted.
 npm uninstall husky
 ```
 
-## Yarn v2
+## Yarn 2
 
 ### Install
 
@@ -100,7 +135,7 @@ npm uninstall husky
 
 ```shell
 yarn add husky --dev
-yarn add pinst --dev # if your package is not private
+yarn add pinst --dev # ONLY if your package is not private
 ```
 
 2. Enable Git hooks
@@ -114,7 +149,7 @@ yarn husky install
 ```js
 // package.json
 {
-  "private": true,
+  "private": true, // ← your package is private, you only need postinstall
   "scripts": {
     "postinstall": "husky install"
   }
@@ -126,7 +161,7 @@ yarn husky install
 ```js
 // package.json
 {
-  "private": false,
+  "private": false, // ← your package is public
   "scripts": {
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
@@ -245,8 +280,8 @@ git config gitflow.path.hooks .husky
 
 **Note:**
 
-- If you are configuring git-flow _after_ you have installed Husky, the git-flow setup process will correctly suggest the .husky directory.
-- If you have set a [custom directory](/?id=custom-directory) for Husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
+- If you are configuring git-flow _after_ you have installed husky, the git-flow setup process will correctly suggest the .husky directory.
+- If you have set a [custom directory](/?id=custom-directory) for husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
 
 To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default Git hooks directory.
 
@@ -316,16 +351,6 @@ fi
 yarn ...
 ```
 
-# Free for Open Source, early access for Sponsors
-
-How it works?
-
-- If you have an Open Source project, you're free to install or upgrade husky to v5 ❤️
-- If you have a commercial project and are a Sponsor, you can start using v5 today at work 🎁
-- You can try it for 30-days and if you've mistakenly installed husky 5 in a commercial projects, you're excused (see [Parity License](https://github.com/typicode/husky/blob/main/LICENSE-PARITY) for more details).
-
-To acquire a proprietary-use license, simply go to [GitHub Sponsors](https://github.com/sponsors/typicode) or [Open Collective](https://opencollective.com/husky).
-
 # Breaking changes
 
 Environment variables:
@@ -335,11 +360,11 @@ Environment variables:
 - `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
 - `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
-# Migrate from v4 to v5
+# Migrate from v4 to v6
 
-## husky-4-to-5 CLI
+## husky-4-to-6 CLI
 
-See [husky-4-to-5](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v5.
+See [husky-4-to-6](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v6.
 
 ## Package scripts
 
@@ -355,7 +380,7 @@ If you were calling `package.json` scripts using `npm` or `yarn`, **you can simp
 ```
 
 ```shell
-# .husky/pre-commit (v5)
+# .husky/pre-commit (v6)
 # ...
 npm test
 npm run foo
@@ -375,7 +400,7 @@ If you were calling directly locally installed binaries, **you need to run them 
 ```
 
 ```shell
-# .husky/pre-commit (v5)
+# .husky/pre-commit (v6)
 # ...
 npx --no-install jest
 yarn jest
@@ -395,7 +420,7 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 ```
 
 ```shell
-# .husky/commit-msg (v5)
+# .husky/commit-msg (v6)
 # ...
 npx --no-install commitlint --edit $1
 # or
@@ -406,9 +431,7 @@ yarn commitlint --edit $1
 
 ## Companies
 
-<!-- for (let i = 0; i < 40; i++) console.log(`[![Husky Sponsor](https://opencollective.com/husky/backer/${i}/avatar)](https://opencollective.com/husky/backer/${i}/website)`) -->
-
-Does your company use Husky? Ask your manager or marketing team if your company would be interested in supporting this project.
+Does your company use husky? Ask your manager or marketing team if your company would be interested in supporting this project.
 
 <a href="https://opencollective.com/husky/tiers/sponsor/0/website"><img src="https://opencollective.com/husky/tiers/sponsor/0/avatar.svg" height="80px"></a>
 <a href="https://opencollective.com/husky/tiers/sponsor/1/website"><img src="https://opencollective.com/husky/tiers/sponsor/1/avatar.svg" height="80px"></a>
@@ -423,7 +446,7 @@ Does your company use Husky? Ask your manager or marketing team if your company 
 
 ## Individuals
 
-Find Husky helpful? Become a backer and show your appreciation with a monthly donation on [Open Collective](https://opencollective.com/husky). You can also tip with a one-time donation.
+Find husky helpful? Become a backer and show your appreciation with a monthly donation on [Open Collective](https://opencollective.com/husky). You can also tip with a one-time donation.
 
 [![Husky Sponsor](https://opencollective.com/husky/backer/0/avatar)](https://opencollective.com/husky/backer/0/website)
 [![Husky Sponsor](https://opencollective.com/husky/backer/1/avatar)](https://opencollective.com/husky/backer/1/website)
@@ -465,11 +488,18 @@ Find Husky helpful? Become a backer and show your appreciation with a monthly do
 [![Husky Sponsor](https://opencollective.com/husky/backer/37/avatar)](https://opencollective.com/husky/backer/37/website)
 [![Husky Sponsor](https://opencollective.com/husky/backer/38/avatar)](https://opencollective.com/husky/backer/38/website)
 [![Husky Sponsor](https://opencollective.com/husky/backer/39/avatar)](https://opencollective.com/husky/backer/39/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/40/avatar)](https://opencollective.com/husky/backer/40/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/41/avatar)](https://opencollective.com/husky/backer/41/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/42/avatar)](https://opencollective.com/husky/backer/42/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/43/avatar)](https://opencollective.com/husky/backer/43/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/44/avatar)](https://opencollective.com/husky/backer/44/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/45/avatar)](https://opencollective.com/husky/backer/45/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/46/avatar)](https://opencollective.com/husky/backer/46/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/47/avatar)](https://opencollective.com/husky/backer/47/website)
+[![Husky Sponsor](https://opencollective.com/husky/backer/48/avatar)](https://opencollective.com/husky/backer/48/website)
 
-GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All past and current Open Collective sponsors can be viewed on [Husky's Open Collective](https://opencollective.com/husky).
+GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All past and current Open Collective sponsors can be viewed on [here](https://opencollective.com/husky).
 
 # License
 
-[License Zero Parity 7.0.0](https://paritylicense.com/versions/7.0.0.html) and MIT (contributions) with exception [License Zero Patron 1.0.0](https://patronlicense.com/versions/1.0.0).
-
-👉 See the [announcement](/?id=announcement) for more details.
+MIT
