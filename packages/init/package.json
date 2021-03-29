@@ -1,0 +1,14 @@
+{
+  "name": "@husky/init",
+  "version": "6.0.0",
+  "description": "",
+  "bin": "lib/bin.js",
+  "dependencies": {
+    "husky": "6.0.0"
+  },
+  "author": "Typicode <typicode@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "type-fest": "^1.0.1"
+  }
+}

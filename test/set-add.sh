@@ -1,16 +1,9 @@
-# shellcheck shell=bash
-
-# shellcheck source=./_functions.sh
 . "$(dirname "$0")/_functions.sh"
+setup
+install
 
-title "set add"
-tempDir="/tmp/husky-set-add"
 f=".husky/pre-commit"
 
-rm -rf $tempDir
-cd_and_install_tgz $tempDir
-
-init_git
 npx --no-install husky install
 
 npx --no-install husky add $f "foo"
