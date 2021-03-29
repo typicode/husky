@@ -2,3 +2,4 @@ lib
 node_modules
 husky-*.tgz
 tsconfig.tsbuildinfo
+*.log
