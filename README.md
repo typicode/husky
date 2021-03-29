@@ -6,12 +6,18 @@
 
 Husky improves your commits and more 🐶 *woof!*
 
+# Install
+
+```
+npm install husky -D
+```
+
 # Usage
 
-Edit `package.json > prepare` script:
+Edit `package.json > prepare` script and run it once:
 
 ```sh
-npm set-script prepare "husky install"
+npm set-script prepare "husky install" && npm run prepare
 ```
 
 Add a hook:
