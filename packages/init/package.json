@@ -4,7 +4,7 @@
   "description": "",
   "bin": "lib/bin.js",
   "dependencies": {
-    "husky": "6.0.0"
+    "husky": "^6.0.0"
   },
   "author": "Typicode <typicode@gmail.com>",
   "license": "MIT",
