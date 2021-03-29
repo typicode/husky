@@ -24,6 +24,7 @@ You can use it to **lint your commit messages**, **run tests**, **lint code**, e
 The new husky is used by these awesome projects:
 
 - [webpack/webpack](https://github.com/webpack/webpack)
+- [ant-design/ant-design](https://github.com/ant-design/ant-design)
 - [angular/angular](https://github.com/angular/angular)
 - [angular/angular-cli](https://github.com/angular/angular-cli)
 - [angular/components](https://github.com/angular/components)
