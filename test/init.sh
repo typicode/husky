@@ -1,8 +1,8 @@
 . "$(dirname "$0")/_functions.sh"
 setup
-npm link @husky/init
+npm link husky-init
 
-npx --no-install init
+npx --no-install husky-init
 npm set-script test "echo \"pre-commit hook\" && exit 1"
 
 # Test package.json scripts

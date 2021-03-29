@@ -16,5 +16,6 @@
   "license": "MIT",
   "homepage": "https://typicode.github.io/husky",
   "repository": "github:typicode/husky",
-  "funding": "https://github.com/sponsors/typicode"
+  "funding": "https://github.com/sponsors/typicode",
+  "gitHead": "cb4e3b913e2d8963af3179650ed550d3a0e210f5"
 }
