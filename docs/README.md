@@ -53,13 +53,15 @@ Already using husky? See [Migrate from 4 to 6](/?id=migrate-from-v4-to-v6).
 
 ## Automatic (recommended)
 
+`husky-init` is a one-time command to quickly initialize a project with husky.
+
 ```shell
 npx husky-init && npm install       # npm
 npx husky-init && yarn              # Yarn 1
 yarn dlx husky-init --yarn2 && yarn # Yarn 2
 ```
 
-The command above will setup husky, modify `package.json` and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
+It will setup husky, modify `package.json` and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
 
 To add another hook use `husky add`.
 
