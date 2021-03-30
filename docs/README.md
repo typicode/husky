@@ -24,7 +24,6 @@ You can use it to **lint your commit messages**, **run tests**, **lint code**, e
 The new husky is used by these awesome projects:
 
 - [webpack/webpack](https://github.com/webpack/webpack)
-- [ant-design/ant-design](https://github.com/ant-design/ant-design)
 - [angular/angular](https://github.com/angular/angular)
 - [angular/angular-cli](https://github.com/angular/angular-cli)
 - [angular/components](https://github.com/angular/components)
@@ -45,6 +44,7 @@ The new husky is used by these awesome projects:
 - [logaretm/vee-validate](https://github.com/logaretm/vee-validate)
 - [zenorocha/clipboard.js](https://github.com/zenorocha/clipboard.js)
 - [NodeBB/NodeBB](https://github.com/NodeBB/NodeBB)
+- [ant-design/ant-design](https://github.com/ant-design/ant-design)
 - And [__more__](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D)
 
 # Usage
@@ -234,7 +234,13 @@ For Git commands that don't have a `--no-verify` option, you can use `HUSKY` env
 HUSKY=0 git push # yolo!
 ```
 
-## Disable hooks in CI
+## Disable husky in CI/Docker
+
+If you want to prevent husky from installing completely
+
+```shell
+npm ci --only=production --ignore-scripts
+```
 
 You can set `HUSKY` environment variable to `0` in your CI config file, to disable all hooks.
 
