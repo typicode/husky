@@ -104,7 +104,7 @@ You should have:
 }
 ```
 
-!> **Yarn 2 doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2 install](/?id=yarn-v2).**
+!> **Yarn 2 doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2 install](/?id=yarn-2).**
 
 ### Create a hook
 
