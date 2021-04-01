@@ -40,6 +40,10 @@ https://typicode.github.io/husky
 
 __Important__ Upgrading from v4 to v6 requires additional steps, please see the docs.
 
+## Articles
+
+- [Why husky has dropped conventional JS config](https://blog.typicode.com/husky-git-hooks-javascript-config/)
+
 ## License
 
 MIT

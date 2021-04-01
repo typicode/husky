@@ -47,6 +47,10 @@ The new husky is used by these awesome projects:
 - [ant-design/ant-design](https://github.com/ant-design/ant-design)
 - And [__more__](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D)
 
+## Articles
+
+- [Why husky has dropped conventional JS config](https://blog.typicode.com/husky-git-hooks-javascript-config/)
+
 # Usage
 
 Already using husky? See [Migrate from 4 to 6](/?id=migrate-from-v4-to-v6).
