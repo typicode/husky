@@ -43,6 +43,7 @@ __Important__ Upgrading from v4 to v6 requires additional steps, please see the 
 ## Articles
 
 - [Why husky has dropped conventional JS config](https://blog.typicode.com/husky-git-hooks-javascript-config/)
+- [Why husky doesn't autoinstall anymore](https://blog.typicode.com/husky-git-hooks-autoinstall/)
 
 ## License
 
