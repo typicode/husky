@@ -336,6 +336,8 @@ Ensure that you don't have a typo in your filename. For example, `precommit` or 
 
 Verify hooks permissions, they should be executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
 
+Ensure that you run `husky install` after `git init`.
+
 Check that your version of Git is greater than `2.9`.
 
 ## Yarn on Windows
