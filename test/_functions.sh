@@ -1,7 +1,7 @@
 # Exit on error
 set -eu
 
-function setup {
+setup() {
   name="$(basename $0)"
   testDir="/tmp/husky-test-$name"
   echo
@@ -25,11 +25,11 @@ function setup {
   npm init -y 1>/dev/null
 }
 
-function install {
+install() {
   npm install ../husky.tgz
 }
 
-function expect {
+expect() {
   set +e
   sh -c "$2"
   exitCode="$?"
@@ -39,18 +39,18 @@ function expect {
   fi
 }
 
-function expect_hooksPath_to_be {
+expect_hooksPath_to_be() {
   readonly hooksPath=`git config core.hooksPath`
   if [ "$hooksPath" != "$1" ]; then
     error "core.hooksPath should be $1, was $hooksPath"
   fi
 }
 
-function error {
+error() {
   echo -e "\e[0;31mERROR:\e[m $1"
   exit 1
 }
 
-function ok {
+ok() {
   echo -e "\e[0;32mOK\e[m"
 }

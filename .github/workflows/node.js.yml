@@ -21,6 +21,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
+    - name: npm 7
+      run: npm i -g npm@7
+    - run: npm ci --ignore-scripts
     - run: npm test
 
