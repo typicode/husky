@@ -9,8 +9,5 @@
   },
   "author": "Typicode <typicode@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "type-fest": "^1.0.1"
-  },
   "gitHead": "cb4e3b913e2d8963af3179650ed550d3a0e210f5"
 }
