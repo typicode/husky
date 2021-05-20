@@ -13,7 +13,6 @@
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
-    "@commitlint/prompt-cli": "^12.0.1",
     "@tsconfig/node12": "^1.0.7",
     "@types/jest": "^26.0.22",
     "@types/node": "^15.3.1",
