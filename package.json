@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --no-ci",
     "build": "del-cli \"packages/**/lib\" && lerna exec -- tsc && cpy --cwd=./packages/husky src/husky.sh lib",
     "lint": "eslint . --ext .ts --ignore-path .gitignore",
     "test": "sh test/_run_all.sh",
