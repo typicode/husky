@@ -13,16 +13,17 @@ npm install husky -D
 
 # Usage
 
-Edit `package.json > prepare` script and run it once:
+Edit `package.json > prepare` script and run `prepare` script once:
 
 ```sh
-npm set-script prepare "husky install" && npm run prepare
+$ npm set-script prepare "husky install"
+$ npm run prepare
 ```
 
 Add a hook:
 
 ```sh
-npx husky add .husky/pre-commit "npm test"
+$ npx husky add .husky/pre-commit "npm test"
 ```
 
 Make a commit:
