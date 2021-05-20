@@ -1,6 +1,5 @@
 # husky
-
-[![Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky)
+[![Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Node.js CI](https://github.com/typicode/husky/workflows/Node.js%20CI/badge.svg)](https://github.com/typicode/husky/actions)
 
 > Modern native Git hooks made easy
 
@@ -14,16 +13,17 @@ npm install husky -D
 
 # Usage
 
-Edit `package.json > prepare` script and run it once:
+Edit `package.json > prepare` script and run `prepare` script once:
 
 ```sh
-npm set-script prepare "husky install" && npm run prepare
+$ npm set-script prepare "husky install"
+$ npm run prepare
 ```
 
 Add a hook:
 
 ```sh
-npx husky add .husky/pre-commit "npm test"
+$ npx husky add .husky/pre-commit "npm test"
 ```
 
 Make a commit:
