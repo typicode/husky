@@ -19,7 +19,6 @@
     "@typicode/eslint-config": "^0.1.2",
     "cpy-cli": "^3.1.1",
     "del-cli": "^3.0.1",
-    "docsify-cli": "^4.4.3",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "lerna": "^4.0.0",
