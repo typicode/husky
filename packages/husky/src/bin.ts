@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-import fs = require('fs')
-import path = require('path')
+import { readFileSync } from 'fs'
+import { join } from 'path'
 import { PackageJson } from 'type-fest'
 
 import { add, install, set, uninstall } from './'
 
 function readPkg(): PackageJson {
   return JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'),
+    readFileSync(join(__dirname, '../package.json'), 'utf-8'),
   ) as PackageJson
 }
 

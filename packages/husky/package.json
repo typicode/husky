@@ -2,8 +2,9 @@
   "name": "husky",
   "version": "6.0.0",
   "description": "Modern native Git hooks made easy",
-  "bin": "lib/bin.js",
-  "main": "lib/index.js",
+  "bin": "./lib/bin.js",
+  "type": "module",
+  "exports": "./lib/index.js",
   "files": [
     "lib"
   ],
@@ -17,5 +18,8 @@
   "homepage": "https://typicode.github.io/husky",
   "repository": "github:typicode/husky",
   "funding": "https://github.com/sponsors/typicode",
-  "gitHead": "cb4e3b913e2d8963af3179650ed550d3a0e210f5"
+  "gitHead": "cb4e3b913e2d8963af3179650ed550d3a0e210f5",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  }
 }
