@@ -2,7 +2,8 @@
   "name": "husky-init",
   "version": "6.1.1",
   "description": "",
-  "bin": "lib/bin.js",
+  "bin": "./lib/bin.js",
+  "type": "module",
   "dependencies": {
     "husky": "^6.0.0"
   },
