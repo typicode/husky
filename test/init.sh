@@ -1,14 +1,23 @@
 . "$(dirname "$0")/_functions.sh"
 setup
-npm link husky-init
 
+cat > package.json << EOL
+{
+	"scripts": {
+		"test": "echo \"pre-commit hook\" && exit 1"
+	}
+}
+EOL
+
+npm link husky-init
 npx --no-install husky-init
-npm set-script test "echo \"pre-commit hook\" && exit 1"
 
 # Test package.json scripts
+# husky-init should create prepare script
 expect 0 "grep '\"prepare\": \"husky install\"' package.json"
 
 # Test core.hooksPath
+# husky-init should install husky
 expect_hooksPath_to_be ".husky"
 
 # Test pre-commit
