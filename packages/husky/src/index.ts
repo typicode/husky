@@ -7,6 +7,7 @@ import {
   writeFileSync,
 } from 'fs'
 import { dirname, join, resolve } from 'path'
+import { fileURLToPath, URL } from 'url'
 
 function l(msg: string): void {
   console.log(`husky - ${msg}`)
@@ -40,7 +41,10 @@ export function install(dir = '.husky'): void {
     writeFileSync(join(dir, '.gitignore'), '_\n')
 
     // Copy husky.sh to .husky/_/husky.sh
-    copyFileSync(join(__dirname, 'husky.sh'), join(dir, '_/husky.sh'))
+    copyFileSync(
+      fileURLToPath(new URL('./husky.sh', import.meta.url)),
+      join(dir, '_/husky.sh'),
+    )
 
     // Configure repo
     const { error } = spawnSync('git', ['config', 'core.hooksPath', dir])

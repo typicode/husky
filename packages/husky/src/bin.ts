@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 import { readFileSync } from 'fs'
-import { join } from 'path'
 import { PackageJson } from 'type-fest'
+import { fileURLToPath, URL } from 'url'
 
-import { add, install, set, uninstall } from './'
+import { add, install, set, uninstall } from './index.js'
 
 function readPkg(): PackageJson {
   return JSON.parse(
-    readFileSync(join(__dirname, '../package.json'), 'utf-8'),
+    readFileSync(
+      fileURLToPath(new URL('../package.json', import.meta.url)),
+      'utf-8',
+    ),
   ) as PackageJson
 }
 
