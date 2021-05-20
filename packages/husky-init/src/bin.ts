@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'fs'
 import { install, set } from 'husky'
 import { PackageJson } from 'type-fest'
 
-import { updatePkg } from '.'
+import { updatePkg } from './index.js'
 
 const [, , arg] = process.argv
 

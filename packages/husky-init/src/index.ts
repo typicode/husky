@@ -4,7 +4,9 @@ function appendScript(pkg: PackageJson, scriptName: string, cmd: string) {
   pkg.scripts ||= {}
   if (pkg.scripts[scriptName] !== undefined) {
     if (pkg.scripts[scriptName].includes(cmd)) {
-      console.log(`  "${cmd}" command already exists in ${scriptName} script, skipping.`)
+      console.log(
+        `  "${cmd}" command already exists in ${scriptName} script, skipping.`,
+      )
     } else {
       console.log(`  appending "${cmd}" command to ${scriptName} script`)
       pkg.scripts[scriptName] += ` && ${cmd}`
