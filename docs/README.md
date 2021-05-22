@@ -303,6 +303,27 @@ To **revert** the git-flow hooks directory back to its default you need to reset
 git config gitflow.path.hooks .git/hooks
 ```
 
+## Sharing hooks
+
+Most of the time, a better approach is to create shareable configs for the tools you're using. However if you need to share hook scripts using npm, you can do so this way:
+
+```
+// my-husky-scripts/index.js
+module.exports = {
+  'pre-commit': 'echo hello'
+}
+```
+
+```
+npm install my-husky-scripts --save-dev
+```
+
+```sh
+# .husky/pre-commit
+# ...
+eval "$(node -p "require('my-husky-scripts')['pre-commit']")"
+```
+
 # FAQ
 
 ## Does it work on Windows?
