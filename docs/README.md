@@ -259,7 +259,7 @@ Alternatively, most Continuous Integration Servers set a `CI` environment variab
 [ -n "$CI" ] && exit 0
 ```
 
-You can also use [is-ci](https://github.com/watson/is-ci) in your `prepare` script to conditionnally install husky
+You can also use [is-ci](https://github.com/watson/is-ci) in your `prepare` script to conditionally install husky
 
 ```shell
 npm install is-ci --save-dev
