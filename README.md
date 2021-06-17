@@ -8,7 +8,7 @@ Husky improves your commits and more 🐶 *woof!*
 # Install
 
 ```
-npm install husky -D
+npm install husky --save-dev
 ```
 
 # Usage
