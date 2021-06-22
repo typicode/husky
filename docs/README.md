@@ -438,6 +438,7 @@ If you were calling directly locally installed binaries, **you need to run them 
 # .husky/pre-commit (v6)
 # ...
 npx --no-install jest
+# or
 yarn jest
 ```
 
