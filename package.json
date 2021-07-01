@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsc",
     "test": "sh test/all.sh",
+    "lint": "eslint src --ext .ts",
     "serve": "docsify serve docs",
     "prepare": "npm run build && node lib/bin install"
   },
