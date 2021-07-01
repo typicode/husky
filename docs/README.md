@@ -54,7 +54,7 @@ The new husky is used by these awesome projects:
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 6](/?id=migrate-from-v4-to-v6).
+Already using husky? See [Migrate from 4 to 7](/?id=migrate-from-v4-to-v7).
 
 ## Automatic (recommended)
 
@@ -117,6 +117,7 @@ To add a command to a hook or create a new one, use `husky add <file> [cmd]` (do
 
 ```shell
 npx husky add .husky/pre-commit "npm test"
+git add .husky/pre-commit
 ```
 
 Try to make a commit
@@ -395,11 +396,11 @@ Environment variables:
 - `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
 - `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
-# Migrate from v4 to v6
+# Migrate from v4 to v7
 
-## husky-4-to-6 CLI
+## husky-4-to-7 CLI
 
-See [husky-4-to-6](https://github.com/typicode/husky-4-to-5) CLI to quickly migrate from v4 to v6.
+See [husky-4-to-7](https://github.com/typicode/husky-4-to-7) CLI to quickly migrate from v4 to v7.
 
 ## Package scripts
 
@@ -415,7 +416,7 @@ If you were calling `package.json` scripts using `npm` or `yarn`, **you can simp
 ```
 
 ```shell
-# .husky/pre-commit (v6)
+# .husky/pre-commit (v7)
 # ...
 npm test
 npm run foo
@@ -435,7 +436,7 @@ If you were calling directly locally installed binaries, **you need to run them 
 ```
 
 ```shell
-# .husky/pre-commit (v6)
+# .husky/pre-commit (v7)
 # ...
 npx --no-install jest
 # or
@@ -456,7 +457,7 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 ```
 
 ```shell
-# .husky/commit-msg (v6)
+# .husky/commit-msg (v7)
 # ...
 npx --no-install commitlint --edit $1
 # or
