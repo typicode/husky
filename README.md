@@ -23,12 +23,13 @@ Add a hook:
 
 ```sh
 npx husky add .husky/pre-commit "npm test"
+git add .husky/pre-commit
 ```
 
 Make a commit:
 
 ```sh
-$ git commit -m "Keep calm and commit"
+git commit -m "Keep calm and commit"
 # `npm test` will run
 ```
 
