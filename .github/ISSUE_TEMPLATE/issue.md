@@ -8,11 +8,11 @@ assignees: ''
 ---
 
 **Troubleshoot**
-Before creating an issue, please check:
+- [ ] Before creating an issue, please check:
 https://typicode.github.io/husky/#/?id=troubleshoot
 
 If you're migrating from husky 4, see:
-https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v6
+https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v7
 
 **Context**
 Please describe your issue and provide some context:

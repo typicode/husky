@@ -1,13 +1,13 @@
 {
   "extends": "@tsconfig/node12/tsconfig.json",
   "compilerOptions": {
-    "module": "ES2020",
-    "moduleResolution": "Node",
+    "rootDir": "src",
+    "outDir": "lib",
     "declaration": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "removeComments": true
-  }
+  },
 }
