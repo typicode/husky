@@ -244,11 +244,24 @@ HUSKY=0 git push # yolo!
 
 ## Disable husky in CI/Docker
 
+There's no right or wrong way to disable husky in CI/Docker context and it's highly dependent on your use-case.
+
+### With npm
+
 If you want to prevent husky from installing completely
 
 ```shell
 npm ci --only=production --ignore-scripts
 ```
+
+Alternatively, you can specifically disable `prepare` script with
+
+```shell
+npm set-script prepare ""
+npm ci --only-production
+```
+
+### With env variables
 
 You can set `HUSKY` environment variable to `0` in your CI config file, to disable all hooks.
 
@@ -259,6 +272,8 @@ Alternatively, most Continuous Integration Servers set a `CI` environment variab
 # ...
 [ -n "$CI" ] && exit 0
 ```
+
+### With is-ci
 
 You can also use [is-ci](https://github.com/watson/is-ci) in your `prepare` script to conditionally install husky
 
@@ -302,27 +317,6 @@ To **revert** the git-flow hooks directory back to its default you need to reset
 
 ```shell
 git config gitflow.path.hooks .git/hooks
-```
-
-## Sharing hooks
-
-Most of the time, a better approach is to create shareable configs for the tools you're using. However if you need to share hook scripts using npm, you can do so this way:
-
-```
-// my-husky-scripts/index.js
-module.exports = {
-  'pre-commit': 'echo hello'
-}
-```
-
-```
-npm install my-husky-scripts --save-dev
-```
-
-```sh
-# .husky/pre-commit
-# ...
-eval "$(node -p "require('my-husky-scripts')['pre-commit']")"
 ```
 
 # FAQ
