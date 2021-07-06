@@ -244,7 +244,7 @@ HUSKY=0 git push # yolo!
 
 ## Disable husky in CI/Docker
 
-There's no right or wrong way to disable husky in CI/Docker context and it's highly dependent on your use-case.
+There's no right or wrong way to disable husky in CI/Docker context and is highly __dependent on your use-case__.
 
 ### With npm
 
@@ -259,6 +259,22 @@ Alternatively, you can specifically disable `prepare` script with
 ```shell
 npm set-script prepare ""
 npm ci --only-production
+```
+
+### With a custom script
+
+You can create a custom JS script and conditionally require husky and install hooks.
+
+```json
+"prepare": "node ./prepare.js"
+```
+
+```js
+// prepare.js
+const someConditions = process.env.CI !== undefined
+if (someConditions) {
+  require('husky').install()
+}
 ```
 
 ### With env variables
