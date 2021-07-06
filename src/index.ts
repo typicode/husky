@@ -11,7 +11,7 @@ const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
 
 export function install(dir = '.husky'): void {
   // Ensure that we're inside a git repository
-  if (git(['rev-parse']).status) {
+  if (git(['rev-parse']).status !== 0) {
     return
   }
 
