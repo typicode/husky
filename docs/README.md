@@ -271,8 +271,8 @@ You can create a custom JS script and conditionally require husky and install ho
 
 ```js
 // prepare.js
-const someConditions = process.env.CI !== undefined
-if (someConditions) {
+const isCi = process.env.CI !== undefined
+if (!isCi) {
   require('husky').install()
 }
 ```
