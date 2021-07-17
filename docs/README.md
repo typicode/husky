@@ -4,7 +4,7 @@
 
 Husky improves your commits and more 🐶 _woof!_
 
-You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all](https://git-scm.com/docs/githooks) Git hooks.
+You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all Git hooks](https://git-scm.com/docs/githooks).
 
 # Features
 
