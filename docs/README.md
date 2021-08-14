@@ -228,7 +228,7 @@ cd front
 npm test
 ```
 
-## Bypass hooks
+## Bypassing hooks
 
 You can bypass `pre-commit` and `commit-msg` hooks using Git `-n/--no-verify` option:
 
@@ -242,7 +242,7 @@ For Git commands that don't have a `--no-verify` option, you can use `HUSKY` env
 HUSKY=0 git push # yolo!
 ```
 
-## Disable husky in CI/Docker
+## Disabling husky in CI/Docker
 
 There's no right or wrong way to disable husky in CI/Docker context and is highly __dependent on your use-case__.
 
@@ -340,6 +340,10 @@ git config gitflow.path.hooks .git/hooks
 ## Does it work on Windows?
 
 Yes. When you install Git on Windows, it comes with the necessary software to run shell scripts.
+
+## How to temporarily bypass or disable hooks?
+
+If you're working on a project that is using Husky and you need to commit or rebase a branch, it is sometimes desirable to disable Husky. Please consider carefully if this is approprate since Husky has been implemented for a reason. That being said, see [Bypassing Hooks](/?id=bypassing-hooks).
 
 # Troubleshoot
 
