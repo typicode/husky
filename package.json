@@ -1,6 +1,6 @@
 {
   "name": "husky",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "Modern native Git hooks made easy",
   "keywords": [
     "git",
