@@ -133,7 +133,7 @@ If `npm test` command fails, your commit will be automatically aborted.
 ### Uninstall
 
 ```shell
-npm uninstall husky
+npm uninstall husky && git config --unset core.hooksPath
 ```
 
 ## Yarn 2
