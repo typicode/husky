@@ -1,2 +1,2 @@
-*.sh linguist-language=JavaScript
+*.sh text eol=LF linguist-language=JavaScript
 *.ts linguist-language=JavaScript
