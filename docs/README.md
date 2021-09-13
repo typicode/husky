@@ -76,6 +76,8 @@ For example:
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 
+_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code._
+
 ## Manual
 
 ### Install
@@ -129,6 +131,8 @@ git commit -m "Keep calm and commit"
 If `npm test` command fails, your commit will be automatically aborted.
 
 !> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](/?id=yarn-on-windows).**
+
+_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code._
 
 ### Uninstall
 
