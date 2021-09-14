@@ -255,14 +255,14 @@ There's no right or wrong way to disable husky in CI/Docker context and is highl
 If you want to prevent husky from installing completely
 
 ```shell
-npm ci --only=production --ignore-scripts
+npm ci --omit=dev --ignore-scripts
 ```
 
 Alternatively, you can specifically disable `prepare` script with
 
 ```shell
 npm set-script prepare ""
-npm ci --only-production
+npm ci --omit=dev
 ```
 
 ### With a custom script
