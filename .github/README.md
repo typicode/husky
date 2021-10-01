@@ -14,11 +14,11 @@ npm install husky -D
 
 # Usage
 
-Edit `package.json > prepare` script and run it once:
+Add a prepare script to package json and run
 
 ```sh
-npm set-script prepare "husky install"
-npm run prepare
+npm set-script prepare "husky install" # adds a prepare script
+npm run prepare # runs the script
 ```
 
 Add a hook:
