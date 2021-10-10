@@ -368,11 +368,10 @@ export NVM_DIR="$HOME/.nvm"
 
 ## Hooks not running
 
-Ensure that you don't have a typo in your filename. For example, `precommit` or `pre-commit.sh` are invalid names. See Git hooks [documentation](https://git-scm.com/docs/githooks) for valid names.
-
-Verify hooks permissions, they should be executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
-
-Check that your version of Git is greater than `2.9`.
+1. Ensure that you don't have a typo in your filename. For example, `precommit` or `pre-commit.sh` are invalid names. See Git hooks [documentation](https://git-scm.com/docs/githooks) for valid names.
+1. Check that `git config core.hooksPath` returns `.husky` (or your custom hooks directory).
+1. Verify that hook files are executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
+1. Check that your version of Git is greater than `2.9`.
 
 ## Yarn on Windows
 
