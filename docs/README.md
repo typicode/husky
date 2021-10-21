@@ -137,7 +137,7 @@ _For Windows users, if you see the help message when running `npx husky add ...`
 ### Uninstall
 
 ```shell
-npm uninstall husky
+npm uninstall husky && git config --unset core.hooksPath
 ```
 
 ## Yarn 2
@@ -372,6 +372,12 @@ export NVM_DIR="$HOME/.nvm"
 1. Check that `git config core.hooksPath` returns `.husky` (or your custom hooks directory).
 1. Verify that hook files are executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
 1. Check that your version of Git is greater than `2.9`.
+
+## .git/hooks/ not working after uninstall
+
+If after uninstalling `husky`, hooks in `.git/hooks/` aren't working. Run `git config --unset core.hooksPath`.
+
+Note: this was done automatically by `npm <7` when uninstalling husky, however `preuninstall` is now unsupported.
 
 ## Yarn on Windows
 
