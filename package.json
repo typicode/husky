@@ -19,6 +19,7 @@
     "husky.sh"
   ],
   "scripts": {
+    "preuninstall": "node lib/bin uninstall",
     "build": "tsc",
     "test": "sh test/all.sh",
     "lint": "eslint src --ext .ts",
