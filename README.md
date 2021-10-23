@@ -12,11 +12,10 @@ npm install husky --save-dev
 
 # Usage
 
-Edit `package.json > prepare` script and run it once:
+Run install script once:
 
 ```sh
-npm set-script prepare "husky install"
-npm run prepare
+npx husky install
 ```
 
 Add a hook:
