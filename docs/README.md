@@ -73,7 +73,7 @@ To add another hook use `husky add`.
 For example:
 
 ```shell
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+npx husky add .husky/commit-msg 'npx --no commitlint --edit "$1"'
 ```
 
 _For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code._
@@ -457,7 +457,7 @@ If you were calling directly locally installed binaries, **you need to run them 
 ```shell
 # .husky/pre-commit (v7)
 # ...
-npx --no-install jest
+npx --no jest
 # or
 yarn jest
 ```
@@ -478,7 +478,7 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 ```shell
 # .husky/commit-msg (v7)
 # ...
-npx --no-install commitlint --edit $1
+npx --no commitlint --edit $1
 # or
 yarn commitlint --edit $1
 ```
