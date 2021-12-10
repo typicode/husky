@@ -20,14 +20,17 @@ jobs:
       - run: npm run lint
 
   build:
-    name: Test on node ${{ matrix.node-version }} and ${{ matrix.os }}
+    name: ${{ matrix.os }} with NodeJS ${{ matrix.node-version }} and NPM ${{ matrix.npm }}
     runs-on: ${{ matrix.os }}
     needs: lint
 
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        npm:
+          - 7
+          - 8
 
     steps:
     - uses: actions/checkout@v2
@@ -36,7 +39,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: npm 7
-      run: npm i -g npm@7
+    - name: npm ${{ matrix.npm }}
+      run: npm i -g npm@${{ matrix.npm }}
     - run: npm ci --ignore-scripts
     - run: npm test
