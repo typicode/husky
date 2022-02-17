@@ -63,7 +63,7 @@ export function set(file: string, cmd: string): void {
 
   fs.writeFileSync(
     file,
-    `#!/bin/sh
+    `#!/usr/bin/env sh
 . "$(dirname "$0")/_/husky.sh"
 
 ${cmd}

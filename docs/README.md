@@ -399,7 +399,7 @@ fi
 2. Source it in in places where Yarn is used to run commands:
 
 ```shell
-#!/bin/sh
+#!/usr/bin/env sh
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"
 
