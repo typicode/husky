@@ -246,9 +246,9 @@ For Git commands that don't have a `--no-verify` option, you can use `HUSKY` env
 HUSKY=0 git push # yolo!
 ```
 
-## Disable husky in CI/Docker
+## Disable husky in CI/Docker/Prod
 
-There's no right or wrong way to disable husky in CI/Docker context and is highly __dependent on your use-case__.
+There's no right or wrong way to disable husky in CI/Docker/Prod context and is highly __dependent on your use-case__.
 
 ### With npm
 
@@ -279,6 +279,12 @@ const isCi = process.env.CI !== undefined
 if (!isCi) {
   require('husky').install()
 }
+```
+
+Or make `prepare` script fail silently if husky is not installed:
+
+```json
+"prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"'
 ```
 
 ### With env variables
