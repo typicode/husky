@@ -177,8 +177,8 @@ yarn husky install
   "private": false, // ← your package is public
   "scripts": {
     "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   }
 }
 ```
@@ -284,7 +284,7 @@ if (!isCi) {
 Or make `prepare` script fail silently if husky is not installed:
 
 ```json
-"prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"'
+"prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
 ```
 
 ### With env variables
