@@ -9,7 +9,16 @@
   ],
   "homepage": "https://typicode.github.io/husky",
   "repository": "typicode/husky",
-  "funding": "https://github.com/sponsors/typicode",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/typicode"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/husky"
+    }
+  ],
   "license": "MIT",
   "author": "Typicode <typicode@gmail.com>",
   "bin": "lib/bin.js",
