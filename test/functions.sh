@@ -2,7 +2,7 @@
 set -eu
 
 setup() {
-  name="$(basename $0)"
+  name="$(basename -- $0)"
   testDir="/tmp/husky-test-$name"
   echo
   echo "-------------------"

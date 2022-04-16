@@ -6,7 +6,7 @@ if [ -z "$husky_skip_init" ]; then
     fi
   }
 
-  readonly hook_name="$(basename "$0")"
+  readonly hook_name="$(basename -- "$0")"
   debug "starting $hook_name..."
 
   if [ "$HUSKY" = "0" ]; then
