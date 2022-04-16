@@ -1,4 +1,4 @@
-. "$(dirname "$0")/functions.sh"
+. "$(dirname -- "$0")/functions.sh"
 setup
 install
 
