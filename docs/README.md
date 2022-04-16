@@ -406,8 +406,8 @@ fi
 
 ```shell
 #!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
-. "$(dirname "$0")/common.sh"
+. "$(dirname -- "$0")/_/husky.sh"
+. "$(dirname -- "$0")/common.sh"
 
 yarn ...
 ```
