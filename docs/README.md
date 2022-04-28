@@ -478,7 +478,7 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 ```shell
 # .husky/commit-msg (v7)
 # ...
-npx --no commitlint -- --edit $1
+npx --no commitlint --edit $1
 # or
 yarn commitlint --edit $1
 ```
