@@ -37,7 +37,6 @@ try {
   // Run command or show usage for unknown command
   cmds[cmd] ? cmds[cmd]() : help(0)
 } catch (e) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  console.error(`husky - ${e.message}`)
+  console.error(e instanceof Error ? `husky - ${e.message}` : e)
   process.exit(1)
 }
