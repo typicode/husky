@@ -73,7 +73,7 @@ To add another hook use `husky add`.
 For example:
 
 ```shell
-npx husky add .husky/commit-msg 'npx --no commitlint -- --edit "$1"'
+npx husky add .husky/commit-msg 'npx --no commitlint --edit "$1"'
 ```
 
 _For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code._
