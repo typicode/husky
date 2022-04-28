@@ -10,7 +10,24 @@ jobs:
     strategy:
       matrix:
         node-version: [14, 16, 18]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm --version
+    - run: npm ci --ignore-scripts
+    - run: npm test
+
+  # Node 14 comes with npm 6 which has issues on Windows
+  # Skipping tests on Windows with Node 14
+  build-windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [16, 18]
+        os: [windows-latest]
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
