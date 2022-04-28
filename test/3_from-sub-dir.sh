@@ -1,6 +1,9 @@
 . "$(dirname -- "$0")/functions.sh"
 setup
 
+# Skip test for npm 6
+npm --version | grep "^6\."
+
 # Example:
 # .git
 # sub/package.json
