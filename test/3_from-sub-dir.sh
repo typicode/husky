@@ -2,7 +2,7 @@
 setup
 
 # Skip test for npm 6
-npm --version | grep "^6\."
+npm --version | grep "^6\." && exit 0
 
 # Example:
 # .git
