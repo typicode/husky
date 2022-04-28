@@ -38,6 +38,6 @@ try {
   cmds[cmd] ? cmds[cmd]() : help(0)
 } catch (e) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  console.error(e.message)
+  console.error(`husky - ${e.message}`)
   process.exit(1)
 }
