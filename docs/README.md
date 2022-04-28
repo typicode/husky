@@ -76,7 +76,7 @@ For example:
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 
-_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code._
+_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/husky/lib/bin add ...` instead. This isn't an issue with husky code._
 
 ## Manual
 
