@@ -64,6 +64,7 @@ Already using husky? See [Migrate from 4 to 7](/?id=migrate-from-v4-to-v7).
 npx husky-init && npm install       # npm
 npx husky-init && yarn              # Yarn 1
 yarn dlx husky-init --yarn2 && yarn # Yarn 2
+pnpm dlx husky-init && pnpm install # pnpm
 ```
 
 It will setup husky, modify `package.json` and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
