@@ -10,6 +10,11 @@ const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
   cp.spawnSync('git', args, { stdio: 'inherit' })
 
 export function install(dir = '.husky'): void {
+  if (process.env.HUSKY === '0') {
+    l('HUSKY env variable is set to 0, skipping install')
+    return
+  }
+
   // Ensure that we're inside a git repository
   // If git command is not found, status is null and we should return.
   // That's why status value needs to be checked explicitly.
