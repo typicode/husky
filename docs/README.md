@@ -10,7 +10,7 @@ You can use it to **lint your commit messages**, **run tests**, **lint code**, e
 
 - Zero dependencies and lightweight (`6 kB`)
 - Powered by modern new Git feature (`core.hooksPath`)
-- Follows [npm](https://docs.npmjs.com/cli/v7/using-npm/scripts#best-practices) and [Yarn](https://yarnpkg.com/advanced/lifecycle-scripts#a-note-about-postinstall) best practices regarding autoinstall
+- Follows [npm](https://docs.npmjs.com/cli/v8/using-npm/scripts#best-practices) and [Yarn](https://yarnpkg.com/advanced/lifecycle-scripts#a-note-about-postinstall) best practices regarding autoinstall
 - User-friendly messages
 - Optional install
 - __Like husky 4, supports__
@@ -21,7 +21,7 @@ You can use it to **lint your commit messages**, **run tests**, **lint code**, e
 
 # Used by
 
-The new husky is used by these awesome projects:
+Husky is used by these awesome projects:
 
 - [webpack/webpack](https://github.com/webpack/webpack)
 - [angular/angular](https://github.com/angular/angular)
@@ -54,7 +54,7 @@ The new husky is used by these awesome projects:
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 7](/?id=migrate-from-v4-to-v7).
+Already using husky? See [Migrate from 4 to 8](/?id=migrate-from-v4-to-v8).
 
 ## Automatic (recommended)
 
@@ -63,7 +63,7 @@ Already using husky? See [Migrate from 4 to 7](/?id=migrate-from-v4-to-v7).
 ```shell
 npx husky-init && npm install       # npm
 npx husky-init && yarn              # Yarn 1
-yarn dlx husky-init --yarn2 && yarn # Yarn 2
+yarn dlx husky-init --yarn2 && yarn # Yarn 2+
 pnpm dlx husky-init && pnpm install # pnpm
 ```
 
@@ -112,7 +112,7 @@ You should have:
 }
 ```
 
-!> **Yarn 2 doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2 install](/?id=yarn-2).**
+!> **Yarn 2+ doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2+ install](/?id=yarn-2).**
 
 ### Create a hook
 
@@ -290,7 +290,7 @@ Or make `prepare` script fail silently if husky is not installed:
 
 ### With env variables
 
-You can set `HUSKY` environment variable to `0` in your CI config file, to disable all hooks.
+You can set `HUSKY` environment variable to `0` in your CI config file, to disable hooks installation.
 
 Alternatively, most Continuous Integration Servers set a `CI` environment variable. You can use it in your hooks to detect if it's running in a CI.
 
@@ -417,16 +417,16 @@ yarn ...
 
 Environment variables:
 
-- `HUSKY_SKIP_HOOKS` becomes `HUSKY`.
-- `HUSKY_SKIP_INSTALL` is removed.
+- `HUSKY_SKIP_HOOKS` is replaced by `HUSKY`.
+- `HUSKY_SKIP_INSTALL` is replaced by `HUSKY`.
 - `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
 - `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
-# Migrate from v4 to v7
+# Migrate from v4 to v8
 
-## husky-4-to-7 CLI
+## husky-4-to-8 CLI
 
-See [husky-4-to-7](https://github.com/typicode/husky-4-to-7) CLI to quickly migrate from v4 to v7.
+See [husky-4-to-8](https://github.com/typicode/husky-4-to-8) CLI to quickly migrate from v4 to v8.
 
 ## Package scripts
 
@@ -442,7 +442,7 @@ If you were calling `package.json` scripts using `npm` or `yarn`, **you can simp
 ```
 
 ```shell
-# .husky/pre-commit (v7)
+# .husky/pre-commit (v8)
 # ...
 npm test
 npm run foo
@@ -462,7 +462,7 @@ If you were calling directly locally installed binaries, **you need to run them 
 ```
 
 ```shell
-# .husky/pre-commit (v7)
+# .husky/pre-commit (v8)
 # ...
 npx --no jest
 # or
@@ -483,7 +483,7 @@ Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$
 ```
 
 ```shell
-# .husky/commit-msg (v7)
+# .husky/commit-msg (v8)
 # ...
 npx --no commitlint --edit $1
 # or
