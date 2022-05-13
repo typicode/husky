@@ -34,7 +34,7 @@ expect() {
   sh -c "$2"
   exitCode="$?"
   set -e
-  if [ $exitCode != "$1" ]; then
+  if [ "$exitCode" -ne "$1" ]; then
     error "expect command \"$2\" to exit with code $1 (got $exitCode)"
   fi
 }
