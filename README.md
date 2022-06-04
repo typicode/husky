@@ -15,7 +15,7 @@ npm install husky --save-dev
 Edit `package.json > prepare` script and run it once:
 
 ```sh
-npm set-script prepare "husky install"
+npm pkg set prepare="husky install"
 npm run prepare
 ```
 
