@@ -282,6 +282,18 @@ if (!isCi) {
 }
 ```
 
+You can also use your own logging functions if needed:
+
+```js
+// prepare.js
+const { configure } = require('husky)
+const husky = configure({
+  log: (msg) => console.log(msg),
+  error: (msg) => console.error(`Something went bad: ${msg}`)
+})
+husky.install()
+```
+
 Or make `prepare` script fail silently if husky is not installed:
 
 ```json
