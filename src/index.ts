@@ -7,10 +7,7 @@ interface Options {
   error: (msg: string) => void
 }
 
-interface CustomOptions {
-  log?: (msg: string) => void
-  error?: (msg: string) => void
-}
+type CustomOptions = Partial<Options>
 
 interface Husky {
   install: (dir: string) => void
