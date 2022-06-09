@@ -6,10 +6,94 @@ Husky improves your commits and more 🐶 _woof!_
 
 You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all Git hooks](https://git-scm.com/docs/githooks).
 
+IMPORTANT: Only supports [Git 2.9](https://github.com/git/git/blob/master/Documentation/RelNotes/2.9.0.txt#L127-L128) and above.
+
+# Migrate from 4 to 8
+
+Already using husky?
+
+Husky v4 was configured entirely using `package.json`, whereas v8 doesn't
+*need* to modify `package.json` at all.
+
+See [Migrate from 4 to 8](/?id=migrate-from-v4-to-v8).
+
+# How it works
+
+Husky is a set of simple wrapper tools that help easily configure a git
+repository's hooks. Husky relies on git's internal tools to actually run the
+hooks.
+
+Husky can (optionally) integrate into a project's `npm`/`yarn` system,
+supporting [lifecycle
+scripts](https://docs.npmjs.com/cli/v8/using-npm/scripts#prepare-and-prepublish)
+allowing things like auto-installing and auto-configuring of your hooks, making
+hook-management for teams much easier. (See 'Recipes' for more details).
+
+Husky uses git's own native `core.hooksPath` [config setting
+](https://git-scm.com/docs/githooks) to specify a path (`.husky` by
+default) containing git-hooks. This path contains the hook
+entry-points and each entry-point should be named to match one of the hooks
+defined in the [git docs](https://git-scm.com/docs/githooks).
+
+Effectively `husky install {.husky}` sets `core.hooksPath` to the path passed
+in and then git uses that directory for hooks (instead of the older .git/hooks
+path).
+
+Because husky sets this git config in this way, you can edit your hooks and
+commit them with your code meaning you do not have to manage them separately as
+you do with other solutions - you *can* manage them separately, but you do not
+have to. This makes husky more intuitive.
+
+# Examples
+
+These examples required that `core.hooksPath` is configured, see [install
+steps](/?id=usage) for more details.
+
+## `.husky/pre-commit`
+
+This script will be run before every commit and can be used for code linting,
+prettifiying, running checks and so on:
+
+```shell
+npx husky add .husky/pre-commit 'yarn run fasttest'
+git add .husky/pre-commit
+```
+
+It's advisable to keep this very fast, to avoid your team skipping verification
+because it blocks their workflows (move heavier checks to `pre-push` or CI/CD).
+
+## `.husky/pre-push`
+
+If you want to enforce that your team run tests locally before they push to
+origin create a script `.husky/pre-push`:
+
+```shell
+npx husky add .husky/pre-push 'yarn run test'
+git add .husky/pre-push
+```
+
+It's advisable to keep this fast, but not at the cost of either breaking
+workflows for other team members, or wasted CI/CD resources.
+
+## `.husky/commit-msg`
+
+If you want to lint your commit messages (or auto format it) using something
+like [commitlint](https://commitlint.js.org/):
+
+```shell
+npx husky add .husky/commit-msg 'npx --no commitlint --edit "$1"'
+git add .husky/commit-msg
+```
+
+## `.husky/<git-hook>`
+
+See [git's documentation](https://git-scm.com/docs/githooks) for other hooks
+you can use.
+
 # Features
 
-- Zero dependencies and lightweight (`6 kB`)
-- Powered by modern new Git feature (`core.hooksPath`)
+- Zero npm dependencies and lightweight (`6 kB`)
+- Powered by modern new Git feature (`core.hooksPath`, available since Git 2.9)
 - Follows [npm](https://docs.npmjs.com/cli/v8/using-npm/scripts#best-practices) and [Yarn](https://yarnpkg.com/advanced/lifecycle-scripts#a-note-about-postinstall) best practices regarding autoinstall
 - User-friendly messages
 - Optional install
@@ -54,11 +138,13 @@ Husky is used by these awesome projects:
 
 # Usage
 
-Already using husky? See [Migrate from 4 to 8](/?id=migrate-from-v4-to-v8).
+## Easy install (reccomended)
 
-## Automatic (recommended)
+`husky-init` is a one-time command to configure a project with husky.
 
-`husky-init` is a one-time command to quickly initialize a project with husky.
+It installs husky into your project and auto-configures your package.json,
+ensuring that every time you run `yarn|npm install` git is then configured to
+use your hooks (so you don't have to worry about it again).
 
 ```shell
 npx husky-init && npm install       # npm
@@ -67,21 +153,15 @@ yarn dlx husky-init --yarn2 && yarn # Yarn 2+
 pnpm dlx husky-init && pnpm install # pnpm
 ```
 
-It will setup husky, modify `package.json` and create a sample `pre-commit` hook that you can edit. By default, it will run `npm test` when you commit.
+It will:
+* install husky
+* modify `package.json` (adding a
+[`prepare`](https://docs.npmjs.com/cli/v8/using-npm/scripts#prepare-and-prepublish)
+script)
+* create a sample `pre-commit` hook that you can edit. By default this runs
+  `npm test` when you commit.
 
-To add another hook use `husky add`.
-
-For example:
-
-```shell
-npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
-```
-
-_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/husky/lib/bin add ...` instead. This isn't an issue with husky code._
-
-## Manual
-
-### Install
+## Manual Install
 
 1. Install `husky`
 
@@ -91,11 +171,15 @@ npm install husky --save-dev
 
 2. Enable Git hooks
 
-```shell
-npx husky install
+```sh
+npx husky install # will configure git to use .husky/ by default
 ```
 
-3. To automatically have Git hooks enabled after install, edit `package.json`
+3. To automatically have Git hooks enabled after every npm/yarn install, edit
+`package.json` to use one of the [npm/yarm lifecyle
+hooks](https://docs.npmjs.com/cli/v8/using-npm/scripts#prepare-and-prepublish)
+e.g. `prepare`.
+
 
 ```shell
 npm pkg set scripts.prepare "husky install"
@@ -113,33 +197,6 @@ You should have:
 ```
 
 !> **Yarn 2+ doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2+ install](/?id=yarn-2).**
-
-### Create a hook
-
-To add a command to a hook or create a new one, use `husky add <file> [cmd]` (don't forget to run `husky install` before).
-
-```shell
-npx husky add .husky/pre-commit "npm test"
-git add .husky/pre-commit
-```
-
-Try to make a commit
-
-```shell
-git commit -m "Keep calm and commit"
-```
-
-If `npm test` command fails, your commit will be automatically aborted.
-
-!> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](/?id=yarn-on-windows).**
-
-_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code and is fixed in recent versions of npm 8._
-
-### Uninstall
-
-```shell
-npm uninstall husky && git config --unset core.hooksPath
-```
 
 ## Yarn 2
 
@@ -184,7 +241,38 @@ yarn husky install
 }
 ```
 
-### Uninstall
+## Adding new hooks
+
+To add a command to a hook or create a new one use `husky add
+<.husky/hook-name> [cmd]`. Don't forget to ensure you've called `husky install
+{.husky}` to configure core.hooksPath.
+
+IMPORTANT! `hook-name` should be a valid name of git-hook.
+
+Each of the files in `.husky` (or which ever path you chose) should be commited.
+
+_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/husky/lib/bin add ...` instead. This isn't an issue with husky code._
+
+```shell
+npx husky add .husky/pre-commit "npm test"
+git add .husky/pre-commit
+git commit -m "Keep calm and commit"  # npm test should be called
+```
+
+If `npm test` command fails (return a non-zero exit code), your `git-commit`
+command will be automatically aborted.
+
+!> **Using Yarn to run commands? There's an issue on Windows with Git Bash, see [Yarn on Windows](/?id=yarn-on-windows).**
+
+_For Windows users, if you see the help message when running `npx husky add ...`, try `node node_modules/.bin/husky add ...` instead. This isn't an issue with husky code and is fixed in recent versions of npm 8._
+
+## Uninstall
+
+```shell
+npm uninstall husky && git config --unset core.hooksPath
+```
+
+### Yarn 2 Uninstall
 
 Remove `"postinstall": "husky install"` from `package.json` and run:
 
@@ -192,15 +280,14 @@ Remove `"postinstall": "husky install"` from `package.json` and run:
 yarn remove husky && git config --unset core.hooksPath
 ```
 
-# Recipes
-
 ## Monorepo
 
 It's recommended to add husky in root `package.json`. You can use tools like [lerna](https://github.com/lerna/lerna) and filters to only run scripts in packages that have been changed.
 
-## Custom directory
+## Custom hooks directory
 
-If you want to install husky in another directory, for example `.config`, you can pass it to `install` command. For example:
+If you want to install husky in another directory than the default `.husky`,
+for example `.config`, you can pass it to `install` command:
 
 ```js
 // package.json
