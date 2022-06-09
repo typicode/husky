@@ -1,8 +1,4 @@
 # husky
-<<<<<<< HEAD
-=======
-[![Open Collective](https://opencollective.com/husky/all/badge.svg?label=financial+contributors)](https://opencollective.com/husky) [![](https://img.shields.io/npm/dm/husky.svg?style=flat)](https://www.npmjs.org/package/husky) [![Node.js CI](https://github.com/typicode/husky/workflows/Node.js%20CI/badge.svg)](https://github.com/typicode/husky/actions)
->>>>>>> upstream/fix-ci
 
 > Modern native Git hooks made easy
 
@@ -10,40 +6,63 @@ Husky improves your commits and more 🐶 *woof!*
 
 # Install
 
+## Easy install (reccomended)
+
+`husky-init` is a one-time command to configure a project with husky.
+
+It installs husky into your project and auto-configures your package.json,
+ensuring that every time you run `yarn|npm install` git is then configured to
+use your hooks (so you don't have to worry about it again).
+
+```shell
+npx husky-init && npm install       # npm
+npx husky-init && yarn              # Yarn 1
+yarn dlx husky-init --yarn2 && yarn # Yarn 2+
+pnpm dlx husky-init && pnpm install # pnpm
 ```
+
+It will:
+* install husky
+* modify `package.json` (adding a
+[`prepare`](https://docs.npmjs.com/cli/v8/using-npm/scripts#prepare-and-prepublish)
+script)
+* create a sample `pre-commit` hook that you can edit. By default this runs
+  `npm test` when you commit.
+
+## Manual Install
+
+1. Install `husky`
+
+```shell
 npm install husky --save-dev
+yarn add --dev husky
 ```
 
-# Usage
+2. Enable Git hooks
 
-Edit `package.json > prepare` script and run `prepare` script once:
+```shell
+npx husky install # will configure git to use .husky/ by default
+```
 
-```sh
-<<<<<<< HEAD
+3. To automatically have Git hooks enabled after every npm/yarn install, edit
+`package.json` to use one of the [npm/yarm lifecyle
+hooks](https://docs.npmjs.com/cli/v8/using-npm/scripts#prepare-and-prepublish)
+e.g. `prepare`.
+
+
+```shell
 npm pkg set scripts.prepare="husky install"
-npm run prepare
-=======
-$ npm set-script prepare "husky install"
-$ npm run prepare
->>>>>>> upstream/fix-ci
 ```
 
-Add a hook:
+You should have:
 
-```sh
-<<<<<<< HEAD
-npx husky add .husky/pre-commit "npm test"
-git add .husky/pre-commit
-=======
-$ npx husky add .husky/pre-commit "npm test"
->>>>>>> upstream/fix-ci
-```
-
-Make a commit:
-
-```sh
-git commit -m "Keep calm and commit"
-# `npm test` will run
+```js
+// package.json
+{
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
 ```
 
 # Documentation
