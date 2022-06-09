@@ -3,8 +3,10 @@ import fs = require('fs')
 import p = require('path')
 
 interface Options {
-  log: (msg: string) => void
-  error: (msg: string) => void
+  logger: {
+    log: (msg: string) => void
+    error: (msg: string) => void
+  }
 }
 
 type CustomOptions = Partial<Options>
@@ -18,8 +20,10 @@ interface Husky {
 
 // Default options
 const defaultOptions: Options = {
-  log: (msg: string): void => console.log(`husky - ${msg}`),
-  error: (msg: string): void => console.error(`husky - ${msg}`),
+  logger: {
+    log: (msg: string): void => console.log(`husky - ${msg}`),
+    error: (msg: string): void => console.error(`husky - ${msg}`),
+  },
 }
 
 // Git command
@@ -29,11 +33,11 @@ const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
 const defaultHusky = configure()
 
 export function configure(customOptions: CustomOptions = {}): Husky {
-  const options: Options = { ...defaultOptions, ...customOptions }
+  const { logger }: Options = { ...defaultOptions, ...customOptions }
   return {
     install(dir = '.husky'): void {
       if (process.env.HUSKY === '0') {
-        options.log('HUSKY env variable is set to 0, skipping install')
+        logger.log('HUSKY env variable is set to 0, skipping install')
         return
       }
 
@@ -76,11 +80,11 @@ export function configure(customOptions: CustomOptions = {}): Husky {
           throw error
         }
       } catch (e) {
-        options.error('Git hooks failed to install')
+        logger.error('Git hooks failed to install')
         throw e
       }
 
-      options.log('Git hooks installed')
+      logger.log('Git hooks installed')
     },
 
     set(file: string, cmd: string): void {
@@ -101,13 +105,13 @@ ${cmd}
         { mode: 0o0755 },
       )
 
-      options.log(`created ${file}`)
+      logger.log(`created ${file}`)
     },
 
     add(file: string, cmd: string): void {
       if (fs.existsSync(file)) {
         fs.appendFileSync(file, `${cmd}\n`)
-        options.log(`updated ${file}`)
+        logger.log(`updated ${file}`)
       } else {
         this.set(file, cmd)
       }

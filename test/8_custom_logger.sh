@@ -12,7 +12,10 @@ git add package.json
 echo '
 const { configure } = require("husky");
 const { install, set, add } = configure({
-log: (msg) => console.log(`HUSKY LOG - ${msg}`),
+  logger: {
+    log: (msg) => console.log(`HUSKY LOG - ${msg}`),
+    error: (msg) => console.error(`HUSKY ERROR - ${msg}`),
+  },
 });
 install();
 set(".husky/pre-commit", "");
