@@ -9,7 +9,7 @@ const l = (msg: string): void => console.log(`husky - ${msg}`)
 const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
   cp.spawnSync('git', args, { stdio: 'inherit' })
 
-export function install(dir = '.husky'): void {
+export function install(dir: string = '.husky', env: string = 'sh'): void {
   if (process.env.HUSKY === '0') {
     l('HUSKY env variable is set to 0, skipping install')
     return
@@ -42,8 +42,11 @@ export function install(dir = '.husky'): void {
     // Create .husky/_/.gitignore
     fs.writeFileSync(p.join(dir, '_/.gitignore'), '*')
 
+    const install_path = p.join(dir, '_/husky.sh')
     // Copy husky.sh to .husky/_/husky.sh
-    fs.copyFileSync(p.join(__dirname, '../husky.sh'), p.join(dir, '_/husky.sh'))
+    fs.copyFileSync(p.join(__dirname, '../husky.sh'), install_path)
+    // Modify environment to execute in
+    cp.exec(`sed -i 's/sh/${env}/' ${install_path}`)
 
     // Configure repo
     const { error } = git(['config', 'core.hooksPath', dir])
