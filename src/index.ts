@@ -2,14 +2,14 @@ import cp = require('child_process')
 import fs = require('fs')
 import p = require('path')
 
-interface Options {
-  logger: {
-    log: (msg: string) => void
-    error: (msg: string) => void
-  }
+interface Logger {
+  log: (msg: string) => void
+  error: (msg: string) => void
 }
 
-type CustomOptions = Partial<Options>
+interface Options {
+  logger?: Partial<Logger>
+}
 
 interface Husky {
   install: (dir: string) => void
@@ -18,12 +18,9 @@ interface Husky {
   uninstall: () => void
 }
 
-// Default options
-const defaultOptions: Options = {
-  logger: {
-    log: (msg: string): void => console.log(`husky - ${msg}`),
-    error: (msg: string): void => console.error(`husky - ${msg}`),
-  },
+const defaultLogger: Logger = {
+  log: (msg: string): void => console.log(`husky - ${msg}`),
+  error: (msg: string): void => console.error(`husky - ${msg}`),
 }
 
 // Git command
@@ -32,8 +29,12 @@ const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
 
 const defaultHusky = configure()
 
-export function configure(customOptions: CustomOptions = {}): Husky {
-  const { logger }: Options = { ...defaultOptions, ...customOptions }
+export function configure(customOptions: Options = {}): Husky {
+  const logger: Logger = {
+    log: customOptions?.logger?.log || defaultLogger.log,
+    error: customOptions?.logger?.log || defaultLogger.error,
+  }
+
   return {
     install(dir = '.husky'): void {
       if (process.env.HUSKY === '0') {
@@ -122,6 +123,7 @@ ${cmd}
     },
   }
 }
+
 export const install = defaultHusky.install.bind(defaultHusky)
 export const set = defaultHusky.set.bind(defaultHusky)
 export const add = defaultHusky.add.bind(defaultHusky)
