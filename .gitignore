@@ -3,3 +3,6 @@ node_modules
 husky-*.tgz
 tsconfig.tsbuildinfo
 *.log
+
+# We copy /README.md to docs/ when we serve the docs site
+docs/README.md 
