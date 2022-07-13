@@ -41,7 +41,7 @@ _For more use cases (project in sub-directory, custom directory, CI support, ...
 
 https://typicode.github.io/husky
 
-**Important** Upgrading from v4 to v7 requires migrating previous config, please see the docs.
+**Important** Upgrading from v4 to v8 requires migrating previous config, please see the docs.
 
 ## Articles
 
