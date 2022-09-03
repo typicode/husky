@@ -2,7 +2,11 @@
 set -eu
 
 setup() {
+<<<<<<< HEAD:test/functions.sh
   name="$(basename -- $0)"
+=======
+  name="$(basename $0)"
+>>>>>>> upstream/fix-ci:test/_functions.sh
   testDir="/tmp/husky-test-$name"
   echo
   echo "-------------------"
