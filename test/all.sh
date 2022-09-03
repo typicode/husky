@@ -8,3 +8,4 @@ sh test/4_not-git-dir.sh
 sh test/5_set-add.sh
 sh test/6_git_command_not_found.sh
 sh test/7_command_not_found.sh
+sh test/8_custom_logger.sh
