@@ -5,7 +5,11 @@ import h = require('./')
 // Show usage and exit with code
 function help(code: number) {
   console.log(`Usage:
+<<<<<<< HEAD
   husky install [dir] (default: .husky)
+=======
+  husky install [dir] (default: .husky) [env] (default sh)
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
   husky uninstall
   husky set|add <file> [cmd]`)
   process.exit(code)
@@ -18,12 +22,20 @@ const [x, y] = args
 
 // Set or add command in hook
 const hook = (fn: (a1: string, a2: string) => void) => (): void =>
+<<<<<<< HEAD
   // Show usage if no arguments are provided or more than 2
+=======
+  // Show usage if no arguments are provided or more than 3
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
   !ln || ln > 2 ? help(2) : fn(x, y)
 
 // CLI commands
 const cmds: { [key: string]: () => void } = {
+<<<<<<< HEAD
   install: (): void => (ln > 1 ? help(2) : h.install(x)),
+=======
+  install: (): void => (ln > 2 ? help(2) : h.install(x, y)),
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
   uninstall: h.uninstall,
   set: hook(h.set),
   add: hook(h.add),

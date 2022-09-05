@@ -182,7 +182,11 @@ e.g. `prepare`.
 
 
 ```shell
+<<<<<<< HEAD
 npm pkg set scripts.prepare "husky install"
+=======
+npm pkg set scripts.prepare="husky install"
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
 ```
 
 You should have:
@@ -369,6 +373,21 @@ if (!isCi) {
 }
 ```
 
+<<<<<<< HEAD
+=======
+You can also use your own logging functions if needed:
+
+```js
+// prepare.js
+const { configure } = require('husky')
+const husky = configure({
+  log: (msg) => console.log(msg),
+  error: (msg) => console.error(`Something went bad: ${msg}`)
+})
+husky.install()
+```
+
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
 Or make `prepare` script fail silently if husky is not installed:
 
 ```json
