@@ -19,9 +19,13 @@ jobs:
 <<<<<<< HEAD
     - run: npm --version
 =======
+<<<<<<< HEAD
+    - run: npm --version
+=======
     - name: npm 7
       run: npm i -g npm@7
 >>>>>>> upstream/fix-ci
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
     - run: npm ci --ignore-scripts
     - run: npm test
 

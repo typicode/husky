@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
   "name": "husky",
   "version": "8.0.1",
   "description": "Modern native Git hooks made easy",
@@ -11,6 +14,8 @@
   "homepage": "https://typicode.github.io/husky",
   "repository": "typicode/husky",
   "funding": "https://github.com/sponsors/typicode",
+<<<<<<< HEAD
+=======
 =======
   "private": true,
   "scripts": {
@@ -23,6 +28,7 @@
   },
   "author": "Typicode <typicode@gmail.com>",
 >>>>>>> upstream/fix-ci
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
   "license": "MIT",
   "author": "Typicode <typicode@gmail.com>",
   "bin": "lib/bin.js",
@@ -35,11 +41,18 @@
     "build": "tsc",
     "test": "sh test/all.sh",
     "lint": "eslint src --ext .ts",
+<<<<<<< HEAD
+    "serve": "docsify serve docs",
+    "prepare": "npm run build && node lib/bin install"
+  },
+  "devDependencies": {
+=======
     "serve": "cp README.md docs/ && docsify serve docs",
     "prepare": "npm run build && node lib/bin install"
   },
   "devDependencies": {
 <<<<<<< HEAD
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
     "@tsconfig/node14": "^1.0.1",
@@ -50,6 +63,8 @@
   },
   "engines": {
     "node": ">=14"
+<<<<<<< HEAD
+=======
 =======
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
@@ -68,5 +83,6 @@
     "type-fest": "^0.20.2",
     "typescript": "^4.2.3"
 >>>>>>> upstream/fix-ci
+>>>>>>> 364de37ca2f0a20a802c02caf4798e3f78487f31
   }
 }
