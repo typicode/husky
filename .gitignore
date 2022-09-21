@@ -1,8 +1,3 @@
-lib
-node_modules
-husky-*.tgz
-tsconfig.tsbuildinfo
-*.log
 
-# We copy /README.md to docs/ when we serve the docs site
-docs/README.md 
+*.json
+node_modules/passport-local-mongoose/.nyc_output/bb6fe1572a91b6eb42395d7f208c3a89.json
