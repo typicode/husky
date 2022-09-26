@@ -467,6 +467,8 @@ If you were calling directly locally installed binaries, **you need to run them 
 npx --no jest
 # or
 yarn jest
+# or even
+node_modules/.bin/jest
 ```
 
 ## HUSKY_GIT_PARAMS (i.e. commitlint, ...)
