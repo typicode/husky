@@ -98,7 +98,7 @@ npx husky install
 3. To automatically have Git hooks enabled after install, edit `package.json`
 
 ```shell
-npm pkg set scripts.prepare "husky install"
+npm pkg set scripts.prepare="husky install"
 ```
 
 You should have:
