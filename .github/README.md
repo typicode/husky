@@ -53,7 +53,7 @@ e.g. `prepare`.
 
 
 ```shell
-npm set-script prepare "husky install"
+npm pkg set scripts.prepare="husky install"
 ```
 
 You should have:
