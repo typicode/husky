@@ -19,6 +19,7 @@ export function install(dir = '.husky'): void {
   // If git command is not found, status is null and we should return.
   // That's why status value needs to be checked explicitly.
   if (git(['rev-parse']).status !== 0) {
+    l(`git must be installed on your machine`)
     return
   }
 
