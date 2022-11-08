@@ -69,6 +69,7 @@ export function set(file: string, cmd: string): void {
   fs.writeFileSync(
     file,
     `#!/usr/bin/env sh
+[ -f "$(dirname "$0")/_/husky.sh" ] || husky install || exit 0
 . "$(dirname -- "$0")/_/husky.sh"
 
 ${cmd}
