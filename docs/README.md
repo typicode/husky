@@ -262,7 +262,7 @@ npm ci --omit=dev --ignore-scripts
 Alternatively, you can specifically disable `prepare` script with
 
 ```shell
-npm set-script prepare ""
+npm pkg delete scripts.prepare
 npm ci --omit=dev
 ```
 
