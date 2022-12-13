@@ -373,6 +373,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
+!> **for some apps (eg, VS Code), you can resolve this simply by restarting the app. try this before following any of these steps above!**
+
 ## Hooks not running
 
 1. Ensure that you don't have a typo in your filename. For example, `precommit` or `pre-commit.sh` are invalid names. See Git hooks [documentation](https://git-scm.com/docs/githooks) for valid names.
