@@ -1,8 +1,9 @@
+#!/usr/bin/env sh
 # Exit on error
 set -eu
 
 setup() {
-  name="$(basename -- $0)"
+  name="$(basename -- "$0")"
   testDir="/tmp/husky-test-$name"
   echo
   echo "-------------------"
@@ -15,14 +16,16 @@ setup() {
   mkdir -p "$testDir"
   cd "$testDir"
 
+  # Unset env var when called via git hook
+  unset GIT_INDEX_FILE
+
   # Init git
   git init --quiet
   git config user.email "test@test"
   git config user.name "test"
 
   # Init package.json
-  npm_config_loglevel="error"
-  npm init -y 1>/dev/null
+  npm_config_loglevel="error" npm init -y 1>/dev/null
 }
 
 install() {
@@ -40,17 +43,18 @@ expect() {
 }
 
 expect_hooksPath_to_be() {
-  readonly hooksPath=`git config core.hooksPath`
+  hooksPath="$(git config core.hooksPath)"
+  readonly hooksPath
   if [ "$hooksPath" != "$1" ]; then
     error "core.hooksPath should be $1, was $hooksPath"
   fi
 }
 
 error() {
-  echo -e "\e[0;31mERROR:\e[m $1"
+  printf "\e[0;31mERROR:\e[m %s\n" "$1"
   exit 1
 }
 
 ok() {
-  echo -e "\e[0;32mOK\e[m"
+  printf "\e[0;32mOK\e[m\n"
 }

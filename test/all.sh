@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 set -e
 npm run build
 npm pack && mv husky-*.tgz /tmp/husky.tgz
