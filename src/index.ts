@@ -1,6 +1,7 @@
 import cp = require('child_process')
 import fs = require('fs')
 import p = require('path')
+import os = require('os')
 
 // Logger
 const l = (msg: string): void => console.log(`husky - ${msg}`)
@@ -78,6 +79,19 @@ ${cmd}
   )
 
   l(`created ${file}`)
+
+  if (os.type() === 'Windows_NT') {
+    l(
+      `Due to a limitation on Windows systems, the executable bit of the file cannot be set without using git. 
+      To fix this, the file ${file} has been automatically moved to the staging environment and the executable bit has been set using git. 
+      Note that, if you remove the file from the staging environment, the executable bit will be removed. 
+      You can add the file back to the staging environment and include the executable bit using the command 'git update-index -add --chmod=+x ${file}'. 
+      If you have already committed the file, you can add the executable bit using 'git update-index --chmod=+x ${file}'. 
+      You will have to commit the file to have git keep track of the executable bit.`,
+    )
+
+    git(['update-index', '--add', '--chmod=+x', file])
+  }
 }
 
 export function add(file: string, cmd: string): void {
