@@ -373,7 +373,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 
-!> **for some apps (eg, VS Code), you can resolve this simply by restarting the app. try this before following any of these steps above!**
+!> **For some apps (e.g., VS Code), you can resolve this simply by restarting the app. Try this before following any of these steps above!**
 
 ## Hooks not running
 
