@@ -368,9 +368,16 @@ For example, for `nvm` that would be:
 
 ```shell
 # ~/.huskyrc
-# This loads nvm.sh and sets the correct PATH before running hook
+# This loads nvm.sh, sets the correct PATH before running hook, and ensures the project version of Node
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# If you have an .nvmrc file, we use the relevant node version
+if [[ -f ".nvmrc" ]]; then
+  nvm use
+fi
+
 ```
 
 !> **For some apps (e.g., VS Code), you can resolve this simply by restarting the app. Try this before following any of these steps above!**
