@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/node12/tsconfig.json",
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
@@ -9,5 +9,5 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "removeComments": true
-  },
+  }
 }
