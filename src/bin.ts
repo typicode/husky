@@ -18,7 +18,7 @@ const [x, y] = args
 
 // Set or add command in hook
 const hook = (fn: (a1: string, a2: string) => void) => (): void =>
-  // Show usage if no arguments are provided or more than 2
+  // Show usage if no arguments or more than 2 are provided
   !ln || ln > 2 ? help(2) : fn(x, y)
 
 // CLI commands

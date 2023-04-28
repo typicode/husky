@@ -5,19 +5,20 @@ import p = require('path')
 // Logger
 const l = (msg: string): void => console.log(`husky - ${msg}`)
 
-// Git command
+// Execute Git command
 const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
   cp.spawnSync('git', args, { stdio: 'inherit' })
 
+// Install husky
 export function install(dir = '.husky'): void {
   if (process.env.HUSKY === '0') {
     l('HUSKY env variable is set to 0, skipping install')
     return
   }
 
-  // Ensure that we're inside a git repository
-  // If git command is not found, status is null and we should return.
-  // That's why status value needs to be checked explicitly.
+  // Ensure that we're inside a Git repository
+  // If git command is not found, status is null and we should return
+  // That's why status value needs to be checked explicitly
   if (git(['rev-parse']).status !== 0) {
     l(`git command not found, skipping install`)
     return
@@ -59,6 +60,7 @@ export function install(dir = '.husky'): void {
   l('Git hooks installed')
 }
 
+// Create a hook file if it doesn't exist or overwrite it
 export function set(file: string, cmd: string): void {
   const dir = p.dirname(file)
   if (!fs.existsSync(dir)) {
@@ -80,6 +82,7 @@ ${cmd}
   l(`created ${file}`)
 }
 
+// Create a hook if it doesn't exist or append command to it
 export function add(file: string, cmd: string): void {
   if (fs.existsSync(file)) {
     fs.appendFileSync(file, `${cmd}\n`)
@@ -89,6 +92,7 @@ export function add(file: string, cmd: string): void {
   }
 }
 
+// Uninstall husky
 export function uninstall(): void {
   git(['config', '--unset', 'core.hooksPath'])
 }
