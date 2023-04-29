@@ -4,6 +4,9 @@ name: Node.js CI
 
 on: [push]
 
+permissions:
+  contents: read  #  to fetch code (actions/checkout)
+
 jobs:
   lint:
     runs-on: ubuntu-latest

@@ -6,6 +6,9 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: read  #  to fetch code (actions/checkout)
+
 jobs:
   build:
     runs-on: ubuntu-latest
