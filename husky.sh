@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 if [ -z "$husky_skip_init" ]; then
-  debug () {
+  debug() {
     if [ "$HUSKY_DEBUG" = "1" ]; then
       echo "husky (debug) - $1"
     fi
@@ -21,7 +21,12 @@ if [ -z "$husky_skip_init" ]; then
 
   readonly husky_skip_init=1
   export husky_skip_init
-  sh -e "$0" "$@"
+
+  if [ "$(basename -- "$SHELL")" = "zsh" ]; then
+    zsh --emulate sh -e "$0" "$@"
+  else
+    sh -e "$0" "$@"
+  fi
   exitCode="$?"
 
   if [ $exitCode != 0 ]; then
