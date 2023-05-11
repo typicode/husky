@@ -1,6 +1,7 @@
 set -e
 npm run build
 npm pack && mv husky-*.tgz /tmp/husky.tgz
+export HUSKY_DEBUG=1
 sh test/1_default.sh
 sh test/2_in-sub-dir.sh
 sh test/3_from-sub-dir.sh
