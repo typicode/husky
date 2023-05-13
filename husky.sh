@@ -22,12 +22,6 @@ if [ -z "$husky_skip_init" ]; then
     fi
   done
 
-  config_path=$(find_config)
-  if [ $? -eq 0 ]; then
-    echo "Sourcing file in $config_path"
-    . "$config_path"
-  fi
-
   readonly husky_skip_init=1
   export husky_skip_init
   sh -e "$0" "$@"
