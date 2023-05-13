@@ -26,10 +26,10 @@
     "prepare": "npm run build && node lib/bin install"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@tsconfig/node14": "^1.0.3",
-    "@types/node": "^18.16.1",
+    "@types/node": "^20.1.4",
     "@typicode/eslint-config": "^1.1.0",
     "docsify-cli": "^4.4.4",
     "typescript": "^5.0.4"
