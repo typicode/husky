@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 if [ -z "$husky_skip_init" ]; then
-  debug () {
+  debug() {
     if [ "$HUSKY_DEBUG" = "1" ]; then
       echo "husky (debug) - $1"
     fi
@@ -14,9 +14,18 @@ if [ -z "$husky_skip_init" ]; then
     exit 0
   fi
 
-  if [ -f ~/.huskyrc ]; then
-    debug "sourcing ~/.huskyrc"
-    . ~/.huskyrc
+  for file in "$XDG_CONFIG_HOME/husky/init.sh" "$HOME/.config/husky/init.sh" "$HOME/.huskyrc.sh"; do
+    if [ -f "$file" ]; then
+      debug "sourcing $file"
+      . "$file"
+      break
+    fi
+  done
+
+  config_path=$(find_config)
+  if [ $? -eq 0 ]; then
+    echo "Sourcing file in $config_path"
+    . "$config_path"
   fi
 
   readonly husky_skip_init=1
