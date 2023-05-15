@@ -23,7 +23,10 @@
     "test": "sh test/all.sh",
     "lint": "eslint src --ext .ts",
     "serve": "docsify serve docs",
-    "prepare": "npm run build && node lib/bin install"
+    "prepare": "npm run build && node lib/bin install",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
@@ -32,7 +35,8 @@
     "@types/node": "^20.1.4",
     "@typicode/eslint-config": "^1.1.0",
     "docsify-cli": "^4.4.4",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vitepress": "^1.0.0-alpha.75"
   },
   "engines": {
     "node": ">=16"
