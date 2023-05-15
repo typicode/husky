@@ -6,6 +6,7 @@ export default defineConfig({
   description: 'Git hooks made easy',
   base: '/husky/',
   themeConfig: {
+    outline: [2, 3],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/typicode/husky' },
     ],
