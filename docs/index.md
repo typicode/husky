@@ -481,13 +481,6 @@ yarn ...
 
 ## Breaking changes
 
-Environment variables:
-
-- `HUSKY_SKIP_HOOKS` is replaced by `HUSKY`.
-- `HUSKY_SKIP_INSTALL` is replaced by `HUSKY`.
-- `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
-- `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
-
 ## Migrate from v4 to v8
 
 ### CLI
@@ -557,6 +550,13 @@ yarn commitlint --edit $1
 ```
 
 :::
+
+Other environment variables changes:
+
+- `HUSKY_SKIP_HOOKS` is replaced by `HUSKY`.
+- `HUSKY_SKIP_INSTALL` is replaced by `HUSKY`.
+- `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
+- `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
 
 ## Sponsors
 
