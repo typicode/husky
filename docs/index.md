@@ -479,8 +479,6 @@ fi
 yarn ...
 ```
 
-## Breaking changes
-
 ## Migrate from v4 to v8
 
 ### CLI
