@@ -490,13 +490,13 @@ Environment variables:
 
 ## Migrate from v4 to v8
 
-### husky-4-to-8 CLI
+### CLI
 
 See [husky-4-to-8](https://github.com/typicode/husky-4-to-8) CLI to quickly migrate from v4 to v8.
 
-### Package scripts
+### Manually
 
-If you were calling `package.json` scripts using `npm` or `yarn`, **you can simply copy your commands**:
+If you were calling `package.json` scripts using `npm` or `yarn`, **you can simply copy your commands** from your config file to the corresponding hook:
 
 ::: code-group
 
@@ -516,9 +516,7 @@ npm run foo
 
 :::
 
-### Locally installed binaries
-
-If you were calling directly locally installed binaries, **you need to run them via your package manager**:
+If you were calling locally installed binaries, **you need to run them via your package manager now**:
 
 ::: code-group
 
@@ -539,9 +537,7 @@ yarn jest
 
 :::
 
-### HUSKY_GIT_PARAMS (i.e. commitlint, ...)
-
-Previous `HUSKY_GIT_PARAMS` environment variable is replaced by native params `$1`, `$2`, etc.
+`HUSKY_GIT_PARAMS` environment variable is replaced now by native params `$1`, `$2`, etc.
 
 ::: code-group
 
@@ -564,8 +560,6 @@ yarn commitlint --edit $1
 
 ## Sponsors
 
-### Companies
-
 Does your company use husky? Ask your manager or marketing team if your company would be interested in supporting this project.
 
 <a href="https://opencollective.com/husky/tiers/company/0/website"><img src="https://opencollective.com/husky/tiers/company/0/avatar.svg?avatarHeight=120"></a>
@@ -579,14 +573,8 @@ Does your company use husky? Ask your manager or marketing team if your company 
 <a href="https://opencollective.com/husky/tiers/company/8/website"><img src="https://opencollective.com/husky/tiers/company/8/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/9/website"><img src="https://opencollective.com/husky/tiers/company/9/avatar.svg?avatarHeight=120"></a>
 
-### Individuals
-
 Find husky helpful? Become a backer and show your appreciation with a monthly donation on [Open Collective](https://opencollective.com/husky). You can also tip with a one-time donation.
 
 <a href="https://opencollective.com/husky" target="_blank"><img src="https://opencollective.com/husky/tiers/individual.svg?avatarHeight=32"/></a>
 
 GitHub sponsors can be viewed on my [profile](https://github.com/typicode). All past and current Open Collective sponsors can be viewed on [here](https://opencollective.com/husky).
-
-## License
-
-MIT
