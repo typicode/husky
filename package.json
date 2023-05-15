@@ -34,7 +34,6 @@
     "@tsconfig/node14": "^1.0.3",
     "@types/node": "^20.1.4",
     "@typicode/eslint-config": "^1.1.0",
-    "docsify-cli": "^4.4.4",
     "typescript": "^5.0.4",
     "vitepress": "^1.0.0-alpha.75"
   },
