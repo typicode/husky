@@ -14,10 +14,13 @@ if [ -z "$husky_skip_init" ]; then
     exit 0
   fi
 
-  if [ -f ~/.huskyrc ]; then
-    debug "sourcing ~/.huskyrc"
-    . ~/.huskyrc
-  fi
+  for file in "$XDG_CONFIG_HOME/husky/init.sh" "$HOME/.config/husky/init.sh" "$HOME/.huskyrc.sh"; do
+    if [ -f "$file" ]; then
+      debug "sourcing $file"
+      . "$file"
+      break
+    fi
+  done
 
   readonly husky_skip_init=1
   export husky_skip_init
