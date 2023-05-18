@@ -10,7 +10,7 @@ Husky improves your commits and more 🐶 _woof!_
 
 You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all Git hooks](https://git-scm.com/docs/githooks).
 
-## Features
+# Introduction
 
 - Lightweight with zero dependencies (`6 kB`)
 - Powered by modern new Git feature (`core.hooksPath`)
@@ -23,7 +23,7 @@ You can use it to **lint your commit messages**, **run tests**, **lint code**, e
   - Custom directories
   - Monorepos
 
-## Widely used
+**Widely used**
 
 Husky is used by these awesome projects:
 
@@ -51,7 +51,7 @@ Husky is used by these awesome projects:
 - [ant-design/ant-design](https://github.com/ant-design/ant-design)
 - And [**more than 1.1M projects**](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D)
 
-### Articles
+**Articles**
 
 - [Why husky has dropped conventional JS config](https://blog.typicode.com/husky-git-hooks-javascript-config/)
 - [Why husky doesn't autoinstall anymore](https://blog.typicode.com/husky-git-hooks-autoinstall/)
