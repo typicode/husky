@@ -14,5 +14,12 @@ export default defineConfig({
       code: 'CWYDP53L',
       placement: 'typicodegithubio',
     },
+    sidebar: [
+      { text: 'Introduction', link: '/' },
+      { text: 'Getting started', link: '/getting-started' },
+      { text: 'Guide', link: '/guide' },
+      { text: 'Troubleshooting', link: '/troubleshooting' },
+      { text: 'Migrating from v4', link: '/migrating-from-v4' },
+    ],
   },
 })
