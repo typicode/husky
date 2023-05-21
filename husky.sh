@@ -28,7 +28,7 @@ if [ -z "$husky_skip_init" ]; then
   if [ "${SHELL##*/}" = "zsh" ]; then
     zsh --emulate sh -e "$0" "$@"
   else
-    sh -e "$0" "$@"
+    sh -i -e "$0" "$@"
   fi
   exitCode="$?"
 
