@@ -26,8 +26,10 @@ if [ -z "$husky_skip_init" ]; then
   export husky_skip_init
 
   if [ "$(basename -- "$SHELL")" = "zsh" ]; then
+    debug "running zsh"
     ENV="$HOME/.zshrc" zsh --emulate sh -i -e "$0" "$@"
   else
+    debug "running sh"
     sh -i -e "$0" "$@"
   fi
   exitCode="$?"
