@@ -28,6 +28,7 @@ if [ -z "$husky_skip_init" ]; then
   if [ "${SHELL##*/}" = "zsh" ]; then
     zsh --emulate sh -e "$0" "$@"
   else
+    debug "running sh"
     sh -i -e "$0" "$@"
   fi
   exitCode="$?"
