@@ -31,7 +31,7 @@ install() {
 
 expect() {
   set +e
-  sh -c "$2"
+  SHELL=/bin/zsh sh -c "$2"
   exitCode="$?"
   set -e
   if [ $exitCode != "$1" ]; then
@@ -40,7 +40,7 @@ expect() {
 }
 
 expect_hooksPath_to_be() {
-  readonly hooksPath=`git config core.hooksPath`
+  readonly hooksPath=$(git config core.hooksPath)
   if [ "$hooksPath" != "$1" ]; then
     error "core.hooksPath should be $1, was $hooksPath"
   fi
