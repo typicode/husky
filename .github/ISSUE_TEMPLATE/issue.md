@@ -9,10 +9,10 @@ assignees: ''
 
 **Troubleshoot**
 - [ ] Before creating an issue, please check:
-https://typicode.github.io/husky/#/?id=troubleshoot
+https://typicode.github.io/husky/troubleshooting.html
 
 If you're migrating from husky 4, see:
-https://typicode.github.io/husky/#/?id=migrate-from-v4-to-v7
+https://typicode.github.io/husky/migrating-from-v4.html
 
 **Context**
 Please describe your issue and provide some context:
