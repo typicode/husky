@@ -26,7 +26,7 @@ export function install(dir = '.husky'): void {
   }
 
   // Custom dir help
-  const url = 'https://typicode.github.io/husky/#/?id=custom-directory'
+  const url = 'https://typicode.github.io/husky/guide.html#custom-directory'
 
   // Ensure that we're not trying to install outside of cwd
   if (!p.resolve(process.cwd(), dir).startsWith(process.cwd())) {
