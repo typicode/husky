@@ -2,7 +2,9 @@
 
 > Modern native Git hooks made easy
 
-Husky improves your commits and more 🐶 *woof!*
+Husky enables you to keep your git hooks version controlled along with your code.
+
+🐶 *woof!*
 
 # Install
 
