@@ -9,6 +9,11 @@ Husky improves your commits and more 🐶 *woof!*
 ```
 npm install husky --save-dev
 ```
+# Enable Git hooks
+
+```sh
+npx husky install
+```
 
 # Usage
 
