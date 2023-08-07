@@ -2,7 +2,7 @@
 
 ## Command not found
 
-If you're running Git from an app and the command can be found in your terminal, this means that the `PATH` in your app is different from your terminal.
+If you're running Git from an app and the command can't be found in your terminal, this means that the `PATH` in your app is different from your terminal.
 
 You can `echo $PATH` in your terminal and configure your app to use the same value.
 
