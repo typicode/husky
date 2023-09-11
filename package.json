@@ -23,7 +23,7 @@
     "test": "sh test/all.sh",
     "lint": "eslint src --ext .ts",
     "serve": "docsify serve docs",
-    "prepare": "npm run build && node lib/bin install",
+    "prepare": "npm run build && node lib/bin",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"

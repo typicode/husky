@@ -31,7 +31,7 @@ install() {
 
 expect() {
   set +e
-  SHELL=/bin/zsh sh -c "$2"
+  sh -c "$2"
   exitCode="$?"
   set -e
   if [ $exitCode != "$1" ]; then

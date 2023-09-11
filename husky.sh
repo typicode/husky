@@ -1,45 +1,50 @@
 #!/usr/bin/env sh
-if [ -z "$husky_skip_init" ]; then
-  debug() {
-    if [ "$HUSKY_DEBUG" = "1" ]; then
-      echo "husky (debug) - $1"
-    fi
-  }
+debug() {
+  [ "$HUSKY_DEBUG" = "1" ] && echo "husky (debug) - $1"
+}
 
-  readonly hook_name="${0##*/}"
-  debug "starting $hook_name..."
+log() {
+  echo "husky - $1"
+}
 
+exit_hook() {
+  [ "$1" != 0 ] && log "$2 hook exited with code $1 (error)"
+  [ "$1" = 127 ] && log "command not found in PATH=$PATH"
+  exit "$1"
+}
+
+self="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
+hook="$(basename "$0")"
+script="$self/../$hook"
+
+debug "starting $hook..."
+
+if [ "$HUSKY" = "0" ] || [ ! -f "$script" ]; then
   if [ "$HUSKY" = "0" ]; then
     debug "HUSKY env variable is set to 0, skipping hook"
-    exit 0
-  fi
-
-  for file in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; do
-    if [ -f "$file" ]; then
-      debug "sourcing $file"
-      . "$file"
-      break
-    fi
-  done
-
-  readonly husky_skip_init=1
-  export husky_skip_init
-
-  if [ "${SHELL##*/}" = "zsh" ]; then
-    zsh --emulate sh -e "$0" "$@"
   else
-    debug "running sh"
-    sh -i -e "$0" "$@"
+    debug "$script does not exist, skipping hook"
   fi
-  exitCode="$?"
-
-  if [ $exitCode != 0 ]; then
-    echo "husky - $hook_name hook exited with code $exitCode (error)"
-  fi
-
-  if [ $exitCode = 127 ]; then
-    echo "husky - command not found in PATH=$PATH"
-  fi
-
-  exit $exitCode
+  exit 0
 fi
+
+for file in "$XDG_CONFIG_HOME/husky/init.sh" "$HOME/.config/husky/init.sh" "$HOME/.huskyrc"; do
+  if [ -f "$file" ]; then
+    debug "sourcing $file"
+    . "$file"
+    break
+  fi
+done
+
+if [ "$(basename -- "$SHELL")" = "zsh" ] || [ "$(basename -- "$SHELL")" = "bash" ]; then
+  debug "running $script with $SHELL"
+  "$SHELL" -e "$script" "$@"
+else
+  debug "running $script with sh"
+  sh -e "$script" "$@"
+fi
+
+exit_hook "$?" "$hook"

@@ -2,16 +2,12 @@
 setup
 install
 
-npx --no-install husky install
+npx --no-install husky
 
 # Test core.hooksPath
-expect_hooksPath_to_be ".husky"
+expect_hooksPath_to_be ".husky/_"
 
 # Test pre-commit
 git add package.json
-npx --no-install husky add .husky/pre-commit "echo \"pre-commit\" && exit 1"
+echo "echo \"pre-commit\" && exit 1" >.husky/pre-commit
 expect 1 "git commit -m foo"
-
-# Uninstall
-npx --no-install husky uninstall
-expect 1 "git config core.hooksPath"

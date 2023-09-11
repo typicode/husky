@@ -13,7 +13,7 @@ If you want to install husky in another directory, for example `.config`, you ca
 ```js [package.json]
 {
   "scripts": {
-    "prepare": "husky install .config/husky"
+    "prepare": "husky -d .config/husky"
   }
 }
 ```
@@ -29,7 +29,7 @@ By design, `husky install` must be run in the same directory as `.git`, but you 
 ```js [package.json]
 {
   "scripts": {
-    "prepare": "cd .. && husky install front/.husky"
+    "prepare": "cd .. && husky -d front/.husky"
   }
 }
 ```
@@ -109,7 +109,7 @@ if (!isCi) {
 Or make `prepare` script fail silently if husky is not installed:
 
 ```json [package.json]
-"prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
+"prepare": "node -e \"try { require('husky').default() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
 ```
 
 ### With env variables
@@ -140,14 +140,14 @@ npm install is-ci --save-dev
 ```js [package.json]
 {
   "scripts": {
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky"
   }
 }
 ```
 
 :::
 
-## Test hooks
+## Testing hooks without commiting
 
 If you want to test a hook, you can add `exit 1` at the end of the script to abort git command.
 
@@ -162,16 +162,18 @@ exit 1 # Commit will be aborted
 
 ## Git-flow
 
-If using [git-flow](https://github.com/petervanderdoes/gitflow-avh/) you need to ensure your git-flow hooks directory is set to use Husky's (`.husky` by default).
+If you're using [git-flow](https://github.com/petervanderdoes/gitflow-avh/) you need to ensure your git-flow hooks directory is set to use Husky's (`.husky/_` by default).
 
 ```shell
-git config gitflow.path.hooks .husky
+git config gitflow.path.hooks .husky/_
 ```
 
-**Note:**
+::: info
 
 - If you are configuring git-flow _after_ you have installed husky, the git-flow setup process will correctly suggest the .husky directory.
-- If you have set a [custom directory](#custom-directory) for husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky`)
+- If you have set a [custom directory](#custom-directory) for husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky/_`)
+
+:::
 
 To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default Git hooks directory.
 

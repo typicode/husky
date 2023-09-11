@@ -14,7 +14,7 @@ Click [here](/getting-started) to get started.
 
 ## Features
 
-- Lightweight with zero dependencies (`6 kB`)
+- Lightweight only `6 kB` with zero dependencies
 - Powered by modern new Git feature (`core.hooksPath`)
 - Follows [npm](https://docs.npmjs.com/cli/v8/using-npm/scripts#best-practices) and [Yarn](https://yarnpkg.com/advanced/lifecycle-scripts#a-note-about-postinstall) best practices regarding `autoinstall`
 - User-friendly messages

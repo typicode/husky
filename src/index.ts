@@ -6,12 +6,32 @@ import os = require('os')
 // Logger
 const l = (msg: string): void => console.log(`husky - ${msg}`)
 
+// https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+const hooks = [
+  // Committing-Workflow Hooks
+  'pre-commit',
+  'prepare-commit-msg',
+  'commit-msg',
+  'post-commit',
+  // Email Workflow Hooks
+  'applypatch-msg',
+  'pre-applypatch',
+  'post-applypatch',
+  // Other Client Hooks
+  'pre-rebase',
+  'post-rewrite',
+  'post-checkout',
+  'post-merge',
+  'pre-push',
+  'pre-auto-gc',
+]
+
 // Execute Git command
 const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
   cp.spawnSync('git', args, { stdio: 'inherit' })
 
 // Install husky
-export function install(dir = '.husky'): void {
+export default function (dir = '.husky'): void {
   if (process.env.HUSKY === '0') {
     l('HUSKY env variable is set to 0, skipping install')
     return
@@ -39,17 +59,23 @@ export function install(dir = '.husky'): void {
   }
 
   try {
-    // Create .husky/_
-    fs.mkdirSync(p.join(dir, '_'), { recursive: true })
+    const h = p.join(dir, '_')
+    // Create hooks dir
+    fs.mkdirSync(h, { recursive: true })
 
-    // Create .husky/_/.gitignore
-    fs.writeFileSync(p.join(dir, '_/.gitignore'), '*')
+    // Create .gitignore in hooks dir
+    fs.writeFileSync(p.join(h, '.gitignore'), '*')
 
-    // Copy husky.sh to .husky/_/husky.sh
-    fs.copyFileSync(p.join(__dirname, '../husky.sh'), p.join(dir, '_/husky.sh'))
+    // Copy husky.sh to hooks dir
+    fs.copyFileSync(p.join(__dirname, '../husky.sh'), p.join(h, 'husky.sh'))
 
+    // Prepare hooks
+    const data = `#!/bin/sh\n. "$(dirname "$0")/husky.sh"`
+    for (const hook of hooks) {
+      fs.writeFileSync(p.join(h, hook), data, { mode: 0o755 })
+    }
     // Configure repo
-    const { error } = git(['config', 'core.hooksPath', dir])
+    const { error } = git(['config', 'core.hooksPath', h])
     if (error) {
       throw error
     }
@@ -59,54 +85,4 @@ export function install(dir = '.husky'): void {
   }
 
   l('Git hooks installed')
-}
-
-// Create a hook file if it doesn't exist or overwrite it
-export function set(file: string, cmd: string): void {
-  const dir = p.dirname(file)
-  if (!fs.existsSync(dir)) {
-    throw new Error(
-      `can't create hook, ${dir} directory doesn't exist (try running husky install)`,
-    )
-  }
-
-  fs.writeFileSync(
-    file,
-    `#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-${cmd}
-`,
-    { mode: 0o0755 },
-  )
-
-  l(`created ${file}`)
-
-  if (os.type() === 'Windows_NT') {
-    l(
-      `Due to a limitation on Windows systems, the executable bit of the file cannot be set without using git. 
-      To fix this, the file ${file} has been automatically moved to the staging environment and the executable bit has been set using git. 
-      Note that, if you remove the file from the staging environment, the executable bit will be removed. 
-      You can add the file back to the staging environment and include the executable bit using the command 'git update-index -add --chmod=+x ${file}'. 
-      If you have already committed the file, you can add the executable bit using 'git update-index --chmod=+x ${file}'. 
-      You will have to commit the file to have git keep track of the executable bit.`,
-    )
-
-    git(['update-index', '--add', '--chmod=+x', file])
-  }
-}
-
-// Create a hook if it doesn't exist or append command to it
-export function add(file: string, cmd: string): void {
-  if (fs.existsSync(file)) {
-    fs.appendFileSync(file, `${cmd}\n`)
-    l(`updated ${file}`)
-  } else {
-    set(file, cmd)
-  }
-}
-
-// Uninstall husky
-export function uninstall(): void {
-  git(['config', '--unset', 'core.hooksPath'])
 }

@@ -4,11 +4,11 @@ install
 
 # Test custom dir support
 mkdir sub
-npx --no-install husky install sub/husky
-npx --no-install husky add sub/husky/pre-commit "echo \"pre-commit\" && exit 1"
+npx --no-install husky -d sub/husky
+echo "echo \"pre-commit\" && exit 1" >sub/husky/pre-commit
 
 # Test core.hooksPath
-expect_hooksPath_to_be "sub/husky"
+expect_hooksPath_to_be "sub/husky/_"
 
 # Test pre-commit
 git add package.json

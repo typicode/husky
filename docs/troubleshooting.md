@@ -14,7 +14,7 @@ For example, for `nvm` that would be:
 
 ::: code-group
 
-```shell [~/.huskyrc]
+```shell [~/.config/husky/init.sh]
 # This loads nvm.sh, sets the correct PATH before running hook, and ensures the project version of Node
 export NVM_DIR="$HOME/.nvm"
 
@@ -35,8 +35,7 @@ For some apps (e.g., VS Code), you can resolve this simply by restarting the app
 ## Hooks not running
 
 1. Ensure that you don't have a typo in your filename. For example, `precommit` or `pre-commit.sh` are invalid names. See Git hooks [documentation](https://git-scm.com/docs/githooks) for valid names.
-1. Check that `git config core.hooksPath` returns `.husky` (or your custom hooks directory).
-1. Verify that hook files are executable. This is automatically set when using `husky add` command but you can run `chmod +x .husky/<hookname>` to fix that.
+1. Check that `git config core.hooksPath` returns `.husky/_` (or your custom hooks directory).
 1. Check that your version of Git is greater than `2.9`.
 
 ## .git/hooks/ not working after uninstall
@@ -65,8 +64,6 @@ fi
 2. Source it in in places where Yarn is used to run commands:
 
 ```shell
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 . "$(dirname -- "$0")/common.sh"
 
 yarn ...
