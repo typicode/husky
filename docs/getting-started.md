@@ -18,6 +18,10 @@ pnpm dlx husky-init && pnpm install
 yarn dlx husky-init --yarn2 && yarn
 ```
 
+```shell [bun]
+bunx husky-init && bun install
+```
+
 :::
 
 It will:
