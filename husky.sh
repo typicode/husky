@@ -6,7 +6,7 @@ if [ -z "$husky_skip_init" ]; then
     fi
   }
 
-  readonly hook_name="$(basename -- "$0")"
+  readonly hook_name="${0##*/}"
   debug "starting $hook_name..."
 
   if [ "$HUSKY" = "0" ]; then
@@ -25,7 +25,7 @@ if [ -z "$husky_skip_init" ]; then
   readonly husky_skip_init=1
   export husky_skip_init
 
-  if [ "$(basename -- "$SHELL")" = "zsh" ]; then
+  if [ "${SHELL##*/}" = "zsh" ]; then
     zsh --emulate sh -e "$0" "$@"
   else
     sh -e "$0" "$@"
