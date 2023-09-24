@@ -14,7 +14,7 @@ if [ -z "$husky_skip_init" ]; then
     exit 0
   fi
 
-  for file in "$XDG_CONFIG_HOME/husky/init.sh" "$HOME/.config/husky/init.sh" "$HOME/.huskyrc.sh"; do
+  for file in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; do
     if [ -f "$file" ]; then
       debug "sourcing $file"
       . "$file"
