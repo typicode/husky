@@ -39,7 +39,7 @@ To automatically have Git hooks enabled after install, edit `package.json`
 
 :::
 
-Create a `pre-commit` hook
+Create a `pre-commit` file in `husky/` directory
 
 ::: code-group
 
@@ -57,7 +57,7 @@ git commit -m "Keep calm and commit"
 ```
 
 ::: info
-Yarn 2+ doesn't support `prepare` lifecycle script, so husky needs to be installed differently (this doesn't apply to Yarn 1 though). See [Yarn 2+ install](#yarn-2).
+Yarn 2+ doesn't support `prepare` lifecycle script, so husky needs to be installed differently. See [Yarn 2+ install](#yarn-2).
 :::
 
 ::: warning
