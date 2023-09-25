@@ -13,12 +13,8 @@ exit_hook() {
   exit "$1"
 }
 
-self="$(
-  cd "$(dirname "$0")"
-  pwd -P
-)"
-hook="$(basename "$0")"
-script="$self/../$hook"
+hook="${0##*/}"
+script="${0%/*/*}/../$hook"
 
 debug "starting $hook..."
 
@@ -31,15 +27,15 @@ if [ "$HUSKY" = "0" ] || [ ! -f "$script" ]; then
   exit 0
 fi
 
-for file in "$XDG_CONFIG_HOME/husky/init.sh" "$HOME/.config/husky/init.sh" "$HOME/.huskyrc"; do
-  if [ -f "$file" ]; then
+for file in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; 
+  do if [ -f "$file" ]; then
     debug "sourcing $file"
     . "$file"
     break
   fi
 done
 
-if [ "$(basename -- "$SHELL")" = "zsh" ] || [ "$(basename -- "$SHELL")" = "bash" ]; then
+if [ "${SHELL##*/}" = "zsh" ]; then
   debug "running $script with $SHELL"
   "$SHELL" -e "$script" "$@"
 else
