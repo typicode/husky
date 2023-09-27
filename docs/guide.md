@@ -2,15 +2,13 @@
 
 ## Monorepo
 
-It's recommended to add husky in root `package.json`. You can use tools like [lerna](https://github.com/lerna/lerna) and filters to only run scripts in packages that have been changed.
+It's recommended to add husky in the root `package.json`.
 
 ## Custom directory
 
 If you want to install husky in another directory, for example `.config`, you can pass it to `install` command. For example:
 
-::: code-group
-
-```js [package.json]
+```json
 {
   "scripts": {
     "prepare": "husky -d .config/husky"
@@ -18,15 +16,11 @@ If you want to install husky in another directory, for example `.config`, you ca
 }
 ```
 
-:::
-
 Another case you may be in is if your `package.json` file and `.git` directory are not at the same level. For example, `project/.git` and `project/front/package.json`.
 
 By design, `husky install` must be run in the same directory as `.git`, but you can change directory during `prepare` script and pass a subdirectory:
 
-::: code-group
-
-```js [package.json]
+```json
 {
   "scripts": {
     "prepare": "cd .. && husky -d front/.husky"
@@ -34,19 +28,14 @@ By design, `husky install` must be run in the same directory as `.git`, but you 
 }
 ```
 
-:::
-
 In your hooks, you'll also need to change directory:
 
-::: code-group
-
-```shell [.husky/pre-commit]
+```shell
+# .husky/pre-commit
 # ...
 cd front
 npm test
 ```
-
-:::
 
 ## Bypass hooks
 
@@ -159,24 +148,3 @@ exit 1 # Commit will be aborted
 ```
 
 :::
-
-## Git-flow
-
-If you're using [git-flow](https://github.com/petervanderdoes/gitflow-avh/) you need to ensure your git-flow hooks directory is set to use Husky's (`.husky/_` by default).
-
-```shell
-git config gitflow.path.hooks .husky/_
-```
-
-::: info
-
-- If you are configuring git-flow _after_ you have installed husky, the git-flow setup process will correctly suggest the .husky directory.
-- If you have set a [custom directory](#custom-directory) for husky you need to specify that (ex. `git config gitflow.path.hooks .config/husky/_`)
-
-:::
-
-To **revert** the git-flow hooks directory back to its default you need to reset the config to point to the default Git hooks directory.
-
-```shell
-git config gitflow.path.hooks .git/hooks
-```

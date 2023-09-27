@@ -1,7 +1,6 @@
 import cp = require('child_process')
 import fs = require('fs')
 import p = require('path')
-import os = require('os')
 
 // Logger
 const l = (msg: string): void => console.log(`husky - ${msg}`)
