@@ -22,20 +22,19 @@
     "build": "tsc",
     "test": "sh test/all.sh",
     "lint": "eslint src --ext .ts",
-    "serve": "docsify serve docs",
     "prepare": "npm run build && node lib/bin",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.3",
-    "@commitlint/config-conventional": "^17.6.3",
-    "@tsconfig/node14": "^1.0.3",
-    "@types/node": "^20.1.4",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@tsconfig/node16": "^16.1.1",
+    "@types/node": "^20.7.0",
     "@typicode/eslint-config": "^1.1.0",
-    "typescript": "^5.0.4",
-    "vitepress": "^1.0.0-beta.6"
+    "typescript": "^5.2.2",
+    "vitepress": "^1.0.0-rc.20"
   },
   "engines": {
     "node": ">=16"
