@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: '🐶 husky',
-  description: 'Git hooks made easy',
+  title: "Husky",
+  description: "Git hooks made easy",
   base: '/husky/',
   themeConfig: {
     outline: [2, 3],
@@ -21,25 +21,5 @@ export default defineConfig({
       { text: 'Troubleshooting', link: '/troubleshooting' },
       { text: 'Migrating from v4', link: '/migrating-from-v4' },
     ],
-  },
-  locales: {
-    root: {
-      label: 'English',
-      lang: 'en',
-    },
-    zh: {
-      label: '简体中文',
-      lang: 'zh-CN',
-      link: '/zh/',
-      themeConfig: {
-        sidebar: [
-          { text: '介绍', link: '/zh/' },
-          { text: '开始使用', link: '/zh/getting-started' },
-          { text: '指南', link: '/zh/guide' },
-          { text: '疑难解答', link: '/zh/troubleshooting' },
-          { text: '从 v4 迁移', link: '/zh/migrating-from-v4' },
-        ],
-      },
-    }
   }
 })
