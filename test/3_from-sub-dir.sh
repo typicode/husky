@@ -1,4 +1,5 @@
-. "$(dirname -- "$0")/functions.sh"
+#!/bin/sh
+. test/functions.sh
 setup
 
 # Skip test for npm 6
@@ -15,7 +16,7 @@ npm install ../../husky.tgz
 cat >package.json <<EOL
 {
 	"scripts": {
-		"prepare": "cd .. && husky -d sub/.husky"
+		"prepare": "cd .. && husky sub/.husky"
 	}
 }
 EOL

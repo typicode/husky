@@ -2,7 +2,7 @@
 set -eu
 
 setup() {
-  name="$(basename -- $0)"
+  name="$(basename -- "$0")"
   testDir="/tmp/husky-test-$name"
   echo
   echo "-------------------"
@@ -21,8 +21,7 @@ setup() {
   git config user.name "test"
 
   # Init package.json
-  npm_config_loglevel="error"
-  npm init -y 1>/dev/null
+  npm_config_loglevel="error" npm init -y 1>/dev/null
 }
 
 install() {
@@ -40,7 +39,7 @@ expect() {
 }
 
 expect_hooksPath_to_be() {
-  readonly hooksPath=$(git config core.hooksPath)
+  hooksPath=$(git config core.hooksPath)
   if [ "$hooksPath" != "$1" ]; then
     error "core.hooksPath should be $1, was $hooksPath"
   fi

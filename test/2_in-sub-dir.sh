@@ -1,10 +1,11 @@
-. "$(dirname -- "$0")/functions.sh"
+#!/bin/sh
+. test/functions.sh
 setup
 install
 
 # Test custom dir support
 mkdir sub
-npx --no-install husky -d sub/husky
+npx --no-install husky sub/husky
 echo "echo \"pre-commit\" && exit 1" >sub/husky/pre-commit
 
 # Test core.hooksPath
