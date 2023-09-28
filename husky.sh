@@ -13,10 +13,10 @@ exit_hook() {
   exit "$1"
 }
 
-hook="${0##*/}"
-script="${0%/*/*}/../$hook"
+name="${0##*/}"
+script="${0%/*/*}/$name"
 
-debug "starting $hook..."
+debug "starting $name..."
 
 if [ "$HUSKY" = "0" ] || [ ! -f "$script" ]; then
   if [ "$HUSKY" = "0" ]; then
@@ -43,4 +43,4 @@ else
   sh -e "$script" "$@"
 fi
 
-exit_hook "$?" "$hook"
+exit_hook "$?" "$name"

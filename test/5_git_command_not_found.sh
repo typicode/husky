@@ -2,8 +2,9 @@
 setup
 install
 
-cat >index.js <<EOL
+cat >index.mjs <<EOL
 process.env.PATH = ''
-require('husky').default()
+import h from 'husky'
+h()
 EOL
-expect 0 "node index.js"
+expect 0 "node index.mjs"

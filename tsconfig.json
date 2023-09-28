@@ -1,13 +1,7 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "lib",
-    "declaration": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "removeComments": true
   }
 }

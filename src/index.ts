@@ -1,6 +1,6 @@
-import cp = require('child_process')
-import fs = require('fs')
-import p = require('path')
+import cp from 'child_process'
+import fs from 'fs'
+import p from 'path'
 
 // Logger
 const l = (msg: string): void => console.log(`husky - ${msg}`)
@@ -30,8 +30,8 @@ const git = (args: string[]): cp.SpawnSyncReturns<Buffer> =>
   cp.spawnSync('git', args, { stdio: 'inherit' })
 
 // Install husky
-export default function (dir = '.husky'): void {
-  if (process.env.HUSKY === '0') {
+export default function(dir = '.husky'): void {
+  if (process.env['HUSKY'] === '0') {
     l('HUSKY env variable is set to 0, skipping install')
     return
   }
@@ -66,7 +66,7 @@ export default function (dir = '.husky'): void {
     fs.writeFileSync(p.join(h, '.gitignore'), '*')
 
     // Copy husky.sh to hooks dir
-    fs.copyFileSync(p.join(__dirname, '../husky.sh'), p.join(h, 'husky.sh'))
+    fs.copyFileSync(new URL('../husky.sh', import.meta.url), p.join(h, 'husky.sh'))
 
     // Prepare hooks
     const data = `#!/bin/sh\n. "$(dirname "$0")/husky.sh"`

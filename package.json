@@ -12,6 +12,7 @@
   "funding": "https://github.com/sponsors/typicode",
   "license": "MIT",
   "author": "Typicode <typicode@gmail.com>",
+  "type": "module",
   "bin": "lib/bin.js",
   "main": "lib/index.js",
   "files": [
@@ -30,7 +31,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@tsconfig/node16": "^16.1.1",
+    "@sindresorhus/tsconfig": "^4.0.0",
     "@types/node": "^20.7.0",
     "@typicode/eslint-config": "^1.1.0",
     "typescript": "^5.2.2",
