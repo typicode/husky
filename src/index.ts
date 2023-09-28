@@ -69,7 +69,7 @@ export default function(dir = '.husky'): void {
     fs.copyFileSync(new URL('../husky.sh', import.meta.url), p.join(h, 'husky.sh'))
 
     // Prepare hooks
-    const data = `#!/bin/sh\n. "$(dirname "$0")/husky.sh"`
+    const data = `#!/usr/bin/env sh\n. "\${0%/*}/husky.sh"`
     for (const hook of hooks) {
       fs.writeFileSync(p.join(h, hook), data, { mode: 0o755 })
     }
