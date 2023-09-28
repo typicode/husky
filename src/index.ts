@@ -51,8 +51,12 @@ export default function(dir = '.husky'): void {
 
     // Create the different files in dir/_/
     fs.writeFileSync('.gitignore', '*') // .gitignore
-    fs.copyFileSync(new URL('../husky.sh', import.meta.url), 'husky.sh') // husky.sh
-    h.forEach(f => fs.writeFileSync(f, `#!/usr/bin/env sh\n. "\${0%/*}/husky.sh"`, { mode: 0o755 })) // hooks
+    fs.copyFileSync(new URL('../husky.sh', import.meta.url), 'h.sh')
+    h.forEach(f => fs.writeFileSync(f, `#!/usr/bin/env sh\n. "\${0%/*}/h.sh"`, { mode: 0o755 })) // hooks
+
+    // Create empty husky.sh to avoid making v5-8 hooks fail
+    // TODO: add deprecation notice later...
+    fs.writeFileSync('husky.sh', '')
 
     // Configure Git
     const { error: e } = git(['config', 'core.hooksPath', d])
