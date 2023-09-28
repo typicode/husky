@@ -1,11 +1,10 @@
 #!/usr/bin/env sh
 debug() {
-  [ "$HUSKY_DEBUG" = "1" ] && echo "husky (debug) - $1"
+  if [ "$HUSKY_DEBUG" = "1" ]; then
+    echo "husky (debug) - $1"
+  fi
 }
-
-log() {
-  echo "husky - $1"
-}
+log() { echo "husky - $1"; }
 
 exit_hook() {
   [ "$1" != 0 ] && log "$2 hook exited with code $1 (error)"
@@ -17,30 +16,19 @@ name="${0##*/}"
 script="${0%/*/*}/$name"
 
 debug "starting $name..."
+[ "$HUSKY" = "0" ] && debug "HUSKY env variable is set to 0, skipping hook" && exit 0
+[ ! -f "$script" ] && debug "$script does not exist, skipping hook" && exit 0
 
-if [ "$HUSKY" = "0" ] || [ ! -f "$script" ]; then
-  if [ "$HUSKY" = "0" ]; then
-    debug "HUSKY env variable is set to 0, skipping hook"
-  else
-    debug "$script does not exist, skipping hook"
-  fi
-  exit 0
-fi
-
-for file in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; 
-  do if [ -f "$file" ]; then
+for file in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; do
+  if [ -f "$file" ]; then
     debug "sourcing $file"
     . "$file"
     break
   fi
 done
 
-if [ "${SHELL##*/}" = "zsh" ]; then
-  debug "running $script with $SHELL"
-  "$SHELL" -e "$script" "$@"
-else
-  debug "running $script with sh"
-  sh -e "$script" "$@"
-fi
+[ "${SHELL##*/}" = "zsh" ] && shell="$SHELL" || shell="sh"
+debug "running $script with $shell"
+$shell -e "$script" "$@"
 
 exit_hook "$?" "$name"

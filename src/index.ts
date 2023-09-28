@@ -6,23 +6,13 @@ import p from 'path'
 const l = (msg: string): void => console.log(`husky - ${msg}`)
 
 // https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
-const hooks = [
+const h = [
   // Committing-Workflow Hooks
-  'pre-commit',
-  'prepare-commit-msg',
-  'commit-msg',
-  'post-commit',
+  'pre-commit', 'prepare-commit-msg', 'commit-msg', 'post-commit',
   // Email Workflow Hooks
-  'applypatch-msg',
-  'pre-applypatch',
-  'post-applypatch',
+  'applypatch-msg', 'pre-applypatch', 'post-applypatch',
   // Other Client Hooks
-  'pre-rebase',
-  'post-rewrite',
-  'post-checkout',
-  'post-merge',
-  'pre-push',
-  'pre-auto-gc',
+  'pre-rebase', 'post-rewrite', 'post-checkout', 'post-merge', 'pre-push', 'pre-auto-gc',
 ]
 
 // Execute Git command
@@ -39,45 +29,34 @@ export default function(dir = '.husky'): void {
   // Ensure that we're inside a Git repository
   // If git command is not found, status is null and we should return
   // That's why status value needs to be checked explicitly
-  if (git(['rev-parse']).status !== 0) {
-    l(`git command not found, skipping install`)
-    return
-  }
+  if (git(['rev-parse']).status !== 0)
+    return l(`git command not found, skipping install`)
 
   // Custom dir help
   const url = 'https://typicode.github.io/husky/guide.html#custom-directory'
 
   // Ensure that we're not trying to install outside of cwd
-  if (!p.resolve(process.cwd(), dir).startsWith(process.cwd())) {
+  if (!p.resolve(process.cwd(), dir).startsWith(process.cwd()))
     throw new Error(`.. not allowed (see ${url})`)
-  }
 
   // Ensure that cwd is git top level
-  if (!fs.existsSync('.git')) {
+  if (!fs.existsSync('.git'))
     throw new Error(`.git can't be found (see ${url})`)
-  }
 
   try {
-    const h = p.join(dir, '_')
-    // Create hooks dir
-    fs.mkdirSync(h, { recursive: true })
+    // Create hooks dir and change working dir to make file creation simpler
+    const d = p.join(dir, '_')
+    fs.mkdirSync(d, { recursive: true })
+    process.chdir(d)
 
-    // Create .gitignore in hooks dir
-    fs.writeFileSync(p.join(h, '.gitignore'), '*')
+    // Create the different files in dir/_/
+    fs.writeFileSync('.gitignore', '*') // .gitignore
+    fs.copyFileSync(new URL('../husky.sh', import.meta.url), 'husky.sh') // husky.sh
+    h.forEach(f => fs.writeFileSync(f, `#!/usr/bin/env sh\n. "\${0%/*}/husky.sh"`, { mode: 0o755 })) // hooks
 
-    // Copy husky.sh to hooks dir
-    fs.copyFileSync(new URL('../husky.sh', import.meta.url), p.join(h, 'husky.sh'))
-
-    // Prepare hooks
-    const data = `#!/usr/bin/env sh\n. "\${0%/*}/husky.sh"`
-    for (const hook of hooks) {
-      fs.writeFileSync(p.join(h, hook), data, { mode: 0o755 })
-    }
-    // Configure repo
-    const { error } = git(['config', 'core.hooksPath', h])
-    if (error) {
-      throw error
-    }
+    // Configure Git
+    const { error: e } = git(['config', 'core.hooksPath', d])
+    if (e) throw e
   } catch (e) {
     l('Git hooks failed to install')
     throw e

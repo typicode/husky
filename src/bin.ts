@@ -2,10 +2,10 @@
 import u from 'util'
 import i from './index.js'
 
-const { values } = u.parseArgs({
+const { values: v } = u.parseArgs({
   args: process.argv.slice(2),
   options: {
-    directory: {
+    dir: {
       type: 'string',
       short: 'd',
     },
@@ -14,7 +14,7 @@ const { values } = u.parseArgs({
 })
 
 try {
-  i(values.directory)
+  i(v.dir)
 } catch (e) {
   console.error(e instanceof Error ? `husky - ${e.message}` : e)
   process.exit(1)
