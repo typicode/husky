@@ -17,10 +17,6 @@
 	"scripts": {
 		"prepare": "printenv"
 	},
-	"files": [
-		"index*",
-		"husky.sh"
-	],
 	"devDependencies": {
 		"vitepress": "^1.0.0-rc.20"
 	},
