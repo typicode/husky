@@ -1,7 +1,0 @@
-{
-  "extends": "@sindresorhus/tsconfig",
-  "compilerOptions": {
-    "outDir": "lib",
-    "removeComments": true
-  }
-}
