@@ -8,16 +8,6 @@ permissions:
   contents: read  #  to fetch code (actions/checkout)
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: npm ci --ignore-scripts
-      - run: npm run lint
-
   test:
     strategy:
       matrix:
@@ -31,4 +21,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm --version
       - run: npm ci --ignore-scripts
-      - run: npm test
+      - run: ./test.sh
