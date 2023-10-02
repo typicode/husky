@@ -1,7 +1,4 @@
-lib
 node_modules
-husky-*.tgz
-tsconfig.tsbuildinfo
 *.log
 docs/.vitepress/cache
 docs/.vitepress/dist

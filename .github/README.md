@@ -6,42 +6,11 @@
 
 Husky improves your commits and more 🐶 _woof!_
 
-# Install
-
-```
-npm install husky -D
-```
-
-# Usage
-
-Edit `package.json > prepare` script and run it once:
-
-```sh
-npm pkg set scripts.prepare="husky install"
-npm run prepare
-```
-
-Add a hook:
-
-```sh
-npx husky add .husky/pre-commit "npm test"
-git add .husky/pre-commit
-```
-
-Make a commit:
-
-```sh
-git commit -m "Keep calm and commit"
-# `npm test` will run every time you commit
-```
-
-_For more use cases (project in sub-directory, custom directory, CI support, ...), see documentation._
-
 ## Documentation
 
 https://typicode.github.io/husky
 
-**Important** Upgrading from v4 to v8 requires migrating previous config, please see the docs.
+**Important** Upgrading from v4 to v9 requires migrating previous config, please see the docs.
 
 ## Articles
 

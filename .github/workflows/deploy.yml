@@ -23,7 +23,8 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build
-        run: npm x vitepress build docs
+        working-directory: ./docs
+        run: npx vitepress build
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
