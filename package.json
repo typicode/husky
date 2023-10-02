@@ -10,16 +10,10 @@
 	"repository": "typicode/husky",
 	"funding": "https://github.com/sponsors/typicode",
 	"license": "MIT",
-	"author": "Typicode <typicode@gmail.com>",
+	"author": "typicode",
 	"type": "module",
 	"bin": "bin.js",
 	"exports": "./index.js",
-	"scripts": {
-		"prepare": "printenv"
-	},
-	"devDependencies": {
-		"vitepress": "^1.0.0-rc.20"
-	},
 	"engines": {
 		"node": ">=16"
 	}
