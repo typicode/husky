@@ -68,17 +68,17 @@ There's no right or wrong way to disable husky in CI/Docker/Prod context and is 
 
 ### With npm
 
-If you want to prevent husky from installing completely
-
-```shell
-npm ci --omit=dev --ignore-scripts
-```
-
-Alternatively, you can specifically disable `prepare` script with
+If you want to prevent husky from installing completely, you can specifically disable `prepare` script with:
 
 ```shell
 npm pkg delete scripts.prepare
 npm ci --omit=dev
+```
+
+Alternatively, you can ignore scripts during installation. Be cautious, this argument ignores dependencies scripts as well.
+
+```shell
+npm ci --omit=dev --ignore-scripts
 ```
 
 ### With a custom script
