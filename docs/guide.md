@@ -81,6 +81,12 @@ Alternatively, you can ignore scripts during installation. Be cautious, this arg
 npm ci --omit=dev --ignore-scripts
 ```
 
+When using `--omit=dev`, `npm` will set `NODE_ENV` to `production` for lifecycle scripts, so another alternative is to check it to conditionally install husky.
+
+```shell
+npm pkg set scripts.prepare="node -e \"if (process.env.NODE_ENV !== 'production') { require('husky').install() }\""
+```
+
 ### With a custom script
 
 You can create a custom JS script and conditionally require husky and install hooks.
