@@ -2,35 +2,7 @@
 
 ## Command not found
 
-If you're running Git from an app and the command can be found in your terminal, this means that the `PATH` in your app is different from your terminal.
-
-You can `echo $PATH` in your terminal and configure your app to use the same value.
-
-If you've installed your command using `brew`, see the [Homebrew FAQ](https://docs.brew.sh/FAQ) to make your command available to your app.
-
-Finally, if you're using a script for managing versions like `nvm`, `n`, `rbenv`, `pyenv`, ... you can use `~/.huskyrc` to load the necessary before running hooks.
-
-For example, for `nvm` that would be:
-
-::: code-group
-
-```shell [~/.config/husky/init.sh]
-# This loads nvm.sh, sets the correct PATH before running hook, and ensures the project version of Node
-export NVM_DIR="$HOME/.nvm"
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# If you have an .nvmrc file, we use the relevant node version
-if [ -f ".nvmrc" ]; then
-  nvm use
-fi
-```
-
-:::
-
-::: info
-For some apps (e.g., VS Code), you can resolve this simply by restarting the app. Try this before following any of these steps above!\*\*
-:::
+See [recipes](recipes).
 
 ## Hooks not running
 
@@ -41,8 +13,6 @@ For some apps (e.g., VS Code), you can resolve this simply by restarting the app
 ## .git/hooks/ not working after uninstall
 
 If after uninstalling `husky`, hooks in `.git/hooks/` aren't working. Run `git config --unset core.hooksPath`.
-
-Note: this was done automatically by `npm <7` when uninstalling husky, however `preuninstall` is now unsupported.
 
 ## Yarn on Windows
 
@@ -68,7 +38,3 @@ fi
 
 yarn ...
 ```
-
-## Does it work on Windows?
-
-Yes. When you install Git on Windows, it comes with the necessary software to run shell scripts.

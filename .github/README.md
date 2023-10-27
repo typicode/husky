@@ -23,6 +23,13 @@ MIT
 
 # Sponsors
 
+<p align="center">
+  <a href="./docs/sponsorkit/sponsors.svg">
+    <img src='./docs/sponsorkit/sponsors.svg'/>
+  </a>
+</p>
+
+
 ## Companies
 
 Does your company use husky? Ask your manager or marketing team if your company would be interested in supporting this project.

@@ -1,30 +1,26 @@
 # Migrating from v4
 
-## CLI
-
-See [husky-4-to-8](https://github.com/typicode/husky-4-to-8) CLI to quickly migrate from v4 to v8.
-
-## Manually
-
 If you were calling `package.json` scripts using `npm` or `yarn`, **you can simply copy your commands** from your config file to the corresponding hook:
 
-::: code-group
+Husky v4
 
-```js [.huskyrc.json (v4)]
+```json
+// package.json
 {
   "hooks": {
-    "pre-commit": "npm test && npm run foo"
+    "pre-commit": "npm test && npm run foo" // [!code hl]
   }
 }
 ```
 
-```shell [.husky/pre-commit (v8)]
-# ...
-npm test
-npm run foo
-```
+Husky v9
 
-:::
+```shell
+# .husky/pre-commit
+# Note that you can now have commands on multiple lines
+npm test // [!code hl]
+npm run foo // [!code hl]
+```
 
 If you were calling locally installed binaries, **you need to run them via your package manager now**:
 

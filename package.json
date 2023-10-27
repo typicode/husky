@@ -7,12 +7,17 @@
 		"hooks",
 		"pre-commit"
 	],
-	"repository": "typicode/husky",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/typicode/husky.git"
+	},
 	"funding": "https://github.com/sponsors/typicode",
 	"license": "MIT",
 	"author": "typicode",
 	"type": "module",
-	"bin": "bin.js",
+	"bin": {
+		"husky": "bin.js"
+	},
 	"exports": "./index.js",
 	"engines": {
 		"node": ">=16"

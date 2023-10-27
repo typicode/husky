@@ -1,14 +1,13 @@
 # Getting started
 
-Install husky and configure Git hooks
-
 ## Setup
+
+### 1. Install husky
 
 ::: code-group
 
 ```shell [npm]
 npm install --save-dev husky
-npx husky
 ```
 
 ```shell [pnpm]
@@ -28,7 +27,11 @@ bunx husky-init && bun install
 
 :::
 
-To automatically have Git hooks enabled after install, edit `package.json`
+### 2. Edit package.json
+
+Git needs to be configured and husky needs to setup some files in `.husky/`. For this, you need to run `husky` command once in your repo.
+
+The recommended approach is to put it in `prepare` script in `package.json`, this way it will be automatically done after each install. 
 
 ::: code-group
 
@@ -51,6 +54,7 @@ To automatically have Git hooks enabled after install, edit `package.json`
 ```json [yarn]
 {
   "scripts": {
+    // Yarn doesn't support prepare script
     "postinstall": "husky",
     // Add this if you're publishing to npmjs.com
     "prepack": "pinst --disable",
@@ -61,7 +65,27 @@ To automatically have Git hooks enabled after install, edit `package.json`
 
 :::
 
-Create a `pre-commit` file in `husky/` directory
+Run `prepare` once.
+
+::: code-group
+
+```sh [npm]
+npm run prepare
+```
+
+```sh [pnpm]
+pnpm run prepare
+```
+
+```sh [yarn]
+yarn run prepare
+```
+
+:::
+
+### 3. Create a Git hook
+
+Create a `pre-commit` file in `.husky/` directory
 
 ::: code-group
 
@@ -81,34 +105,15 @@ yarn test
 ```
 :::
 
-Kudos, you've succesfully setup your first Git hook 🎉
+
+_For advanced usage, see [recipes](recipes)._
 
 ## Try it
 
-Make a commit
+__Congrats!__ you've succesfully setup your first Git hook in just one line of code 🎉.
+Let's try it now.
 
 ```shell
 git commit -m "Keep calm and commit"
 # test script will run every time you commit
 ```
-
-## Uninstall
-
-::: code-group
-
-```shell [npm]
-npm uninstall husky
-git config --unset core.hooksPath
-```
-
-```shell [pnpm]
-pnpm uninstall husky
-git config --unset core.hooksPath
-```
-
-```shell [yarn]
-yarn remove husky
-git config --unset core.hooksPath
-```
-
-:::

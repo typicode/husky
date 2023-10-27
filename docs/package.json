@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "dev": "vitepress"
+    "dev": "vitepress",
+    "build": "sponsorkit"
   },
   "devDependencies": {
+    "sponsorkit": "^0.8.9",
     "vitepress": "^1.0.0-rc.20"
   }
 }

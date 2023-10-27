@@ -6,7 +6,7 @@ export default defineConfig({
   description: "Git hooks made easy",
   base: '/husky/',
   themeConfig: {
-    outline: [2, 3],
+    // outline: [2, 3],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/typicode/husky' },
     ],
@@ -17,7 +17,7 @@ export default defineConfig({
     sidebar: [
       { text: 'Introduction', link: '/' },
       { text: 'Getting started', link: '/getting-started' },
-      { text: 'Guide', link: '/guide' },
+      { text: 'Recipes', link: '/recipes' },
       { text: 'Troubleshooting', link: '/troubleshooting' },
       { text: 'Migrating from v4', link: '/migrating-from-v4' },
     ],
