@@ -9,16 +9,15 @@ export default (d = '.husky') => {
 	if (d.includes('..')) throw '.. not allowed'
 	if (!f.existsSync('.git')) return `.git can't be found`
 
-	let _ = p.join(d, '_')
-	let { status: s, stderr: e } = c.spawnSync('git', ['config', 'core.hooksPath', _])
+	let _ = (x = '') => p.join(d, '_', x)
+	let { status: s, stderr: e } = c.spawnSync('git', ['config', 'core.hooksPath', _()])
 	if (s == null) return 'git command not found'
 	if (s) return '' + e
 
-	f.mkdirSync(_, { recursive: true })
-	process.chdir(_)
-	f.writeFileSync('.gitignore', '*')
-	f.copyFileSync(new URL('husky.sh', import.meta.url), 'h')
-	l.forEach(h => f.writeFileSync(h, `#!/usr/bin/env sh\n. "\${0%/*}/h"`, { mode: 0o755 }))
-	f.writeFileSync('husky.sh', '')
+	f.mkdirSync(_(), { recursive: true })
+	f.writeFileSync(_('.gitignore'), '*')
+	f.copyFileSync(new URL('husky.sh', import.meta.url), _('h'))
+	l.forEach(h => f.writeFileSync(_(h), `#!/usr/bin/env sh\n. "\${0%/*}/h"`, { mode: 0o755 }))
+	f.writeFileSync(_('husky.sh'), '')
 	return ''
 }
