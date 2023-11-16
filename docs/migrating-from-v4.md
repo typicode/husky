@@ -18,7 +18,7 @@ If you were calling `package.json` scripts using `npm` or `yarn`, **you can simp
 }
 ```
 
-```shell [.husky/commit-msg (v8)]
+```shell [.husky/pre-commit (v8)]
 # ...
 npm test
 npm run foo
@@ -38,7 +38,7 @@ If you were calling locally installed binaries, **you need to run them via your 
 }
 ```
 
-```shell [.husky/commit-msg (v8)]
+```shell [.husky/pre-commit (v8)]
 # ...
 npx --no jest
 # or
