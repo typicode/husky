@@ -21,7 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # If you have an .nvmrc file, we use the relevant node version
-if [[ -f ".nvmrc" ]]; then
+if [ -f ".nvmrc" ]; then
   nvm use
 fi
 ```
