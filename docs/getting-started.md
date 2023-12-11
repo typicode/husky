@@ -1,8 +1,6 @@
 # Getting started
 
-## Setup
-
-### 1. Install husky
+## Install
 
 ::: code-group
 
@@ -12,13 +10,11 @@ npm install --save-dev husky
 
 ```shell [pnpm]
 pnpm add --save-dev husky
-pnpm exec husky
 ```
 
 ```shell [yarn]
 yarn add husky --dev
 yarn add pinst --dev # ONLY if your package is not private
-yarn run husky
 ```
 
 ```shell [bun]
@@ -27,7 +23,35 @@ bunx husky-init && bun install
 
 :::
 
-### 2. Edit package.json
+## Quick start
+
+
+::: code-group
+
+```shell [npm]
+npm exec husky init
+```
+
+```shell [pnpm]
+pnpm exec husky init
+```
+
+```shell [yarn]
+# Due to caveats and differences with other package managers,
+# please use the manual setup below.
+```
+
+```shell [deno]
+deno run --allow-read --allow-write --allow-env --allow-run :npm:husky 
+```
+
+:::
+
+Husky comes with an `init` command to quickly setup a new project. It will create a `pre-commit` script and change `prepare` script in `package.json`. You can easily modify things after to fit your workflow.
+
+## Manual setup
+
+### 1. Edit package.json
 
 Git needs to be configured and husky needs to setup some files in `.husky/`. For this, you need to run `husky` command once in your repo.
 
@@ -83,7 +107,7 @@ yarn run prepare
 
 :::
 
-### 3. Create a Git hook
+### 2. Create a Git hook
 
 Create a `pre-commit` file in `.husky/` directory
 
