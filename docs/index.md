@@ -56,8 +56,8 @@ Husky is used by these awesome projects:
 
 ## Articles
 
-- [Why husky has dropped conventional JS config](https://blog.typicode.com/husky-git-hooks-javascript-config/)
-- [Why husky doesn't autoinstall anymore](https://blog.typicode.com/husky-git-hooks-autoinstall/)
+- [Why husky has dropped conventional JS config](https://blog.typicode.com/posts/husky-git-hooks-javascript-config/)
+- [Why husky doesn't autoinstall anymore](https://blog.typicode.com/posts/husky-git-hooks-autoinstall/)
 
 ## Sponsors
 
