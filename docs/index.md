@@ -6,7 +6,9 @@
 
 > Modern native git hooks made easy
 
-Husky improves your commits and more 🐶 _woof!_
+Husky enables you to keep your git hooks version controlled along with your code.
+
+🐶 *woof!*
 
 You can use it to **lint your commit messages**, **run tests**, **lint code**, etc... when you commit or push. Husky supports [all client-side Git hooks](https://git-scm.com/docs/githooks).
 
@@ -25,6 +27,14 @@ Click [here](/getting-started) to get started.
   - Custom hooks directory
   - Nested projects
   - Monorepos
+
+## Husky vs vanilla Git hooks
+
+[By default](https://git-scm.com/docs/githooks), git hooks are read from the `.git/hooks/` directory. They are not version controlled and,
+will not be propagated to your teammates when they clone the repository.
+
+Husky allows you to save your git hooks alongside your code, and it will automate the git
+configuration for you.
 
 ## Used by
 
