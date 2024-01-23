@@ -12,13 +12,7 @@ done
 
 [ "$HUSKY" = "0" ] && exit 0
 
-[ "${SHELL##*/}" = "zsh" ] && sh="zsh" || sh="sh"
-
-# shellcheck disable=SC2155
-[ "$h" = "pre-commit" ] && export STAGED="$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')"
-export PATH="./node_modules/.bin:$PATH"
-
-$sh -e "$s" "$@"
+sh -e "$s" "$@"
 c=$?
 
 [ $c != 0 ] && echo "husky - $h script failed (code $c)"
