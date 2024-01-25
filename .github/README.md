@@ -19,8 +19,8 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 ### GitHub
 
 <p align="center">
-  <a href="./sponsorkit/sponsors.svg">
-    <img src='./sponsorkit/sponsors.svg'/>
+  <a href="../docs/sponsorkit/sponsors.svg">
+    <img src='../docs/sponsorkit/sponsors.svg'/>
   </a>
 </p>
 
