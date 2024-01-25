@@ -1,4 +1,4 @@
-# Migrating from v4
+# Migrate from v4
 
 If you were calling `package.json` scripts using `npm` or `yarn`, **you can simply copy your commands** from your config file to the corresponding hook:
 
@@ -15,7 +15,7 @@ Husky v4
 
 Husky v9
 
-```shell
+```shell 
 # .husky/pre-commit
 # Note that you can now have commands on multiple lines
 npm test // [!code hl]
@@ -34,7 +34,7 @@ If you were calling locally installed binaries, **you need to run them via your 
 }
 ```
 
-```shell [.husky/pre-commit (v8)]
+```shell [.husky/commit-msg (v9)]
 # ...
 npx --no jest
 # or
@@ -55,7 +55,7 @@ yarn jest
 }
 ```
 
-```shell [.husky/commit-msg (v8)]
+```shell [.husky/commit-msg (v9)]
 # ...
 npx --no -- commitlint --edit $1
 # or

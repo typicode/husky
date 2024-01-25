@@ -2,21 +2,23 @@
 
 > Modern native git hooks made easy
 
-Husky improves your commits and more 🐶 _woof!_
+Husky enhances your commits and more 🐶 _woof!_
 
-Automatically **lint your commit messages**, **your code**, **run tests**, etc... when you commit or push.
+Automatically **lint your commit messages**, **code**, and **run tests** upon committing or pushing.
 
-Click [here](/getting-started) to get started.
+Get started [here](/get-started).
+
+See what's new in `v9` in the [Changelog]() 🚀
 
 ## Sponsors
 
-Click [here](https://github.com/sponsors/typicode) to sponsor and be part of this project 💖
+Support this project by becoming a sponsor [here](https://github.com/sponsors/typicode) 💖
 
 ### GitHub
 
 <p align="center">
-  <a href="sponsorkit/sponsors.svg">
-    <img src='sponsorkit/sponsors.svg'/>
+  <a href="./sponsorkit/sponsors.svg">
+    <img src='./sponsorkit/sponsors.svg'/>
   </a>
 </p>
 
@@ -28,28 +30,24 @@ Click [here](https://github.com/sponsors/typicode) to sponsor and be part of thi
 <a href="https://opencollective.com/husky/tiers/company/3/website"><img src="https://opencollective.com/husky/tiers/company/3/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/4/website"><img src="https://opencollective.com/husky/tiers/company/4/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/5/website"><img src="https://opencollective.com/husky/tiers/company/5/avatar.svg?avatarHeight=120"></a>
-<a href="https://opencollective.com/husky/tiers/company/6/website"><img src="https://opencollective.com/husky/tiers/company/6/avatar.svg?avatarHeight=120"></a>
-<a href="https://opencollective.com/husky/tiers/company/7/website"><img src="https://opencollective.com/husky/tiers/company/7/avatar.svg?avatarHeight=120"></a>
-<a href="https://opencollective.com/husky/tiers/company/8/website"><img src="https://opencollective.com/husky/tiers/company/8/avatar.svg?avatarHeight=120"></a>
-<a href="https://opencollective.com/husky/tiers/company/9/website"><img src="https://opencollective.com/husky/tiers/company/9/avatar.svg?avatarHeight=120"></a>
 
 ## Features
 
-- Powerful features in only `2 kB` packed with zero dependencies
-- Powered by modern new Git feature (`core.hooksPath`)
-- Follows Git native way of organizing hooks
-- Follows [npm](https://docs.npmjs.com/cli/v8/using-npm/scripts#best-practices) best practices by using `prepare` script
-- Helpful user messages
-- Options to opt-in/opt-out Git hooks
-- Possibility to have different hooks for different branches
+- Just `2 kB` (📦 _gzipped_) with no dependencies
+- Uses new Git feature (`core.hooksPath`)
+- Adheres to Git's native hook organization
+- Aligns with [npm](https://docs.npmjs.com/cli/v10/using-npm/scripts#best-practices) best practices using `prepare` script
+- Clear user messages
+- O pt-in/opt-out options
+- Branch-specific hooks
 - Supports:
-  - macOS, Linux and Windows
+  - macOS, Linux, Windows
   - Git GUIs, Node version managers, custom hooks directory, nested projects, monorepos
   - [All 13 client-side Git hooks](https://git-scm.com/docs/githooks)
 
 ## Used by
 
-Husky is used by more than [**more than 1.2M projects**](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D) on GitHub:
+Husky is used in [**over 1.3M projects**](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D) on GitHub, including:
 
 - [vercel/next.js](https://github.com/vercel/next.js)
 - [vercel/hyper](https://github.com/vercel/hyper)

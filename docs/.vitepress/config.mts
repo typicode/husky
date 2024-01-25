@@ -16,10 +16,10 @@ export default defineConfig({
     },
     sidebar: [
       { text: 'Introduction', link: '/' },
-      { text: 'Getting started', link: '/getting-started' },
-      { text: 'Recipes', link: '/recipes' },
-      { text: 'Troubleshooting', link: '/troubleshooting' },
-      { text: 'Migrating from v4', link: '/migrating-from-v4' },
+      { text: 'Get Started', link: '/get-started' },
+      { text: 'How To', link: '/how-to' },
+      { text: 'Troubleshoot', link: '/troubleshoot' },
+      { text: 'Migrate from v4', link: '/migrate-from-v4' },
     ],
   }
 })
