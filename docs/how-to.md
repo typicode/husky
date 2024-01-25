@@ -66,21 +66,23 @@ Modify the `prepare` script to never fail:
 "prepare": "husky || true"
 ```
 
-You'll still get a `command not found` error message in your output which may be confusing. To make it silent, create `.husky/install.js`:
+You'll still get a `command not found` error message in your output which may be confusing. To make it silent, create `.husky/install.mjs`:
 
 ```js
 // Skip Husky install in production and CI
+import husky from 'husky'
+
 if (process.env.NODE_ENV === 'production' || process.env.CI === '1') {
   process.exit(0)
 }
-const husky = await import('husky')
-husky()
+
+console.log(husky())
 ```
 
 Then, use it in `prepare`:
 
 ```json
-"prepare": "node .husky/install.js"
+"prepare": "node .husky/install.mjs"
 ```
 
 ## Testing Hooks Without Committing
