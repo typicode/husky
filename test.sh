@@ -8,4 +8,5 @@ sh test/3_from-sub-dir.sh
 sh test/4_not-git-dir.sh
 sh test/5_git_command_not_found.sh
 sh test/6_command_not_found.sh
-# sh test/7_time.sh
+sh test/7_init.sh
+# sh test/8_time.sh
