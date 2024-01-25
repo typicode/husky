@@ -17,4 +17,4 @@ c=$?
 
 [ $c != 0 ] && echo "husky - $h script failed (code $c)"
 [ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
-exit 1
+exit $c
