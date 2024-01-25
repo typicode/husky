@@ -35,6 +35,7 @@ npx husky init
 ```
 
 ```shell [pnpm]
+# On project root.
 pnpm exec husky init
 ```
 
