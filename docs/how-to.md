@@ -70,11 +70,13 @@ You'll still get a `command not found` error message in your output which may be
 
 ```js
 // Skip Husky install in production and CI
-if (process.env.NODE_ENV === 'production' || !!(process.env.CI !== 'false' && process.env.CI)) {
+import husky from 'husky'
+
+if (process.env.NODE_ENV === 'production' || process.env.CI === '1') {
   process.exit(0)
 }
-const husky = await import('husky')
-husky.default()
+
+console.log(husky())
 ```
 
 Then, use it in `prepare`:
