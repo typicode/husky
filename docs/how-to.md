@@ -5,7 +5,7 @@
 Husky allows you to execute local commands before running hooks. It reads commands from these files:
 
 - `$XDG_CONFIG_HOME/husky/init.sh`
-- `~/.config/home/init.sh`
+- `~/.config/husky/init.sh`
 - `~/.huskyrc` (deprecated)
 
 ## Skipping Git Hooks
