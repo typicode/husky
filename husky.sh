@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-[ "$HUSKY" = "2" ] && set -x
+H="$HUSKY"
+[ "$H" = "2" ] && set -x
 h="${0##*/}"
 s="${0%/*/*}/$h"
 
@@ -10,7 +11,7 @@ for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; 
 	[ -f "$f" ] && . "$f"
 done
 
-[ "$HUSKY" = "0" ] && exit 0
+[ "$H" = "0" ] && exit 0
 
 sh -e "$s" "$@"
 c=$?
