@@ -13,6 +13,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    defaults:
+      run:
+        working-directory: ./docs
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,7 +26,6 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build
-        working-directory: ./docs
         run: npx vitepress build
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
