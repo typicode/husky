@@ -5,7 +5,7 @@ import i from './index.js'
 let a = process.argv[2]
 
 if (a == 'init') {
-  let p = process.env.npm_package_json
+  let p = 'package.json'
   let d = JSON.parse(f.readFileSync(p))
   (d.scripts ||= {}).prepare = 'husky'
   w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2) + '\n')
