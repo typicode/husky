@@ -5,13 +5,13 @@ import i from './index.js'
 let a = process.argv[2]
 
 if (a == 'init') {
-  let p = process.env.npm_package_json || './package.json'
+  let p = 'package.json'
   let d = JSON.parse(f.readFileSync(p))
   d.scripts ||= {}
   d.scripts.prepare = 'husky'
-  w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2))
+  w(p, JSON.stringify(d, null, /\t/.test() ? '\t' : 2) + '\n')
   process.stdout.write(i())
-  w('.husky/pre-commit', process.env.npm_config_user_agent.split('/')[0] + ' test')
+  w('.husky/pre-commit', process.env.npm_config_user_agent.split('/')[0] + ' test\n')
   process.exit()
 }
 
