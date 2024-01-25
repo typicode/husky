@@ -10,7 +10,7 @@ export default (d = '.husky') => {
 	if (!f.existsSync('.git')) return `.git can't be found`
 
 	let _ = (x = '') => p.join(d, '_', x)
-	let { status: s, stderr: e } = c.spawnSync('git', ['config', 'core.hooksPath', _()])
+	let { status: s, stderr: e } = c.spawnSync('git', ['config', 'core.hooksPath', `${d}/_`])
 	if (s == null) return 'git command not found'
 	if (s) return '' + e
 
