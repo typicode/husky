@@ -7,7 +7,7 @@ let a = process.argv[2]
 if (a == 'init') {
   let p = process.env.npm_package_json
   let d = JSON.parse(f.readFileSync(p))
-  if (!d.scripts) { d.scripts = {} }
+  d.scripts ||= {}
   d.scripts.prepare = 'husky'
   w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2))
   process.stdout.write(i())
