@@ -6,6 +6,10 @@
 
 Husky improves your commits and more 🐶 _woof!_
 
+## Changelog
+
+[Check out the v9 changelog](https://github.com/typicode/husky/releases/tag/v9.0.1) to discover all the new and improved features!
+
 ## Documentation
 
 https://typicode.github.io/husky
