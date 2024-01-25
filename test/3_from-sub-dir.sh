@@ -1,4 +1,5 @@
-. "$(dirname -- "$0")/functions.sh"
+#!/bin/sh
+. test/functions.sh
 setup
 
 # Skip test for npm 6
@@ -12,10 +13,10 @@ npm --version | grep "^6\." && exit 0
 mkdir sub
 cd sub
 npm install ../../husky.tgz
-cat > package.json << EOL
+cat >package.json <<EOL
 {
 	"scripts": {
-		"prepare": "cd .. && husky install sub/.husky"
+		"prepare": "cd .. && husky sub/.husky"
 	}
 }
 EOL
@@ -24,10 +25,10 @@ EOL
 npm run prepare
 
 # Add hook
-npx --no-install husky add .husky/pre-commit "echo \"pre-commit hook\" && exit 1"
+echo "echo \"pre-commit hook\" && exit 1" >.husky/pre-commit
 
 # Test core.hooksPath
-expect_hooksPath_to_be "sub/.husky"
+expect_hooksPath_to_be "sub/.husky/_"
 
 # Test pre-commit
 git add package.json

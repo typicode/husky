@@ -19,11 +19,12 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           cache: npm
       - run: npm ci
       - name: Build
-        run: npm run docs:build
+        working-directory: ./docs
+        run: npx vitepress build
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
