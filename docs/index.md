@@ -38,7 +38,7 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 - Adheres to Git's native hook organization
 - Aligns with [npm](https://docs.npmjs.com/cli/v10/using-npm/scripts#best-practices) best practices using `prepare` script
 - Clear user messages
-- O pt-in/opt-out options
+- Opt-in/opt-out options
 - Branch-specific hooks
 - Supports:
   - macOS, Linux, Windows
