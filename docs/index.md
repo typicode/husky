@@ -8,7 +8,7 @@ Automatically **lint your commit messages**, **code**, and **run tests** upon co
 
 Get started [here](/get-started).
 
-See what's new in `v9` in the [Changelog](https://github.com/typicode/husky/releases/tag/v9.0.1) 🚀
+[Check out the v9 changelog](https://github.com/typicode/husky/releases/tag/v9.0.1) to discover all the new and improved features! 🚀
 
 ## Sponsors
 
