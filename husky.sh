@@ -10,7 +10,7 @@ for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; 
 	[ -f "$f" ] && . "$f"
 done
 
-[ "$HUSKY" = "0" ] && exit 0
+[ "${HUSKY-}" = "0" ] && exit 0
 
 sh -e "$s" "$@"
 c=$?
