@@ -9,9 +9,9 @@ if (a == 'init') {
   let d = JSON.parse(f.readFileSync(p))
   d.scripts ||= {}
   d.scripts.prepare = 'husky'
-  w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2))
+  w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2) + '\n')
   process.stdout.write(i())
-  w('.husky/pre-commit', process.env.npm_config_user_agent.split('/')[0] + ' test')
+  w('.husky/pre-commit', process.env.npm_config_user_agent.split('/')[0] + ' test\n')
   process.exit()
 }
 
