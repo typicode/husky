@@ -11,6 +11,7 @@ if (a == 'init') {
   d.scripts.prepare = 'husky'
   w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2) + '\n')
   process.stdout.write(i())
+	try { f.mkdirSync('.husky') } catch {}
   w('.husky/pre-commit', process.env.npm_config_user_agent.split('/')[0] + ' test\n')
   process.exit()
 }
