@@ -7,7 +7,8 @@ let a = process.argv[2]
 if (a == 'init') {
   let p = 'package.json'
   let d = JSON.parse(f.readFileSync(p))
-  (d.scripts ||= {}).prepare = 'husky'
+  d.scripts ||= {}
+	d.prepare = 'husky'
   w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2) + '\n')
   process.stdout.write(i())
 	try { f.mkdirSync('.husky') } catch {}
