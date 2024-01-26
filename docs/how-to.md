@@ -68,15 +68,14 @@ Modify the `prepare` script to never fail:
 
 You'll still get a `command not found` error message in your output which may be confusing. To make it silent, create `.husky/install.mjs`:
 
+<!-- Since husky may not be installed, it must be imported dynamically after prod/CI check  -->
 ```js
 // Skip Husky install in production and CI
-import husky from 'husky'
-
-if (process.env.NODE_ENV === 'production' || process.env.CI === '1') {
+if (process.env.NODE_ENV === 'production' || process.env.CI === 'true') {
   process.exit(0)
 }
-
-console.log(husky())
+const husky = (await import('husky')).default
+husky()
 ```
 
 Then, use it in `prepare`:
@@ -190,7 +189,7 @@ Alternatively, if your shell startup file is fast and lightweight, source it dir
 
 ## Manual setup
 
-Git needs to be configured and husky needs to setup files in `.husky/`. 
+Git needs to be configured and husky needs to setup files in `.husky/`.
 
 Run the `husky` command once in your repo. Ideally, include it in the `prepare` script in `package.json` for automatic execution after each install (recommended).
 
