@@ -18,6 +18,7 @@
 	"bin": {
 		"husky": "bin.js"
 	},
+	"main": "./index.js",
 	"exports": "./index.js",
 	"types": "./index.d.ts",
 	"engines": {
