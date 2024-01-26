@@ -19,6 +19,7 @@
 		"husky": "bin.js"
 	},
 	"exports": "./index.js",
+	"types": "./index.d.ts",
 	"engines": {
 		"node": ">=18"
 	}
