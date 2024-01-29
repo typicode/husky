@@ -6,7 +6,7 @@ s="${0%/*/*}/$h"
 
 [ ! -f "$s" ] && exit 0
 
-for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; do
+for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc"; do
 	# shellcheck disable=SC1090
 	[ -f "$f" ] && . "$f"
 done
