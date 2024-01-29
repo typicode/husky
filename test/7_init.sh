@@ -3,4 +3,4 @@
 setup
 install
 
-npx --no-install husky init
+expect 0 "npx --no-install husky init"
