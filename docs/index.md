@@ -59,6 +59,7 @@ Husky is used in [**over 1.3M projects**](https://github.com/typicode/husky/netw
 - [stylelint/stylelint](https://github.com/stylelint/stylelint)
 - [colinhacks/zod](https://github.com/colinhacks/zod)
 - [rollup/rollup](https://github.com/rollup/rollup)
+- [tinyhttp/tinyhttp](https://github.com/tinyhttp/tinyhttp)
 - ...
 
 ## Articles
