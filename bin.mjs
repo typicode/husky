@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import f, { writeFileSync as w } from 'fs'
-import i from './index.js'
+import i from './index.mjs'
 
 let p, a, n, s, o, d
 
