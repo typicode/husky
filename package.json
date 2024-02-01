@@ -14,11 +14,10 @@
 	"funding": "https://github.com/sponsors/typicode",
 	"license": "MIT",
 	"author": "typicode",
-	"type": "module",
 	"bin": {
-		"husky": "bin.js"
+		"husky": "bin.mjs"
 	},
-	"exports": "./index.js",
+	"exports": "./index.mjs",
 	"engines": {
 		"node": ">=18"
 	}
