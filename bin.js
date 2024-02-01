@@ -6,9 +6,10 @@ let a = process.argv[2]
 
 if (a == 'init') {
 	let p = 'package.json'
-	let d = JSON.parse(f.readFileSync(p))
+	let s = f.readFileSync(p);
+	let d = JSON.parse(s)
 		; (d.scripts ||= {}).prepare = 'husky'
-	w('package.json', JSON.stringify(d, null, /\t/.test() ? '\t' : 2) + '\n')
+	w('package.json', JSON.stringify(d, null, /\t/.test(s) ? '\t' : 2) + '\n')
 	process.stdout.write(i())
 	try { f.mkdirSync('.husky') } catch { }
 	w('.husky/pre-commit', process.env.npm_config_user_agent.split('/')[0] + ' test\n')
