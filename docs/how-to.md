@@ -225,7 +225,7 @@ Run the `husky` command once in your repo. Ideally, include it in the `prepare` 
 }
 ```
 
-```json [pnpm]
+```json [bun]
 {
   "scripts": {
     "prepare": "husky" // [!code hl]
@@ -248,7 +248,8 @@ pnpm run prepare
 ```
 
 ```sh [yarn]
-yarn run prepare
+# Yarn doesn't support `prepare`
+yarn run postinstall
 ```
 
 ```sh [bun]
