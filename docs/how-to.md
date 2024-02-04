@@ -8,6 +8,8 @@ Husky allows you to execute local commands before running hooks. It reads comman
 - `~/.config/husky/init.sh`
 - `~/.huskyrc` (deprecated)
 
+On Windows: `C:\Users\yourusername\.config\husky\init.sh`
+
 ## Skipping Git Hooks
 
 ### For a Single Command
