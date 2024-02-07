@@ -1,5 +1,12 @@
 # How To
 
+## Adding a New Hook
+
+Adding a hook is as simple as creating a file. This can be accomplished using your favorite editor, a script or a basic echo command. For example, on Linux/macOS:
+```shell
+echo "npm test" > .husky/pre-commit
+```
+
 ## Startup files
 
 Husky allows you to execute local commands before running hooks. It reads commands from these files:
