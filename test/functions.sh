@@ -39,6 +39,7 @@ expect() {
 }
 
 expect_hooksPath_to_be() {
+	set +e
   hooksPath=$(git config core.hooksPath)
   if [ "$hooksPath" != "$1" ]; then
     error "core.hooksPath should be $1, was $hooksPath"
