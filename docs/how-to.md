@@ -138,6 +138,25 @@ cd frontend
 npm test
 ```
 
+## Non-shell hooks
+
+In order to run scripts that require the use of a scripting language, use the following pattern for each applicable hook:
+
+(Example using hook `pre-commit` and NodeJS)
+1. Create an entrypoint for the hook:
+    ```shell
+    .husky/pre-commit
+    ```
+2. In the file add the following
+    ```shell
+    node .husky/pre-commit.js
+    ```
+3. in `.husky/pre-commit.js`
+   ```javascript
+   // Your NodeJS code
+   // ...
+   ```
+
 ## Node Version Managers and GUIs
 
 If you're using Git hooks in GUIs with Node installed via a version manager (like `nvm`, `n`, `fnm`, `asdf`, `volta`, etc...), you might face a `command not found` error due to `PATH` environment variable issues.
