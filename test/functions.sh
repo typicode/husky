@@ -52,5 +52,5 @@ error() {
 }
 
 ok() {
-	echo -e "\e[0;32mOK\e[m"
+	echo -e "\e[0;32mOK\e[m $1"
 }
