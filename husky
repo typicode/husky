@@ -25,6 +25,5 @@ h() {
 	exit 1
 }
 trap 'c=$?; h' EXIT
-
 set -e
 . "$s"
