@@ -19,6 +19,7 @@ x() {
 	echo "$g" | xargs git add
 }
 
+c=0
 h() {
 	[ $c != 0 ] && echo "husky - $h script failed (code $c)"
 	[ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
