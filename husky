@@ -24,7 +24,6 @@ h() {
 	[ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
 	exit 1
 }
-
 trap 'c=$?; h' EXIT
 
 set -e
