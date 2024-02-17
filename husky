@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# shellcheck disable=SC1090
 [ "$HUSKY" = "2" ] && set -x
 h="${0##*/}"
 s="${0%/*/*}/$h"
@@ -6,7 +7,6 @@ s="${0%/*/*}/$h"
 [ ! -f "$s" ] && exit 0
 
 for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc"; do
-	# shellcheck disable=SC1090
 	[ -f "$f" ] && . "$f"
 done
 [ "${HUSKY-}" = "0" ] && exit 0
@@ -27,4 +27,5 @@ h() {
 }
 trap 'c=$?; h' EXIT
 set -e
+PATH=node_modules/.bin:$PATH
 . "$s"
