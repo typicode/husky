@@ -17,7 +17,7 @@ export default (d = '.husky') => {
 	f.mkdirSync(_(), { recursive: true })
 	w(_('.gitignore'), '*')
 	f.copyFileSync(new URL('husky', import.meta.url), _('h'))
-	l.forEach(h => w(_(h), `#!/usr/bin/env sh\nPATH="\${0%/*}"\n. "\${PATH%\\\\*}/h"`, { mode: 0o755 }))
+	l.forEach(h => w(_(h), `#!/usr/bin/env sh\nPATH=\${0%/*}\n. "\${PATH%\\\\*}/h"`, { mode: 0o755 }))
 	w(_('husky.sh'), '')
 	return ''
 }
