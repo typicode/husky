@@ -10,6 +10,24 @@ Get started [here](/get-started.md).
 
 [Check out the v9 changelog](https://github.com/typicode/husky/releases/tag/v9.0.1) to discover all the new and improved features! 🚀
 
+## Features
+
+- Just `2 kB` (📦 _gzipped_) with no dependencies
+- Extremely fast (runs in `~1ms`)
+- Uses new Git feature (`core.hooksPath`)
+- - Supports:
+  - macOS, Linux, Windows
+  - Git GUIs, Node version managers, custom hooks directory, nested projects, monorepos
+  - [All 13 client-side Git hooks](https://git-scm.com/docs/githooks)
+
+And more:
+- Branch-specific hooks
+- Use POSIX shell to script advanced cases
+- Adheres to Git's native hook organization
+- Aligns with [npm](https://docs.npmjs.com/cli/v10/using-npm/scripts#best-practices) best practices using `prepare` script
+- Opt-in/opt-out options
+- User-friendly error messages
+
 ## Sponsors
 
 Support this project by becoming a sponsor [here](https://github.com/sponsors/typicode) 💖
@@ -30,20 +48,6 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 <a href="https://opencollective.com/husky/tiers/company/3/website"><img src="https://opencollective.com/husky/tiers/company/3/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/4/website"><img src="https://opencollective.com/husky/tiers/company/4/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/5/website"><img src="https://opencollective.com/husky/tiers/company/5/avatar.svg?avatarHeight=120"></a>
-
-## Features
-
-- Just `2 kB` (📦 _gzipped_) with no dependencies
-- Uses new Git feature (`core.hooksPath`)
-- Adheres to Git's native hook organization
-- Aligns with [npm](https://docs.npmjs.com/cli/v10/using-npm/scripts#best-practices) best practices using `prepare` script
-- Clear user messages
-- Opt-in/opt-out options
-- Branch-specific hooks
-- Supports:
-  - macOS, Linux, Windows
-  - Git GUIs, Node version managers, custom hooks directory, nested projects, monorepos
-  - [All 13 client-side Git hooks](https://git-scm.com/docs/githooks)
 
 ## Used by
 
