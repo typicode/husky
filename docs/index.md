@@ -15,7 +15,7 @@ Get started [here](/get-started.md).
 - Just `2 kB` (📦 _gzipped_) with no dependencies
 - Extremely fast (runs in `~1ms`)
 - Uses new Git feature (`core.hooksPath`)
-- - Supports:
+- Supports:
   - macOS, Linux, Windows
   - Git GUIs, Node version managers, custom hooks directory, nested projects, monorepos
   - [All 13 client-side Git hooks](https://git-scm.com/docs/githooks)
