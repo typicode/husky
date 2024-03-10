@@ -41,7 +41,7 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 ### Special Sponsor
 
 <p align="center">
-  <a href="https://tea.xyz">
+  <a href="https://app.tea.xyz/sign-up?r=8L2HWfJB6hs">
     <img src="https://github.com/typicode/husky/assets/5502029/1b95c571-0157-48bc-a147-0d8d2fbc1d8a" /><br/>
     Get rewards for your open-source contributions
   </a>
