@@ -34,7 +34,7 @@ If you were calling locally installed binaries, **you need to run them via your 
 }
 ```
 
-```shell [.husky/commit-msg (v9)]
+```shell [.husky/pre-commit (v9)]
 # ...
 npx --no jest
 # or
