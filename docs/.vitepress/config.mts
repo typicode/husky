@@ -23,6 +23,56 @@ export default defineConfig({
       { text: 'How To', link: '/how-to' },
       { text: 'Troubleshoot', link: '/troubleshoot' },
       { text: 'Migrate from v4', link: '/migrate-from-v4' },
-    ],
+    ],        
+    nav: [
+      {
+        text: 'v9.0.1',
+        items: [
+          {
+            text: 'Changelog',
+            link: 'https://github.com/typicode/husky/releases/tag/v9.0.1'
+          }
+        ]
+      }
+    ]
+  },
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en-US'
+    },
+    zh: {
+      label: '简体中文',
+      lang: 'zh-hans',
+      description: '使 Git hooks 变得简单',
+      link: '/zh/',
+      themeConfig: {
+        sidebar: [
+          { text: '简介', link: '/zh/' },
+          { text: '快速开始', link: '/zh/get-started' },
+          { text: '如何使用', link: '/zh/how-to' },
+          { text: '故障排查', link: '/zh/troubleshoot' },
+          { text: '从 v4 迁移', link: '/zh/migrate-from-v4' },
+        ],
+        docFooter: {
+          prev: '上一页',
+          next: '下一页'
+        },
+        outline: {
+          label: '页面导航'
+        },
+        nav: [
+          {
+            text: 'v9.0.1',
+            items: [
+              {
+                text: '更新日志',
+                link: 'https://github.com/typicode/husky/releases/tag/v9.0.1'
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 })
