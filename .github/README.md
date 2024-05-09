@@ -6,6 +6,8 @@
 
 Husky improves your commits and more 🐶 _woof!_
 
+👋 _Hey! Using React, Vue or Astro? Check my new project [MistCSS](https://github.com/typicode/mistcss) to write 50% less code._
+
 ## Features
 
 - Just `2 kB` (📦 _gzipped_) with no dependencies
