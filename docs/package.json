@@ -4,7 +4,7 @@
     "build": "sponsorkit"
   },
   "devDependencies": {
-    "sponsorkit": "^0.9.1",
+    "sponsorkit": "^0.9.3",
     "vitepress": "^1.0.1"
   }
 }
