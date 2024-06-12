@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 [ "$HUSKY" = "2" ] && set -x
+if command -v cygpath >/dev/null 2>&1; then
+  u0=$(cygpath -u "$0")
+  if [ "$0" != "$u0" ]; then
+    exec "$u0" "$@"
+  fi
+fi
+
 h="${0##*/}"
 s="${0%/*/*}/$h"
 
