@@ -8,6 +8,14 @@ Husky improves your commits and more 🐶 _woof!_
 
 👋 _Hey! Using React, Vue or Astro? Check my new project [MistCSS](https://github.com/typicode/mistcss) to write 50% less code._
 
+## Usage Trend
+
+[Usage Trend of husky](https://npm-compare.com/husky#timeRange=FIVE_YEARS)
+  
+<a href="https://npm-compare.com/husky#timeRange=FIVE_YEARS" target="_blank">
+  <img src="https://npm-compare.com/img/npm-trend/FIVE_YEARS/husky.png" width="80%" alt="NPM Usage Trend of husky" />
+</a>
+
 ## Features
 
 - Just `2 kB` (📦 _gzipped_) with no dependencies
