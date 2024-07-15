@@ -26,6 +26,7 @@ And more:
 - Adheres to Git's native hook organization
 - Aligns with [npm](https://docs.npmjs.com/cli/v10/using-npm/scripts#best-practices) best practices using `prepare` script
 - Opt-in/opt-out options
+- Can be globally disabled
 - User-friendly error messages
 
 ## Sponsors
