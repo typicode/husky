@@ -61,7 +61,7 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 
 ## Used by
 
-Husky is used in [**over 1.3M projects**](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D) on GitHub, including:
+Husky is used in [**over 1.5M projects**](https://github.com/typicode/husky/network/dependents?package_id=UGFja2FnZS0xODQzNTgwNg%3D%3D) on GitHub, including:
 
 - [vercel/next.js](https://github.com/vercel/next.js)
 - [vercel/hyper](https://github.com/vercel/hyper)
