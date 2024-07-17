@@ -35,10 +35,7 @@ If you were calling locally installed binaries, **you need to run them via your 
 ```
 
 ```shell [.husky/pre-commit (v9)]
-# ...
-npx --no jest
-# or
-yarn jest
+jest
 ```
 
 :::
@@ -56,10 +53,7 @@ yarn jest
 ```
 
 ```shell [.husky/commit-msg (v9)]
-# ...
-npx --no -- commitlint --edit $1
-# or
-yarn commitlint --edit $1
+commitlint --edit $1
 ```
 
 :::
@@ -69,4 +63,3 @@ Other environment variables changes:
 - `HUSKY_SKIP_HOOKS` is replaced by `HUSKY`.
 - `HUSKY_SKIP_INSTALL` is replaced by `HUSKY`.
 - `HUSKY_GIT_PARAMS` is removed. Instead Git parameters should be used directly in scripts (e.g. `$1`).
-- `PATH` for locally installed tools is not automatically set anymore. You'll need to use your package manager to run them.
