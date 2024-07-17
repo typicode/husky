@@ -12,11 +12,12 @@ export default defineConfig({
     // outline: [2, 3],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/typicode/husky' },
+      { icon: 'twitter', link: 'https://x.com/typicode' }
     ],
-    carbonAds: {
-      code: 'CWYDP53L',
-      placement: 'typicodegithubio',
-    },
+    // carbonAds: {
+    //   code: 'CWYDP53L',
+    //   placement: 'typicodegithubio',
+    // },
     sidebar: [
       { text: 'Introduction', link: '/' },
       { text: 'Get Started', link: '/get-started' },
@@ -25,15 +26,7 @@ export default defineConfig({
       { text: 'Migrate from v4', link: '/migrate-from-v4' },
     ],        
     nav: [
-      {
-        text: 'v9.0.1',
-        items: [
-          {
-            text: 'Changelog',
-            link: 'https://github.com/typicode/husky/releases/tag/v9.0.1'
-          }
-        ]
-      }
+      { text: 'Sponsor', link: 'https://github.com/sponsors/typicode' }
     ]
   },
   locales: {

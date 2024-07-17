@@ -1,6 +1,7 @@
 {
 	"name": "husky",
 	"version": "9.0.11",
+	"type": "module",
 	"description": "Modern native Git hooks",
 	"keywords": [
 		"git",
@@ -15,9 +16,9 @@
 	"license": "MIT",
 	"author": "typicode",
 	"bin": {
-		"husky": "bin.mjs"
+		"husky": "bin.js"
 	},
-	"exports": "./index.mjs",
+	"exports": "./index.js",
 	"engines": {
 		"node": ">=18"
 	}

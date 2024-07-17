@@ -1,20 +1,27 @@
 #!/usr/bin/env sh
+# shellcheck disable=SC1090
 [ "$HUSKY" = "2" ] && set -x
-h="${0##*/}"
-s="${0%/*/*}/$h"
+n=$(basename "$0")
+s=$(dirname "$(dirname "$0")")/$n
 
 [ ! -f "$s" ] && exit 0
 
-for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc"; do
-	# shellcheck disable=SC1090
-	[ -f "$f" ] && . "$f"
-done
+if [ -f "$HOME/.huskyrc" ]; then
+	echo "husky - '~/.huskyrc' is DEPRECATED, please move your code to ~/.config/husky/init.sh"
+fi
+i="${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh"
+[ -f "$i" ] && . "$i"
 
 [ "${HUSKY-}" = "0" ] && exit 0
 
-sh -e "$s" "$@"
-c=$?
-
-[ $c != 0 ] && echo "husky - $h script failed (code $c)"
-[ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
-exit $c
+c=0
+h() {
+	[ $c = 0 ] && return
+	[ $c != 0 ] && echo "husky - $n script failed (code $c)"
+	[ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
+	exit 1
+}
+trap 'c=$?; h' EXIT
+set -e
+PATH=node_modules/.bin:$PATH
+. "$s"
