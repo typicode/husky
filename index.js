@@ -18,6 +18,6 @@ export default (d = '.husky') => {
 	w(_('.gitignore'), '*')
 	f.copyFileSync(new URL('husky', import.meta.url), _('h'))
 	l.forEach(h => w(_(h), `#!/usr/bin/env sh\n. "\${0%/*}/h"`, { mode: 0o755 }))
-	w(_('husky.sh'), 'echo "husky - `#!/usr/bin/env sh` and `. "$(dirname -- "$0")/_/husky.sh"` lines in hooks are DEPRECATED and won\'t be supported in v10. You can remove these two lines safely for even simpler scripts"')
+	w(_('husky.sh'), 'echo "husky - `#!/usr/bin/env sh` and `. "$(dirname -- "$0")/_/husky.sh"` lines in hooks are DEPRECATED and won\'t be supported in v10. You can remove these two lines for even simpler scripts"')
 	return ''
 }

@@ -59,13 +59,13 @@ git commit -m "Keep calm and commit"
 # test script will run every time you commit
 ```
 
-## A few words
+## A few words...
 
 ### Scripting
 
-While most of the time, you'll just run a few `npm run` or `npx` commands in your hooks, you can also script hooks using POSIX shell for custom workflows.
+While most of the time, you'll just run a few `npm run` or `npx` commands in your hooks, you can also script them using POSIX shell for custom workflows.
 
-For example, here's how you can lint your staged files on each commit with only two lines of shell code:
+For example, here's how you can lint your staged files on each commit with only two lines of shell code and no external dependency:
 
 ```shell
 # .husky/pre-commit
@@ -73,11 +73,8 @@ prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') -
 git update-index --again
 ```
 
-See also [lint-staged](https://github.com/lint-staged/lint-staged) if you need more.
+_This is a basic but workinkg example, check [lint-staged](https://github.com/lint-staged/lint-staged) if you need more._
 
 ### Disabling hooks
 
-Husky doesn't force Git hooks and can be globally disabled if wished. They can be made opt-in as well.
-
-_For manual setup and more information, see the [How To](how-to) section._
-
+Husky doesn't force Git hooks. It can be globally disabled (`HUSKY=0`) or be opt-in if wanted. See the [How To](how-to) section for manual setup and more information.
