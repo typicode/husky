@@ -1,14 +1,12 @@
 ![npm](https://img.shields.io/npm/dm/husky)
 
-> Modern native git hooks made easy
+> Ultra-fast modern native git hooks
 
 Husky enhances your commits and more 🐶 _woof!_
 
 Automatically **lint your commit messages**, **code**, and **run tests** upon committing or pushing.
 
 Get started [here](/get-started.md).
-
-[Check out the v9 changelog](https://github.com/typicode/husky/releases/tag/v9.0.1) to discover all the new and improved features! 🚀
 
 ## Features
 
