@@ -73,7 +73,7 @@ prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') -
 git update-index --again
 ```
 
-_This is a basic but workinkg example, check [lint-staged](https://github.com/lint-staged/lint-staged) if you need more._
+_This is a basic but working example, check [lint-staged](https://github.com/lint-staged/lint-staged) if you need more._
 
 ### Disabling hooks
 
