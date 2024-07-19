@@ -35,7 +35,7 @@ fi
 
 ```shell
 # .husky/pre-commit
-. "$(dirname -- "$0")/common.sh"
+. .husky/common.sh
 
 yarn ...
 ```
