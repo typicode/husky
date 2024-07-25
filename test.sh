@@ -13,4 +13,4 @@ sh test/8_set_u.sh
 sh test/9_husky_0.sh
 sh test/10_init.sh
 sh test/11_time.sh
-sh test/12_rm_deprecated.sh
+sh test/12_deprecated.sh

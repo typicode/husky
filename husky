@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-# shellcheck disable=SC1090
 [ "$HUSKY" = "2" ] && set -x
 n=$(basename "$0")
 s=$(dirname "$(dirname "$0")")/$n
@@ -14,14 +13,10 @@ i="${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh"
 
 [ "${HUSKY-}" = "0" ] && exit 0
 
-c=0
-h() {
-	[ $c = 0 ] && return
-	[ $c != 0 ] && echo "husky - $n script failed (code $c)"
-	[ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
-	exit 1
-}
-trap 'c=$?; h' EXIT
-set -e
-PATH=node_modules/.bin:$PATH
-. "$s"
+export PATH=node_modules/.bin:$PATH
+sh -e "$s" "$@"
+c=$?
+
+[ $c != 0 ] && echo "husky - $n script failed (code $c)"
+[ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
+exit $c

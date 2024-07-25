@@ -7,7 +7,7 @@ npx --no-install husky
 expect_hooksPath_to_be ".husky/_"
 
 git add package.json
-echo "echo \"pre-commit\"" >.husky/pre-commit
+echo "echo \"pre-commit\"" > .husky/pre-commit
 
 # Should not fail if set -u is used
 mkdir -p config/husky
