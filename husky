@@ -13,7 +13,7 @@ i="${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh"
 
 [ "${HUSKY-}" = "0" ] && exit 0
 
-export PATH=node_modules/.bin:$PATH
+export PATH="node_modules/.bin:$PATH"
 sh -e "$s" "$@"
 c=$?
 
