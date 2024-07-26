@@ -4,7 +4,7 @@
 
 添加 hook 与创建文件一样简单。可以通过你喜欢的编辑器、脚本或 echo 命令来实现。例如，在 Linux/macOS 中：
 ```shell
-echo "npm test" > .husky/pre-commit
+echo "test" > .husky/pre-commit
 ```
 
 ## 启动文件
@@ -135,7 +135,7 @@ git commit -m "testing pre-commit code"
 ```shell
 # frontend/.husky/pre-commit
 cd frontend
-npm test
+test
 ```
 
 ## 非 shell 脚本钩子
@@ -301,26 +301,7 @@ bun run prepare
 
 在 `.husky/` 目录中创建一个 `pre-commit` 文件：
 
-::: code-group
-
-```shell [npm]
+```shell
 # .husky/pre-commit
-npm test
+test
 ```
-
-```shell [pnpm]
-# .husky/pre-commit
-pnpm test
-```
-
-```shell [yarn]
-# .husky/pre-commit
-yarn test
-```
-
-```sh [bun]
-# .husky/pre-commit
-bun test
-```
-
-:::

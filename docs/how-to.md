@@ -4,7 +4,7 @@
 
 Adding a hook is as simple as creating a file. This can be accomplished using your favorite editor, a script or a basic echo command. For example, on Linux/macOS:
 ```shell
-echo "npm test" > .husky/pre-commit
+echo "test" > .husky/pre-commit
 ```
 
 ## Startup files
@@ -135,7 +135,7 @@ In your hook script, change the directory back to the relevant subdirectory:
 ```shell
 # frontend/.husky/pre-commit
 cd frontend
-npm test
+test
 ```
 
 ## Non-shell hooks
@@ -301,26 +301,7 @@ bun run prepare
 
 Create a `pre-commit` file in the `.husky/` directory:
 
-::: code-group
-
-```shell [npm]
+```shell
 # .husky/pre-commit
-npm test
+test
 ```
-
-```shell [pnpm]
-# .husky/pre-commit
-pnpm test
-```
-
-```shell [yarn]
-# .husky/pre-commit
-yarn test
-```
-
-```sh [bun]
-# .husky/pre-commit
-bun test
-```
-
-:::
