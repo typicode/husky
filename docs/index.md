@@ -6,7 +6,7 @@ Husky enhances your commits and more 🐶 _woof!_
 
 Automatically **lint your commit messages**, **code**, and **run tests** upon committing or pushing.
 
-Get started [here](/get-started.md).
+Get started [here](./get-started.md).
 
 ## Features
 
