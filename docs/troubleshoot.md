@@ -9,7 +9,7 @@ See [How To](how-to) for solutions.
 1. Verify the file name is correct. For example, `precommit` or `pre-commit.sh` are invalid names. Refer to the Git hooks [documentation](https://git-scm.com/docs/githooks) for valid names.
 2. Run `git config core.hooksPath` and ensure it points to `.husky/_` (or your custom hooks directory).
 3. Confirm your Git version is above `2.9`.
-4. Ensure that the hook scripts have the corresponding executable permissions
+4. Ensure that the hook scripts have the corresponding executable permissions.
 
 ## `.git/hooks/` Not Working After Uninstall
 
