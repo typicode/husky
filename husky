@@ -17,6 +17,7 @@ export PATH="node_modules/.bin:$PATH"
 sh -e "$s" "$@"
 c=$?
 
+[ $c = 126 ] && echo "husky - $n script is not executable (code $c)"
 [ $c != 0 ] && echo "husky - $n script failed (code $c)"
 [ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
 exit $c
