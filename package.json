@@ -1,6 +1,6 @@
 {
 	"name": "husky",
-	"version": "9.1.4",
+	"version": "9.1.5",
 	"type": "module",
 	"description": "Modern native Git hooks",
 	"keywords": [
