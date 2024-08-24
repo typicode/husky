@@ -66,6 +66,31 @@ export default defineConfig({
           }
         ]
       }
+    },
+    ru: {
+      label: 'Русский',
+      lang: 'ru-RU',
+      description: 'Git hooks made easy',
+      link: '/ru/',
+      themeConfig: {
+        sidebar: [
+          { text: 'Введение', link: '/ru/' },
+          { text: 'Начало работы', link: '/ru/get-started' },
+          { text: 'Как использовать', link: '/ru/how-to' },
+          { text: 'Устранение неполадок', link: '/ru/troubleshoot' },
+          { text: 'Миграция с v4', link: '/ru/migrate-from-v4' },
+        ],
+        docFooter: {
+          prev: 'Предыдущая страница',
+          next: 'Следующая страница'
+        },
+        outline: {
+          label: 'Содержание страницы'
+        },
+        nav: [
+          { text: 'Sponsor', link: 'https://github.com/sponsors/typicode' }
+        ]
+      }
     }
   }
 })
