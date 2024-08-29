@@ -44,8 +44,8 @@ Apoya este proyecto convirtiéndote en patrocinador (sponsor) [here](https://git
 ### GitHub
 
 <p align="center">
-  <a href="./sponsorkit/sponsors.svg">
-    <img src='./sponsorkit/sponsors.svg'/>
+  <a href="../sponsorkit/sponsors.svg">
+    <img src='../sponsorkit/sponsors.svg'/>
   </a>
 </p>
 
