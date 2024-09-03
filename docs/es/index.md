@@ -4,9 +4,9 @@
 
 Husky mejora tus commits y más 🐶 _¡guau!_
 
-Automáticamente hace un **lint de tus mensages de commit** **código** y **ejecuta pruebas (test)** al confirmar (commit) o enviar (push).
+Automáticamente hace un **análisis (lint) de tus mensages de commit**, **código**, y **ejecuta pruebas (test)** al confirmarse (committing ) o al enviar (pushing).
 
-Comienza [aquí](/get-started.md).
+Comienza [aquí](/es/get-started.md).
 
 ## Características
 
@@ -15,14 +15,14 @@ Comienza [aquí](/get-started.md).
 - Utiliza la nueva característica de Git (`core.hooksPath`)
 - Soporta:
   - macOS, Linux, Windows
-  - GUI de Git (Git GUIs), administradores de versiones de Node, directorio de custom hooks, proyectos anidados, monorepositorios (monorepos)
-  - [Los 13 ganchos de Git (Git hooks) del lado del cliente](https://git-scm.com/docs/githooks)
+  - GUI de Git (Git GUIs), administradores de versiones de Node, directorio de ganchos personalizados (custom hooks directory), proyectos anidados, monorepositorios (monorepos)
+  - [Todos los 13 ganchos de Git (Git hooks) del lado del cliente](https://git-scm.com/docs/githooks)
 
 Y más:
 
 - Ganchos específicos de la rama
 - Uso de shell POSIX para crear scripts de casos avanzados
-- Se adhiere a la organización de ganchos nativa de Git (Git's native hook organization)
+- Se adhiere a la organización de ganchos (hooks) nativa de Git (Git's native hook organization)
 - Se alinea con las mejores prácticas de [npm](https://docs.npmjs.com/cli/v10/using-npm/scripts#best-practices) usando el script `prepare`
 - Opciones de inclusión/exclusión (Opt-in/opt-out)
 - Se puede deshabilitar globalmente
@@ -30,7 +30,7 @@ Y más:
 
 ## Patrocinadores (Sponsors)
 
-Apoya este proyecto convirtiéndote en patrocinador (sponsor) [here](https://github.com/sponsors/typicode) 💖
+Apoya este proyecto convirtiéndote en patrocinador (sponsor) [aquí](https://github.com/sponsors/typicode) 💖
 
 ### Patrocinador especial (Special Sponsor)
 

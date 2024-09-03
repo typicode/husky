@@ -2,13 +2,13 @@
 
 ## Comando no encontrado
 
-Consulta [Cómo hacerlo](how-to) para obtener soluciones.
+Consulte [Cómo hacerlo](how-to) para obtener soluciones.
 
-## Los ganchos no se están ejecutando
+## Los ganchos (hooks) no se están ejecutando
 
-1. Verifica que el nombre del archivo sea correcto. Por ejemplo, `precommit` o `pre-commit.sh` son nombres inválidos. Consulta la [documentación](https://git-scm.com/docs/githooks) de los Ganchos de Git (Git hooks ) para conocer los nombres válidos.
-2. Ejecuta `git config core.hooksPath` y asegúrate de que apunte a `.husky/_` (o a tu directorio de ganchos (hooks) personalizado).
-3. Confirma que tu versión de Git sea superior a `2.9`.
+1. Verifique que el nombre del archivo sea correcto. Por ejemplo, `precommit` o `pre-commit.sh` son nombres inválidos. Consulte la [documentación](https://git-scm.com/docs/githooks) de los Ganchos de Git (Git hooks ) para conocer los nombres válidos.
+2. Ejecute `git config core.hooksPath` y asegúrase de que apunte a `.husky/_` (o a su directorio de ganchos personalizado (custom hooks directory)).
+3. Confirme que su versión de Git sea superior a `2.9`.
 
 ## `.git/hooks/` no funciona después de la desinstalación
 
@@ -18,7 +18,7 @@ Si los ganchos (hooks) en `.git/hooks/` no funcionan después de desinstalar `hu
 
 Los ganchos de Git (Git hooks) pueden fallar con Yarn en Windows usando Git Bash (`stdin no es un tty`). Para los usuarios de Windows, implemente esta solución alternativa (workaround):
 
-1. Crear `.husky/common.sh`:
+1. Cree `.husky/common.sh`:
 
 ```shell
 command_exists () {
