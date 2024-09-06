@@ -10,7 +10,7 @@ echo "npm test" > .husky/pre-commit
 
 ## Archivos de inicio
 
-Husky le permite ejecutar comandos locales antes de ejecutar ganchos (hooks). Lee comandos de estos archivos:
+Husky le permite ejecutar comandos locales antes de ejecutar ganchos (hooks). Husky lee comandos de estos archivos:
 
 - `$XDG_CONFIG_HOME/husky/init.sh`
 - `~/.config/husky/init.sh`
@@ -37,7 +37,7 @@ git ... # Los ganchos (Hooks) se ejecutarán nuevamente
 
 ### Para varios comandos
 
-Para deshabilitar los ganchos (hooks) durante un período prolongado (por ejemplo, durante la rebase/fusión (merge)):
+Para deshabilitar los ganchos (hooks) durante un período prolongado (por ejemplo, durante la rebase/fusión (rebase/merge)):
 
 ```shell
 export HUSKY=0 # Deshabilita todos los ganchos (hooks) de Git
@@ -57,7 +57,7 @@ export HUSKY=0 # Husky no instalará ni ejecutará ganchos (hooks) en tu máquin
 
 ## Servidor CI y Docker
 
-Para evitar instalar ganchos de Git (Git Hooks) en servidores de CI o en Docker, use `HUSKY=0`. Por ejemplo, en GitHub Actions:
+Para evitar instalar ganchos de Git (Git Hooks) en servidores de CI o en Docker, use `HUSKY=0`. Por ejemplo, en acciones de GitHub (GitHub Actions):
 
 ```yml
 # https://docs.github.com/en/actions/learn-github-actions/variables
@@ -95,9 +95,9 @@ Luego, úsalo en `prepare`:
 "prepare": "node .husky/install.mjs"
 ```
 
-## Probar Ganchos (Hooks) sin comitear (Committing)
+## Probar (testear) Ganchos (Hooks) sin confirmar (Committing)
 
-Para probar un gancho (hook), agregue `exit 1` al script del gancho (hook) para cancelar el comando Git:
+Para probar/testear un gancho (hook), agregue `exit 1` al script del gancho (hook) para cancelar el comando Git:
 
 ```shell
 # .husky/pre-commit
@@ -140,11 +140,11 @@ cd frontend
 npm test
 ```
 
-## Ganchos (Hooks) que no son de shell
+## Ganchos (hooks) que no son de shell
 
 Para ejecutar scripts que requieren el uso de un lenguaje de script, use el siguiente patrón para cada gancho (hook) en el que aplique:
 
-(Ejemplo usando el gancho `pre-commit` y NodeJS)
+(Ejemplo usando el gancho (hook) `pre-commit` y NodeJS)
 
 1. Cree un punto de entrada para el gancho (hook):
 
@@ -167,7 +167,7 @@ node .husky/pre-commit.js
 
 ## Bash
 
-Los scripts de hook deben ser compatibles con POSIX para garantizar la mejor compatibilidad, ya que no todos tienen "bash" (por ejemplo, los usuarios de Windows).
+Los scripts de gancho (hook) deben ser compatibles con POSIX para garantizar la mejor compatibilidad, ya que no todos tienen "bash" (por ejemplo, los usuarios de Windows).
 
 Dicho esto, si su equipo no usa Windows, puede usar Bash de esta manera:
 
@@ -175,7 +175,7 @@ Dicho esto, si su equipo no usa Windows, puede usar Bash de esta manera:
 # .husky/pre-commit
 
 bash << EOF
-# Put your bash script inside
+# Coloque dentro su script de bash
 # ...
 EOF
 ```
@@ -192,8 +192,8 @@ Ejecute `echo $PATH` en un shell para ver su contenido.
 
 Los administradores de versiones funcionan de la siguiente manera:
 
-1. Agregar el código de inicialización al archivo de inicio de su shell (`.zshrc`, `.bashrc`, etc.), que se ejecuta cada vez que abre una terminal.
-2. Descargar versiones de Node a un directorio en su carpeta de inicio.
+1. Agregando el código de inicialización al archivo de inicio de su shell (`.zshrc`, `.bashrc`, etc.), que se ejecuta cada vez que abre una terminal.
+2. Descargando versiones de Node a un directorio en su carpeta de inicio (home folder).
 
 Por ejemplo, si tiene dos versiones de Node:
 
@@ -210,7 +210,7 @@ echo $PATH
 ~/version-manager/Node-Y/:...
 ```
 
-Ahora, el nodo hace referencia a `Nodo-Y`. Al cambiar a `Nodo-X`, `PATH` cambia en consecuencia:
+Ahora, el node hace referencia a `Nodo-Y`. Al cambiar a `Nodo-X`, `PATH` cambia en concordancia:
 
 ```shell
 echo $PATH

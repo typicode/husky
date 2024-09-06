@@ -96,7 +96,7 @@ export default defineConfig({
         ],
       },
     },
-    sp: {
+    es: {
       label: "Español",
       lang: "es-EC",
       description: "Git hooks se vuelven fáciles",
@@ -110,7 +110,7 @@ export default defineConfig({
           { text: "Migrar desde v4", link: "/es/migrate-from-v4" },
         ],
         docFooter: {
-          prev: "Pagina anterior",
+          prev: "Página anterior",
           next: "Página siguiente",
         },
         outline: {
@@ -118,15 +118,6 @@ export default defineConfig({
         },
         nav: [
           { text: "Sponsor", link: "https://github.com/sponsors/typicode" },
-          {
-            text: "v9.1.5",
-            items: [
-              {
-                text: "Registro de cambios",
-                link: "https://github.com/typicode/husky/releases/tag/v9.1.5",
-              },
-            ],
-          },
         ],
       },
     },
