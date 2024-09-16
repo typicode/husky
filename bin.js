@@ -11,11 +11,13 @@ if (a == 'init') {
 	n = 'package.json'
 	s = f.readFileSync(n)
 	o = JSON.parse(s)
-	;(o.scripts ||= {}).prepare = 'husky'
+		; (o.scripts ||= {}).prepare = 'husky'
 	w(n, JSON.stringify(o, 0, /\t/.test(s) ? '\t' : 2) + '\n')
 	p.stdout.write(i())
-	try { f.mkdirSync('.husky') } catch {}
-	w('.husky/pre-commit', (p.env.npm_config_user_agent?.split('/')[0] ?? 'npm') + ' test\n')
+	try {
+		f.mkdirSync('.husky')
+		w('.husky/pre-commit', (p.env.npm_config_user_agent?.split('/')[0] ?? 'npm') + ' test\n', { flag: 'wx' })
+	} catch { }
 	p.exit()
 }
 
