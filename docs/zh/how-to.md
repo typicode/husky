@@ -11,6 +11,7 @@ echo "npm test" > .husky/pre-commit
 
 Husky 允许你在运行钩子之前执行本地命令。它从这些文件中读取命令：
 
+- `.husky/init.sh`
 - `$XDG_CONFIG_HOME/husky/init.sh`
 - `~/.config/husky/init.sh`
 - `~/.huskyrc` (已弃用)
