@@ -19,7 +19,7 @@ if (a == 'init') {
 	p.exit()
 }
 
-d = c => console.error(`${c} command is DEPRECATED`)
+d = c => console.error(`husky - ${c} command is DEPRECATED`)
 if (['add', 'set', 'uninstall'].includes(a)) { d(a); p.exit(1) }
 if (a == 'install') d(a)
 
