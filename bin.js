@@ -11,7 +11,7 @@ if (a == 'init') {
 	n = 'package.json'
 	s = f.readFileSync(n)
 	o = JSON.parse(s)
-	;(o.scripts ||= {}).prepare = 'husky'
+	;(o.scripts ||= {}).prepare = 'husky || true'
 	w(n, JSON.stringify(o, 0, /\t/.test(s) ? '\t' : 2) + '\n')
 	p.stdout.write(i())
 	try { f.mkdirSync('.husky') } catch {}
