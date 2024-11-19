@@ -11,7 +11,7 @@ Get started [here](/get-started.md).
 ## Features
 
 - Just `2 kB` (📦 _gzipped_) with no dependencies
-- Extremely fast (runs in `~1ms`)
+- Fastest due to being lightweight (runs in `~1ms`)
 - Uses new Git feature (`core.hooksPath`)
 - Supports:
   - macOS, Linux, Windows
@@ -19,6 +19,7 @@ Get started [here](/get-started.md).
   - [All 13 client-side Git hooks](https://git-scm.com/docs/githooks)
 
 And more:
+
 - Branch-specific hooks
 - Use POSIX shell to script advanced cases
 - Adheres to Git's native hook organization
@@ -56,6 +57,7 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 <a href="https://opencollective.com/husky/tiers/company/3/website"><img src="https://opencollective.com/husky/tiers/company/3/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/4/website"><img src="https://opencollective.com/husky/tiers/company/4/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/5/website"><img src="https://opencollective.com/husky/tiers/company/5/avatar.svg?avatarHeight=120"></a>
+[![image](https://github.com/user-attachments/assets/b9c5a918-70fc-4615-ae7d-e7e5bc3c66e8)](https://www.sanity.io/)
 
 ## Used by
 
