@@ -6,7 +6,8 @@
 
 Husky improves your commits and more 🐶 _woof!_
 
-👋 _Hey! Using React, Vue or Astro? Check my new project [MistCSS](https://github.com/typicode/mistcss) to write 50% less code._
+> [!NOTE]
+> 🌬️ Using React? I've just released a new and innovative styling solution for components [MistCSS](https://github.com/typicode/mistcss).
 
 ## Features
 
@@ -19,6 +20,7 @@ Husky improves your commits and more 🐶 _woof!_
   - [All 13 client-side Git hooks](https://git-scm.com/docs/githooks)
 
 And more:
+
 - Branch-specific hooks
 - Use POSIX shell to script advanced cases
 - Adheres to Git's native hook organization
@@ -66,4 +68,3 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 <a href="https://opencollective.com/husky/tiers/company/4/website"><img src="https://opencollective.com/husky/tiers/company/4/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/5/website"><img src="https://opencollective.com/husky/tiers/company/5/avatar.svg?avatarHeight=120"></a>
 [![image](https://github.com/user-attachments/assets/b9c5a918-70fc-4615-ae7d-e7e5bc3c66e8)](https://www.sanity.io/)
-
