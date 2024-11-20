@@ -11,6 +11,7 @@ echo "npm test" > .husky/pre-commit
 
 Husky allows you to execute local commands before running hooks. It reads commands from these files:
 
+- `.husky/init.sh`
 - `$XDG_CONFIG_HOME/husky/init.sh`
 - `~/.config/husky/init.sh`
 - `~/.huskyrc` (deprecated)
