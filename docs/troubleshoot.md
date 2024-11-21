@@ -2,7 +2,7 @@
 
 ## Command not found
 
-See [How To](how-to) for solutions.
+See [How To](./how-to) for solutions.
 
 ## Hooks not running
 
