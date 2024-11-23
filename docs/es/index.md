@@ -11,7 +11,7 @@ Comienza [aquí](/es/get-started.md).
 ## Características
 
 - Solo `2 kB` (📦 _gzipped_) sin dependencias
-- Extremadamente rápido (se ejecuta en `~1ms`)
+- Más rápido por ser ligero (se ejecuta en `~1ms`)
 - Utiliza la nueva característica de Git (`core.hooksPath`)
 - Soporta:
   - macOS, Linux, Windows
@@ -57,6 +57,7 @@ Apoya este proyecto convirtiéndote en patrocinador (sponsor) [aquí](https://gi
 <a href="https://opencollective.com/husky/tiers/company/3/website"><img src="https://opencollective.com/husky/tiers/company/3/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/4/website"><img src="https://opencollective.com/husky/tiers/company/4/avatar.svg?avatarHeight=120"></a>
 <a href="https://opencollective.com/husky/tiers/company/5/website"><img src="https://opencollective.com/husky/tiers/company/5/avatar.svg?avatarHeight=120"></a>
+[![image](https://github.com/user-attachments/assets/b9c5a918-70fc-4615-ae7d-e7e5bc3c66e8)](https://www.sanity.io/)
 
 ## Usado por
 
