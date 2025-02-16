@@ -285,7 +285,7 @@ npm run prepare
 ```
 
 ```sh [pnpm]
-pnpm run preparation
+pnpm run prepare
 ```
 
 ```sh [yarn]
@@ -294,7 +294,7 @@ yarn run postinstall
 ```
 
 ```sh [bun]
-bun run preparation
+bun run prepare
 ```
 
 :::
