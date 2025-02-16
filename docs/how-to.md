@@ -320,7 +320,7 @@ yarn test
 
 ```sh [bun]
 # .husky/pre-commit
-bun test
+bun run test
 ```
 
 :::
