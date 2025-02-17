@@ -3,7 +3,8 @@
 ## 添加新 Hook
 
 添加 hook 与创建文件一样简单。可以通过你喜欢的编辑器、脚本或 echo 命令来实现。例如，在 Linux/macOS 中：
-```shell
+
+```sh
 echo "npm test" > .husky/pre-commit
 ```
 
@@ -29,7 +30,7 @@ git commit -m "..." -n # 跳过 Git 钩子
 
 对于没有使用此标识的命令，使用 HUSKY=0 来临时禁用钩子：
 
-```shell
+```sh
 HUSKY=0 git ... # 临时禁用所有 Git 钩子
 git ... # 钩子会再次运行
 ```
@@ -38,7 +39,7 @@ git ... # 钩子会再次运行
 
 在一个较长的时间里禁用钩子（例如，在变基或者合并期间）：
 
-```shell
+```sh
 export HUSKY=0 # 禁用所有 Git 钩子
 git ...
 git ...
@@ -97,7 +98,7 @@ console.log(husky())
 
 要测试一个钩子，将 `exit 1` 添加到钩子脚本以中止 Git 命令:
 
-```shell
+```sh
 # .husky/pre-commit
 
 # 你的 WIP 脚本
@@ -106,7 +107,7 @@ console.log(husky())
 exit 1
 ```
 
-```shell
+```sh
 git commit -m "testing pre-commit code"
 # 提交不会被创建
 ```
@@ -132,7 +133,7 @@ git commit -m "testing pre-commit code"
 
 在你的 hook 脚本中，将目录切换回相关的子目录：
 
-```shell
+```sh
 # frontend/.husky/pre-commit
 cd frontend
 npm test
@@ -144,11 +145,11 @@ npm test
 
 （使用钩子 `pre-commit` 和 NodeJS 的示例）
 1. 为钩子创建一个入口：
-    ```shell
+    ```sh
     .husky/pre-commit
     ```
 2. 在文件中添加以下内容：
-    ```shell
+    ```sh
     node .husky/pre-commit.js
     ```
 3. 在 `.husky/pre-commit.js` 文件中：
@@ -163,7 +164,7 @@ npm test
 
 也就是说，如果你的团队不使用 Windows，你可以这样使用 Bash：
 
-```shell
+```sh
 # .husky/pre-commit
 
 bash << EOF
@@ -188,14 +189,14 @@ EOF
 
 例如，如果你有两个 Node 版本：
 
-```shell
+```sh
 ~/version-manager/Node-X/node
 ~/version-manager/Node-Y/node
 ```
 
 打开终端将初始化版本管理器，它将选择一个版本（比如 `Node-Y`）并预先设置其到 `PATH` 的路径:
 
-```shell
+```sh
 echo $PATH
 # 输出
 ~/version-manager/Node-Y/:...
@@ -203,7 +204,7 @@ echo $PATH
 
 现在，Node 指向 `Node-Y`。切换到 `Node-X` 时会相应地改变 `PATH`：
 
-```shell
+```sh
 echo $PATH
 # 输出
 ~/version-manager/Node-X/:...
@@ -217,7 +218,7 @@ husky 在每个钩子之前都会执行 `~/.config/husky/init.sh`。将版本管
 
 `nvm` 示例:
 
-```shell
+```sh
 # ~/.config/husky/init.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # 加载 nvm
@@ -225,7 +226,7 @@ export NVM_DIR="$HOME/.nvm"
 
 或者，如果你的 shell 启动文件快速且轻量，也可以直接使用：
 
-```shell
+```sh
 # ~/.config/husky/init.sh
 . ~/.zshrc
 ```
@@ -303,17 +304,17 @@ bun run prepare
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 # .husky/pre-commit
 npm test
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 # .husky/pre-commit
 pnpm test
 ```
 
-```shell [yarn]
+```sh [yarn]
 # .husky/pre-commit
 yarn test
 ```

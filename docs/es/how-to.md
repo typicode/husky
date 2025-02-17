@@ -4,7 +4,7 @@
 
 Agregar un gancho (hook) es tan simple como crear un archivo. Esto se puede lograr usando su editor favorito, un script o un comando echo básico. Por ejemplo, en Linux/macOS:
 
-```shell
+```sh
 echo "npm test" > .husky/pre-commit
 ```
 
@@ -30,7 +30,7 @@ git commit -m "..." -n # Skips Git hooks
 
 Para los comandos sin esta bandera, deshabilite los ganchos (hooks) temporalmente con HUSKY=0:
 
-```shell
+```sh
 HUSKY=0 git ... # Desactiva temporalmente todos los ganchos de Git (Git hooks)
 git ... # Los ganchos (Hooks) se ejecutarán nuevamente
 ```
@@ -39,7 +39,7 @@ git ... # Los ganchos (Hooks) se ejecutarán nuevamente
 
 Para deshabilitar los ganchos (hooks) durante un período prolongado (por ejemplo, durante la rebase/fusión (rebase/merge)):
 
-```shell
+```sh
 export HUSKY=0 # Deshabilita todos los ganchos (hooks) de Git
 git ...
 git ...
@@ -99,7 +99,7 @@ Luego, úsalo en `prepare`:
 
 Para probar/testear un gancho (hook), agregue `exit 1` al script del gancho (hook) para cancelar el comando Git:
 
-```shell
+```sh
 # .husky/pre-commit
 
 # Your WIP script
@@ -108,7 +108,7 @@ Para probar/testear un gancho (hook), agregue `exit 1` al script del gancho (hoo
 exit 1
 ```
 
-```shell
+```sh
 git commit -m "testing pre-commit code"
 # No se creará una confirmación (commit)
 ```
@@ -134,7 +134,7 @@ Configure su script de preparación de la siguiente manera:
 
 En el script de gancho (hook script), cambie el directorio nuevamente al subdirectorio correspondiente:
 
-```shell
+```sh
 # frontend/.husky/pre-commit
 cd frontend
 npm test
@@ -148,13 +148,13 @@ Para ejecutar scripts que requieren el uso de un lenguaje de script, use el sigu
 
 1. Cree un punto de entrada para el gancho (hook):
 
-```shell
+```sh
 .husky/pre-commit
 ```
 
 2. En el archivo agregue lo siguiente
 
-```shell
+```sh
 node .husky/pre-commit.js
 ```
 
@@ -171,7 +171,7 @@ Los scripts de gancho (hook) deben ser compatibles con POSIX para garantizar la 
 
 Dicho esto, si su equipo no usa Windows, puede usar Bash de esta manera:
 
-```shell
+```sh
 # .husky/pre-commit
 
 bash << EOF
@@ -197,14 +197,14 @@ Los administradores de versiones funcionan de la siguiente manera:
 
 Por ejemplo, si tiene dos versiones de Node:
 
-```shell
+```sh
 ~/version-manager/Node-X/node
 ~/version-manager/Node-Y/node
 ```
 
 Al abrir una terminal se inicializa el administrador de versiones, que selecciona una versión (por ejemplo, `Node-Y`) y antepone su ruta a `PATH`:
 
-```shell
+```sh
 echo $PATH
 # Salida
 ~/version-manager/Node-Y/:...
@@ -212,7 +212,7 @@ echo $PATH
 
 Ahora, el node hace referencia a `Nodo-Y`. Al cambiar a `Nodo-X`, `PATH` cambia en concordancia:
 
-```shell
+```sh
 echo $PATH
 # Salida
 ~/version-manager/Node-X/:...
@@ -226,7 +226,7 @@ Husky obtiene `~/.config/husky/init.sh` antes de cada gancho de Git (Git hooks).
 
 Ejemplo con `nvm`:
 
-```shell
+```sh
 # ~/.config/husky/init.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -234,7 +234,7 @@ export NVM_DIR="$HOME/.nvm"
 
 Como alternativa, si su archivo de inicio de shell es rápido y liviano, consígalo directamente:
 
-```shell
+```sh
 # ~/.config/husky/init.sh
 . ~/.zshrc
 ```
@@ -312,17 +312,17 @@ Cree un archivo `pre-commit` en el directorio `.husky/`:
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 # .husky/pre-commit
 npm test
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 # .husky/pre-commit
 pnpm test
 ```
 
-```shell [yarn]
+```sh [yarn]
 # .husky/pre-commit
 yarn test
 ```

@@ -15,7 +15,7 @@ Husky v4
 
 Husky v9
 
-```shell
+```sh
 # .husky/pre-commit
 # Обратите внимание, что теперь вы можете иметь команды в нескольких строках
 npm test // [!code hl]
@@ -34,7 +34,7 @@ npm run foo // [!code hl]
 }
 ```
 
-```shell [.husky/pre-commit (v9)]
+```sh [.husky/pre-commit (v9)]
 jest
 ```
 
@@ -52,7 +52,7 @@ jest
 }
 ```
 
-```shell [.husky/commit-msg (v9)]
+```sh [.husky/commit-msg (v9)]
 commitlint --edit $1
 ```
 

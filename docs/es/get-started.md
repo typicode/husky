@@ -4,21 +4,21 @@
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npm install --save-dev husky
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm add --save-dev husky
 ```
 
-```shell [yarn]
+```sh [yarn]
 yarn add --dev husky
 # Agregue pinst SÓLO si su paquete no es privado
 yarn add --dev pinst
 ```
 
-```shell [bun]
+```sh [bun]
 bun add --dev husky
 ```
 
@@ -30,20 +30,20 @@ El comando `init` simplifica la configuración de husky en un proyecto. Crea un 
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npx husky init
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm exec husky init
 ```
 
-```shell [yarn]
+```sh [yarn]
 # Debido a advertencias específicas y diferencias con otros administradores de paquetes,
 # consulte la sección Cómo hacerlo.
 ```
 
-```shell [bun]
+```sh [bun]
 bunx husky init
 ```
 
@@ -53,7 +53,7 @@ bunx husky init
 
 ¡Felicitaciones! Has configurado exitosamente tu primer gancho de Git (Git hook) con solo un comando 🎉. Probémoslo:
 
-```shell
+```sh
 git commit -m "Keep calm and commit"
 # El script de prueba se ejecutará cada vez que realices un commit
 ```
@@ -66,7 +66,7 @@ Si bien la mayoría de las veces, solo ejecutarás algunos comandos `npm run` o 
 
 Por ejemplo, aquí se muestra cómo puedes analizar (lint) tus archivos preparados (staged files) en cada confirmación (commit) con solo dos líneas de código de shell y sin dependencia externa:
 
-```shell
+```sh
 # .husky/pre-commit
 prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 git update-index --again

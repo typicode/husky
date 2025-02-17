@@ -20,7 +20,7 @@ Git hooks might fail with Yarn on Windows using Git Bash (`stdin is not a tty`).
 
 1. Create `.husky/common.sh`:
 
-```shell
+```sh
 command_exists () {
   command -v "$1" >/dev/null 2>&1
 }
@@ -33,7 +33,7 @@ fi
 
 2. Source it where Yarn commands are run:
 
-```shell
+```sh
 # .husky/pre-commit
 . .husky/common.sh
 
