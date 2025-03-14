@@ -79,6 +79,8 @@ HUSKY: 0
 
 <!-- Поскольку husky может быть не установлен, его необходимо импортировать динамически после проверки prod/CI -->
 ```js
+import process from 'node:process'
+
 // Пропустить установку Husky в production и CI
 if (process.env.NODE_ENV === 'production' || process.env.CI === 'true') {
   process.exit(0)
