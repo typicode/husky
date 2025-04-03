@@ -8,7 +8,7 @@ Consulte [Cómo hacerlo](how-to) para obtener soluciones.
 
 1. Verifique que el nombre del archivo sea correcto. Por ejemplo, `precommit` o `pre-commit.sh` son nombres inválidos. Consulte la [documentación](https://git-scm.com/docs/githooks) de los Ganchos de Git (Git hooks ) para conocer los nombres válidos.
 2. Ejecute `git config core.hooksPath` y asegúrase de que apunte a `.husky/_` (o a su directorio de ganchos personalizado (custom hooks directory)).
-3. Confirme que su versión de Git sea superior a `2.9`.
+3. Confirme que su versión de Git sea superior a `2.4`.
 
 ## `.git/hooks/` no funciona después de la desinstalación
 

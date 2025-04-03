@@ -8,7 +8,7 @@
 
 1. 验证文件名是否正确。例如，`precommit` 或 `pre-commit.sh` 都是无效的名称。有效名称请参考 Git 钩子[文档](https://git-scm.com/docs/githooks)。
 2. 运行 `git config core.hooksPath` 并确保它指向 `.husky/_`（或者你的自定义目录）。
-3. 确认你的 Git 版本高于 `2.9`。
+3. 确认你的 Git 版本高于 `2.4`。
 
 ## 卸载后 `.git/hooks/` 无法正常使用
 
