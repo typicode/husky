@@ -121,5 +121,38 @@ export default defineConfig({
         ],
       },
     },
+    id: {
+      label: "Bahasa Indonesia",
+      lang: "id-ID",
+      description: "Git hooks jadi mudah",
+      link: "/id/",
+      themeConfig: {
+        sidebar: [
+					{ text: "Pengantar", link: "/id" },
+					{ text: "Mulai", link: "/id/get-started" },
+					{ text: "Cara", link: "/id/how-to" },
+					{ text: "Memecahkan Masalah", link: "/id/troubleshoot" },
+					{ text: "Migrasi dari v4", link: "/id/migrate-from-v4" },
+				],
+				docFooter: {
+          prev: "Halaman sebelumnnya",
+          next: "Halaman selanjutnya",
+        },
+        outline: {
+          label: "Di halaman ini",
+        },
+				nav: [{ text: "Sponsor", link: "https://github.com/sponsors/typicode" }],
+				notFound: {
+					title: "HALAMAN TIDAK DITEMUKAN",
+					linkLabel: "pergi ke beranda",
+					linkText: "Bawa ke beranda"
+				},
+				darkModeSwitchLabel: "Penampilan",
+				lightModeSwitchTitle: "Ganti ke tema terang",
+				darkModeSwitchTitle: "Ganti ke tema gelap",
+				returnToTopLabel: "Kembali ke atas",
+				langMenuLabel: "Ganti bahasa",
+      },
+    }
   },
 });
