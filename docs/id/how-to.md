@@ -7,7 +7,7 @@ Menambahkan kait baru sesederhana membuat file. Ini dapat dilakukan dengan mengg
 echo "npm test" > .husky/pre-commit
 ```
 
-## Startup files
+## Berkas persiapan
 
 Husky mengizinkan anda untuk mengeksekusi perintah lokal sebelum menjalankan kait. Ini membaca perintah dari berkas berikut:
 
@@ -193,7 +193,7 @@ Sebagai contoh, jika anda memiliki dua versi Node:
 ~/version-manager/Node-Y/node
 ```
 
-Membuka terminal menginisiasi pengelola paket, yang memilih versi (katakanlah `Node-Y`) dan menambahkn jalurnya ke `PATH`:
+Membuka terminal menginisiasi pengelola paket, yang memilih versi (katakanlah `Node-Y`) dan menambahkan jalurnya ke `PATH`:
 
 ```shell
 echo $PATH
