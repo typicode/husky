@@ -79,6 +79,8 @@ You'll still get a `command not found` error message in your output which may be
 
 <!-- Since husky may not be installed, it must be imported dynamically after prod/CI check  -->
 ```js
+import process from 'node:process'
+
 // Skip Husky install in production and CI
 if (process.env.NODE_ENV === 'production' || process.env.CI === 'true') {
   process.exit(0)
