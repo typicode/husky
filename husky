@@ -2,6 +2,7 @@
 [ "$HUSKY" = "2" ] && set -x
 n=$(basename "$0")
 s=$(dirname "$(dirname "$0")")/$n
+h="$(git rev-parse --git-dir)/hooks/$n"
 
 [ ! -f "$s" ] && exit 0
 
@@ -21,7 +22,6 @@ c=$?
 [ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
 [ $c != 0 ] && exit $c
 
-h=".git/hooks/$n"
 if [ -x "$h" ]; then
 	"$h" "$@"
 	c=$?
