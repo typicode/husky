@@ -19,4 +19,14 @@ c=$?
 
 [ $c != 0 ] && echo "husky - $n script failed (code $c)"
 [ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
-exit $c
+[ $c != 0 ] && exit $c
+
+h=".git/hooks/$n"
+if [ -x "$h" ]; then
+	"$h" "$@"
+	c=$?
+	[ $c != 0 ] && echo "husky - $h hook failed (code $c)"
+	[ $c != 0 ] && exit $c
+fi
+
+exit 0
