@@ -13,7 +13,7 @@ Husky improves your commits and more 🐶 _woof!_
 
 - Just `2 kB` (📦 _gzipped_) with no dependencies
 - Fastest due to being lightweight (runs in `~1ms`)
-- Uses new Git feature (`core.hooksPath`)
+- Uses Git `core.hooksPath`
 - Supports:
   - macOS, Linux, Windows
   - Git GUIs, Node version managers, custom hooks directory, nested projects, monorepos
