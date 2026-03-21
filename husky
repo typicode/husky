@@ -2,6 +2,7 @@
 [ "$HUSKY" = "2" ] && set -x
 n=$(basename "$0")
 s=$(dirname "$(dirname "$0")")/$n
+h="$(git rev-parse --git-dir)/hooks/$n"
 
 [ ! -f "$s" ] && exit 0
 
@@ -19,4 +20,13 @@ c=$?
 
 [ $c != 0 ] && echo "husky - $n script failed (code $c)"
 [ $c = 127 ] && echo "husky - command not found in PATH=$PATH"
-exit $c
+[ $c != 0 ] && exit $c
+
+if [ -x "$h" ]; then
+	"$h" "$@"
+	c=$?
+	[ $c != 0 ] && echo "husky - $h hook failed (code $c)"
+	[ $c != 0 ] && exit $c
+fi
+
+exit 0
