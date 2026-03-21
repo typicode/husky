@@ -121,5 +121,30 @@ export default defineConfig({
         ],
       },
     },
+    ko: {
+      label: "한국어",
+      lang: "ko-KR",
+      description: "Git 훅을 쉽게 다뤄요.",
+      link: "/ko/",
+      themeConfig: {
+        sidebar: [
+          { text: "소개", link: "/ko/" },
+          { text: "시작하기", link: "/ko/get-started" },
+          { text: "사용 방법", link: "/ko/how-to" },
+          { text: "문제 해결", link: "/ko/troubleshoot" },
+          { text: "v4에서 마이그레이션", link: "/ko/migrate-from-v4" },
+        ],
+        docFooter: {
+          prev: "이전 페이지",
+          next: "다음 페이지",
+        },
+        outline: {
+          label: "목차",
+        },
+        nav: [
+          { text: "Sponsor", link: "https://github.com/sponsors/typicode" },
+        ],
+      },
+    },
   },
 });
