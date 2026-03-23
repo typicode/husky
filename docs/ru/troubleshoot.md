@@ -20,7 +20,7 @@ Git-хуки могут не работать с Yarn в Windows с исполь
 
 1. Создайте `.husky/common.sh`:
 
-```shell
+```sh
 command_exists () {
   command -v "$1" >/dev/null 2>&1
 }
@@ -33,7 +33,7 @@ fi
 
 2. Укажите его там, где выполняются команды Yarn:
 
-```shell
+```sh
 # .husky/pre-commit
 . .husky/common.sh
 

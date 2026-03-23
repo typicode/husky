@@ -4,21 +4,21 @@
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npm install --save-dev husky
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm add --save-dev husky
 ```
 
-```shell [yarn]
+```sh [yarn]
 yarn add --dev husky
 # Add pinst ONLY if your package is not private
 yarn add --dev pinst
 ```
 
-```shell [bun]
+```sh [bun]
 bun add --dev husky
 ```
 
@@ -30,31 +30,30 @@ The `init` command simplifies setting up husky in a project. It creates a `pre-c
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npx husky init
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm exec husky init
 ```
 
-```shell [yarn]
+```sh [yarn]
 # Due to specific caveats and differences with other package managers,
 # refer to the How To section.
 ```
 
-```shell [bun]
+```sh [bun]
 bunx husky init
 ```
 
 :::
 
-
 ## Try it
 
 Congratulations! You've successfully set up your first Git hook with just one command 🎉. Let's test it:
 
-```shell
+```sh
 git commit -m "Keep calm and commit"
 # test script will run every time you commit
 ```
@@ -67,7 +66,7 @@ While most of the time, you'll just run a few `npm run` or `npx` commands in you
 
 For example, here's how you can lint your staged files on each commit with only two lines of shell code and no external dependency:
 
-```shell
+```sh
 # .husky/pre-commit
 prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 git update-index --again

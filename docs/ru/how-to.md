@@ -3,7 +3,7 @@
 ## Добавление нового хука
 
 Добавление хука так же просто, как создание файла. Это можно сделать с помощью вашего любимого редактора, скрипта или базовой команды echo. Например, в Linux/macOS:
-```shell
+```sh
 echo "npm test" > .husky/pre-commit
 ```
 
@@ -29,7 +29,7 @@ git commit -m "..." -n # Пропускает хуки Git
 
 Для команд без этого флага временно отключите хуки с помощью HUSKY=0:
 
-```shell
+```sh
 HUSKY=0 git ... # Временно отключает все хуки Git
 git ... # Хуки снова запустятся
 ```
@@ -38,7 +38,7 @@ git ... # Хуки снова запустятся
 
 Чтобы отключить хуки для длительный период (например, во время rebase/merge):
 
-```shell
+```sh
 export HUSKY=0 # Отключает все хуки Git
 git ...
 git ...
@@ -97,7 +97,7 @@ console.log(husky())
 
 Чтобы протестировать хук, добавьте `exit 1` в скрипт хука, чтобы прервать Git команду:
 
-```shell
+```sh
 # .husky/pre-commit
 
 # Ваш скрипт WIP
@@ -106,7 +106,7 @@ console.log(husky())
 exit 1
 ```
 
-```shell
+```sh
 git commit -m "testing pre-commit code"
 # Коммит не будет создан
 ```
@@ -132,7 +132,7 @@ Husky не устанавливается в родительские катал
 
 В скрипте хука измените каталог обратно на соответствующий подкаталог:
 
-```shell
+```sh
 # frontend/.husky/pre-commit
 cd frontend
 npm test
@@ -144,11 +144,11 @@ npm test
 
 (Пример использования хука `pre-commit` и NodeJS)
 1. Создайте точку входа для хука:
-    ```shell
+    ```sh
     .husky/pre-commit
     ```
 2. В файл добавьте следующее
-    ```shell
+    ```sh
     node .husky/pre-commit.js
     ```
 3. в `.husky/pre-commit.js`
@@ -163,7 +163,7 @@ npm test
 
 При этом, если ваша команда не использует Windows, вы можете использовать Bash следующим образом:
 
-```shell
+```sh
 # .husky/pre-commit
 
 bash << EOF
@@ -188,14 +188,14 @@ EOF
 
 Например, если у вас две версии Node:
 
-```shell
+```sh
 ~/version-manager/Node-X/node
 ~/version-manager/Node-Y/node
 ```
 
 Открытие терминала инициализирует менеджер версий, который выбирает версию (например, `Node-Y`) и добавляет ее путь к `PATH`:
 
-```shell
+```sh
 echo $PATH
 # Вывод
 ~/version-manager/Node-Y/:...
@@ -203,7 +203,7 @@ echo $PATH
 
 Теперь node ссылается на `Node-Y`. Переключение на `Node-X` соответственно изменяет `PATH`:
 
-```shell
+```sh
 echo $PATH
 # Вывод
 /version-manager/Node-X/:...
@@ -217,7 +217,7 @@ Husky создает `~/.config/husky/init.sh` перед каждым хуко�
 
 Пример с `nvm`:
 
-```shell
+```sh
 # ~/.config/husky/init.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Это загружает nvm
@@ -225,7 +225,7 @@ export NVM_DIR="$HOME/.nvm"
 
 В качестве альтернативы, если ваш файл запуска оболочки быстрый и легкий, используйте его напрямую:
 
-```shell
+```sh
 # ~/.config/husky/init.sh
 . ~/.zshrc
 ```
@@ -285,7 +285,7 @@ npm run prepare
 ```
 
 ```sh [pnpm]
-pnpm run preparation
+pnpm run prepare
 ```
 
 ```sh [yarn]
@@ -294,7 +294,7 @@ yarn run postinstall
 ```
 
 ```sh [bun]
-bun run preparation
+bun run prepare
 ```
 
 :::
@@ -303,24 +303,24 @@ bun run preparation
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 # .husky/pre-commit
 npm test
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 # .husky/pre-commit
 pnpm test
 ```
 
-```shell [yarn]
+```sh [yarn]
 # .husky/pre-commit
 yarn test
 ```
 
 ```sh [bun]
 # .husky/pre-commit
-тест булочки
+bun run test
 ```
 
 :::

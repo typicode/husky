@@ -15,7 +15,7 @@ Husky v4
 
 Husky v9
 
-```shell
+```sh
 # .husky/pre-commit
 # Tenga en cuenta que ahora puede tener comandos en varias líneas.
 npm test // [!code hl]
@@ -34,7 +34,7 @@ Si estaba llamando a binarios instalados localmente, **ahora necesita ejecutarlo
 }
 ```
 
-```shell [.husky/pre-commit (v9)]
+```sh [.husky/pre-commit (v9)]
 jest
 ```
 
@@ -52,7 +52,7 @@ La variable de entorno `HUSKY_GIT_PARAMS` ahora se reemplaza por los parámetros
 }
 ```
 
-```shell [.husky/commit-msg (v9)]
+```sh [.husky/commit-msg (v9)]
 commitlint --edit $1
 ```
 

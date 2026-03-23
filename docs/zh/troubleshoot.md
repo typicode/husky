@@ -20,7 +20,7 @@
 
 1. 创建 `.husky/common.sh`:
 
-```shell
+```sh
 command_exists () {
   command -v "$1" >/dev/null 2>&1
 }
@@ -33,7 +33,7 @@ fi
 
 1. 在运行 Yarn 命令的地方使用它：
 
-```shell
+```sh
 # .husky/pre-commit
 . "$(dirname -- "$0")/common.sh"
 

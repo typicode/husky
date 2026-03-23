@@ -20,7 +20,7 @@ Los ganchos de Git (Git hooks) pueden fallar con Yarn en Windows usando Git Bash
 
 1. Cree `.husky/common.sh`:
 
-```shell
+```sh
 command_exists () {
   command -v "$1" >/dev/null 2>&1
 }
@@ -33,7 +33,7 @@ fi
 
 2. Obtenga la fuente donde se ejecutan los comandos Yarn:
 
-```shell
+```sh
 # .husky/pre-commit
 . .husky/common.sh
 

@@ -15,7 +15,7 @@ Husky v4
 
 Husky v9
 
-```shell 
+```sh
 # .husky/pre-commit
 # Note that you can now have commands on multiple lines
 npm test // [!code hl]
@@ -34,7 +34,7 @@ If you were calling locally installed binaries, **you need to run them via your 
 }
 ```
 
-```shell [.husky/pre-commit (v9)]
+```sh [.husky/pre-commit (v9)]
 jest
 ```
 
@@ -52,7 +52,7 @@ jest
 }
 ```
 
-```shell [.husky/commit-msg (v9)]
+```sh [.husky/commit-msg (v9)]
 commitlint --edit $1
 ```
 

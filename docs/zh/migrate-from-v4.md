@@ -15,7 +15,7 @@ Husky v4
 
 Husky v9
 
-```shell 
+```sh
 # .husky/pre-commit
 # 提示，你现在可以在多行中输入命令
 npm test # [!code hl]
@@ -34,7 +34,7 @@ npm run foo # [!code hl]
 }
 ```
 
-```shell [.husky/pre-commit (v9)]
+```sh [.husky/pre-commit (v9)]
 # ...
 npx --no jest
 # 或者
@@ -55,7 +55,7 @@ yarn jest
 }
 ```
 
-```shell [.husky/commit-msg (v9)]
+```sh [.husky/commit-msg (v9)]
 # ...
 npx --no -- commitlint --edit $1
 # 或者

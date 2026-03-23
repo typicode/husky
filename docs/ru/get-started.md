@@ -4,21 +4,21 @@
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npm install --save-dev husky
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm add --save-dev husky
 ```
 
-```shell [yarn]
+```sh [yarn]
 yarn add --dev husky
 # Добавить pinst ТОЛЬКО если ваш пакет не является закрытым
 yarn add --dev pinst
 ```
 
-```shell [bun]
+```sh [bun]
 bun add --dev husky
 ```
 
@@ -30,20 +30,20 @@ bun add --dev husky
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npx husky init
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm exec husky init
 ```
 
-```shell [yarn]
+```sh [yarn]
 # Из-за особых оговорок и различий с другими менеджерами пакетов,
 # обратитесь к разделу «Как использовать».
 ```
 
-```shell [bun]
+```sh [bun]
 bunx husky init
 ```
 
@@ -53,7 +53,7 @@ bunx husky init
 
 Поздравляем! Вы успешно настроили свой первый Git hook всего одной командой 🎉. Давайте проверим:
 
-```shell
+```sh
 git commit -m "Keep calm and commit"
 # тестовый скрипт будет запускаться каждый раз при коммите
 ```
@@ -66,7 +66,7 @@ git commit -m "Keep calm and commit"
 
 Например, вот как можно линтинговать подготовленные файлы на каждом коммите, используя всего две строки кода оболочки и без внешней зависимости:
 
-```shell
+```sh
 # .husky/pre-commit
 prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 git update-index --again

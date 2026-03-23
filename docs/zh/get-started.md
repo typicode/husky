@@ -4,21 +4,21 @@
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npm install --save-dev husky
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm add --save-dev husky
 ```
 
-```shell [yarn]
+```sh [yarn]
 yarn add --dev husky
 # 如果你的项目不是私有的，那么只需要安装 pinst
 yarn add --dev pinst
 ```
 
-```shell [bun]
+```sh [bun]
 bun add --dev husky
 ```
 
@@ -30,20 +30,20 @@ bun add --dev husky
 
 ::: code-group
 
-```shell [npm]
+```sh [npm]
 npx husky init
 ```
 
-```shell [pnpm]
+```sh [pnpm]
 pnpm exec husky init
 ```
 
-```shell [yarn]
+```sh [yarn]
 # 由于特殊的注意事项和与其他包管理器的差异，
 # 请参考“如何使用”章节。
 ```
 
-```shell [bun]
+```sh [bun]
 bunx husky init
 ```
 
@@ -54,10 +54,9 @@ bunx husky init
 
 恭喜你！你已经成功地用一个命令设置了你的第一个 Git 钩子 🎉。让我们测试一下：
 
-```shell
+```sh
 git commit -m "Keep calm and commit"
 # 测试脚本会在每次提交时运行
 ```
 
 _有关手动设置和更多信息，请参见 [如何使用](how-to.md) 章节_
-
