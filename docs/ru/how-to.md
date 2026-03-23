@@ -11,6 +11,7 @@ echo "npm test" > .husky/pre-commit
 
 Husky позволяет выполнять локальные команды перед запуском хуков. Он считывает команды из следующих файлов:
 
+- `.husky/init.sh`
 - `$XDG_CONFIG_HOME/husky/init.sh`
 - `~/.config/husky/init.sh`
 - `~/.huskyrc` (устарело)

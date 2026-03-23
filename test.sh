@@ -14,3 +14,4 @@ sh test/9_husky_0.sh
 sh test/10_init.sh
 sh test/11_time.sh
 sh test/12_deprecated.sh
+sh test/13_project_scope_init.sh
