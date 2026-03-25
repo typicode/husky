@@ -257,7 +257,7 @@ Run the `husky` command once in your repo. Ideally, include it in the `prepare` 
 ```json [yarn]
 {
   "scripts": {
-    // Yarn doesn't support prepare script
+    // Yarn (v2) doesn't support prepare script
     "postinstall": "husky",
     // Include this if publishing to npmjs.com
     "prepack": "pinst --disable",
