@@ -121,5 +121,30 @@ export default defineConfig({
         ],
       },
     },
+    jp: {
+      label: "日本語",
+      lang: "ja-JP",
+      description: "Git フックを簡単に",
+      link: "/jp/",
+      themeConfig: {
+        sidebar: [
+          { text: "はじめに", link: "/jp/" },
+          { text: "始めましょう", link: "/jp/get-started" },
+          { text: "方法", link: "/jp/how-to" },
+          { text: "トラブルシュート", link: "/jp/troubleshoot" },
+          { text: "v4からの移行", link: "/jp/migrate-from-v4" },
+        ],
+        docFooter: {
+          prev: "前のページ",
+          next: "次のページ",
+        },
+        outline: {
+          label: "ページナビゲーション",
+        },
+        nav: [
+          { text: "スポンサー", link: "https://github.com/sponsors/typicode" },
+        ],
+      },
+    },
   },
 });
