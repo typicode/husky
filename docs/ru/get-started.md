@@ -68,7 +68,7 @@ git commit -m "Keep calm and commit"
 
 ```shell
 # .husky/pre-commit
-prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's|( |&)|\\ |g') --write --ignore-unknown
 git update-index --again
 ```
 
