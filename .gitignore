@@ -6,3 +6,4 @@ docs/.env
 docs/sponsorkit/.cache.json
 docs/sponsorkit/sponsors.json
 docs/sponsorkit/sponsors.png
+.vscode/
