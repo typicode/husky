@@ -1,5 +1,5 @@
 import c from 'child_process'
-import f, { readdir, writeFileSync as w } from 'fs'
+import f, { writeFileSync as w } from 'fs'
 import p from 'path'
 
 let l = [ 'pre-commit', 'pre-merge-commit', 'prepare-commit-msg', 'commit-msg', 'post-commit', 'applypatch-msg', 'pre-applypatch', 'post-applypatch', 'pre-rebase', 'post-rewrite', 'post-checkout', 'post-merge', 'pre-push', 'pre-auto-gc' ],
