@@ -143,7 +143,7 @@ npm test
 In order to run scripts that require the use of a scripting language, use the following pattern for each applicable hook:
 
 (Example using hook `pre-commit` and NodeJS)
-1. Create an entrypoint for the hook:
+1. Create an entry point for the hook:
     ```shell
     .husky/pre-commit
     ```
@@ -159,7 +159,7 @@ In order to run scripts that require the use of a scripting language, use the fo
 
 ## Bash
 
-Hook scripts need to be POSIX compliant to ensure best compatibility as not everyone has `bash` (e.g. Windows users).
+Hook scripts need to be POSIX compliant to ensure the best compatibility as not everyone has `bash` (e.g. Windows users).
 
 That being said, if your team doesn't use Windows, you can use Bash this way:
 
@@ -232,7 +232,7 @@ Alternatively, if your shell startup file is fast and lightweight, source it dir
 
 ## Manual setup
 
-Git needs to be configured and husky needs to setup files in `.husky/`.
+Git needs to be configured and husky needs to set up files in `.husky/`.
 
 Run the `husky` command once in your repo. Ideally, include it in the `prepare` script in `package.json` for automatic execution after each install (recommended).
 
