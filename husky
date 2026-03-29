@@ -9,7 +9,7 @@ if [ -f "$HOME/.huskyrc" ]; then
 	echo "husky - '~/.huskyrc' is DEPRECATED, please move your code to ~/.config/husky/init.sh"
 fi
 i="${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh"
-[ -f "$i" ] && . "$i"
+[ -f "$i" ] && . "$i" "$n"
 
 [ "${HUSKY-}" = "0" ] && exit 0
 
