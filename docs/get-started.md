@@ -77,4 +77,4 @@ _This is a basic but working example, check [lint-staged](https://github.com/lin
 
 ### Disabling hooks
 
-Husky doesn't force Git hooks. It can be globally disabled (`HUSKY=0`) or be opt-in if wanted. See the [How To](how-to) section for manual setup and more information.
+Husky doesn't force Git hooks. It can be globally disabled (`HUSKY=0`) or be opt-in if wanted. See the [How To](./how-to) section for manual setup and more information.
