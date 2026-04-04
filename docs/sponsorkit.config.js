@@ -1,40 +1,59 @@
-import { defineConfig, presets } from 'sponsorkit'
+import { defineConfig, tierPresets } from 'sponsorkit'
 
 export default defineConfig({
-  // includePrivate: true,
+  github: {
+    login: 'typicode',
+    type: 'user',
+  },
+  
+  width: 800,
+  formats: ['svg', 'png', 'webp'],
+
   tiers: [
     {
       title: 'Past Sponsors',
       monthlyDollars: -1,
-      preset: presets.xs,
+      preset: tierPresets.xs,
     },
     {
       title: 'Backers',
-      preset: presets.base,
+      preset: tierPresets.base,
     },
     {
       title: 'Sponsors',
       monthlyDollars: 10,
-      preset: presets.medium,
-      // to insert custom elements after the tier block
-      composeAfter: (composer, _tierSponsors, _config) => {
-        composer.addSpan(10)
-      },
+      preset: tierPresets.medium,
     },
     {
       title: 'Bronze Sponsors',
       monthlyDollars: 100,
-      preset: presets.large,
+      preset: tierPresets.large,
     },
     {
       title: 'Silver Sponsors',
       monthlyDollars: 250,
-      preset: presets.large,
+      preset: tierPresets.large,
     },
     {
       title: 'Gold Sponsors',
       monthlyDollars: 500,
-      preset: presets.xl,
+      preset: tierPresets.xl,
+    },
+  ],
+
+  renders: [
+    {
+      name: 'sponsors',
+      formats: ['svg'],
+    },
+    {
+      name: 'sponsors.wide',
+      width: 1200,
+    },
+    {
+      name: 'sponsors.circles',
+      renderer: 'circles',
+      width: 600,
     },
   ],
 })

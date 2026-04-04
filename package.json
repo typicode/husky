@@ -1,25 +1,46 @@
 {
-	"name": "husky",
-	"version": "9.1.7",
-	"type": "module",
-	"description": "Modern native Git hooks",
-	"keywords": [
-		"git",
-		"hooks",
-		"pre-commit"
+  "name": "husky",
+  "version": "10.0.0",
+  "type": "module",
+  "description": "Modern native Git hooks",
+  "keywords": [
+    "git",
+    "hooks",
+    "pre-commit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typicode/husky.git"
+  },
+  "funding": "https://github.com/sponsors/typicode",
+  "license": "MIT",
+  "author": "typicode",
+	"contributors": [
+		{
+			"name": "shadowslaher410"
+		}
 	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/typicode/husky.git"
-	},
-	"funding": "https://github.com/sponsors/typicode",
-	"license": "MIT",
-	"author": "typicode",
-	"bin": {
-		"husky": "bin.js"
-	},
-	"exports": "./index.js",
-	"engines": {
-		"node": ">=18"
-	}
+  "bin": {
+    "husky": "./bin.mjs"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "engines": {
+    "node": "^22 || 24 || 25"
+  },
+  "devDependencies": {
+    "memfs": "^4.57.1",
+    "vitest": "^4.1.2"
+  }
 }
