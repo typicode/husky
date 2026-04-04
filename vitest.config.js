@@ -9,7 +9,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['index.js', 'bin.js'],
+      include: ['index.js', 'bin.mjs'],
       thresholds: {
         lines: 90,
         functions: 90,

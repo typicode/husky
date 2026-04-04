@@ -24,6 +24,7 @@
     "husky": "./bin.mjs"
   },
   "scripts": {
+		"pre-commit": "npm test",
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest"
