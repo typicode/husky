@@ -1,1 +1,8 @@
-./test.sh
+#!/usr/bin/env node
+import { spawnSync } from 'node:child_process';
+import { env, exit } from 'node:process';
+
+if (env.HUSKY === '0' || env.CI === 'true') exit(0);
+
+const { status } = spawnSync('npm', ['run', 'pre-commit'], { stdio: 'inherit', shell: true });
+exit(status ?? 0);

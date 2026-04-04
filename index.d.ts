@@ -1,1 +1,1 @@
-export default function (dir?: string): string;
+export default function install(dir?: string): Promise<string>;
