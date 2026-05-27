@@ -121,5 +121,30 @@ export default defineConfig({
         ],
       },
     },
+    pt: {
+      label: "Português (BR)",
+      lang: "pt-BR",
+      description: "Git hooks facilitados",
+      link: "/ptBR/",
+      themeConfig: {
+        sidebar: [
+          { text: "Introdução", link: "/pt/" },
+          { text: "Primeiros Passos", link: "/pt/get-started" },
+          { text: "Como Fazer", link: "/pt/how-to" },
+          { text: "Solução de Problemas", link: "/pt/troubleshoot" },
+          { text: "Migrar da v4", link: "/pt/migrate-from-v4" },
+        ],
+        docFooter: {
+          prev: "Página anterior",
+          next: "Próxima página",
+        },
+        outline: {
+          label: "Nesta página",
+        },
+        nav: [
+          { text: "Patrocinar", link: "https://github.com/sponsors/typicode" },
+        ],
+      },
+    },
   },
 });
