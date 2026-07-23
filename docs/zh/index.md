@@ -47,7 +47,7 @@ Husky 能使你的提交变得更好  🐶 _汪!_
 </p>
 
 <p align="center">
-  <a href="../sponsorkit/sponsors.svg">
+  <a href="https://github.com/typicode/husky/blob/main/docs/sponsorkit/sponsors.svg">
     <img src='../sponsorkit/sponsors.svg'/>
   </a>
 </p>

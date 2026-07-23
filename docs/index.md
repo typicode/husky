@@ -47,7 +47,7 @@ Support this project by becoming a sponsor [here](https://github.com/sponsors/ty
 </p>
 
 <p align="center">
-  <a href="./sponsorkit/sponsors.svg">
+  <a href="https://github.com/typicode/husky/blob/main/docs/sponsorkit/sponsors.svg">
     <img src='./sponsorkit/sponsors.svg'/>
   </a>
 </p>
