@@ -46,7 +46,7 @@ Husky улучшает ваши коммиты и многое другое 🐶
 </p>
 
 <p align="center">
-  <a href="../sponsorkit/sponsors.svg">
+  <a href="https://github.com/typicode/husky/blob/main/docs/sponsorkit/sponsors.svg">
     <img src='../sponsorkit/sponsors.svg'/>
   </a>
 </p>
