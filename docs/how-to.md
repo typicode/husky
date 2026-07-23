@@ -213,7 +213,9 @@ The issue arises because GUIs, launched outside a terminal, don't initialize the
 
 ### Solution
 
-Husky sources `~/.config/husky/init.sh` before each Git hook. Copy your version manager initialization code here to ensure it runs in GUIs.
+Husky sources `~/.config/husky/init.sh` in its wrapper shell, then runs the hook script in a new subprocess (`sh -e "$hook" "$@"`). Environment variables such as `PATH` are inherited by that subprocess, but shell functions are not.
+
+Copy your version manager initialization code to `init.sh` so GUI apps get the right `PATH` before the hook runs.
 
 Example with `nvm`:
 
@@ -221,6 +223,26 @@ Example with `nvm`:
 # ~/.config/husky/init.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+This example fixes `node: command not found` in GUIs by updating `PATH`. It does not make the `nvm` shell function available inside hook scripts.
+
+If a hook calls `nvm` directly, source `nvm.sh` in the hook file:
+
+```shell
+# .husky/pre-commit
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm use
+pnpm test
+```
+
+Alternatively, run `nvm use` from `init.sh` (where the `nvm` function is available) so the hook subprocess inherits the correct `PATH` without calling `nvm` itself:
+
+```shell
+# ~/.config/husky/init.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm use
 ```
 
 Alternatively, if your shell startup file is fast and lightweight, source it directly:
