@@ -9,7 +9,7 @@ a = p.argv[2]
 
 if (a == 'init') {
 	n = 'package.json'
-	s = f.readFileSync(n)
+	try { s = f.readFileSync(n) } catch { console.error('husky - package.json not found, run `husky init` in your project root'); p.exit(1) }
 	o = JSON.parse(s)
 	;(o.scripts ||= {}).prepare = 'husky'
 	w(n, JSON.stringify(o, 0, /\t/.test(s) ? '\t' : 2) + '\n')
