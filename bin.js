@@ -5,6 +5,8 @@ import i from './index.js'
 let p, a, n, s, o, d
 
 p = process
+// A reader that quits early (| head, grep -q) closes the pipe: ignore EPIPE
+p.stdout.on('error', e => { if (e.code != 'EPIPE') throw e })
 a = p.argv[2]
 
 if (a == 'init') {
